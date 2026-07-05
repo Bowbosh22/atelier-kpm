@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATELIER — Tarifs</title>
+<meta name="description" content="Nos formules et tarifs pour la création de site web. Devis gratuit sous 24h.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sand:  '#F4EEE6',
+        shell: '#FBF7F1',
+        clay:  '#A6764E',
+        claylt:'#C49A74',
+        cocoa: '#2A211B',
+        taupe: '#83766A',
+      },
+      fontFamily: {
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        sans:  ['Hanken Grotesk', 'system-ui', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #F4EEE6; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+
+  .ht  { border-top:    1px solid rgba(42,33,27,.10); }
+  .hb  { border-bottom: 1px solid rgba(42,33,27,.10); }
+  .hx  { border:        1px solid rgba(42,33,27,.10); }
+  .div { border-top:    1px solid rgba(42,33,27,.10); }
+
+  /* dark card variants */
+  .hx-light { border: 1px solid rgba(244,238,230,.14); }
+  .div-light { border-top: 1px solid rgba(244,238,230,.14); }
+
+  .serif-tight { letter-spacing: -.013em; }
+  .eyebrow { color: #A6764E; letter-spacing: .22em; font-size: .68rem; text-transform: uppercase; }
+  .eyebrow-light { color: #C49A74; letter-spacing: .22em; font-size: .68rem; text-transform: uppercase; }
+
+  .h-fluid    { font-size: clamp(1.75rem, 8vw, 4rem);   line-height: 1.06; }
+  .h-fluid-lg { font-size: clamp(2rem,   10vw, 5rem);   line-height: 1.04; }
+
+  .btn-dark {
+    display: block; width: 100%; text-align: center;
+    background: #2A211B; color: #F4EEE6;
+    font-weight: 500; border-radius: 9999px;
+    padding: .8rem 1.5rem; font-size: .9rem;
+    transition: opacity .3s;
+  }
+  .btn-dark:hover { opacity: .86; }
+
+  .btn-clay {
+    display: block; width: 100%; text-align: center;
+    background: #A6764E; color: #FBF7F1;
+    font-weight: 500; border-radius: 9999px;
+    padding: .8rem 1.5rem; font-size: .9rem;
+    transition: opacity .3s;
+  }
+  .btn-clay:hover { opacity: .88; }
+
+  .btn-ghost-light {
+    display: block; width: 100%; text-align: center;
+    color: rgba(244,238,230,.75); font-weight: 500;
+    border: 1px solid rgba(244,238,230,.22);
+    border-radius: 9999px;
+    padding: .8rem 1.5rem; font-size: .9rem;
+    transition: border-color .3s, color .3s;
+  }
+  .btn-ghost-light:hover { border-color: rgba(244,238,230,.55); color: #F4EEE6; }
+
+  /* check icon */
+  .check { color: #A6764E; flex-shrink: 0; margin-top: .15rem; }
+  .check-light { color: #C49A74; flex-shrink: 0; margin-top: .15rem; }
+  .cross { color: rgba(131,118,106,.4); flex-shrink: 0; margin-top: .15rem; }
+
+  .reveal { opacity:0; transform:translateY(14px); transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+  .fi { transition: transform .3s ease; display: block; flex-shrink: 0; }
+  details[open] .fi { transform: rotate(45deg); }
+
+  ::selection { background: rgba(166,118,78,.25); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity:1; transform:none; transition:none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+
+<body class="bg-sand text-cocoa font-sans antialiased">
+
+<!-- HEADER -->
+<header id="top" class="fixed top-0 inset-x-0 z-50">
+  <div id="nav" class="transition-all duration-300">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:60px">
+      <a href="index.html" class="font-serif serif-tight text-xl">Atelier<span class="text-clay">.</span></a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-taupe">
+        <a href="index.html#services" class="hover:text-cocoa transition">Services</a>
+        <a href="index.html#realisations" class="hover:text-cocoa transition">Réalisations</a>
+        <a href="#" class="text-cocoa font-medium">Tarifs</a>
+        <a href="index.html#faq" class="hover:text-cocoa transition">Questions</a>
+      </div>
+      <a href="#devis" class="text-sm font-medium text-clay" style="border-bottom:1px solid rgba(166,118,78,.45);padding-bottom:2px">Devis gratuit</a>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pt-24 pb-10 sm:pt-36 sm:pb-14">
+  <div class="eyebrow reveal">Tarifs</div>
+  <h1 class="font-serif serif-tight h-fluid-lg mt-5 max-w-3xl reveal">
+    Des tarifs clairs,<br>sans surprise.
+  </h1>
+  <p class="mt-5 text-base text-taupe max-w-xl leading-relaxed reveal">
+    Chaque formule est un devis fixe. Vous savez exactement ce que vous obtenez et pour quel budget — avant de signer quoi que ce soit.
+  </p>
+  <p class="mt-4 text-sm text-taupe reveal">
+    Paiement en 2 ou 3 fois disponible &nbsp;·&nbsp; Tarifs en USD, paiement en devise locale possible
+  </p>
+</section>
+
+<!-- GRILLE TARIFAIRE -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pb-16 sm:pb-20">
+
+  <!-- CARDS GRID -->
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+
+    <!-- ── ESSENTIEL ── -->
+    <article class="hx rounded-2xl overflow-hidden flex flex-col reveal" style="background:#FBF7F1">
+      <div class="p-6 flex flex-col flex-1">
+        <div class="eyebrow mb-3">Formule 01</div>
+        <h2 class="font-serif serif-tight text-2xl">Essentiel</h2>
+        <p class="text-xs text-taupe mt-1.5 leading-relaxed">Pour démarrer avec une présence propre et professionnelle.</p>
+
+        <div class="div my-5 pt-5">
+          <div class="font-serif serif-tight" style="font-size:clamp(1.6rem,5vw,2.2rem)">350$ – 650$</div>
+          <div class="text-xs text-taupe mt-1">Paiement unique · Livraison 2 sem.</div>
+        </div>
+
+        <ul class="space-y-2.5 flex-1">
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Site 3 pages (Accueil, À propos, Contact)
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Design responsive mobile
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Formulaire de contact
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Google Maps intégré
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Certificat SSL (HTTPS)
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Hébergement 6 mois inclus
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            1 mois de support
+          </li>
+          <li class="flex gap-2.5 text-sm" style="color:rgba(131,118,106,.5)">
+            <svg class="cross w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            SEO avancé
+          </li>
+          <li class="flex gap-2.5 text-sm" style="color:rgba(131,118,106,.5)">
+            <svg class="cross w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            Intégration WhatsApp
+          </li>
+          <li class="flex gap-2.5 text-sm" style="color:rgba(131,118,106,.5)">
+            <svg class="cross w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            Réservation / RDV en ligne
+          </li>
+        </ul>
+
+        <a href="#devis" class="btn-dark mt-6">Demander un devis</a>
+      </div>
+    </article>
+
+    <!-- ── PROFESSIONNEL (featured) ── -->
+    <article class="rounded-2xl overflow-hidden flex flex-col reveal" style="background:#2A211B;color:#F4EEE6">
+      <div class="p-6 flex flex-col flex-1">
+        <div class="flex items-center justify-between mb-3">
+          <div class="eyebrow-light">Formule 02</div>
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full" style="background:rgba(166,118,78,.25);color:#C49A74">Le plus demandé</span>
+        </div>
+        <h2 class="font-serif serif-tight text-2xl" style="color:#F4EEE6">Professionnel</h2>
+        <p class="text-xs mt-1.5 leading-relaxed" style="color:rgba(244,238,230,.6)">Pour les entreprises qui veulent vraiment convertir leurs visiteurs.</p>
+
+        <div class="mt-5 pt-5" style="border-top:1px solid rgba(244,238,230,.14)">
+          <div class="font-serif serif-tight" style="font-size:clamp(1.6rem,5vw,2.2rem);color:#F4EEE6">850$ – 1 500$</div>
+          <div class="text-xs mt-1" style="color:rgba(244,238,230,.5)">Paiement unique · Livraison 3 sem.</div>
+        </div>
+
+        <ul class="space-y-2.5 flex-1 mt-5">
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span>Tout ce qui est dans Essentiel</span>
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Site jusqu'à 7 pages
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Design premium sur mesure
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            SEO on-page optimisé
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            WhatsApp Business intégré
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Galerie photos / portfolio
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Fiche Google Business configurée
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Hébergement 1 an inclus
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Formation 1h à l'utilisation
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            3 mois de support prioritaire
+          </li>
+          <li class="flex gap-2.5 text-sm" style="color:rgba(244,238,230,.35)">
+            <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            Réservation / RDV en ligne
+          </li>
+        </ul>
+
+        <a href="#devis" class="btn-clay mt-6">Demander un devis</a>
+      </div>
+    </article>
+
+    <!-- ── PREMIUM ── -->
+    <article class="hx rounded-2xl overflow-hidden flex flex-col reveal" style="background:#FBF7F1">
+      <div class="p-6 flex flex-col flex-1">
+        <div class="eyebrow mb-3">Formule 03</div>
+        <h2 class="font-serif serif-tight text-2xl">Premium</h2>
+        <p class="text-xs text-taupe mt-1.5 leading-relaxed">Pour les entreprises qui veulent se démarquer et dominer leur marché local.</p>
+
+        <div class="div my-5 pt-5">
+          <div class="font-serif serif-tight" style="font-size:clamp(1.6rem,5vw,2.2rem)">1 800$ – 3 200$</div>
+          <div class="text-xs text-taupe mt-1">Paiement unique · Livraison 4 sem.</div>
+        </div>
+
+        <ul class="space-y-2.5 flex-1">
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Tout ce qui est dans Professionnel
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Site jusqu'à 15 pages
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Design exclusif + animations
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Blog / Actualités intégré
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            SEO avancé (mots-clés + audit)
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Prise de RDV / réservation en ligne
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Rapport de performance mensuel
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Hébergement 1 an premium
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Formation complète 2h
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            6 mois de support prioritaire
+          </li>
+        </ul>
+
+        <a href="#devis" class="btn-dark mt-6">Demander un devis</a>
+      </div>
+    </article>
+
+    <!-- ── E-COMMERCE ── -->
+    <article class="hx rounded-2xl overflow-hidden flex flex-col reveal" style="background:#FBF7F1">
+      <div class="p-6 flex flex-col flex-1">
+        <div class="eyebrow mb-3">Formule 04</div>
+        <h2 class="font-serif serif-tight text-2xl">E-commerce</h2>
+        <p class="text-xs text-taupe mt-1.5 leading-relaxed">Pour vendre vos produits en ligne, 24h/24 et 7j/7.</p>
+
+        <div class="div my-5 pt-5">
+          <div class="font-serif serif-tight" style="font-size:clamp(1.6rem,5vw,2.2rem)">3 000$ – 6 000$</div>
+          <div class="text-xs text-taupe mt-1">Paiement unique · Livraison 5–6 sem.</div>
+        </div>
+
+        <ul class="space-y-2.5 flex-1">
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Tout ce qui est dans Premium
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Boutique en ligne complète
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Paiement mobile (Orange Money, Wave…)
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Catalogue produits illimité
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Gestion des stocks
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Dashboard administrateur
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            SEO e-commerce optimisé
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Hébergement 1 an premium
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Formation boutique 3h
+          </li>
+          <li class="flex gap-2.5 text-sm">
+            <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            6 mois de support prioritaire
+          </li>
+        </ul>
+
+        <a href="#devis" class="btn-dark mt-6">Demander un devis</a>
+      </div>
+    </article>
+
+  </div><!-- / grid -->
+</section>
+
+<!-- TOUJOURS INCLUS -->
+<section class="ht hb" style="background:#FBF7F1">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <div class="reveal mb-8">
+      <div class="eyebrow mb-4">Dans toutes les formules</div>
+      <h2 class="font-serif serif-tight h-fluid">Ce que vous avez toujours, sans exception.</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-0">
+      <div class="div py-5 reveal">
+        <div class="flex gap-3 items-start">
+          <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <div><h3 class="font-medium text-sm">Propriété à 100%</h3><p class="text-xs text-taupe mt-1 leading-relaxed">Le site, le domaine et le code vous appartiennent entièrement. Aucune dépendance.</p></div>
+        </div>
+      </div>
+      <div class="div py-5 reveal">
+        <div class="flex gap-3 items-start">
+          <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <div><h3 class="font-medium text-sm">Devis fixe, sans surprise</h3><p class="text-xs text-taupe mt-1 leading-relaxed">Le prix convenu est le prix final. Aucun frais caché, aucun avenant inattendu.</p></div>
+        </div>
+      </div>
+      <div class="div py-5 reveal">
+        <div class="flex gap-3 items-start">
+          <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <div><h3 class="font-medium text-sm">Nom de domaine inclus</h3><p class="text-xs text-taupe mt-1 leading-relaxed">On enregistre votre nom de domaine et on configure tout. Rien à faire de votre côté.</p></div>
+        </div>
+      </div>
+      <div class="div py-5 reveal">
+        <div class="flex gap-3 items-start">
+          <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <div><h3 class="font-medium text-sm">Compatible tous appareils</h3><p class="text-xs text-taupe mt-1 leading-relaxed">Votre site s'affiche parfaitement sur téléphone, tablette et ordinateur.</p></div>
+        </div>
+      </div>
+      <div class="div py-5 reveal">
+        <div class="flex gap-3 items-start">
+          <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <div><h3 class="font-medium text-sm">Validation avant livraison</h3><p class="text-xs text-taupe mt-1 leading-relaxed">Vous validez la maquette et le contenu avant chaque étape. Rien n'est mis en ligne sans votre accord.</p></div>
+        </div>
+      </div>
+      <div class="div py-5 reveal">
+        <div class="flex gap-3 items-start">
+          <svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <div><h3 class="font-medium text-sm">Paiement en plusieurs fois</h3><p class="text-xs text-taupe mt-1 leading-relaxed">50% à la commande, 50% à la livraison. Ou en 3 fois sur demande.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAINTENANCE (abonnement) -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
+  <div class="reveal mb-8">
+    <div class="eyebrow mb-4">Maintenance mensuelle</div>
+    <h2 class="font-serif serif-tight h-fluid">Votre site reste impeccable dans le temps.</h2>
+    <p class="text-sm text-taupe mt-4 max-w-xl leading-relaxed">Optionnel, en complément de toute formule. Sans engagement minimum — résiliable à tout moment.</p>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <!-- SUIVI -->
+    <div class="hx rounded-2xl p-6 reveal" style="background:#FBF7F1">
+      <div class="eyebrow mb-3">Suivi</div>
+      <h3 class="font-serif serif-tight text-2xl">Maintenance Essentielle</h3>
+      <div class="div mt-4 pt-4">
+        <div class="font-serif serif-tight text-3xl">45$ <span class="font-sans font-normal text-base text-taupe">/ mois</span></div>
+      </div>
+      <ul class="mt-5 space-y-2.5">
+        <li class="flex gap-2.5 text-sm"><svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Mises à jour de sécurité</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Sauvegardes hebdomadaires</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Surveillance de disponibilité</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>1 modification / mois</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Rapport mensuel simple</li>
+        <li class="flex gap-2.5 text-sm" style="color:rgba(131,118,106,.45)"><svg class="cross w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>Modifications illimitées</li>
+        <li class="flex gap-2.5 text-sm" style="color:rgba(131,118,106,.45)"><svg class="cross w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>Rapport performance SEO</li>
+      </ul>
+      <a href="#devis" class="btn-dark mt-6">Souscrire</a>
+    </div>
+
+    <!-- ACTIF -->
+    <div class="rounded-2xl p-6 reveal" style="background:#2A211B;color:#F4EEE6">
+      <div class="eyebrow-light mb-3">Actif</div>
+      <h3 class="font-serif serif-tight text-2xl" style="color:#F4EEE6">Maintenance Complète</h3>
+      <div class="mt-4 pt-4" style="border-top:1px solid rgba(244,238,230,.14)">
+        <div class="font-serif serif-tight text-3xl" style="color:#F4EEE6">95$ <span class="font-sans font-normal text-base" style="color:rgba(244,238,230,.5)">/ mois</span></div>
+      </div>
+      <ul class="mt-5 space-y-2.5">
+        <li class="flex gap-2.5 text-sm"><svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Tout ce qui est dans Essentielle</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Modifications de contenu illimitées</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Ajout de photos / textes</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Rapport performance SEO mensuel</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Support prioritaire 48h</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Sauvegarde quotidienne</li>
+        <li class="flex gap-2.5 text-sm"><svg class="check-light w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Conseils stratégie web inclus</li>
+      </ul>
+      <a href="#devis" class="btn-clay mt-6">Souscrire</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ PRIX -->
+<section class="ht hb" style="background:#FBF7F1">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <div class="reveal mb-8">
+      <div class="eyebrow mb-4">Questions sur les tarifs</div>
+      <h2 class="font-serif serif-tight h-fluid">Ce que vous vous demandez sûrement.</h2>
+    </div>
+    <div class="ht">
+      <details class="div reveal">
+        <summary class="flex items-center justify-between cursor-pointer py-5 gap-4">
+          <span class="font-serif serif-tight text-lg leading-snug">Pourquoi une fourchette et pas un prix fixe ?</span>
+          <span class="fi text-clay text-xl leading-none">+</span>
+        </summary>
+        <p class="text-sm text-taupe pb-5 leading-relaxed">Chaque projet est différent. Le nombre de pages, la complexité du design, le contenu fourni et les fonctionnalités souhaitées influencent le prix final. La fourchette vous donne un cadre honnête ; le devis que vous recevrez sera lui, fixe et sans surprise.</p>
+      </details>
+      <details class="div reveal">
+        <summary class="flex items-center justify-between cursor-pointer py-5 gap-4">
+          <span class="font-serif serif-tight text-lg leading-snug">Puis-je payer en plusieurs fois ?</span>
+          <span class="fi text-clay text-xl leading-none">+</span>
+        </summary>
+        <p class="text-sm text-taupe pb-5 leading-relaxed">Oui. Par défaut, 50% à la commande et 50% à la livraison. Sur demande, un paiement en 3 fois est possible. Le paiement en devise locale (FCFA, CDF…) est également accepté.</p>
+      </details>
+      <details class="div reveal">
+        <summary class="flex items-center justify-between cursor-pointer py-5 gap-4">
+          <span class="font-serif serif-tight text-lg leading-snug">Quelle formule choisir si je ne sais pas encore ?</span>
+          <span class="fi text-clay text-xl leading-none">+</span>
+        </summary>
+        <p class="text-sm text-taupe pb-5 leading-relaxed">La formule Professionnel convient à 80% de nos clients : artisans, restaurateurs, PME et entreprises du bâtiment. Si vous avez un doute, demandez un appel découverte — c'est gratuit et on vous oriente honnêtement.</p>
+      </details>
+      <details class="div reveal">
+        <summary class="flex items-center justify-between cursor-pointer py-5 gap-4">
+          <span class="font-serif serif-tight text-lg leading-snug">Que se passe-t-il après la période d'hébergement incluse ?</span>
+          <span class="fi text-clay text-xl leading-none">+</span>
+        </summary>
+        <p class="text-sm text-taupe pb-5 leading-relaxed">À la fin de la période incluse, l'hébergement est renouvelé annuellement à un tarif préférentiel (autour de 80–120$/an selon la formule). Vous êtes libre de gérer votre hébergement ailleurs si vous le souhaitez.</p>
+      </details>
+      <details class="div reveal">
+        <summary class="flex items-center justify-between cursor-pointer py-5 gap-4">
+          <span class="font-serif serif-tight text-lg leading-snug">Y a-t-il des frais cachés ?</span>
+          <span class="fi text-clay text-xl leading-none">+</span>
+        </summary>
+        <p class="text-sm text-taupe pb-5 leading-relaxed">Non. Le devis que vous signez est le prix final. Les seules dépenses futures sont l'hébergement et le nom de domaine (après la période incluse), clairement indiqués dès le départ.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS CTA -->
+<section id="devis" style="background:#2A211B;color:#F4EEE6">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div class="reveal">
+        <div class="eyebrow-light mb-4">Devis gratuit</div>
+        <h2 class="font-serif serif-tight h-fluid" style="color:#F4EEE6">Recevez votre devis <span class="italic" style="color:#C49A74">sous 24h.</span></h2>
+        <p class="text-sm mt-5 leading-relaxed" style="color:rgba(244,238,230,.62)">Décrivez votre projet en une minute. On vous rappelle avec une proposition claire, une formule recommandée et un prix fixe — sans engagement.</p>
+        <ul class="mt-5 space-y-2 text-sm" style="color:rgba(244,238,230,.6)">
+          <li><span class="text-claylt mr-2">—</span>Réponse personnalisée sous 24h</li>
+          <li><span class="text-claylt mr-2">—</span>Formule conseillée selon votre activité</li>
+          <li><span class="text-claylt mr-2">—</span>Devis fixe, aucun engagement</li>
+        </ul>
+      </div>
+
+      <form id="leadForm" class="reveal space-y-5" novalidate>
+        <div>
+          <label class="eyebrow-light block mb-2">Nom complet *</label>
+          <input required name="nom" type="text" placeholder="Jean Mbemba"
+            class="block w-full bg-transparent py-2.5 text-sand text-base font-sans placeholder:text-sand/30 focus:outline-none"
+            style="border:0;border-bottom:1px solid rgba(244,238,230,.2);transition:border-color .3s"
+            onfocus="this.style.borderColor='rgba(196,154,116,.7)'" onblur="this.style.borderColor='rgba(244,238,230,.2)'">
+        </div>
+        <div>
+          <label class="eyebrow-light block mb-2">Téléphone *</label>
+          <input required name="tel" type="tel" placeholder="+243 ..."
+            class="block w-full bg-transparent py-2.5 text-sand text-base font-sans placeholder:text-sand/30 focus:outline-none"
+            style="border:0;border-bottom:1px solid rgba(244,238,230,.2);transition:border-color .3s"
+            onfocus="this.style.borderColor='rgba(196,154,116,.7)'" onblur="this.style.borderColor='rgba(244,238,230,.2)'">
+        </div>
+        <div>
+          <label class="eyebrow-light block mb-2">Email *</label>
+          <input required name="email" type="email" placeholder="vous@email.com"
+            class="block w-full bg-transparent py-2.5 text-sand text-base font-sans placeholder:text-sand/30 focus:outline-none"
+            style="border:0;border-bottom:1px solid rgba(244,238,230,.2);transition:border-color .3s"
+            onfocus="this.style.borderColor='rgba(196,154,116,.7)'" onblur="this.style.borderColor='rgba(244,238,230,.2)'">
+        </div>
+        <div>
+          <label class="eyebrow-light block mb-2">Formule envisagée</label>
+          <select name="formule"
+            class="block w-full bg-transparent py-2.5 text-sand text-base font-sans focus:outline-none appearance-none"
+            style="border:0;border-bottom:1px solid rgba(244,238,230,.2);color:#F4EEE6;background:#2A211B">
+            <option value="" style="background:#2A211B">Je ne sais pas encore</option>
+            <option value="essentiel" style="background:#2A211B">Essentiel — 350$ à 650$</option>
+            <option value="professionnel" style="background:#2A211B">Professionnel — 850$ à 1 500$</option>
+            <option value="premium" style="background:#2A211B">Premium — 1 800$ à 3 200$</option>
+            <option value="ecommerce" style="background:#2A211B">E-commerce — 3 000$ à 6 000$</option>
+          </select>
+        </div>
+        <div>
+          <label class="eyebrow-light block mb-2">Votre projet</label>
+          <textarea name="message" rows="2" placeholder="Ex : je suis restaurateur à Kinshasa, je n'ai pas de site…"
+            class="block w-full bg-transparent py-2.5 text-sand text-base font-sans placeholder:text-sand/30 focus:outline-none resize-none"
+            style="border:0;border-bottom:1px solid rgba(244,238,230,.2);transition:border-color .3s"
+            onfocus="this.style.borderColor='rgba(196,154,116,.7)'" onblur="this.style.borderColor='rgba(244,238,230,.2)'"></textarea>
+        </div>
+        <button type="submit" class="btn-clay w-full">Recevoir mon devis gratuit →</button>
+        <p id="formMsg" class="text-sm text-claylt hidden">Merci ! Nous vous recontactons sous 24h.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ht">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-10">
+    <div class="flex flex-col sm:flex-row sm:justify-between gap-8">
+      <div>
+        <a href="index.html" class="font-serif serif-tight text-xl">Atelier<span class="text-clay">.</span></a>
+        <p class="text-sm text-taupe mt-3 max-w-xs leading-relaxed">Studio web premium. Des sites modernes, rapides et optimisés pour générer des clients.</p>
+      </div>
+      <div class="flex gap-12 text-sm">
+        <ul class="space-y-2.5 text-taupe">
+          <li class="font-medium text-cocoa">Studio</li>
+          <li><a href="index.html#services" class="hover:text-cocoa transition">Services</a></li>
+          <li><a href="index.html#realisations" class="hover:text-cocoa transition">Réalisations</a></li>
+          <li><a href="index.html#faq" class="hover:text-cocoa transition">Questions</a></li>
+        </ul>
+        <ul class="space-y-2.5 text-taupe">
+          <li class="font-medium text-cocoa">Contact</li>
+          <li><a href="mailto:contact@atelier.studio" class="hover:text-cocoa transition">contact@atelier.studio</a></li>
+          <li><a href="#devis" class="hover:text-cocoa transition">+243 00 00 00 00</a></li>
+          <li><a href="#devis" class="text-clay">Devis gratuit →</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ht">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-taupe">
+      <span>© 2026 Atelier Studio. Tous droits réservés.</span>
+      <span>Conçu pour convertir</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar
+  const nav = document.getElementById('nav');
+  const updateNav = () => {
+    if (window.scrollY > 14) {
+      nav.style.background = 'rgba(244,238,230,.88)';
+      nav.style.backdropFilter = 'blur(14px)';
+      nav.style.webkitBackdropFilter = 'blur(14px)';
+      nav.style.borderBottom = '1px solid rgba(42,33,27,.10)';
+    } else {
+      nav.style.background = '';
+      nav.style.backdropFilter = '';
+      nav.style.borderBottom = '';
+    }
+  };
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  // Reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (Math.min(i % 4, 3) * 55) + 'ms';
+    io.observe(el);
+  });
+
+  // FAQ
+  document.querySelectorAll('details').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (d.open) document.querySelectorAll('details').forEach(o => { if (o !== d) o.open = false; });
+    });
+  });
+
+  // Form
+  const form = document.getElementById('leadForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll('[required]').forEach(i => {
+      if (!i.value.trim()) { ok = false; i.style.borderColor = 'rgba(180,60,60,.8)'; }
+      else { i.style.borderColor = 'rgba(244,238,230,.2)'; }
+    });
+    if (!ok) return;
+    document.getElementById('formMsg').classList.remove('hidden');
+    form.reset();
+  });
+</script>
+</body>
+</html>
