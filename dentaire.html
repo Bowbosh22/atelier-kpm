@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinique Sorriso — Dentiste Premium Brazzaville</title>
+<meta name="description" content="Clinique dentaire premium a Brazzaville. Soins sans douleur, implants, orthodontie, blanchiment. Prise de rendez-vous en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{blanc:"#FFFFFF",neige:"#F0F7FF",azur:"#1E6EA9",azurlt:"#38BDF8",teal:"#0FA89A",teallt:"#5EEAD4",ardoise:"#1A2B3C",brume:"#6B7F91"},fontFamily:{serif:["Lora","Georgia","serif"],sans:["Nunito","system-ui","sans-serif"]}}}}</script>
+<style>
+html{scroll-behavior:smooth}body{background:#fff;color:#1A2B3C;overflow-x:hidden;-webkit-text-size-adjust:100%}
+.ht{border-top:1px solid rgba(26,43,60,.08)}.hb{border-bottom:1px solid rgba(26,43,60,.08)}.hx{border:1px solid rgba(26,43,60,.08)}.div{border-top:1px solid rgba(26,43,60,.07)}
+.eyebrow{font-family:"Nunito",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#0FA89A}
+.h-hero{font-size:clamp(2.4rem,8vw,5.5rem);line-height:1.06;letter-spacing:-.02em}
+.h-title{font-size:clamp(1.8rem,5vw,3.2rem);line-height:1.08;letter-spacing:-.018em}
+.h-sub{font-size:clamp(1.4rem,4vw,2.2rem);line-height:1.12}
+.hero-bg{background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(56,189,248,.12),transparent 60%),radial-gradient(ellipse 60% 80% at 20% 70%,rgba(15,168,154,.08),transparent 55%),linear-gradient(155deg,#0F2D4A 0%,#1E6EA9 50%,#1A8FA3 100%)}
+#nav{transition:all .35s ease}#nav.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(26,43,60,.08)}
+#nav.scrolled .nav-txt{color:#1A2B3C}#nav.scrolled .nav-link{color:#6B7F91}
+.nav-txt{color:#fff;transition:color .35s;font-family:"Nunito",sans-serif;font-weight:700;font-size:1.1rem}
+.nav-link{color:rgba(255,255,255,.75);font-size:.82rem;font-weight:600;transition:color .3s;letter-spacing:.03em}
+.nav-link:hover{color:#fff}#nav.scrolled .nav-link:hover{color:#1A2B3C}
+.btn-teal{display:inline-block;text-align:center;background:#0FA89A;color:#fff;font-family:"Nunito",sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;padding:.85rem 1.8rem;border-radius:9999px;transition:background .25s,transform .2s}
+.btn-teal:hover{background:#0d9488;transform:translateY(-1px)}
+.btn-white{display:inline-block;text-align:center;background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.4);font-family:"Nunito",sans-serif;font-weight:600;font-size:.82rem;padding:.85rem 1.8rem;border-radius:9999px;transition:all .25s}
+.btn-white:hover{background:rgba(255,255,255,.25)}
+.btn-azur{display:inline-block;text-align:center;background:#1E6EA9;color:#fff;font-family:"Nunito",sans-serif;font-weight:700;font-size:.82rem;padding:.85rem 1.8rem;border-radius:9999px;transition:background .25s,transform .2s}
+.btn-azur:hover{background:#1a5f94;transform:translateY(-1px)}
+.btn-outline{display:inline-block;text-align:center;border:1.5px solid rgba(26,43,60,.2);color:#1A2B3C;font-family:"Nunito",sans-serif;font-weight:600;font-size:.82rem;padding:.82rem 1.8rem;border-radius:9999px;transition:all .25s}
+.btn-outline:hover{background:#1E6EA9;color:#fff;border-color:#1E6EA9}
+.care-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;border-radius:16px}
+.care-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px -20px rgba(30,110,169,.25)}
+.doctor-card{border-radius:16px;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.doctor-card:hover{transform:translateY(-4px)}
+.doc-avatar{border-radius:50%;border:3px solid #0FA89A;display:flex;align-items:center;justify-content:center;font-family:"Lora",serif;font-weight:600;color:#fff;font-size:1.6rem}
+.star{color:#F59E0B}
+.trust-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:9999px;padding:.4rem 1rem;font-size:.75rem;color:rgba(255,255,255,.9)}
+.avant-card{background:linear-gradient(145deg,#CBD5E1,#94A3B8);border-radius:16px;position:relative;overflow:hidden}
+.avant-card::before{content:"AVANT";position:absolute;top:12px;left:12px;background:rgba(0,0,0,.45);color:#fff;font-size:.6rem;letter-spacing:.2em;font-weight:700;padding:4px 10px;border-radius:20px}
+.apres-card{background:linear-gradient(145deg,#0FA89A,#1E6EA9);border-radius:16px;position:relative;overflow:hidden}
+.apres-card::before{content:"APRES";position:absolute;top:12px;left:12px;background:rgba(15,168,154,.8);color:#fff;font-size:.6rem;letter-spacing:.2em;font-weight:700;padding:4px 10px;border-radius:20px}
+.tooth-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(15,168,154,.1)}
+.f-input{width:100%;background:#fff;border:1.5px solid rgba(26,43,60,.15);border-radius:10px;padding:.75rem 1rem;color:#1A2B3C;font-family:"Nunito",sans-serif;font-size:.92rem;transition:border-color .3s}
+.f-input:focus{outline:none;border-color:#0FA89A;box-shadow:0 0 0 3px rgba(15,168,154,.12)}
+.f-input::placeholder{color:#9EB0C0}
+.f-label{font-family:"Nunito",sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1A2B3C;margin-bottom:.4rem;display:block}
+details>summary{list-style:none}details>summary::-webkit-details-marker{display:none}
+.fi{width:28px;height:28px;border-radius:50%;background:#F0F7FF;color:#1E6EA9;display:inline-flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all .3s;flex-shrink:0}
+details[open] .fi{transform:rotate(45deg);background:#1E6EA9;color:#fff}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .85s cubic-bezier(.2,.7,.2,1),transform .85s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+::selection{background:rgba(15,168,154,.25)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body class="font-sans antialiased" style="background:#fff">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50">
+<div id="nav">
+<nav class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:70px">
+<a href="#haut" class="nav-txt flex items-center gap-2">
+<svg class="w-6 h-6" style="color:#5EEAD4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 5 5.5 5 9c0 3 1.5 5.5 3 7l1 5h6l1-5c1.5-1.5 3-4 3-7 0-3.5-3-7-7-7z"/></svg>
+Sorriso
+</a>
+<div class="hidden lg:flex items-center gap-8">
+<a href="#soins" class="nav-link">Soins</a>
+<a href="#equipe" class="nav-link">Equipe</a>
+<a href="#avant-apres" class="nav-link">Resultats</a>
+<a href="#avis" class="nav-link">Avis</a>
+<a href="#faq" class="nav-link">FAQ</a>
+</div>
+<a href="#rdv" class="btn-teal text-sm hidden sm:inline-block">Prendre rendez-vous</a>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="haut" class="hero-bg min-h-screen flex flex-col justify-center px-5 sm:px-8 pt-20 pb-16">
+<div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-14 items-center">
+<div>
+<div class="eyebrow reveal" style="color:#5EEAD4">Clinique Dentaire Premium · Brazzaville</div>
+<h1 class="font-serif h-hero text-white mt-5 reveal" style="transition-delay:.1s">
+Votre sourire,<br><em>notre expertise.</em><br><span style="color:#5EEAD4">Sans douleur.</span>
+</h1>
+<p class="mt-6 text-white/70 leading-relaxed reveal" style="font-size:clamp(.95rem,2.5vw,1.1rem);max-width:480px;transition-delay:.2s">
+Des soins dentaires de precision dans un cadre moderne et apaisant. Parce que chaque patient merite le meilleur.
+</p>
+<div class="mt-8 flex flex-col sm:flex-row gap-3 reveal" style="transition-delay:.3s">
+<a href="#rdv" class="btn-teal">Prendre rendez-vous</a>
+<a href="#soins" class="btn-white">Decouvrir nos soins</a>
+</div>
+<div class="mt-10 flex flex-wrap gap-3 reveal" style="transition-delay:.45s">
+<div class="trust-pill"><svg class="w-3.5 h-3.5" style="color:#5EEAD4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>Soins sans douleur</div>
+<div class="trust-pill"><svg class="w-3.5 h-3.5" style="color:#5EEAD4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Equipe certifiee</div>
+<div class="trust-pill"><svg class="w-3.5 h-3.5" style="color:#5EEAD4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg>RDV en 48h</div>
+</div>
+</div>
+<!-- stat card -->
+<div class="reveal" style="transition-delay:.25s">
+<div class="bg-white rounded-2xl p-7 sm:p-9" style="box-shadow:0 30px 60px -20px rgba(15,45,74,.45)">
+<h2 class="font-serif text-ardoise text-2xl mb-6" style="letter-spacing:-.01em">Pourquoi choisir <em>Sorriso</em> ?</h2>
+<div class="space-y-5">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:#F0FFF4"><svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+<div><div class="font-semibold text-ardoise text-sm">Technologie de pointe</div><div class="text-brume text-xs mt-0.5 leading-relaxed">Radio 3D, laser dentaire et materiau bio-compatibles certifies CE.</div></div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:#EFF6FF"><svg class="w-5 h-5 text-azur" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+<div><div class="font-semibold text-ardoise text-sm">Approche bienveillante</div><div class="text-brume text-xs mt-0.5 leading-relaxed">Chaque soin est explique. Pas de surprise, pas de pression.</div></div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:#F0FDFA"><svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg></div>
+<div><div class="font-semibold text-ardoise text-sm">+3 500 patients satisfaits</div><div class="text-brume text-xs mt-0.5 leading-relaxed">Depuis 2012, notre clinique est la reference dentaire de Brazzaville.</div></div>
+</div>
+<div class="div pt-5 mt-2">
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold text-white" style="background:#1E6EA9">DK</div>
+<div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold text-white" style="background:#0FA89A">AM</div>
+<div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold text-white" style="background:#1A8FA3">SB</div>
+</div>
+<div class="text-right"><div class="font-bold text-ardoise text-sm">4,9 / 5</div><div class="text-brume text-xs">148 avis Google</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRESENTATION -->
+<section class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
+<div class="grid lg:grid-cols-12 gap-14 items-center">
+<div class="lg:col-span-5 reveal">
+<div class="eyebrow mb-5">La clinique</div>
+<h2 class="font-serif h-title text-ardoise">Une clinique pensee pour votre confort.</h2>
+<p class="text-brume mt-5 leading-relaxed">Fondee en 2012 par le Dr. Koffi et son equipe, la Clinique Sorriso a ete concue pour effacer l\'idee que le dentiste fait peur. Ici, tout est pense pour que vous repartez en souriant.</p>
+<ul class="mt-6 space-y-3">
+<li class="flex items-center gap-3 text-sm"><svg class="w-4 h-4 text-teal shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Salle d\'attente confortable avec espace enfants</li>
+<li class="flex items-center gap-3 text-sm"><svg class="w-4 h-4 text-teal shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Materiel sterilise conforme aux normes OMS</li>
+<li class="flex items-center gap-3 text-sm"><svg class="w-4 h-4 text-teal shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Anesthesie locale moderne : soins indolores</li>
+<li class="flex items-center gap-3 text-sm"><svg class="w-4 h-4 text-teal shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Devis clair avant tout soin</li>
+</ul>
+<div class="mt-8 grid grid-cols-3 gap-4 text-center">
+<div class="p-4 rounded-xl" style="background:#F0F7FF"><div class="font-serif text-3xl text-azur" style="letter-spacing:-.02em">12</div><div class="text-brume text-xs mt-1">ans d\'experience</div></div>
+<div class="p-4 rounded-xl" style="background:#F0FDFA"><div class="font-serif text-3xl text-teal" style="letter-spacing:-.02em">8</div><div class="text-brume text-xs mt-1">specialistes</div></div>
+<div class="p-4 rounded-xl" style="background:#F0F7FF"><div class="font-serif text-3xl text-azur" style="letter-spacing:-.02em">3 500</div><div class="text-brume text-xs mt-1">patients</div></div>
+</div>
+</div>
+<div class="lg:col-span-7 reveal" style="transition-delay:.1s">
+<div class="grid grid-cols-2 gap-3">
+<div class="rounded-2xl overflow-hidden" style="background:linear-gradient(145deg,#EFF6FF,#DBEAFE);aspect-ratio:4/5">
+<div class="h-full flex items-end p-5"><div class="bg-white/80 rounded-xl px-4 py-2.5 text-xs font-semibold text-azur">Salle de soins</div></div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="rounded-2xl overflow-hidden" style="background:linear-gradient(145deg,#F0FDFA,#CCFBF1);flex:1">
+<div class="h-full min-h-32 flex items-end p-4"><div class="bg-white/80 rounded-xl px-4 py-2 text-xs font-semibold text-teal">Reception</div></div>
+</div>
+<div class="rounded-2xl overflow-hidden" style="background:linear-gradient(145deg,#FFF7ED,#FED7AA);flex:1">
+<div class="h-full min-h-32 flex items-end p-4"><div class="bg-white/80 rounded-xl px-4 py-2 text-xs font-semibold" style="color:#B45309">Salle d\'attente</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe" class="py-20 sm:py-28" style="background:#F0F7FF">
+<div class="max-w-7xl mx-auto px-5 sm:px-8">
+<div class="text-center mb-14 reveal">
+<div class="eyebrow mb-4">Notre equipe</div>
+<h2 class="font-serif h-title text-ardoise">Des specialists a votre ecoute.</h2>
+<p class="text-brume mt-3 max-w-xl mx-auto">Chaque medecin de notre equipe est forme dans les meilleures universites et reste en formation continue.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+<div class="doctor-card bg-white p-6 hx text-center reveal">
+<div class="doc-avatar w-20 h-20 mx-auto mb-4" style="background:linear-gradient(135deg,#1E6EA9,#0FA89A)">DK</div>
+<h3 class="font-serif text-xl text-ardoise">Dr. David Koffi</h3>
+<p class="text-teal text-xs font-bold uppercase tracking-wider mt-1">Chirurgien-dentiste</p>
+<p class="text-brume text-sm mt-3 leading-relaxed">Fondateur de la clinique. Specialiste en implantologie et chirurgie orale. Forme a Paris et Geneve.</p>
+<div class="mt-4 text-xs text-brume">15 ans d\'experience</div>
+</div>
+
+<div class="doctor-card bg-white p-6 hx text-center reveal" style="transition-delay:.08s">
+<div class="doc-avatar w-20 h-20 mx-auto mb-4" style="background:linear-gradient(135deg,#0FA89A,#0F766E)">AM</div>
+<h3 class="font-serif text-xl text-ardoise">Dr. Amina Mvoula</h3>
+<p class="text-teal text-xs font-bold uppercase tracking-wider mt-1">Orthodontiste</p>
+<p class="text-brume text-sm mt-3 leading-relaxed">Specialiste en orthodontie invisible. Aligners certifiee et formatrice regionale pour Invisalign.</p>
+<div class="mt-4 text-xs text-brume">10 ans d\'experience</div>
+</div>
+
+<div class="doctor-card bg-white p-6 hx text-center reveal" style="transition-delay:.16s">
+<div class="doc-avatar w-20 h-20 mx-auto mb-4" style="background:linear-gradient(135deg,#1A8FA3,#1E6EA9)">SB</div>
+<h3 class="font-serif text-xl text-ardoise">Dr. Samuel Biyika</h3>
+<p class="text-teal text-xs font-bold uppercase tracking-wider mt-1">Parodontiste</p>
+<p class="text-brume text-sm mt-3 leading-relaxed">Expert en sante des gencives et parodontologie regeneratrice. Forme a Bordeaux.</p>
+<div class="mt-4 text-xs text-brume">8 ans d\'experience</div>
+</div>
+
+<div class="doctor-card bg-white p-6 hx text-center reveal" style="transition-delay:.24s">
+<div class="doc-avatar w-20 h-20 mx-auto mb-4" style="background:linear-gradient(135deg,#1E6EA9,#2563EB)">CN</div>
+<h3 class="font-serif text-xl text-ardoise">Dr. Claire Nzinga</h3>
+<p class="text-teal text-xs font-bold uppercase tracking-wider mt-1">Pedodontiste</p>
+<p class="text-brume text-sm mt-3 leading-relaxed">Dentiste pediatrique specialisee dans les soins enfants et adolescents, avec une approche douce et ludique.</p>
+<div class="mt-4 text-xs text-brume">7 ans d\'experience</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SOINS -->
+<section id="soins" class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
+<div class="text-center mb-14 reveal">
+<div class="eyebrow mb-4">Nos soins</div>
+<h2 class="font-serif h-title text-ardoise">Tout ce dont votre sourire a besoin.</h2>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+<div class="care-card p-7 hx bg-white reveal">
+<div class="tooth-icon mb-5"><svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 5 5.5 5 9c0 3 1.5 5.5 3 7l1 5h6l1-5c1.5-1.5 3-4 3-7 0-3.5-3-7-7-7z"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Soins conservateurs</h3>
+<p class="text-brume text-sm mt-2 leading-relaxed">Caries, obturations composites, devitalisations et couronnes. Soins realises sous anesthesie locale indolore.</p>
+<div class="mt-4 text-xs text-teal font-semibold">A partir de 25 000 FCFA</div>
+</div>
+
+<div class="care-card p-7 hx bg-white reveal" style="transition-delay:.08s">
+<div class="tooth-icon mb-5"><svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Blanchiment dentaire</h3>
+<p class="text-brume text-sm mt-2 leading-relaxed">Blanchiment professionnel en cabinet ou kit personnalise a domicile. Resultat visible en une seule seance.</p>
+<div class="mt-4 text-xs text-teal font-semibold">A partir de 80 000 FCFA</div>
+</div>
+
+<div class="care-card p-7 hx bg-white reveal" style="transition-delay:.16s">
+<div class="tooth-icon mb-5"><svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Implants dentaires</h3>
+<p class="text-brume text-sm mt-2 leading-relaxed">Remplacement de dents manquantes par des implants titane d\'une durabilite superieure a 20 ans.</p>
+<div class="mt-4 text-xs text-teal font-semibold">A partir de 350 000 FCFA</div>
+</div>
+
+<div class="care-card p-7 hx bg-white reveal" style="transition-delay:.24s">
+<div class="tooth-icon mb-5"><svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Orthodontie</h3>
+<p class="text-brume text-sm mt-2 leading-relaxed">Bagues ceramiques ou gouttières invisibles pour adultes et adolescents. Alignement progressif et discret.</p>
+<div class="mt-4 text-xs text-teal font-semibold">A partir de 250 000 FCFA</div>
+</div>
+
+<div class="care-card p-7 hx bg-white reveal" style="transition-delay:.32s">
+<div class="tooth-icon mb-5"><svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Urgences dentaires</h3>
+<p class="text-brume text-sm mt-2 leading-relaxed">Douleur aigue, dent cassee, abces — nous vous recevons en urgence dans les 4 heures.</p>
+<div class="mt-4 text-xs font-semibold" style="color:#DC2626">Disponible 7j/7 · Appelez le +242 00 00 00 00</div>
+</div>
+
+<div class="care-card p-7 hx bg-white reveal" style="transition-delay:.4s">
+<div class="tooth-icon mb-5"><svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Dentisterie enfants</h3>
+<p class="text-brume text-sm mt-2 leading-relaxed">Soins pediatriques adaptes, prevention et education dentaire des les premieres dents. Ambiance ludique et douce.</p>
+<div class="mt-4 text-xs text-teal font-semibold">A partir de 15 000 FCFA</div>
+</div>
+
+</div>
+</section>
+
+<!-- AVANT/APRES -->
+<section id="avant-apres" class="py-20 sm:py-24" style="background:#F0F7FF">
+<div class="max-w-7xl mx-auto px-5 sm:px-8">
+<div class="text-center mb-14 reveal">
+<div class="eyebrow mb-4">Transformations</div>
+<h2 class="font-serif h-title text-ardoise">Des resultats qui parlent d\'eux-memes.</h2>
+<p class="text-brume mt-3 max-w-xl mx-auto">Chaque sourire est unique. Voici quelques transformations realisees par notre equipe.</p>
+</div>
+<div class="grid sm:grid-cols-3 gap-6">
+
+<div class="reveal">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="avant-card flex items-center justify-center" style="min-height:140px">
+<div class="text-center p-4"><div class="w-12 h-12 rounded-full mx-auto mb-2 flex items-center justify-center" style="background:rgba(255,255,255,.2)"><svg class="w-7 h-7" style="color:rgba(255,255,255,.6)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="text-xs text-white/70">Dents jaunies</div></div>
+</div>
+<div class="apres-card flex items-center justify-center" style="min-height:140px">
+<div class="text-center p-4"><div class="w-12 h-12 rounded-full mx-auto mb-2 flex items-center justify-center" style="background:rgba(255,255,255,.25)"><svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75z"/></svg></div><div class="text-xs text-white">Eclat retrouve</div></div>
+</div>
+</div>
+<h3 class="font-serif text-ardoise text-xl">Blanchiment dentaire</h3>
+<p class="text-brume text-sm mt-1">En une seance, 6 tons de plus. Patient de 34 ans, Brazzaville.</p>
+</div>
+
+<div class="reveal" style="transition-delay:.1s">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="avant-card flex items-center justify-center" style="min-height:140px">
+<div class="text-center p-4"><div class="text-xs text-white/70 mt-8">Dents espacees</div></div>
+</div>
+<div class="apres-card flex items-center justify-center" style="min-height:140px">
+<div class="text-center p-4"><div class="text-xs text-white mt-8">Alignement parfait</div></div>
+</div>
+</div>
+<h3 class="font-serif text-ardoise text-xl">Orthodontie invisible</h3>
+<p class="text-brume text-sm mt-1">18 mois de traitement, sans bagues apparentes. Patiente de 28 ans.</p>
+</div>
+
+<div class="reveal" style="transition-delay:.2s">
+<div class="grid grid-cols-2 gap-2 mb-4">
+<div class="avant-card flex items-center justify-center" style="min-height:140px">
+<div class="text-center p-4"><div class="text-xs text-white/70 mt-8">Dent manquante</div></div>
+</div>
+<div class="apres-card flex items-center justify-center" style="min-height:140px">
+<div class="text-center p-4"><div class="text-xs text-white mt-8">Implant naturel</div></div>
+</div>
+</div>
+<h3 class="font-serif text-ardoise text-xl">Implant dentaire</h3>
+<p class="text-brume text-sm mt-1">Resultat invisible, durabilite superieure a 20 ans. Patient de 45 ans.</p>
+</div>
+
+</div>
+<div class="text-center mt-10 reveal"><a href="#rdv" class="btn-azur">Demander un devis gratuit</a></div>
+</div>
+</section>
+
+<!-- AVIS -->
+<section id="avis" class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
+<div class="text-center mb-14 reveal">
+<div class="eyebrow mb-4">Temoignages</div>
+<h2 class="font-serif h-title text-ardoise">Ce que disent nos patients.</h2>
+<div class="flex items-center justify-center gap-2 mt-3">
+<div class="flex gap-0.5 star text-sm">★★★★★</div>
+<span class="text-ardoise font-bold">4,9</span><span class="text-brume text-sm">· 148 avis Google</span>
+</div>
+</div>
+<div class="grid sm:grid-cols-3 gap-5">
+
+<figure class="hx rounded-2xl p-6 bg-white reveal">
+<div class="star text-sm mb-3">★★★★★</div>
+<blockquote class="text-ardoise leading-relaxed">"J\'avais une peur terrible du dentiste depuis l\'enfance. Le Dr. Koffi a ete d\'une patience extraordinaire. Pour la premiere fois, je ne souffre plus."</blockquote>
+<figcaption class="mt-5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white" style="background:#1E6EA9">GP</div>
+<div><div class="font-semibold text-sm text-ardoise">Grace Pembe</div><div class="text-xs text-brume">Brazzaville · Soin conservateur</div></div>
+</figcaption>
+</figure>
+
+<figure class="hx rounded-2xl p-6 bg-white reveal" style="transition-delay:.1s">
+<div class="star text-sm mb-3">★★★★★</div>
+<blockquote class="text-ardoise leading-relaxed">"Mon sourire a ete completement transforme par l\'orthodontie invisible. En 18 mois, personne n\'a remarque que j\'avais des gouttières. Le resultat est incroyable."</blockquote>
+<figcaption class="mt-5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white" style="background:#0FA89A">NL</div>
+<div><div class="font-semibold text-sm text-ardoise">Nadege Londo</div><div class="text-xs text-brume">Brazzaville · Orthodontie</div></div>
+</figcaption>
+</figure>
+
+<figure class="hx rounded-2xl p-6 bg-white reveal" style="transition-delay:.2s">
+<div class="star text-sm mb-3">★★★★★</div>
+<blockquote class="text-ardoise leading-relaxed">"Urgence un dimanche soir, ils m\'ont recu en moins de 2h. Tres professionnel, efficace et rassurant. La clinique de reference a Brazzaville, sans aucun doute."</blockquote>
+<figcaption class="mt-5 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white" style="background:#1A8FA3">JK</div>
+<div><div class="font-semibold text-sm text-ardoise">Joseph Kimbongo</div><div class="text-xs text-brume">Brazzaville · Urgence</div></div>
+</figcaption>
+</figure>
+
+</div>
+</section>
+
+<!-- RDV -->
+<section id="rdv" style="background:#0F2D4A">
+<div class="max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+<div class="grid lg:grid-cols-2 gap-14 items-start">
+<div>
+<div class="eyebrow reveal" style="color:#5EEAD4">Rendez-vous</div>
+<h2 class="font-serif h-title text-white mt-4 reveal" style="transition-delay:.1s">Prenez rendez-vous <em>en ligne.</em></h2>
+<p class="mt-4 leading-relaxed text-sm reveal" style="color:rgba(255,255,255,.6);transition-delay:.2s">Reponse sous 2h en semaine. Un membre de notre equipe vous confirme la date et l\'heure par telephone.</p>
+<div class="mt-7 space-y-4 reveal" style="transition-delay:.3s">
+<div class="flex items-start gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(15,168,154,.2)"><svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg></div><div><div class="text-white font-semibold text-sm">Par telephone</div><div style="color:rgba(255,255,255,.55)" class="text-xs mt-0.5">+242 00 00 00 00 · Lun-Sam 8h-19h</div></div></div>
+<div class="flex items-start gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(56,189,248,.15)"><svg class="w-5 h-5" style="color:#38BDF8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div><div><div class="text-white font-semibold text-sm">Adresse</div><div style="color:rgba(255,255,255,.55)" class="text-xs mt-0.5">14, Avenue Foch · Plateau · Brazzaville</div></div></div>
+</div>
+</div>
+<form id="rdvForm" class="reveal space-y-4" style="transition-delay:.15s" novalidate>
+<div class="grid grid-cols-2 gap-4">
+<div><label class="f-label" style="color:rgba(255,255,255,.6)">Prenom *</label><input required name="prenom" type="text" placeholder="Jean" class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15);color:#fff" onfocus="this.style.borderColor='#0FA89A'" onblur="this.style.borderColor='rgba(255,255,255,.15)'"></div>
+<div><label class="f-label" style="color:rgba(255,255,255,.6)">Nom *</label><input required name="nom" type="text" placeholder="Mbemba" class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15);color:#fff" onfocus="this.style.borderColor='#0FA89A'" onblur="this.style.borderColor='rgba(255,255,255,.15)'"></div>
+</div>
+<div><label class="f-label" style="color:rgba(255,255,255,.6)">Telephone *</label><input required name="tel" type="tel" placeholder="+242 ..." class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15);color:#fff" onfocus="this.style.borderColor='#0FA89A'" onblur="this.style.borderColor='rgba(255,255,255,.15)'"></div>
+<div><label class="f-label" style="color:rgba(255,255,255,.6)">Type de soin</label>
+<select name="soin" class="f-input" style="background:#1a3d5c;border-color:rgba(255,255,255,.15);color:#fff;appearance:none;cursor:pointer">
+<option value="" style="background:#0F2D4A">Choisir un soin</option>
+<option style="background:#0F2D4A">Consultation generale</option>
+<option style="background:#0F2D4A">Soins conservateurs</option>
+<option style="background:#0F2D4A">Blanchiment dentaire</option>
+<option style="background:#0F2D4A">Implant dentaire</option>
+<option style="background:#0F2D4A">Orthodontie</option>
+<option style="background:#0F2D4A">Urgence dentaire</option>
+<option style="background:#0F2D4A">Soins enfants</option>
+</select></div>
+<div class="grid grid-cols-2 gap-4">
+<div><label class="f-label" style="color:rgba(255,255,255,.6)">Date souhaitee</label><input name="date" type="date" class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15);color:#fff;color-scheme:dark" onfocus="this.style.borderColor='#0FA89A'" onblur="this.style.borderColor='rgba(255,255,255,.15)'"></div>
+<div><label class="f-label" style="color:rgba(255,255,255,.6)">Heure preferee</label>
+<select name="heure" class="f-input" style="background:#1a3d5c;border-color:rgba(255,255,255,.15);color:#fff;appearance:none;cursor:pointer">
+<option style="background:#0F2D4A">Matin (8h-12h)</option>
+<option style="background:#0F2D4A">Apres-midi (12h-17h)</option>
+<option style="background:#0F2D4A">Soiree (17h-19h)</option>
+</select></div>
+</div>
+<div><label class="f-label" style="color:rgba(255,255,255,.6)">Message (optionnel)</label><textarea name="msg" rows="2" placeholder="Decrivez votre douleur ou votre demande..." class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15);color:#fff;resize:none" onfocus="this.style.borderColor='#0FA89A'" onblur="this.style.borderColor='rgba(255,255,255,.15)'"></textarea></div>
+<button type="submit" class="btn-teal w-full py-4">Confirmer ma demande de rendez-vous</button>
+<p id="rdvOk" class="text-center text-sm hidden" style="color:#5EEAD4">Demande recue. Nous vous confirmons sous 2h.</p>
+</form>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="max-w-3xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+<div class="text-center mb-12 reveal">
+<div class="eyebrow mb-4">FAQ</div>
+<h2 class="font-serif h-sub text-ardoise">Vos questions sur les soins.</h2>
+</div>
+<div class="ht">
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif text-lg text-ardoise leading-snug">Est-ce que les soins dentaires font vraiment mal ?</span><span class="fi">+</span></summary><p class="text-brume text-sm pb-5 leading-relaxed">Non, pas chez nous. Nous utilisons des anesthesies locales modernes qui eliminent la douleur pendant le soin. Si vous avez peur des piqures, nous proposons une anesthesie topique (creme) avant l\'injection. Vous ne sentirez pratiquement rien.</p></details>
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif text-lg text-ardoise leading-snug">A quelle frequence dois-je consulter ?</span><span class="fi">+</span></summary><p class="text-brume text-sm pb-5 leading-relaxed">Nous recommandons une visite de controle tous les 6 mois. C\'est le meilleur moyen de prevenir les caries, les problemes de gencives et de detecter tot les anomalies. La prevention coute toujours moins cher que le traitement.</p></details>
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif text-lg text-ardoise leading-snug">Les soins pour enfants sont-ils differents ?</span><span class="fi">+</span></summary><p class="text-brume text-sm pb-5 leading-relaxed">Oui. Notre pedodontiste, le Dr. Claire Nzinga, utilise des techniques specifiques pour mettre les enfants a l\'aise : explications simples, materiel colore, pauses si necessaire. L\'objectif est que l\'enfant reparte sans peur du dentiste.</p></details>
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif text-lg text-ardoise leading-snug">Comment se passe une premiere consultation ?</span><span class="fi">+</span></summary><p class="text-brume text-sm pb-5 leading-relaxed">La premiere consultation dure environ 45 minutes. Le dentiste examine votre bouche, realise si necessaire une radio panoramique et vous propose un plan de traitement detaille avec les couts avant tout soin. Aucun soin n\'est realise sans votre accord.</p></details>
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif text-lg text-ardoise leading-snug">Acceptez-vous le paiement en plusieurs fois ?</span><span class="fi">+</span></summary><p class="text-brume text-sm pb-5 leading-relaxed">Oui, pour les soins superieurs a 100 000 FCFA, nous proposons un echelonnement en 2 ou 3 versements sans frais. Mobile Money, virement bancaire et especes sont acceptes.</p></details>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="ht hb" style="background:#F0F7FF">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-16">
+<div class="grid sm:grid-cols-3 gap-8 text-center">
+<div class="reveal">
+<div class="w-12 h-12 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:rgba(30,110,169,.1)"><svg class="w-5 h-5 text-azur" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Adresse</h3>
+<p class="text-brume text-sm mt-2">14, Avenue Foch · Plateau<br>Brazzaville, RC</p>
+</div>
+<div class="reveal" style="transition-delay:.1s">
+<div class="w-12 h-12 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:rgba(15,168,154,.1)"><svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Telephone</h3>
+<p class="text-brume text-sm mt-2"><a href="tel:+24200000000" class="hover:text-ardoise transition">+242 00 00 00 00</a><br>Lun-Sam 8h-19h · Urgences 7j/7</p>
+</div>
+<div class="reveal" style="transition-delay:.2s">
+<div class="w-12 h-12 rounded-2xl mx-auto mb-4 flex items-center justify-center" style="background:rgba(30,110,169,.1)"><svg class="w-5 h-5 text-azur" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
+<h3 class="font-serif text-xl text-ardoise">Email</h3>
+<p class="text-brume text-sm mt-2"><a href="mailto:contact@sorriso-brazza.cg" class="hover:text-ardoise transition">contact@sorriso-brazza.cg</a></p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ht" style="background:#0F2D4A">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 py-12 sm:py-14">
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+<div>
+<a href="#haut" class="flex items-center gap-2 text-white font-bold text-lg mb-3"><svg class="w-5 h-5" style="color:#5EEAD4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 5 5.5 5 9c0 3 1.5 5.5 3 7l1 5h6l1-5c1.5-1.5 3-4 3-7 0-3.5-3-7-7-7z"/></svg>Sorriso</a>
+<p style="color:rgba(255,255,255,.45)" class="text-xs leading-relaxed">Clinique dentaire premium.<br>Brazzaville, Republique du Congo.</p>
+</div>
+<div><div class="text-xs uppercase tracking-widest mb-4 font-bold" style="color:rgba(255,255,255,.4)">Soins</div><ul class="space-y-2 text-xs" style="color:rgba(255,255,255,.45)"><li><a href="#soins" class="hover:text-white transition">Soins conservateurs</a></li><li><a href="#soins" class="hover:text-white transition">Blanchiment dentaire</a></li><li><a href="#soins" class="hover:text-white transition">Implants dentaires</a></li><li><a href="#soins" class="hover:text-white transition">Orthodontie</a></li></ul></div>
+<div><div class="text-xs uppercase tracking-widest mb-4 font-bold" style="color:rgba(255,255,255,.4)">Clinique</div><ul class="space-y-2 text-xs" style="color:rgba(255,255,255,.45)"><li><a href="#equipe" class="hover:text-white transition">Notre equipe</a></li><li><a href="#avant-apres" class="hover:text-white transition">Resultats</a></li><li><a href="#avis" class="hover:text-white transition">Temoignages</a></li><li><a href="#faq" class="hover:text-white transition">FAQ</a></li></ul></div>
+<div><div class="text-xs uppercase tracking-widest mb-4 font-bold" style="color:rgba(255,255,255,.4)">Contact</div><ul class="space-y-2 text-xs" style="color:rgba(255,255,255,.45)"><li>+242 00 00 00 00</li><li>Urgences 7j/7</li><li>Lun-Sam 8h-19h</li></ul><a href="#rdv" class="btn-teal mt-5 inline-block text-xs">Prendre RDV</a></div>
+</div>
+</div>
+<div class="ht" style="border-color:rgba(255,255,255,.07)">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs" style="color:rgba(255,255,255,.3)">
+<span>2026 Clinique Sorriso. Tous droits reserves.</span>
+<span>Site concu par <a href="#" style="color:rgba(255,255,255,.5)" class="hover:text-white transition">l'Atelier KPM</a></span>
+</div>
+</div>
+</footer>
+
+<script>
+const nav=document.getElementById("nav");
+window.addEventListener("scroll",()=>{nav.classList.toggle("scrolled",window.scrollY>50);},{passive:true});
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.07});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+document.querySelectorAll("details").forEach(d=>{d.addEventListener("toggle",()=>{if(d.open)document.querySelectorAll("details").forEach(o=>{if(o!==d)o.open=false;});});});
+document.getElementById("rdvForm").addEventListener("submit",e=>{e.preventDefault();let ok=true;e.target.querySelectorAll("[required]").forEach(i=>{if(!i.value){ok=false;i.style.borderColor="rgba(220,38,38,.7)";}else i.style.borderColor="rgba(255,255,255,.15)";});if(!ok)return;document.getElementById("rdvOk").classList.remove("hidden");e.target.reset();});
+</script>
+</body>
+</html>

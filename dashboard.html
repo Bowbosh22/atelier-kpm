@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse — Dashboard Business Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{
+  sidebar:"#0D1424",sidebarborder:"rgba(255,255,255,.07)",sidelink:"rgba(255,255,255,.55)",
+  main:"#F1F5F9",card:"#FFFFFF",
+  indigo:"#6366F1",indigolt:"#EEF2FF",
+  emerald:"#10B981",emeraldlt:"#ECFDF5",
+  rouge:"#EF4444",rougelt:"#FEF2F2",
+  ambre:"#F59E0B",ambrelt:"#FFFBEB",
+  ardoise:"#0F172A",brume:"#64748B"
+},fontFamily:{sans:["Plus Jakarta Sans","system-ui","sans-serif"]}}}}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}
+body{font-family:"Plus Jakarta Sans",sans-serif;background:#F1F5F9;color:#0F172A}
+.sidebar-link{display:flex;align-items:center;gap:.75rem;padding:.55rem .85rem;border-radius:8px;font-size:.82rem;font-weight:500;color:rgba(255,255,255,.55);transition:all .2s;cursor:pointer;white-space:nowrap}
+.sidebar-link:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.9)}
+.sidebar-link.active{background:rgba(99,102,241,.25);color:#fff;font-weight:600}
+.sidebar-link.active svg{color:#818CF8}
+.sidebar-icon{width:18px;height:18px;flex-shrink:0}
+.kpi-card{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.06);padding:1.4rem;transition:box-shadow .3s}
+.kpi-card:hover{box-shadow:0 8px 30px -10px rgba(99,102,241,.2)}
+.badge-up{background:#ECFDF5;color:#059669;font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:20px;display:inline-flex;align-items:center;gap:.25rem}
+.badge-down{background:#FEF2F2;color:#DC2626;font-size:.7rem;font-weight:700;padding:.25rem .6rem;border-radius:20px;display:inline-flex;align-items:center;gap:.25rem}
+.chart-card{background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.06);padding:1.4rem}
+.filter-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:8px;border:1px solid rgba(0,0,0,.1);font-size:.78rem;font-weight:600;color:#475569;background:#fff;cursor:pointer;transition:all .2s}
+.filter-btn:hover{border-color:#6366F1;color:#6366F1}
+.filter-btn.active-filter{background:#EEF2FF;border-color:#6366F1;color:#6366F1}
+.export-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:#6366F1;color:#fff;border:none}
+.btn-primary:hover{background:#4F46E5}
+.btn-ghost{background:#fff;color:#475569;border:1px solid rgba(0,0,0,.1)}
+.btn-ghost:hover{background:#F8FAFC}
+.stat-chip{font-size:.7rem;font-weight:700;padding:.2rem .55rem;border-radius:20px}
+.notif-panel{position:fixed;top:68px;right:1rem;width:340px;background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.08);box-shadow:0 20px 60px -20px rgba(0,0,0,.25);z-index:100;transform:translateY(-10px);opacity:0;pointer-events:none;transition:all .25s}
+.notif-panel.show{transform:translateY(0);opacity:1;pointer-events:all}
+.trow{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;align-items:center;padding:.75rem 1rem;border-top:1px solid rgba(0,0,0,.05);transition:background .15s}
+.trow:hover{background:#F8FAFC}
+.thead{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:.5rem 1rem;background:#F8FAFC;border-radius:8px;margin-bottom:.25rem}
+.sparkline{height:40px;width:80px}
+.sidebar-section{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:.25rem .85rem;margin-top:1.25rem;margin-bottom:.35rem}
+.progress-bar{height:6px;border-radius:9999px;background:#E2E8F0;overflow:hidden}
+.progress-fill{height:100%;border-radius:9999px;transition:width 1s ease}
+.tab-btn{padding:.45rem 1rem;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;border:none;background:transparent;color:#64748B}
+.tab-btn.active{background:#6366F1;color:#fff}
+/* scrollbar */
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:99px}
+/* mobile */
+@media(max-width:768px){
+  #sidebar{position:fixed;left:-260px;top:0;bottom:0;z-index:50;transition:left .3s}
+  #sidebar.open{left:0}
+  #overlay{display:block!important}
+}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40}
+</style>
+</head>
+<body>
+<div class="flex h-screen overflow-hidden">
+
+<!-- SIDEBAR -->
+<aside id="sidebar" class="flex flex-col shrink-0 overflow-y-auto overflow-x-hidden" style="width:220px;background:#0D1424;border-right:1px solid rgba(255,255,255,.06)">
+  <!-- Logo -->
+  <div class="flex items-center gap-2.5 px-4 py-5 shrink-0">
+    <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background:#6366F1">
+      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l4-4 4 4 4-4 4 4"/></svg>
+    </div>
+    <span class="text-white font-bold text-base tracking-tight">Pulse</span>
+    <span class="ml-auto text-xs font-semibold px-1.5 py-0.5 rounded" style="background:rgba(99,102,241,.3);color:#A5B4FC">v2</span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="flex-1 px-3 pb-4 space-y-0.5">
+    <div class="sidebar-section">Principal</div>
+    <div class="sidebar-link active" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Vue d'ensemble
+    </div>
+    <div class="sidebar-link" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 3v18h18"/><path stroke-linecap="round" d="M7 16l4-4 4 4 4-6"/></svg>
+      Analytiques
+    </div>
+    <div class="sidebar-link" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+      Commandes
+      <span class="ml-auto text-xs font-bold px-1.5 py-0.5 rounded-full" style="background:rgba(239,68,68,.3);color:#FCA5A5">24</span>
+    </div>
+    <div class="sidebar-link" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm13 10v-2a4 4 0 00-3-3.87"/></svg>
+      Clients
+    </div>
+    <div class="sidebar-link" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M20 7H4a1 1 0 00-1 1v10a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zm-9 5h2m-6 0h2m6 0h2"/></svg>
+      Produits
+    </div>
+
+    <div class="sidebar-section">Finance</div>
+    <div class="sidebar-link" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Finances
+    </div>
+    <div class="sidebar-link" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0121 9.414V19a2 2 0 01-2 2z"/></svg>
+      Rapports
+    </div>
+
+    <div class="sidebar-section">Système</div>
+    <div class="sidebar-link" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197"/></svg>
+      Utilisateurs
+    </div>
+    <div class="sidebar-link" onclick="setTab(this)">
+      <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+      Paramètres
+    </div>
+  </nav>
+
+  <!-- User -->
+  <div class="px-3 pb-4 shrink-0" style="border-top:1px solid rgba(255,255,255,.06)">
+    <div class="flex items-center gap-2.5 px-2 py-3 rounded-lg cursor-pointer hover:bg-white/5 transition mt-3">
+      <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs text-white shrink-0" style="background:#6366F1">AM</div>
+      <div class="min-w-0">
+        <div class="text-white text-xs font-semibold truncate">Alex Mbemba</div>
+        <div class="text-xs truncate" style="color:rgba(255,255,255,.35)">Administrateur</div>
+      </div>
+      <svg class="w-3.5 h-3.5 shrink-0 ml-auto" style="color:rgba(255,255,255,.35)" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/></svg>
+    </div>
+  </div>
+</aside>
+
+<!-- OVERLAY mobile -->
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- MAIN -->
+<div class="flex-1 flex flex-col overflow-hidden">
+
+  <!-- HEADER -->
+  <header class="flex items-center gap-3 px-4 sm:px-6 bg-white shrink-0" style="height:64px;border-bottom:1px solid rgba(0,0,0,.07)">
+    <!-- hamburger -->
+    <button class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition" onclick="toggleSidebar()">
+      <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+
+    <!-- breadcrumb -->
+    <div class="hidden sm:flex items-center gap-2 text-sm">
+      <span class="text-brume">Tableau de bord</span>
+      <span class="text-brume">/</span>
+      <span class="font-semibold text-ardoise">Vue d'ensemble</span>
+    </div>
+
+    <!-- search -->
+    <div class="flex-1 max-w-xs mx-auto sm:mx-4">
+      <div class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style="background:#F8FAFC;border:1px solid rgba(0,0,0,.09)">
+        <svg class="w-4 h-4 text-brume shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.3-4.3"/></svg>
+        <input placeholder="Rechercher..." class="bg-transparent outline-none text-sm text-ardoise w-full placeholder:text-brume">
+        <span class="text-xs text-brume hidden sm:block px-1.5 py-0.5 rounded" style="background:#E2E8F0">⌘K</span>
+      </div>
+    </div>
+
+    <!-- actions -->
+    <div class="flex items-center gap-2 ml-auto">
+      <!-- period filter -->
+      <select id="periodSel" onchange="updatePeriod(this.value)" class="filter-btn hidden sm:flex text-xs py-1.5 cursor-pointer" style="appearance:none;padding-right:2rem;background-image:url('data:image/svg+xml,<svg fill=%22none%22 stroke=%22%2364748B%22 stroke-width=%222%22 viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22><path stroke-linecap=%22round%22 d=%22M19 9l-7 7-7-7%22/></svg>');background-repeat:no-repeat;background-position:right .6rem center;background-size:.9rem">
+        <option value="7">7 derniers jours</option>
+        <option value="30" selected>30 derniers jours</option>
+        <option value="90">3 derniers mois</option>
+        <option value="365">Cette année</option>
+      </select>
+
+      <!-- export -->
+      <div class="relative hidden sm:block">
+        <button class="export-btn btn-ghost" onclick="toggleExport()">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Exporter
+        </button>
+        <div id="exportMenu" class="hidden absolute right-0 mt-1.5 w-40 bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden z-30">
+          <button class="w-full text-left px-4 py-2.5 text-sm hover:bg-slate-50 flex items-center gap-2" onclick="alert('Export Excel en cours...');document.getElementById(\'exportMenu\').classList.add(\'hidden\')">
+            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0121 9.414V19a2 2 0 01-2 2z"/></svg>
+            Excel (.xlsx)
+          </button>
+          <button class="w-full text-left px-4 py-2.5 text-sm hover:bg-slate-50 flex items-center gap-2" onclick="alert('Export PDF en cours...');document.getElementById(\'exportMenu\').classList.add(\'hidden\')">
+            <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- notifications -->
+      <button class="relative p-2.5 rounded-lg hover:bg-slate-100 transition" onclick="toggleNotif()">
+        <svg class="w-5 h-5 text-brume" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 00-5-5.917V4a1 1 0 00-2 0v1.083A6 6 0 006 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 01-6 0v-1m6 0H9"/></svg>
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500"></span>
+      </button>
+
+      <!-- avatar -->
+      <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs text-white cursor-pointer" style="background:#6366F1">AM</div>
+    </div>
+  </header>
+
+  <!-- NOTIFICATION PANEL -->
+  <div id="notifPanel" class="notif-panel">
+    <div class="flex items-center justify-between px-5 py-4" style="border-bottom:1px solid rgba(0,0,0,.07)">
+      <span class="font-semibold text-ardoise">Notifications</span>
+      <span class="text-xs font-semibold text-indigo cursor-pointer hover:underline">Tout marquer lu</span>
+    </div>
+    <div class="py-2 max-h-80 overflow-y-auto">
+      <div class="px-5 py-3 hover:bg-slate-50 cursor-pointer" style="border-left:3px solid #6366F1">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style="background:#EEF2FF"><svg class="w-4 h-4 text-indigo" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+          <div><div class="text-sm font-semibold text-ardoise">24 commandes en attente</div><div class="text-xs text-brume mt-0.5">Requiert votre validation · il y a 5 min</div></div>
+        </div>
+      </div>
+      <div class="px-5 py-3 hover:bg-slate-50 cursor-pointer" style="border-left:3px solid #10B981">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style="background:#ECFDF5"><svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          <div><div class="text-sm font-semibold text-ardoise">Objectif mensuel atteint</div><div class="text-xs text-brume mt-0.5">CA de juillet dépassé de 8,4% · il y a 1h</div></div>
+        </div>
+      </div>
+      <div class="px-5 py-3 hover:bg-slate-50 cursor-pointer">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style="background:#FEF3C7"><svg class="w-4 h-4" style="color:#D97706" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
+          <div><div class="text-sm font-semibold text-ardoise">Stock critique : Produit A-204</div><div class="text-xs text-brume mt-0.5">Moins de 50 unités restantes · il y a 3h</div></div>
+        </div>
+      </div>
+      <div class="px-5 py-3 hover:bg-slate-50 cursor-pointer">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold text-white" style="background:#6366F1">SN</div>
+          <div><div class="text-sm font-semibold text-ardoise">Nouveau rapport disponible</div><div class="text-xs text-brume mt-0.5">Rapport Q2 2026 généré · hier</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="px-5 py-3 text-center" style="border-top:1px solid rgba(0,0,0,.07)">
+      <span class="text-xs font-semibold text-indigo cursor-pointer hover:underline">Voir toutes les notifications</span>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="flex-1 overflow-y-auto" style="background:#F1F5F9">
+    <div class="px-4 sm:px-6 py-5 max-w-screen-2xl mx-auto">
+
+      <!-- PAGE TITLE + TABS -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <h1 class="text-xl font-bold text-ardoise">Vue d'ensemble</h1>
+          <p class="text-sm text-brume mt-0.5">Brazzaville · Mise à jour <span id="lastUpdate">il y a 2 min</span></p>
+        </div>
+        <div class="flex gap-1 p-1 rounded-xl" style="background:#E2E8F0">
+          <button class="tab-btn active" onclick="setTabView('overview',this)">Résumé</button>
+          <button class="tab-btn" onclick="setTabView('analytics',this)">Analytiques</button>
+          <button class="tab-btn" onclick="setTabView('reports',this)">Rapports</button>
+        </div>
+      </div>
+
+      <!-- KPI CARDS -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+
+        <div class="kpi-card">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#EEF2FF">
+              <svg class="w-4.5 h-4.5 text-indigo" fill="none" stroke="#6366F1" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="badge-up">↑ 12,4%</div>
+          </div>
+          <div class="text-2xl font-bold text-ardoise">847 M</div>
+          <div class="text-xs text-brume mt-0.5">Chiffre d'affaires (FCFA)</div>
+          <canvas id="spark1" class="sparkline mt-3"></canvas>
+        </div>
+
+        <div class="kpi-card">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#ECFDF5">
+              <svg class="w-4.5 h-4.5" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            </div>
+            <div class="badge-up">↑ 8,2%</div>
+          </div>
+          <div class="text-2xl font-bold text-ardoise">2 847</div>
+          <div class="text-xs text-brume mt-0.5">Commandes traitées</div>
+          <canvas id="spark2" class="sparkline mt-3"></canvas>
+        </div>
+
+        <div class="kpi-card">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#FEF3C7">
+              <svg class="w-4.5 h-4.5" fill="none" stroke="#D97706" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm13 10v-2a4 4 0 00-3-3.87"/></svg>
+            </div>
+            <div class="badge-up">↑ 5,7%</div>
+          </div>
+          <div class="text-2xl font-bold text-ardoise">1 284</div>
+          <div class="text-xs text-brume mt-0.5">Clients actifs</div>
+          <canvas id="spark3" class="sparkline mt-3"></canvas>
+        </div>
+
+        <div class="kpi-card">
+          <div class="flex items-start justify-between mb-3">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#F0FDF4">
+              <svg class="w-4.5 h-4.5" fill="none" stroke="#16A34A" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="badge-down">↓ 0,3%</div>
+          </div>
+          <div class="text-2xl font-bold text-ardoise">94,2%</div>
+          <div class="text-xs text-brume mt-0.5">Taux de satisfaction</div>
+          <canvas id="spark4" class="sparkline mt-3"></canvas>
+        </div>
+
+      </div>
+
+      <!-- CHARTS ROW -->
+      <div class="grid lg:grid-cols-3 gap-4 mb-5">
+
+        <!-- Line chart - Revenue -->
+        <div class="chart-card lg:col-span-2">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div>
+              <h3 class="font-semibold text-ardoise">Évolution du chiffre d'affaires</h3>
+              <p class="text-xs text-brume mt-0.5">Comparaison 2025 vs 2026</p>
+            </div>
+            <div class="flex gap-1.5">
+              <button class="filter-btn active-filter text-xs py-1" onclick="filterChart('semaine',this)">Semaine</button>
+              <button class="filter-btn text-xs py-1" onclick="filterChart('mois',this)">Mois</button>
+              <button class="filter-btn text-xs py-1" onclick="filterChart('annee',this)">Année</button>
+            </div>
+          </div>
+          <canvas id="revenueChart" style="max-height:220px"></canvas>
+        </div>
+
+        <!-- Donut chart - Categories -->
+        <div class="chart-card">
+          <h3 class="font-semibold text-ardoise mb-1">Ventes par catégorie</h3>
+          <p class="text-xs text-brume mb-4">Ce mois-ci</p>
+          <canvas id="categoryChart" style="max-height:180px"></canvas>
+          <div class="mt-4 space-y-2">
+            <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#6366F1"></span>Électronique</span><span class="font-semibold">38%</span></div>
+            <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#10B981"></span>Alimentation</span><span class="font-semibold">24%</span></div>
+            <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#F59E0B"></span>Vêtements</span><span class="font-semibold">21%</span></div>
+            <div class="flex items-center justify-between text-xs"><span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#EF4444"></span>Services</span><span class="font-semibold">17%</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BAR CHART + TABLE -->
+      <div class="grid lg:grid-cols-3 gap-4 mb-5">
+
+        <!-- Bar chart - Regions -->
+        <div class="chart-card">
+          <h3 class="font-semibold text-ardoise mb-1">Performance régionale</h3>
+          <p class="text-xs text-brume mb-4">Objectif vs réalisé (M FCFA)</p>
+          <canvas id="regionChart" style="max-height:200px"></canvas>
+        </div>
+
+        <!-- Recent transactions table -->
+        <div class="chart-card lg:col-span-2">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-semibold text-ardoise">Transactions récentes</h3>
+            <button class="text-xs font-semibold text-indigo hover:underline">Voir tout</button>
+          </div>
+          <div class="thead text-xs font-semibold text-brume">
+            <span>Client / Référence</span><span>Montant</span><span>Statut</span><span>Date</span>
+          </div>
+          <div id="txTable">
+            <div class="trow">
+              <div><div class="text-sm font-semibold text-ardoise">Société Kongo SARL</div><div class="text-xs text-brume">#TXN-20847</div></div>
+              <div class="text-sm font-semibold">485 000 FC</div>
+              <div><span class="stat-chip" style="background:#ECFDF5;color:#059669">Payé</span></div>
+              <div class="text-xs text-brume">03 juil. 2026</div>
+            </div>
+            <div class="trow">
+              <div><div class="text-sm font-semibold text-ardoise">Ets. Mabika & Frères</div><div class="text-xs text-brume">#TXN-20846</div></div>
+              <div class="text-sm font-semibold">1 240 000 FC</div>
+              <div><span class="stat-chip" style="background:#FEF3C7;color:#B45309">En attente</span></div>
+              <div class="text-xs text-brume">02 juil. 2026</div>
+            </div>
+            <div class="trow">
+              <div><div class="text-sm font-semibold text-ardoise">Groupe Mbemba SA</div><div class="text-xs text-brume">#TXN-20845</div></div>
+              <div class="text-sm font-semibold">720 000 FC</div>
+              <div><span class="stat-chip" style="background:#ECFDF5;color:#059669">Payé</span></div>
+              <div class="text-xs text-brume">02 juil. 2026</div>
+            </div>
+            <div class="trow">
+              <div><div class="text-sm font-semibold text-ardoise">Import-Export Ngoma</div><div class="text-xs text-brume">#TXN-20844</div></div>
+              <div class="text-sm font-semibold">330 000 FC</div>
+              <div><span class="stat-chip" style="background:#FEF2F2;color:#DC2626">Annulé</span></div>
+              <div class="text-xs text-brume">01 juil. 2026</div>
+            </div>
+            <div class="trow">
+              <div><div class="text-sm font-semibold text-ardoise">Cabinet Diallo</div><div class="text-xs text-brume">#TXN-20843</div></div>
+              <div class="text-sm font-semibold">95 000 FC</div>
+              <div><span class="stat-chip" style="background:#ECFDF5;color:#059669">Payé</span></div>
+              <div class="text-xs text-brume">30 juin 2026</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PROGRESS GOALS + TOP PRODUCTS -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+        <div class="chart-card">
+          <div class="text-xs font-bold text-brume uppercase tracking-wide mb-3">Objectif CA — Juillet</div>
+          <div class="text-2xl font-bold text-ardoise mb-1">72<span class="text-sm font-medium text-brume">%</span></div>
+          <div class="progress-bar mb-2"><div class="progress-fill" style="width:72%;background:#6366F1"></div></div>
+          <div class="text-xs text-brume">612 M / 850 M FCFA</div>
+        </div>
+        <div class="chart-card">
+          <div class="text-xs font-bold text-brume uppercase tracking-wide mb-3">Nouveaux clients — Juillet</div>
+          <div class="text-2xl font-bold text-ardoise mb-1">84<span class="text-sm font-medium text-brume">%</span></div>
+          <div class="progress-bar mb-2"><div class="progress-fill" style="width:84%;background:#10B981"></div></div>
+          <div class="text-xs text-brume">42 / 50 clients</div>
+        </div>
+        <div class="chart-card">
+          <div class="text-xs font-bold text-brume uppercase tracking-wide mb-3">Taux de conversion</div>
+          <div class="text-2xl font-bold text-ardoise mb-1">3,8<span class="text-sm font-medium text-brume">%</span></div>
+          <div class="progress-bar mb-2"><div class="progress-fill" style="width:76%;background:#F59E0B"></div></div>
+          <div class="text-xs text-brume">Objectif 5,0%</div>
+        </div>
+        <div class="chart-card">
+          <div class="text-xs font-bold text-brume uppercase tracking-wide mb-3">Délai moyen livraison</div>
+          <div class="text-2xl font-bold text-ardoise mb-1">2,4<span class="text-sm font-medium text-brume"> j</span></div>
+          <div class="progress-bar mb-2"><div class="progress-fill" style="width:90%;background:#EF4444"></div></div>
+          <div class="text-xs text-brume">Objectif ≤ 2 jours</div>
+        </div>
+      </div>
+
+      <!-- footer credit -->
+      <div class="text-center py-4 text-xs text-brume">
+        Pulse Dashboard · Conçu par <a href="#" class="text-indigo font-semibold hover:underline">l'Atelier KPM</a> · Données actualisées toutes les 5 min
+      </div>
+
+    </div>
+  </main>
+</div><!-- /MAIN -->
+</div><!-- /flex -->
+
+<script>
+// Sidebar toggle
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').style.display='block'}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').style.display='none'}
+function setTab(el){document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));el.classList.add('active')}
+
+// Tab view
+function setTabView(view,btn){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+
+// Export menu
+function toggleExport(){document.getElementById('exportMenu').classList.toggle('hidden');document.getElementById('notifPanel').classList.remove('show')}
+function toggleNotif(){document.getElementById('notifPanel').classList.toggle('show');document.getElementById('exportMenu').classList.add('hidden')}
+document.addEventListener('click',e=>{if(!e.target.closest('#notifPanel')&&!e.target.closest('[onclick="toggleNotif()"]'))document.getElementById('notifPanel').classList.remove('show');if(!e.target.closest('#exportMenu')&&!e.target.closest('[onclick="toggleExport()"]'))document.getElementById('exportMenu').classList.add('hidden')})
+
+// Period update
+function updatePeriod(v){console.log('Period:',v);revenueChart.update()}
+
+// Chart filters
+function filterChart(p,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active-filter'));btn.classList.add('active-filter')}
+
+// ── SPARKLINES ──
+function spark(id,data,color){
+  const ctx=document.getElementById(id).getContext('2d');
+  new Chart(ctx,{type:'line',data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:color,borderWidth:1.5,fill:true,backgroundColor:color+'22',tension:.4,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}});
+}
+spark('spark1',[60,72,65,80,75,82,847/10],'#6366F1');
+spark('spark2',[200,220,210,240,230,260,280],'#10B981');
+spark('spark3',[100,110,105,115,112,118,128],'#F59E0B');
+spark('spark4',[94.8,94.5,94.9,94.1,94.6,94.3,94.2],'#EF4444');
+
+// ── REVENUE CHART ──
+const revCtx=document.getElementById('revenueChart').getContext('2d');
+const revenueChart=new Chart(revCtx,{
+  type:'line',
+  data:{
+    labels:['Jan','Fév','Mar','Avr','Mai','Juin','Juil'],
+    datasets:[
+      {label:'2026',data:[620,680,590,720,690,780,847],borderColor:'#6366F1',backgroundColor:'rgba(99,102,241,.08)',tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#6366F1',fill:true},
+      {label:'2025',data:[520,560,510,610,580,640,700],borderColor:'#CBD5E1',backgroundColor:'transparent',tension:.4,borderWidth:1.5,pointRadius:2,borderDash:[4,4]}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',align:'end',labels:{usePointStyle:true,boxWidth:6,font:{family:'Plus Jakarta Sans',size:11}}}},
+    scales:{
+      y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'Plus Jakarta Sans',size:11},callback:v=>v+'M'}},
+      x:{grid:{display:false},ticks:{font:{family:'Plus Jakarta Sans',size:11}}}
+    }
+  }
+});
+
+// ── CATEGORY DONUT ──
+const catCtx=document.getElementById('categoryChart').getContext('2d');
+new Chart(catCtx,{
+  type:'doughnut',
+  data:{
+    labels:['Électronique','Alimentation','Vêtements','Services'],
+    datasets:[{data:[38,24,21,17],backgroundColor:['#6366F1','#10B981','#F59E0B','#EF4444'],borderWidth:0,hoverOffset:4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'72%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+': '+c.raw+'%'}}}}
+});
+
+// ── REGION BAR ──
+const regCtx=document.getElementById('regionChart').getContext('2d');
+new Chart(regCtx,{
+  type:'bar',
+  data:{
+    labels:['Brazza','P-Noire','Dolisie','Pointe'],
+    datasets:[
+      {label:'Objectif',data:[400,280,150,120],backgroundColor:'rgba(99,102,241,.15)',borderRadius:4,borderSkipped:false},
+      {label:'Réalisé',data:[380,310,140,95],backgroundColor:'#6366F1',borderRadius:4,borderSkipped:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',align:'end',labels:{usePointStyle:true,boxWidth:6,font:{family:'Plus Jakarta Sans',size:10}}}},
+    scales:{
+      y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:10},callback:v=>v+'M'}},
+      x:{grid:{display:false},ticks:{font:{size:10}}}
+    }
+  }
+});
+
+// Last update ticker
+let mins=2;setInterval(()=>{mins++;document.getElementById('lastUpdate').textContent='il y a '+mins+' min';},60000);
+</script>
+</body>
+</html>
