@@ -1,3 +1,4 @@
+Index · HTML
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>l'Atelier KPM — Des sites web qui font venir vos clients</title>
 <meta name="description" content="Studio web premium. Sites modernes, rapides et conçus pour générer des clients. Devis gratuit sous 24h.">
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
+ 
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -31,25 +32,25 @@ tailwind.config = {
   }
 }
 </script>
-
+ 
 <style>
   html { scroll-behavior: smooth; }
   body { background: #F4EEE6; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
-
+ 
   /* borders */
   .ht { border-top:    1px solid rgba(42,33,27,.10); }
   .hb { border-bottom: 1px solid rgba(42,33,27,.10); }
   .hx { border:        1px solid rgba(42,33,27,.10); }
   .div { border-top:   1px solid rgba(42,33,27,.10); }
-
+ 
   /* type */
   .serif-tight { letter-spacing: -.013em; }
   .eyebrow { color:#A6764E; letter-spacing:.22em; font-size:.68rem; text-transform:uppercase; }
-
+ 
   /* fluid heading — works on any screen without breakpoints */
   .h-fluid { font-size: clamp(1.75rem, 8vw, 4.5rem); line-height: 1.06; }
   .h-fluid-lg { font-size: clamp(2rem, 10vw, 5.5rem); line-height: 1.04; }
-
+ 
   /* buttons */
   .btn-dark {
     display: block; width: 100%; text-align: center;
@@ -59,7 +60,7 @@ tailwind.config = {
     transition: opacity .3s;
   }
   .btn-dark:hover { opacity: .88; }
-
+ 
   .btn-ghost {
     display: block; width: 100%; text-align: center;
     color: #2A211B; font-weight: 500;
@@ -68,23 +69,23 @@ tailwind.config = {
     transition: border-color .3s, color .3s;
   }
   .btn-ghost:hover { border-color: #A6764E; color: #A6764E; }
-
+ 
   /* service rows */
   .row-item { border-top: 1px solid rgba(42,33,27,.10); transition: padding-left .35s ease; }
   .row-item:hover { padding-left: .35rem; }
   .row-item:hover .row-t { color: #A6764E; }
   .row-t { transition: color .35s; }
-
+ 
   /* reveal */
   .reveal { opacity:0; transform:translateY(16px); transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity:1; transform:none; }
-
+ 
   /* faq */
   details > summary { list-style:none; -webkit-list-style:none; }
   details > summary::-webkit-details-marker { display:none; }
   .fi { transition:transform .3s ease; display:block; flex-shrink:0; }
   details[open] .fi { transform:rotate(45deg); }
-
+ 
   /* form fields */
   .field {
     display:block; width:100%; background:transparent;
@@ -95,18 +96,18 @@ tailwind.config = {
   }
   .field:focus { outline:none; border-color:#A6764E; }
   .field::placeholder { color:rgba(131,118,106,.5); }
-
+ 
   ::selection { background:rgba(166,118,78,.25); }
-
+ 
   @media (prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
   }
 </style>
 </head>
-
+ 
 <body class="bg-sand text-cocoa font-sans antialiased">
-
+ 
 <!-- HEADER -->
 <header id="top" class="fixed top-0 inset-x-0 z-50">
   <div id="nav" class="transition-all duration-300">
@@ -121,29 +122,29 @@ tailwind.config = {
     </div>
   </div>
 </header>
-
+ 
 <!-- HERO -->
 <section class="max-w-5xl mx-auto px-5 sm:px-8 pt-24 pb-12 sm:pt-40 sm:pb-20">
   <div class="eyebrow reveal">Studio web premium · Afrique francophone</div>
-
+ 
   <h1 class="font-serif serif-tight h-fluid-lg mt-5 reveal">
     Un site qui fait <span class="italic text-clay">venir</span> vos clients, pas seulement exister.
   </h1>
-
+ 
   <p class="mt-5 text-base sm:text-lg text-taupe leading-relaxed max-w-xl reveal">
     Nous concevons des sites élégants, rapides et professionnels — pour transformer vos visiteurs en demandes et en appels.
   </p>
-
+ 
   <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6 reveal">
     <a href="#devis" class="btn-dark sm:w-auto sm:inline-block sm:px-8">Demander un devis gratuit</a>
     <a href="#devis" class="btn-ghost sm:w-auto sm:inline-block">Réserver un appel →</a>
   </div>
-
+ 
   <p class="mt-6 text-xs text-taupe reveal">
     Réponse sous 24h &nbsp;·&nbsp; Sans engagement &nbsp;·&nbsp; Paiement en plusieurs fois
   </p>
 </section>
-
+ 
 <!-- MOCKUP -->
 <section class="max-w-5xl mx-auto px-5 sm:px-8 pb-6 reveal">
   <div class="hx rounded-2xl overflow-hidden" style="background:#FBF7F1;box-shadow:0 24px 50px -35px rgba(42,33,27,.38)">
@@ -163,7 +164,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
+ 
 <!-- LOGOS -->
 <section class="ht hb mt-8">
   <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8">
@@ -173,7 +174,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
+ 
 <!-- STATS -->
 <section class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
   <div class="grid grid-cols-2 gap-y-9 gap-x-4 sm:grid-cols-4">
@@ -195,7 +196,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
+ 
 <!-- PROBLÈMES -->
 <section class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
   <div class="reveal mb-8">
@@ -210,7 +211,7 @@ tailwind.config = {
     <div class="div py-5 reveal"><p class="font-serif serif-tight text-xl italic text-clay">Bonne nouvelle —</p><p class="text-sm text-taupe mt-1.5">chacun de ces problèmes se règle. Voyons comment.</p></div>
   </div>
 </section>
-
+ 
 <!-- SOLUTIONS -->
 <section class="ht hb" style="background:#FBF7F1">
   <div class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
@@ -226,7 +227,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
+ 
 <!-- SERVICES -->
 <section id="services" class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
   <div class="reveal mb-8">
@@ -256,7 +257,7 @@ tailwind.config = {
     </a>
   </div>
 </section>
-
+ 
 <!-- AVANTAGES -->
 <section class="ht hb" style="background:#FBF7F1">
   <div class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
@@ -275,7 +276,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
+ 
 <!-- PORTFOLIO -->
 <section id="realisations" class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
   <div class="flex items-end justify-between gap-4 reveal mb-8">
@@ -283,9 +284,9 @@ tailwind.config = {
     <a href="#devis" class="text-xs text-taupe whitespace-nowrap" style="border-bottom:1px solid rgba(131,118,106,.4)">Tous →</a>
   </div>
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
+ 
     <!-- 1. Restaurant -->
-    <a href="demos/restaurant.html" target="_blank" rel="noopener" class="reveal group block">
+    <a href="restaurant.html" target="_blank" rel="noopener" class="reveal group block">
       <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#2a2018,#0a0806);display:flex;align-items:flex-end;padding:1rem">
         <div class="w-full rounded-lg px-3 py-2.5" style="background:rgba(184,144,90,.15);border:1px solid rgba(184,144,90,.3)">
           <div class="h-1.5 w-12 rounded-full mb-1.5" style="background:rgba(212,176,122,.7)"></div>
@@ -297,9 +298,9 @@ tailwind.config = {
       <p class="text-xs text-taupe mt-0.5">Gastronomie · Menu &amp; réservation</p>
       <p class="text-xs text-clay mt-1.5 font-medium">Design premium franco-africain</p>
     </a>
-
+ 
     <!-- 2. Hôtel -->
-    <a href="demos/hotel.html" target="_blank" rel="noopener" class="reveal group block">
+    <a href="hotel.html" target="_blank" rel="noopener" class="reveal group block">
       <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#4A8C6A,#2E6B4E);display:flex;align-items:flex-end;padding:1rem">
         <div class="w-full rounded-lg px-3 py-2.5" style="background:rgba(245,250,243,.9)">
           <div class="h-1.5 w-16 rounded-full mb-1.5" style="background:rgba(46,107,78,.5)"></div>
@@ -311,9 +312,9 @@ tailwind.config = {
       <p class="text-xs text-taupe mt-0.5">Réservation directe · Anti-OTA</p>
       <p class="text-xs text-clay mt-1.5 font-medium">Booking bar &amp; meilleur tarif garanti</p>
     </a>
-
+ 
     <!-- 3. Formation -->
-    <a href="demos/formation.html" target="_blank" rel="noopener" class="reveal group block">
+    <a href="formation.html" target="_blank" rel="noopener" class="reveal group block">
       <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1E2A4A,#2D3E6E);display:flex;align-items:flex-end;padding:1rem">
         <div class="w-full rounded-lg px-3 py-2.5" style="background:rgba(250,251,254,.92)">
           <div class="h-1.5 w-14 rounded-full mb-1.5" style="background:rgba(245,158,11,.8)"></div>
@@ -325,9 +326,9 @@ tailwind.config = {
       <p class="text-xs text-taupe mt-0.5">Catalogue &amp; inscriptions en ligne</p>
       <p class="text-xs text-clay mt-1.5 font-medium">Cartes formations interactives</p>
     </a>
-
+ 
     <!-- 4. Dentaire -->
-    <a href="demos/dentaire.html" target="_blank" rel="noopener" class="reveal group block">
+    <a href="dentaire.html" target="_blank" rel="noopener" class="reveal group block">
       <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1E6EA9,#0FA89A);display:flex;align-items:flex-end;padding:1rem">
         <div class="w-full rounded-lg px-3 py-2.5" style="background:rgba(255,255,255,.92)">
           <div class="h-1.5 w-12 rounded-full mb-1.5" style="background:rgba(15,168,154,.7)"></div>
@@ -339,9 +340,9 @@ tailwind.config = {
       <p class="text-xs text-taupe mt-0.5">Prise de RDV · UX rassurante</p>
       <p class="text-xs text-clay mt-1.5 font-medium">Avant/après &amp; réassurance patient</p>
     </a>
-
+ 
     <!-- 5. Dashboard -->
-    <a href="demos/dashboard.html" target="_blank" rel="noopener" class="reveal group block">
+    <a href="dashboard.html" target="_blank" rel="noopener" class="reveal group block">
       <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#0D1424,#1e2a4a);display:flex;align-items:flex-end;padding:1rem">
         <div class="w-full rounded-lg px-3 py-2.5" style="background:rgba(241,245,249,.95)">
           <div class="flex gap-1 mb-1.5"><div class="h-4 w-4 rounded" style="background:rgba(99,102,241,.7)"></div><div class="h-4 flex-1 rounded" style="background:rgba(99,102,241,.15)"></div></div>
@@ -353,7 +354,7 @@ tailwind.config = {
       <p class="text-xs text-taupe mt-0.5">Business Intelligence · Reporting</p>
       <p class="text-xs text-clay mt-1.5 font-medium">Graphiques temps réel &amp; KPI</p>
     </a>
-
+ 
     <!-- 6. Cyrflo (ton vrai projet) -->
     <a href="https://bowbosh22.github.io/Cyrflo-site/" target="_blank" rel="noopener" class="reveal group block">
       <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#0e7490,#164e63);display:flex;align-items:flex-end;padding:1rem">
@@ -367,10 +368,10 @@ tailwind.config = {
       <p class="text-xs text-taupe mt-0.5">Réservation fluviale · En production</p>
       <p class="text-xs text-clay mt-1.5 font-medium">+23 000 passagers transportés</p>
     </a>
-
+ 
   </div>
 </section>
-
+ 
 <!-- MÉTHODE -->
 <section id="processus" class="ht hb" style="background:#FBF7F1">
   <div class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
@@ -386,7 +387,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
+ 
 <!-- TÉMOIGNAGE -->
 <section class="max-w-4xl mx-auto px-5 sm:px-8 py-14 sm:py-24 text-center reveal">
   <div class="eyebrow mb-6">Témoignage</div>
@@ -395,7 +396,7 @@ tailwind.config = {
   </blockquote>
   <p class="mt-5 text-xs sm:text-sm text-taupe">Aïcha D. — Propriétaire, Le Baobab</p>
 </section>
-
+ 
 <!-- FAQ -->
 <section id="faq" class="ht hb" style="background:#FBF7F1">
   <div class="max-w-3xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
@@ -442,7 +443,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
+ 
 <!-- DEVIS -->
 <section id="devis" class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
   <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
@@ -482,7 +483,7 @@ tailwind.config = {
     </form>
   </div>
 </section>
-
+ 
 <!-- CTA FINAL -->
 <section style="background:#2A211B;color:#F4EEE6">
   <div class="max-w-3xl mx-auto px-5 sm:px-8 py-14 sm:py-24 text-center reveal">
@@ -497,7 +498,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer class="ht">
   <div class="max-w-5xl mx-auto px-5 sm:px-8 py-10 sm:py-14">
@@ -525,7 +526,7 @@ tailwind.config = {
     </div>
   </div>
 </footer>
-
+ 
 <script>
   // Navbar blur on scroll
   const nav = document.getElementById('nav');
@@ -544,7 +545,7 @@ tailwind.config = {
   };
   updateNav();
   window.addEventListener('scroll', updateNav, { passive: true });
-
+ 
   // Reveal on scroll
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -555,14 +556,14 @@ tailwind.config = {
     el.style.transitionDelay = (Math.min(i % 3, 2) * 55) + 'ms';
     io.observe(el);
   });
-
+ 
   // FAQ single open
   document.querySelectorAll('details').forEach(d => {
     d.addEventListener('toggle', () => {
       if (d.open) document.querySelectorAll('details').forEach(o => { if (o !== d) o.open = false; });
     });
   });
-
+ 
   // Form submit
   const form = document.getElementById('leadForm');
   form.addEventListener('submit', e => {
@@ -579,3 +580,4 @@ tailwind.config = {
 </script>
 </body>
 </html>
+ 
