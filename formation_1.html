@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProSkills Academy — Centre de Formation Professionnelle · Brazzaville</title>
+<meta name="description" content="Centre de formation professionnelle certifie a Brazzaville. Marketing digital, web, comptabilite, management. Inscrivez-vous.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{fond:"#FAFBFE",ardoise:"#1E2A4A",ambre:"#F59E0B",ambrelt:"#FCD34D",glacier:"#EEF2FF",encre:"#374151",gris:"#9CA3AF",succes:"#10B981"},fontFamily:{display:["Space Grotesk","system-ui","sans-serif"],sans:["Inter","system-ui","sans-serif"]}}}}</script>
+<style>
+html{scroll-behavior:smooth}body{background:#FAFBFE;color:#374151;overflow-x:hidden;-webkit-text-size-adjust:100%}
+.ht{border-top:1px solid rgba(30,42,74,.08)}.hb{border-bottom:1px solid rgba(30,42,74,.08)}.hx{border:1px solid rgba(30,42,74,.08)}.div{border-top:1px solid rgba(30,42,74,.07)}
+.eyebrow{font-family:"Space Grotesk",sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#F59E0B}
+.h-hero{font-size:clamp(2.2rem,8vw,5rem);line-height:1.08;letter-spacing:-.02em}
+.h-title{font-size:clamp(1.8rem,5vw,3rem);line-height:1.1;letter-spacing:-.018em}
+.h-sub{font-size:clamp(1.4rem,4vw,2rem);line-height:1.15}
+.hero-bg{background:linear-gradient(rgba(30,42,74,.82), rgba(24,33,62,.88)), url('https://images.unsplash.com/photo-1573164574511-73c773193279?w=1600&h=900&auto=format&fit=crop&q=80') center/cover no-repeat}
+#nav{transition:all .35s ease}#nav.scrolled{background:rgba(250,251,254,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(30,42,74,.08)}
+#nav.scrolled .nav-txt{color:#1E2A4A}#nav.scrolled .nav-link{color:#9CA3AF}
+.nav-txt{color:#FAFBFE;transition:color .35s;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:1.05rem}
+.nav-link{color:rgba(250,251,254,.7);font-size:.82rem;font-weight:500;transition:color .3s}
+.nav-link:hover{color:rgba(250,251,254,1)}
+#nav.scrolled .nav-link:hover{color:#1E2A4A}
+.btn-ambre{display:inline-block;text-align:center;background:#F59E0B;color:#1E2A4A;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;padding:.85rem 1.8rem;border-radius:8px;transition:background .25s,transform .25s}
+.btn-ambre:hover{background:#FCD34D;transform:translateY(-1px)}
+.btn-white{display:inline-block;text-align:center;background:rgba(250,251,254,.12);color:#FAFBFE;border:1px solid rgba(250,251,254,.3);font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:.82rem;padding:.85rem 1.8rem;border-radius:8px;transition:all .25s}
+.btn-white:hover{background:rgba(250,251,254,.22)}
+.btn-ardoise{display:inline-block;text-align:center;background:#1E2A4A;color:#FAFBFE;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.82rem;padding:.85rem 1.8rem;border-radius:8px;transition:background .25s}
+.btn-ardoise:hover{background:#243259}
+.btn-outline{display:inline-block;text-align:center;border:1.5px solid rgba(30,42,74,.25);color:#1E2A4A;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:.82rem;padding:.82rem 1.8rem;border-radius:8px;transition:all .25s}
+.btn-outline:hover{background:#1E2A4A;color:#FAFBFE}
+.badge-debut{background:#DCFCE7;color:#15803D}.badge-inter{background:#FEF3C7;color:#B45309}.badge-avance{background:#EDE9FE;color:#7C3AED}.badge-tous{background:#E0F2FE;color:#0369A1}
+.course-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.course-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px -20px rgba(30,42,74,.2)}
+.prog-bar{height:4px;border-radius:9999px;background:#E5E7EB;overflow:hidden}
+.prog-fill{height:100%;border-radius:9999px;background:linear-gradient(90deg,#F59E0B,#FCD34D)}
+.trainer-avatar{width:72px;height:72px;border-radius:9999px;border:3px solid #F59E0B;display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk",sans-serif;font-size:1.4rem;font-weight:700;color:#FAFBFE;flex-shrink:0}
+.cert-logo{height:52px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:#fff;padding:0 1.2rem;box-shadow:0 2px 12px rgba(30,42,74,.07);font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:.72rem;color:#1E2A4A;letter-spacing:.06em;text-transform:uppercase}
+.s-input{border:0;background:transparent;outline:none;font-family:"Inter",sans-serif;font-size:.95rem;color:#374151;width:100%}
+.s-input::placeholder{color:#9CA3AF}
+.f-input{width:100%;background:#fff;border:1.5px solid rgba(30,42,74,.12);border-radius:8px;padding:.7rem 1rem;color:#374151;font-family:"Inter",sans-serif;font-size:.92rem;transition:border-color .3s}
+.f-input:focus{outline:none;border-color:#F59E0B}.f-input::placeholder{color:#9CA3AF}
+.f-label{font-family:"Space Grotesk",sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#374151;margin-bottom:.4rem;display:block}
+details>summary{list-style:none}details>summary::-webkit-details-marker{display:none}
+.fi{transition:transform .3s ease;flex-shrink:0;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#EEF2FF;color:#1E2A4A;font-size:1.1rem}
+details[open] .fi{transform:rotate(45deg);background:#1E2A4A;color:#FAFBFE}
+.step-num{width:44px;height:44px;border-radius:50%;background:#1E2A4A;color:#FAFBFE;display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1rem;flex-shrink:0}
+.pill{font-family:"Space Grotesk",sans-serif;font-size:.72rem;font-weight:600;padding:.35rem .85rem;border-radius:9999px;cursor:pointer;transition:all .2s}
+.pill.active{background:#1E2A4A;color:#FAFBFE}.pill:not(.active){background:#EEF2FF;color:#1E2A4A}.pill:hover:not(.active){background:#1E2A4A;color:#FAFBFE}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+::selection{background:rgba(245,158,11,.3);color:#1E2A4A}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body class="bg-fond font-sans antialiased">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50">
+<div id="nav">
+<nav class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:68px">
+<a href="#haut" class="nav-txt">ProSkills<span style="color:#F59E0B">.</span></a>
+<div class="hidden lg:flex items-center gap-8">
+<a href="#formations" class="nav-link">Formations</a>
+<a href="#formateurs" class="nav-link">Formateurs</a>
+<a href="#certifications" class="nav-link">Certifications</a>
+<a href="#temoignages" class="nav-link">Temoignages</a>
+<a href="#faq" class="nav-link">FAQ</a>
+</div>
+<a href="#inscription" class="btn-ambre text-sm hidden sm:inline-block">S'inscrire</a>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="haut" class="hero-bg min-h-screen flex flex-col justify-center pt-20 pb-16 px-5 sm:px-8">
+<div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+<div>
+<div class="eyebrow reveal" style="color:#FCD34D">Brazzaville, Republique du Congo</div>
+<h1 class="font-display h-hero text-fond mt-5 reveal" style="transition-delay:.1s">Formez-vous.<br><span style="color:#F59E0B">Progressez.</span><br>Reussissez.</h1>
+<p class="mt-6 reveal text-fond/70 leading-relaxed" style="font-size:clamp(.95rem,2.5vw,1.1rem);max-width:480px;transition-delay:.2s">Des formations professionnelles certifiantes concues pour le marche congolais. En presentiel, en ligne ou en hybride.</p>
+<div class="mt-8 flex flex-col sm:flex-row gap-3 reveal" style="transition-delay:.3s">
+<a href="#formations" class="btn-ambre">Voir les formations</a>
+<a href="#inscription" class="btn-white">S'inscrire gratuitement</a>
+</div>
+<div class="mt-10 flex flex-wrap gap-8 reveal" style="transition-delay:.4s">
+<div><div class="font-display font-bold text-2xl text-fond">+1 200</div><div class="text-fond/55 text-xs mt-0.5">Diplomes</div></div>
+<div><div class="font-display font-bold text-2xl text-fond">18</div><div class="text-fond/55 text-xs mt-0.5">Formations</div></div>
+<div><div class="font-display font-bold text-2xl text-fond">96%</div><div class="text-fond/55 text-xs mt-0.5">Satisfaction</div></div>
+<div><div class="font-display font-bold text-2xl text-fond">12</div><div class="text-fond/55 text-xs mt-0.5">Formateurs</div></div>
+</div>
+</div>
+<!-- search card -->
+<div class="reveal" style="transition-delay:.25s">
+<div class="bg-fond rounded-2xl p-6 sm:p-8" style="box-shadow:0 8px 30px -8px rgba(30,42,74,.35)">
+<div class="font-display font-bold text-ardoise text-xl mb-2">Trouvez votre formation</div>
+<p class="text-gris text-sm mb-5">Quelle competence voulez-vous developper ?</p>
+<div class="flex gap-3 hx rounded-xl p-3 bg-white mb-5">
+<svg class="w-5 h-5 text-gris shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.3-4.3"/></svg>
+<input class="s-input" type="text" placeholder="Ex : marketing digital, comptabilite...">
+<button class="btn-ambre text-xs px-4 py-2 rounded-lg">Chercher</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="pill active">Tous</span><span class="pill">Marketing</span><span class="pill">Tech</span><span class="pill">Finance</span><span class="pill">Management</span>
+</div>
+<div class="mt-5 div pt-4 flex items-center gap-2 text-xs text-gris">
+<svg class="w-4 h-4 text-succes shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+Prochaine session : <strong class="text-ardoise ml-1">15 juillet 2026</strong>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FORMATIONS -->
+<section id="formations" class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
+<div class="flex flex-wrap items-end justify-between gap-4 mb-10 reveal">
+<div><div class="eyebrow mb-3">Catalogue</div><h2 class="font-display h-title text-ardoise">Nos formations.</h2></div>
+<a href="#inscription" class="btn-outline">Tout le catalogue</a>
+</div>
+<div class="flex flex-wrap gap-2 mb-8 reveal">
+<span class="pill active">Tout voir</span><span class="pill">Marketing</span><span class="pill">Tech</span><span class="pill">Finance</span><span class="pill">Management</span><span class="pill">Bureautique</span>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+<!-- Marketing -->
+<article class="course-card hx rounded-2xl overflow-hidden bg-white reveal">
+<div class="h-36 relative flex items-end p-5" style="background:linear-gradient(135deg,#1E2A4A,#2D3E6E)">
+<div class="absolute top-4 right-4 badge-debut text-xs font-semibold px-2.5 py-1 rounded-full">Debutant</div>
+<div class="absolute top-4 left-4 bg-ambre text-ardoise text-xs font-bold px-2.5 py-1 rounded-full">Populaire</div>
+<h3 class="font-display font-bold text-fond text-lg leading-tight">Marketing Digital</h3>
+</div>
+<div class="p-5">
+<p class="text-gris text-sm leading-relaxed">Reseaux sociaux, publicite en ligne, email marketing et strategie de contenu.</p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gris">
+<span>3 mois</span><span>342 inscrits</span><span class="text-ambre font-semibold">4,8 ★</span>
+</div>
+<div class="mt-4"><div class="flex justify-between text-xs text-gris mb-1.5"><span>Taux de completion</span><span class="font-semibold text-succes">87%</span></div><div class="prog-bar"><div class="prog-fill" style="width:87%"></div></div></div>
+<div class="mt-5 flex items-center justify-between"><div><span class="font-display font-bold text-ardoise text-lg">45 000 FCFA</span><span class="text-gris text-xs ml-1">/mois</span></div><a href="#inscription" class="btn-ambre text-xs py-2 px-4">S'inscrire</a></div>
+</div>
+</article>
+
+<!-- Dev Web -->
+<article class="course-card hx rounded-2xl overflow-hidden bg-white reveal" style="transition-delay:.08s">
+<div class="h-36 relative flex items-end p-5" style="background:linear-gradient(135deg,#0F172A,#1E3A5F)">
+<div class="absolute top-4 right-4 badge-inter text-xs font-semibold px-2.5 py-1 rounded-full">Intermediaire</div>
+<div class="absolute top-4 left-4 bg-white/10 text-white text-xs font-semibold px-2.5 py-1 rounded-full">Nouveau</div>
+<h3 class="font-display font-bold text-fond text-lg leading-tight">Developpement Web</h3>
+</div>
+<div class="p-5">
+<p class="text-gris text-sm leading-relaxed">HTML, CSS, JavaScript et WordPress. Creez des sites professionnels de A a Z.</p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gris"><span>6 mois</span><span>189 inscrits</span><span class="text-ambre font-semibold">4,9 ★</span></div>
+<div class="mt-4"><div class="flex justify-between text-xs text-gris mb-1.5"><span>Taux de completion</span><span class="font-semibold text-succes">92%</span></div><div class="prog-bar"><div class="prog-fill" style="width:92%"></div></div></div>
+<div class="mt-5 flex items-center justify-between"><div><span class="font-display font-bold text-ardoise text-lg">55 000 FCFA</span><span class="text-gris text-xs ml-1">/mois</span></div><a href="#inscription" class="btn-ardoise text-xs py-2 px-4">S'inscrire</a></div>
+</div>
+</article>
+
+<!-- Compta -->
+<article class="course-card hx rounded-2xl overflow-hidden bg-white reveal" style="transition-delay:.16s">
+<div class="h-36 relative flex items-end p-5" style="background:linear-gradient(135deg,#064E3B,#065F46)">
+<div class="absolute top-4 right-4 badge-tous text-xs font-semibold px-2.5 py-1 rounded-full">Tous niveaux</div>
+<h3 class="font-display font-bold text-fond text-lg leading-tight">Comptabilite et Finance</h3>
+</div>
+<div class="p-5">
+<p class="text-gris text-sm leading-relaxed">Tenue de livres, gestion budgetaire, fiscalite congolaise et logiciels comptables. OHADA inclus.</p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gris"><span>4 mois</span><span>278 inscrits</span><span class="text-ambre font-semibold">4,7 ★</span></div>
+<div class="mt-4"><div class="flex justify-between text-xs text-gris mb-1.5"><span>Taux de completion</span><span class="font-semibold text-succes">82%</span></div><div class="prog-bar"><div class="prog-fill" style="width:82%"></div></div></div>
+<div class="mt-5 flex items-center justify-between"><div><span class="font-display font-bold text-ardoise text-lg">40 000 FCFA</span><span class="text-gris text-xs ml-1">/mois</span></div><a href="#inscription" class="btn-ambre text-xs py-2 px-4">S'inscrire</a></div>
+</div>
+</article>
+
+<!-- Management -->
+<article class="course-card hx rounded-2xl overflow-hidden bg-white reveal" style="transition-delay:.24s">
+<div class="h-36 relative flex items-end p-5" style="background:linear-gradient(135deg,#4C1D95,#6D28D9)">
+<div class="absolute top-4 right-4 badge-avance text-xs font-semibold px-2.5 py-1 rounded-full">Intermediaire</div>
+<h3 class="font-display font-bold text-fond text-lg leading-tight">Management de Projet</h3>
+</div>
+<div class="p-5">
+<p class="text-gris text-sm leading-relaxed">Methodes Agile et PMI, gestion d'equipes, planification et suivi de projets.</p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gris"><span>2 mois</span><span>156 inscrits</span><span class="text-ambre font-semibold">4,9 ★</span></div>
+<div class="mt-4"><div class="flex justify-between text-xs text-gris mb-1.5"><span>Taux de completion</span><span class="font-semibold text-succes">94%</span></div><div class="prog-bar"><div class="prog-fill" style="width:94%"></div></div></div>
+<div class="mt-5 flex items-center justify-between"><div><span class="font-display font-bold text-ardoise text-lg">50 000 FCFA</span><span class="text-gris text-xs ml-1">/mois</span></div><a href="#inscription" class="btn-ambre text-xs py-2 px-4">S'inscrire</a></div>
+</div>
+</article>
+
+<!-- Bureautique -->
+<article class="course-card hx rounded-2xl overflow-hidden bg-white reveal" style="transition-delay:.32s">
+<div class="h-36 relative flex items-end p-5" style="background:linear-gradient(135deg,#B45309,#D97706)">
+<div class="absolute top-4 right-4 badge-tous text-xs font-semibold px-2.5 py-1 rounded-full">Tous niveaux</div>
+<h3 class="font-display font-bold text-fond text-lg leading-tight">Bureautique Avancee</h3>
+</div>
+<div class="p-5">
+<p class="text-gris text-sm leading-relaxed">Excel, Word, PowerPoint et Google Workspace. Les outils du bureau moderne.</p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gris"><span>1 mois</span><span>421 inscrits</span><span class="text-ambre font-semibold">4,6 ★</span></div>
+<div class="mt-4"><div class="flex justify-between text-xs text-gris mb-1.5"><span>Taux de completion</span><span class="font-semibold text-succes">91%</span></div><div class="prog-bar"><div class="prog-fill" style="width:91%"></div></div></div>
+<div class="mt-5 flex items-center justify-between"><div><span class="font-display font-bold text-ardoise text-lg">25 000 FCFA</span><span class="text-gris text-xs ml-1">/mois</span></div><a href="#inscription" class="btn-ambre text-xs py-2 px-4">S'inscrire</a></div>
+</div>
+</article>
+
+<!-- Communication -->
+<article class="course-card hx rounded-2xl overflow-hidden bg-white reveal" style="transition-delay:.4s">
+<div class="h-36 relative flex items-end p-5" style="background:linear-gradient(135deg,#0E7490,#0891B2)">
+<div class="absolute top-4 right-4 badge-debut text-xs font-semibold px-2.5 py-1 rounded-full">Debutant</div>
+<h3 class="font-display font-bold text-fond text-lg leading-tight">Communication Pro</h3>
+</div>
+<div class="p-5">
+<p class="text-gris text-sm leading-relaxed">Prise de parole, redaction professionnelle, negociation et gestion des clients.</p>
+<div class="mt-4 flex items-center gap-4 text-xs text-gris"><span>2 mois</span><span>203 inscrits</span><span class="text-ambre font-semibold">4,8 ★</span></div>
+<div class="mt-4"><div class="flex justify-between text-xs text-gris mb-1.5"><span>Taux de completion</span><span class="font-semibold text-succes">88%</span></div><div class="prog-bar"><div class="prog-fill" style="width:88%"></div></div></div>
+<div class="mt-5 flex items-center justify-between"><div><span class="font-display font-bold text-ardoise text-lg">30 000 FCFA</span><span class="text-gris text-xs ml-1">/mois</span></div><a href="#inscription" class="btn-ambre text-xs py-2 px-4">S'inscrire</a></div>
+</div>
+</article>
+</div>
+</section>
+
+<!-- FORMATEURS -->
+<section id="formateurs" class="py-20 sm:py-28" style="background:#EEF2FF">
+<div class="max-w-7xl mx-auto px-5 sm:px-8">
+<div class="text-center mb-14 reveal">
+<div class="eyebrow mb-3">L'equipe</div>
+<h2 class="font-display h-title text-ardoise">Des experts a votre service.</h2>
+<p class="text-gris mt-3 max-w-xl mx-auto">Nos formateurs sont des professionnels en activite, pas uniquement des theoriciens.</p>
+</div>
+<div class="grid sm:grid-cols-3 gap-6">
+<div class="bg-white rounded-2xl p-7 hx reveal text-center">
+<div class="trainer-avatar mx-auto mb-4" style="background:linear-gradient(rgba(30,42,74,.45),rgba(30,42,74,.45)), url('https://images.unsplash.com/photo-1528901166007-3784c7dd3653?w=600&h=800&auto=format&fit=crop&q=80') center/cover no-repeat">AK</div>
+<h3 class="font-display font-bold text-ardoise text-xl">Amara Kouyate</h3>
+<p class="text-ambre text-xs font-semibold uppercase tracking-wide mt-1">Marketing Digital</p>
+<p class="text-gris text-sm mt-3 leading-relaxed">10 ans d'experience en strategie digitale. Ancien directeur marketing chez une multinationale telcoms.</p>
+<div class="mt-4 flex justify-center gap-4 text-xs text-gris">
+<span><strong class="text-ardoise">248</strong> eleves</span><span><strong class="text-ardoise">4,9 ★</strong></span><span><strong class="text-ardoise">3</strong> cours</span>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-7 hx reveal text-center" style="transition-delay:.1s">
+<div class="trainer-avatar mx-auto mb-4" style="background:linear-gradient(rgba(15,23,42,.45),rgba(15,23,42,.45)), url('https://images.unsplash.com/photo-1573164713712-03790a178651?w=600&h=800&auto=format&fit=crop&q=80') center/cover no-repeat">SM</div>
+<h3 class="font-display font-bold text-ardoise text-xl">Sophie Matondo</h3>
+<p class="text-ambre text-xs font-semibold uppercase tracking-wide mt-1">Developpement Web</p>
+<p class="text-gris text-sm mt-3 leading-relaxed">Developpeuse fullstack certifiee. A travaille pour des ONG, des banques et des startups africaines.</p>
+<div class="mt-4 flex justify-center gap-4 text-xs text-gris">
+<span><strong class="text-ardoise">312</strong> eleves</span><span><strong class="text-ardoise">4,9 ★</strong></span><span><strong class="text-ardoise">2</strong> cours</span>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-7 hx reveal text-center" style="transition-delay:.2s">
+<div class="trainer-avatar mx-auto mb-4" style="background:linear-gradient(rgba(6,78,59,.45),rgba(6,78,59,.45)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=800&auto=format&fit=crop&q=80') center/cover no-repeat">JD</div>
+<h3 class="font-display font-bold text-ardoise text-xl">Joseph Diallo</h3>
+<p class="text-ambre text-xs font-semibold uppercase tracking-wide mt-1">Finance et Comptabilite</p>
+<p class="text-gris text-sm mt-3 leading-relaxed">Expert-comptable agree, specialiste OHADA. 15 ans en cabinet comptable international.</p>
+<div class="mt-4 flex justify-center gap-4 text-xs text-gris">
+<span><strong class="text-ardoise">415</strong> eleves</span><span><strong class="text-ardoise">4,8 ★</strong></span><span><strong class="text-ardoise">4</strong> cours</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+<div class="text-center mb-12 reveal">
+<div class="eyebrow mb-3">Reconnaissance</div>
+<h2 class="font-display h-title text-ardoise">Certifications reconnues.</h2>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10 reveal">
+<div class="cert-logo">Ministere Formation</div>
+<div class="cert-logo">OHADA Certifie</div>
+<div class="cert-logo">Google Partner</div>
+<div class="cert-logo">PMI Accredited</div>
+</div>
+<div class="rounded-2xl p-6 sm:p-8 reveal" style="background:linear-gradient(135deg,#1E2A4A,#2D3E6E)">
+<div class="grid sm:grid-cols-3 gap-6 text-center">
+<div><div class="font-display font-bold text-fond text-2xl mb-2">Diplome officiel</div><p class="text-fond/60 text-sm">Reconnu par l'Etat et les employeurs</p></div>
+<div><div class="font-display font-bold text-fond text-2xl mb-2">Projets reels</div><p class="text-fond/60 text-sm">Cas pratiques sur des entreprises locales</p></div>
+<div><div class="font-display font-bold text-fond text-2xl mb-2">Reseau alumni</div><p class="text-fond/60 text-sm">+1 200 diplomes actifs dans la region</p></div>
+</div>
+</div>
+</section>
+
+<!-- TEMOIGNAGES -->
+<section id="temoignages" class="py-20 sm:py-24" style="background:#EEF2FF">
+<div class="max-w-7xl mx-auto px-5 sm:px-8">
+<div class="text-center mb-14 reveal">
+<div class="eyebrow mb-3">Ils en parlent</div>
+<h2 class="font-display h-title text-ardoise">Nos diplomes temoignent.</h2>
+</div>
+<div class="grid sm:grid-cols-3 gap-5">
+<figure class="bg-white rounded-2xl p-6 hx reveal">
+<div class="flex gap-1 text-ambre text-sm mb-4">★★★★★</div>
+<blockquote class="text-encre leading-relaxed">La formation en marketing digital a transforme mon activite. J'ai triple mes ventes en 4 mois grace aux techniques apprises.</blockquote>
+<figcaption class="mt-5 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-ambre/20 flex items-center justify-center font-display font-bold text-ardoise text-sm">CK</div><div><div class="font-semibold text-sm text-ardoise">Celeste Kimba</div><div class="text-xs text-gris">Commercante, Brazzaville</div></div></figcaption>
+</figure>
+<figure class="bg-white rounded-2xl p-6 hx reveal" style="transition-delay:.1s">
+<div class="flex gap-1 text-ambre text-sm mb-4">★★★★★</div>
+<blockquote class="text-encre leading-relaxed">Grace au cours de developpement web, j'ai decroche mon premier emploi en CDI deux semaines apres la certification.</blockquote>
+<figcaption class="mt-5 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-ardoise/10 flex items-center justify-center font-display font-bold text-ardoise text-sm">RM</div><div><div class="font-semibold text-sm text-ardoise">Rodrick Moukassa</div><div class="text-xs text-gris">Developpeur junior, Pointe-Noire</div></div></figcaption>
+</figure>
+<figure class="bg-white rounded-2xl p-6 hx reveal" style="transition-delay:.2s">
+<div class="flex gap-1 text-ambre text-sm mb-4">★★★★★</div>
+<blockquote class="text-encre leading-relaxed">ProSkills m'a donne les bases solides en comptabilite OHADA. J'ai pu ouvrir mon propre cabinet 6 mois apres la formation.</blockquote>
+<figcaption class="mt-5 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-succes/15 flex items-center justify-center font-display font-bold text-succes text-sm">FN</div><div><div class="font-semibold text-sm text-ardoise">Fatou Nzinga</div><div class="text-xs text-gris">Expert-comptable independante</div></div></figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<!-- PROCESSUS -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+<div class="text-center mb-14 reveal"><div class="eyebrow mb-3">Comment ca marche</div><h2 class="font-display h-title text-ardoise">En 4 etapes simples.</h2></div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="reveal"><div class="step-num mb-4">01</div><h3 class="font-display font-bold text-ardoise text-lg">Choisissez votre formation</h3><p class="text-gris text-sm mt-2 leading-relaxed">Parcourez notre catalogue et selectionnez la formation adaptee a vos objectifs.</p></div>
+<div class="reveal" style="transition-delay:.08s"><div class="step-num mb-4">02</div><h3 class="font-display font-bold text-ardoise text-lg">Remplissez le formulaire</h3><p class="text-gris text-sm mt-2 leading-relaxed">Inscription rapide en ligne. Notre equipe vous recontacte sous 24h.</p></div>
+<div class="reveal" style="transition-delay:.16s"><div class="step-num mb-4">03</div><h3 class="font-display font-bold text-ardoise text-lg">Payez et confirmez</h3><p class="text-gris text-sm mt-2 leading-relaxed">Mobile Money, virement ou especes. Paiement en plusieurs fois disponible.</p></div>
+<div class="reveal" style="transition-delay:.24s"><div class="step-num mb-4" style="background:#F59E0B;color:#1E2A4A">04</div><h3 class="font-display font-bold text-ardoise text-lg">Commencez a apprendre</h3><p class="text-gris text-sm mt-2 leading-relaxed">Acces aux cours, ressources et support du formateur des le premier jour.</p></div>
+</div>
+</section>
+
+<!-- INSCRIPTION -->
+<section id="inscription" style="background:#1E2A4A">
+<div class="max-w-5xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+<div class="grid lg:grid-cols-2 gap-14 items-start">
+<div>
+<div class="eyebrow reveal" style="color:#FCD34D">Inscription</div>
+<h2 class="font-display h-title text-fond mt-4 reveal" style="transition-delay:.1s">Commencez votre parcours.</h2>
+<p class="text-fond/60 mt-4 leading-relaxed text-sm reveal" style="transition-delay:.2s">Inscription gratuite. Un conseiller vous rappelle sous 24h pour choisir la bonne formation.</p>
+<ul class="mt-6 space-y-3 reveal" style="transition-delay:.3s">
+<li class="flex items-center gap-3 text-sm text-fond/75"><svg class="w-4 h-4 text-succes shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Inscription gratuite, sans engagement</li>
+<li class="flex items-center gap-3 text-sm text-fond/75"><svg class="w-4 h-4 text-succes shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Paiement en 2 ou 3 fois disponible</li>
+<li class="flex items-center gap-3 text-sm text-fond/75"><svg class="w-4 h-4 text-succes shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Cours en presentiel, en ligne ou hybride</li>
+<li class="flex items-center gap-3 text-sm text-fond/75"><svg class="w-4 h-4 text-succes shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Certificat reconnu a l'issue de la formation</li>
+</ul>
+<p class="mt-7 text-fond/40 text-sm reveal" style="transition-delay:.4s">Tel : <a href="tel:+24200000000" style="color:#F59E0B">+242 00 00 00 00</a></p>
+</div>
+<form id="inscForm" class="reveal space-y-5" style="transition-delay:.15s" novalidate>
+<div class="grid grid-cols-2 gap-4">
+<div><label class="f-label" style="color:rgba(250,251,254,.6)">Prenom *</label><input required name="prenom" type="text" placeholder="Jean" class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(250,251,254,.15);color:#FAFBFE" onfocus="this.style.borderColor='#F59E0B'" onblur="this.style.borderColor='rgba(250,251,254,.15)'"></div>
+<div><label class="f-label" style="color:rgba(250,251,254,.6)">Nom *</label><input required name="nom" type="text" placeholder="Mbemba" class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(250,251,254,.15);color:#FAFBFE" onfocus="this.style.borderColor='#F59E0B'" onblur="this.style.borderColor='rgba(250,251,254,.15)'"></div>
+</div>
+<div><label class="f-label" style="color:rgba(250,251,254,.6)">Email *</label><input required name="email" type="email" placeholder="vous@email.com" class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(250,251,254,.15);color:#FAFBFE" onfocus="this.style.borderColor='#F59E0B'" onblur="this.style.borderColor='rgba(250,251,254,.15)'"></div>
+<div><label class="f-label" style="color:rgba(250,251,254,.6)">Telephone *</label><input required name="tel" type="tel" placeholder="+242 ..." class="f-input" style="background:rgba(255,255,255,.07);border-color:rgba(250,251,254,.15);color:#FAFBFE" onfocus="this.style.borderColor='#F59E0B'" onblur="this.style.borderColor='rgba(250,251,254,.15)'"></div>
+<div><label class="f-label" style="color:rgba(250,251,254,.6)">Formation souhaitee</label>
+<select name="formation" class="f-input" style="background:#243259;border-color:rgba(250,251,254,.15);color:#FAFBFE;appearance:none;cursor:pointer">
+<option value="" style="background:#1E2A4A">Choisir une formation</option>
+<option style="background:#1E2A4A">Marketing Digital</option>
+<option style="background:#1E2A4A">Developpement Web</option>
+<option style="background:#1E2A4A">Comptabilite et Finance</option>
+<option style="background:#1E2A4A">Management de Projet</option>
+<option style="background:#1E2A4A">Bureautique Avancee</option>
+<option style="background:#1E2A4A">Communication Professionnelle</option>
+</select></div>
+<div><label class="f-label" style="color:rgba(250,251,254,.6)">Mode prefere</label>
+<select name="mode" class="f-input" style="background:#243259;border-color:rgba(250,251,254,.15);color:#FAFBFE;appearance:none;cursor:pointer">
+<option style="background:#1E2A4A">Presentiel (Brazzaville)</option>
+<option style="background:#1E2A4A">En ligne</option>
+<option style="background:#1E2A4A">Hybride</option>
+</select></div>
+<button type="submit" class="btn-ambre w-full py-4">Envoyer ma demande d'inscription</button>
+<p id="inscOk" class="text-center text-sm hidden" style="color:#FCD34D">Inscription recue ! Un conseiller vous contacte sous 24h.</p>
+</form>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="max-w-3xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+<div class="text-center mb-12 reveal"><div class="eyebrow mb-3">FAQ</div><h2 class="font-display h-sub text-ardoise">Vos questions, nos reponses.</h2></div>
+<div class="ht space-y-0">
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-display font-semibold text-ardoise text-base leading-snug">Faut-il un niveau scolaire particulier ?</span><span class="fi">+</span></summary><p class="text-gris text-sm pb-5 leading-relaxed">Nos formations sont accessibles a partir du niveau BEPC pour la plupart. Le niveau requis est precise sur chaque fiche de formation.</p></details>
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-display font-semibold text-ardoise text-base leading-snug">Peut-on suivre les cours en travaillant ?</span><span class="fi">+</span></summary><p class="text-gris text-sm pb-5 leading-relaxed">Oui. Nos cours sont disponibles en soiree (18h-21h) et le week-end. La formule en ligne permet aussi de suivre a son propre rythme.</p></details>
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-display font-semibold text-ardoise text-base leading-snug">Comment se passe le paiement ?</span><span class="fi">+</span></summary><p class="text-gris text-sm pb-5 leading-relaxed">Especes, Mobile Money (Airtel, MTN) ou virement bancaire. Paiement en 2 ou 3 fois disponible sans frais supplementaires.</p></details>
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-display font-semibold text-ardoise text-base leading-snug">Le certificat est-il reconnu par les employeurs ?</span><span class="fi">+</span></summary><p class="text-gris text-sm pb-5 leading-relaxed">Oui. ProSkills est agree par le Ministere de la Formation Professionnelle et nos certifications sont reconnues par nos 40+ entreprises partenaires a Brazzaville.</p></details>
+<details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-display font-semibold text-ardoise text-base leading-snug">Y a-t-il un accompagnement apres la formation ?</span><span class="fi">+</span></summary><p class="text-gris text-sm pb-5 leading-relaxed">Oui. Tous nos diplomes rejoignent le reseau alumni ProSkills avec acces aux offres d'emploi partenaires et un suivi de 3 mois post-formation.</p></details>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="ht hb" style="background:#EEF2FF">
+<div class="max-w-5xl mx-auto px-5 sm:px-8 py-16 sm:py-20 grid sm:grid-cols-3 gap-8 text-center">
+<div class="reveal"><h3 class="font-display font-bold text-ardoise mb-2">Adresse</h3><p class="text-gris text-sm">12, Avenue de l'Enseignement<br>Bacongo, Brazzaville - RC</p></div>
+<div class="reveal" style="transition-delay:.1s"><h3 class="font-display font-bold text-ardoise mb-2">Telephone</h3><p class="text-gris text-sm"><a href="tel:+24200000000" class="hover:text-ardoise transition">+242 00 00 00 00</a><br>Lun-Sam 8h-18h</p></div>
+<div class="reveal" style="transition-delay:.2s"><h3 class="font-display font-bold text-ardoise mb-2">Email</h3><p class="text-gris text-sm">contact@proskills-brazza.cg</p></div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ht" style="background:#1E2A4A">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 py-12 sm:py-14">
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+<div><div class="font-display font-bold text-fond text-xl mb-3">ProSkills<span style="color:#F59E0B">.</span></div><p class="text-fond/45 text-xs leading-relaxed">Centre de formation professionnelle certifie.<br>Brazzaville, Republique du Congo.</p></div>
+<div><div class="text-fond/50 text-xs uppercase tracking-widest mb-4 font-semibold">Formations</div><ul class="space-y-2 text-xs text-fond/45"><li><a href="#formations" class="hover:text-fond transition">Marketing Digital</a></li><li><a href="#formations" class="hover:text-fond transition">Developpement Web</a></li><li><a href="#formations" class="hover:text-fond transition">Comptabilite et Finance</a></li><li><a href="#formations" class="hover:text-fond transition">Management de Projet</a></li></ul></div>
+<div><div class="text-fond/50 text-xs uppercase tracking-widest mb-4 font-semibold">Navigation</div><ul class="space-y-2 text-xs text-fond/45"><li><a href="#formateurs" class="hover:text-fond transition">Formateurs</a></li><li><a href="#certifications" class="hover:text-fond transition">Certifications</a></li><li><a href="#temoignages" class="hover:text-fond transition">Temoignages</a></li><li><a href="#faq" class="hover:text-fond transition">FAQ</a></li></ul></div>
+<div><div class="text-fond/50 text-xs uppercase tracking-widest mb-4 font-semibold">Contact</div><ul class="space-y-2 text-xs text-fond/45"><li>+242 00 00 00 00</li><li>contact@proskills-brazza.cg</li><li>Lun-Sam 8h-18h</li></ul><a href="#inscription" class="btn-ambre mt-5 inline-block text-xs">S'inscrire</a></div>
+</div>
+</div>
+<div class="ht" style="border-color:rgba(250,251,254,.08)">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs" style="color:rgba(250,251,254,.3)">
+<span>2026 ProSkills Academy. Tous droits reserves.</span>
+<span>Site concu par <a href="#" style="color:rgba(250,251,254,.5)" class="hover:text-fond transition">l'Atelier KPM</a></span>
+</div>
+</div>
+</footer>
+
+<script>
+const nav=document.getElementById("nav");
+window.addEventListener("scroll",()=>{nav.classList.toggle("scrolled",window.scrollY>50);},{passive:true});
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.07});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+document.querySelectorAll(".pill").forEach(p=>{p.addEventListener("click",()=>{p.closest(".flex").querySelectorAll(".pill").forEach(x=>x.classList.remove("active"));p.classList.add("active");});});
+document.querySelectorAll("details").forEach(d=>{d.addEventListener("toggle",()=>{if(d.open)document.querySelectorAll("details").forEach(o=>{if(o!==d)o.open=false;});});});
+document.getElementById("inscForm").addEventListener("submit",e=>{e.preventDefault();let ok=true;e.target.querySelectorAll("[required]").forEach(i=>{if(!i.value){ok=false;i.style.borderColor="rgba(220,38,38,.7)";}else i.style.borderColor="rgba(250,251,254,.15)";});if(!ok)return;document.getElementById("inscOk").classList.remove("hidden");e.target.reset();});
+</script>
+</body>
+</html>
