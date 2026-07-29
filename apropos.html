@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qui sommes-nous — l'Atelier KPM</title>
+<meta name="description" content="L'Atelier KPM, studio web premium basé à Brazzaville. Notre histoire, notre vision, notre mission.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sand:  '#F4EEE6',
+        shell: '#FBF7F1',
+        clay:  '#A6764E',
+        claylt:'#C49A74',
+        cocoa: '#2A211B',
+        taupe: '#83766A',
+      },
+      fontFamily: {
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        sans:  ['Hanken Grotesk', 'system-ui', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #F4EEE6; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  .ht { border-top:    1px solid rgba(42,33,27,.10); }
+  .hb { border-bottom: 1px solid rgba(42,33,27,.10); }
+  .hx { border:        1px solid rgba(42,33,27,.10); }
+  .div { border-top:   1px solid rgba(42,33,27,.10); }
+  .serif-tight { letter-spacing: -.013em; }
+  .eyebrow { color:#A6764E; letter-spacing:.22em; font-size:.68rem; text-transform:uppercase; }
+  .h-fluid { font-size: clamp(1.75rem, 8vw, 4.5rem); line-height: 1.06; }
+  .h-fluid-lg { font-size: clamp(2rem, 10vw, 5.5rem); line-height: 1.04; }
+  .btn-dark {
+    display: inline-block; text-align: center;
+    background: #2A211B; color: #F4EEE6;
+    font-weight: 500; border-radius: 9999px;
+    padding: .875rem 2rem;
+    transition: opacity .3s;
+  }
+  .btn-dark:hover { opacity: .88; }
+  .reveal { opacity:1; transform:none; transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+  ::selection { background:rgba(166,118,78,.25); }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+
+<body class="bg-sand text-cocoa font-sans antialiased">
+
+<!-- HEADER -->
+<header id="top" class="fixed top-0 inset-x-0 z-50">
+  <div id="nav" class="transition-all duration-300">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:60px">
+      <a href="index.html" class="font-serif serif-tight text-xl">l'Atelier KPM<span class="text-clay">.</span></a>
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="services.html" class="text-taupe hover:text-cocoa transition">Services</a>
+        <a href="realisations.html" class="text-taupe hover:text-cocoa transition">Réalisations</a>
+        <a href="apropos.html" class="text-taupe hover:text-cocoa transition">Qui sommes-nous</a>
+        <a href="blog.html" class="text-taupe hover:text-cocoa transition">Blog</a>
+      </nav>
+      <a href="devis.html" class="text-sm font-medium text-clay" style="border-bottom:1px solid rgba(166,118,78,.45);padding-bottom:2px">Devis gratuit</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pt-32 pb-16 sm:pt-44 sm:pb-24">
+  <div class="eyebrow reveal">Notre histoire</div>
+  <h1 class="font-serif serif-tight h-fluid-lg mt-5 reveal">
+    Le digital n'attend pas.<br><span class="italic text-clay">Mais il est encore temps.</span>
+  </h1>
+  <p class="mt-6 text-base sm:text-lg text-taupe leading-relaxed max-w-2xl reveal">
+    Le monde a basculé dans l'ère numérique. Les entreprises qui existent en ligne captent les clients, grandissent, rayonnent. Celles qui attendent laissent le terrain à leurs concurrents. Il n'est pas trop tard pour rejoindre ce monde — tout est une question de volonté.
+  </p>
+</section>
+
+<!-- LIGNE -->
+<div class="max-w-5xl mx-auto px-5 sm:px-8">
+  <div class="ht"></div>
+</div>
+
+<!-- ORIGINE -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 py-14 sm:py-24">
+  <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <div class="reveal">
+      <div class="eyebrow mb-5">D'où on vient</div>
+      <h2 class="font-serif serif-tight h-fluid mb-6">Né d'une conviction.</h2>
+      <div class="space-y-5 text-taupe leading-relaxed text-sm sm:text-base">
+        <p>
+          Tout commence en <strong class="text-cocoa">2024</strong>. Une observation simple, mais tenace : des PME talentueuses, des entrepreneurs sérieux, des projets solides — mais une image en ligne qui ne leur rendait pas justice. Ces entreprises méritaient la prestance et la vision des grandes marques. Il suffisait de le montrer.
+        </p>
+        <p>
+          L'Atelier KPM est né de cette conviction : <em class="text-cocoa">une PME peut avoir la présence digitale d'une grande entreprise.</em> Ce n'est pas une question de budget pharaonique. C'est une question de savoir-faire, de soin, et de vision.
+        </p>
+        <p>
+          Officiellement lancé en <strong class="text-cocoa">début 2026</strong>, l'Atelier s'est construit projet après projet, client après client, en prouvant qu'un site bien pensé change concrètement la trajectoire d'une entreprise.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <!-- Timeline -->
+      <div class="space-y-0">
+        <div class="div py-7">
+          <div class="eyebrow mb-2">2024</div>
+          <h3 class="font-serif serif-tight text-xl mb-2">Les premières réalisations</h3>
+          <p class="text-sm text-taupe leading-relaxed">Premiers projets, premières preuves. L'idée prend forme : le web peut transformer une entreprise locale en acteur crédible et visible.</p>
+        </div>
+        <div class="div py-7">
+          <div class="eyebrow mb-2">2025</div>
+          <h3 class="font-serif serif-tight text-xl mb-2">La méthode se précise</h3>
+          <p class="text-sm text-taupe leading-relaxed">Design premium, conversion, accompagnement. Une approche claire qui fait la différence entre un site vitrine et un vrai outil commercial.</p>
+        </div>
+        <div class="div py-7">
+          <div class="eyebrow mb-2">2026</div>
+          <h3 class="font-serif serif-tight text-xl mb-2">Retour aux racines</h3>
+          <p class="text-sm text-taupe leading-relaxed">L'Atelier KPM s'installe à Brazzaville. Une décision de cœur autant que de raison : le Congo est un terrain fertile, une marge d'évolution digitale immense, et une communauté d'entrepreneurs qui mérite mieux.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="ht hb" style="background:#2A211B;color:#F4EEE6;">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-16 sm:py-28">
+    <div class="max-w-3xl reveal">
+      <div class="eyebrow mb-6" style="color:#C49A74">Notre vision</div>
+      <h2 class="font-serif serif-tight leading-tight mb-8" style="font-size:clamp(1.8rem,7vw,4rem)">
+        Le Congo a tout pour briller dans le monde digital. Il manquait juste les bons outils.
+      </h2>
+      <p class="leading-relaxed mb-5" style="color:rgba(244,238,230,.7);font-size:1rem;">
+        Brazzaville regorge d'entrepreneurs ambitieux, de projets sérieux, d'idées qui méritent d'être vues. Le digital n'est plus un luxe réservé aux multinationales — c'est le levier le plus puissant pour grandir, se faire connaître et vendre.
+      </p>
+      <p class="leading-relaxed" style="color:rgba(244,238,230,.7);font-size:1rem;">
+        Notre mission est simple : donner à chaque PME congolaise la même prestance en ligne qu'une grande marque internationale. Parce que ce n'est pas la taille de l'entreprise qui compte — c'est l'image qu'elle projette.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- VALEURS -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 py-14 sm:py-24">
+  <div class="reveal mb-10">
+    <div class="eyebrow mb-4">Ce qui nous guide</div>
+    <h2 class="font-serif serif-tight h-fluid">Trois principes, sans exception.</h2>
+  </div>
+  <div class="grid sm:grid-cols-3 gap-0">
+    <div class="div sm:border-t-0 sm:border-l hx py-8 px-6 reveal" style="border:1px solid rgba(42,33,27,.10);">
+      <div class="font-serif serif-tight text-5xl mb-4" style="color:rgba(166,118,78,.2)">01</div>
+      <h3 class="font-serif serif-tight text-xl mb-3">L'excellence sans compromis</h3>
+      <p class="text-sm text-taupe leading-relaxed">Chaque site livré est pensé, soigné, testé. Pas de template recyclé. Chaque projet est unique parce que chaque client est unique.</p>
+    </div>
+    <div class="div sm:border-t-0 sm:border-l hx py-8 px-6 reveal" style="border:1px solid rgba(42,33,27,.10);border-left:0;">
+      <div class="font-serif serif-tight text-5xl mb-4" style="color:rgba(166,118,78,.2)">02</div>
+      <h3 class="font-serif serif-tight text-xl mb-3">Des résultats, pas des promesses</h3>
+      <p class="text-sm text-taupe leading-relaxed">Un beau site ne suffit pas. Il doit générer des contacts, des appels, des ventes. C'est ce qu'on mesure et ce qu'on optimise.</p>
+    </div>
+    <div class="div sm:border-t-0 sm:border-l hx py-8 px-6 reveal" style="border:1px solid rgba(42,33,27,.10);border-left:0;">
+      <div class="font-serif serif-tight text-5xl mb-4" style="color:rgba(166,118,78,.2)">03</div>
+      <h3 class="font-serif serif-tight text-xl mb-3">L'ancrage local</h3>
+      <p class="text-sm text-taupe leading-relaxed">On connaît le marché congolais. On parle à vos clients dans leur réalité. Nos sites sont pensés pour Brazzaville, pas copiés d'ailleurs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGE CLÉ -->
+<section class="ht hb" style="background:#FBF7F1">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8 py-16 sm:py-24 text-center reveal">
+    <div class="eyebrow mb-6">Notre conviction</div>
+    <p class="font-serif serif-tight leading-snug text-clay" style="font-size:clamp(1.4rem,5vw,2.6rem)">
+      « Il n'est jamais trop tard pour entrer dans le monde digital. La seule question, c'est : est-ce que vous avez la volonté de le faire aujourd'hui ? »
+    </p>
+    <p class="mt-6 text-sm text-taupe">— l'Atelier KPM, Brazzaville 2026</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 py-14 sm:py-24 text-center reveal">
+  <div class="eyebrow mb-5">Prêt à franchir le cap ?</div>
+  <h2 class="font-serif serif-tight h-fluid mb-6">Votre projet mérite<br>d'être vu.</h2>
+  <p class="text-sm text-taupe mb-8 max-w-md mx-auto leading-relaxed">Discutons de votre activité et de ce qu'un site bien conçu peut changer pour vous. Devis gratuit, réponse sous 24h.</p>
+  <a href="devis.html" class="btn-dark">Demander un devis gratuit →</a>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#2A211B;">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+    <a href="index.html" class="font-serif serif-tight text-lg" style="color:#F4EEE6;flex-shrink:0;">l'Atelier KPM<span style="color:#A6764E;">.</span></a>
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
+      <a href="services.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Services</a>
+      <a href="realisations.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Réalisations</a>
+      <a href="apropos.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Qui sommes-nous</a>
+      <a href="index.html#faq" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-5 text-xs" style="flex-shrink:0;">
+      <a href="tel:+242064114256" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#A6764E'" onmouseout="this.style.color='rgba(244,238,230,.5)'">+242 06 411 42 56</a>
+      <span style="color:rgba(244,238,230,.15);">|</span>
+      <a href="devis.html" style="color:#A6764E;font-weight:500;">Devis gratuit →</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(244,238,230,.06);">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex justify-between text-xs" style="color:rgba(244,238,230,.2);">
+      <span>© 2026 l'Atelier KPM</span><span>Brazzaville, Congo</span>
+    </div>
+  </div>
+</footer>
+<script>
+  // Forcer visible immédiatement
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+</script>
+
+  <!-- BOUTON WHATSAPP FLOTTANT -->
+  <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20devis%20pour%20mon%20site%20web." 
+     target="_blank" rel="noopener"
+     style="position:fixed;bottom:24px;right:24px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;"
+     onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.6)'"
+     onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45)'"
+     aria-label="Nous contacter sur WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+  </a>
+  <!-- FIN BOUTON WHATSAPP -->
+</body>
+</html>

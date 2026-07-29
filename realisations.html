@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réalisations — l'Atelier KPM</title>
+<meta name="description" content="Découvrez les sites réalisés par l'Atelier KPM : restaurant, hôtel, formation, clinique, dashboard, tourisme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { sand:'#F4EEE6', shell:'#FBF7F1', clay:'#A6764E', claylt:'#C49A74', cocoa:'#2A211B', taupe:'#83766A' },
+      fontFamily: { serif:['Instrument Serif','Georgia','serif'], sans:['Hanken Grotesk','system-ui','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #F4EEE6; overflow-x: hidden; }
+  .ht { border-top: 1px solid rgba(42,33,27,.10); }
+  .hb { border-bottom: 1px solid rgba(42,33,27,.10); }
+  .hx { border: 1px solid rgba(42,33,27,.10); }
+  .serif-tight { letter-spacing: -.013em; }
+  .eyebrow { color:#A6764E; letter-spacing:.22em; font-size:.68rem; text-transform:uppercase; }
+  .h-fluid { font-size: clamp(1.75rem, 8vw, 4.5rem); line-height: 1.06; }
+  .h-fluid-lg { font-size: clamp(2rem, 10vw, 5.5rem); line-height: 1.04; }
+  .btn-dark { display:inline-block; text-align:center; background:#2A211B; color:#F4EEE6; font-weight:500; border-radius:9999px; padding:.875rem 2rem; transition:opacity .3s; }
+</style>
+</head>
+<body class="bg-sand text-cocoa font-sans antialiased">
+
+<!-- HEADER -->
+<header id="top" class="fixed top-0 inset-x-0 z-50">
+  <div id="nav" class="transition-all duration-300">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:60px">
+      <a href="index.html" class="font-serif serif-tight text-xl">l'Atelier KPM<span class="text-clay">.</span></a>
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="services.html" class="text-taupe hover:text-cocoa transition">Services</a>
+        <a href="realisations.html" class="text-taupe hover:text-cocoa transition">Réalisations</a>
+        <a href="apropos.html" class="text-taupe hover:text-cocoa transition">Qui sommes-nous</a>
+        <a href="blog.html" class="text-taupe hover:text-cocoa transition">Blog</a>
+      </nav>
+      <a href="devis.html" class="text-sm font-medium text-clay" style="border-bottom:1px solid rgba(166,118,78,.45);padding-bottom:2px">Devis gratuit</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pt-32 pb-12 sm:pt-44 sm:pb-20">
+  <div class="eyebrow mb-5">Réalisations</div>
+  <h1 class="font-serif serif-tight h-fluid-lg">Des sites qui<br><span class="italic text-clay">font la différence.</span></h1>
+  <p class="mt-6 text-base sm:text-lg text-taupe leading-relaxed max-w-xl">Chaque projet est unique. Voici quelques exemples de ce que nous avons conçu pour nos clients.</p>
+</section>
+
+<!-- GRILLE PROJETS -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pb-16 sm:pb-24">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+    <a href="restaurant.html" target="_blank" rel="noopener" class="group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#2a2018,#0a0806);">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=450&auto=format&fit=crop&q=80" alt="Le Velours" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(8,6,4,.88);border:1px solid rgba(184,144,90,.3);border-radius:8px;padding:8px 10px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(212,176,122,.6);font-family:monospace;">le-velours.com</span>
+          </div>
+          <div style="color:#F4EDE2;font-family:Georgia,serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px;">Le Velours</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#B8905A;color:#080806;font-size:8px;padding:3px 8px;">Réserver</span>
+            <span style="border:1px solid rgba(184,144,90,.4);color:#D4B07A;font-size:8px;padding:3px 8px;">Menu</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">Voir le site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Le Velours — Restaurant</h3>
+      <p class="text-xs text-taupe mt-0.5">Gastronomie · Menu &amp; réservation</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Design premium franco-africain</p>
+    </a>
+
+    <a href="hotel.html" target="_blank" rel="noopener" class="group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#4A8C6A,#2E6B4E);">
+        <img src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&h=450&auto=format&fit=crop&q=80" alt="Hôtel Émeraude" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(20,50,35,.88);border:1px solid rgba(74,140,106,.35);border-radius:8px;padding:8px 10px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(150,210,180,.5);font-family:monospace;">hotel-emeraude.com</span>
+          </div>
+          <div style="color:#f0faf5;font-size:11px;font-weight:600;margin-bottom:3px;">Hôtel Émeraude ★★★★★</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#4A8C6A;color:white;font-size:8px;padding:3px 8px;border-radius:3px;">Réserver</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">Voir le site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Hôtel Émeraude — Hôtellerie</h3>
+      <p class="text-xs text-taupe mt-0.5">Réservation directe · Anti-OTA</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Booking bar &amp; meilleur tarif garanti</p>
+    </a>
+
+    <a href="formation.html" target="_blank" rel="noopener" class="group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1E2A4A,#2D3E6E);">
+        <img src="https://images.unsplash.com/photo-1573164574511-73c773193279?w=600&h=450&auto=format&fit=crop&q=80" alt="ProSkills" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(15,20,50,.88);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:8px 10px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(245,158,11,.5);font-family:monospace;">proskills-academy.com</span>
+          </div>
+          <div style="color:#f8faff;font-size:11px;font-weight:600;margin-bottom:3px;">ProSkills Academy</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#F59E0B;color:#1E2A4A;font-size:8px;padding:3px 8px;font-weight:600;">S'inscrire</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">Voir le site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">ProSkills — Formation</h3>
+      <p class="text-xs text-taupe mt-0.5">Catalogue &amp; inscriptions en ligne</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Cartes formations interactives</p>
+    </a>
+
+    <a href="dentaire.html" target="_blank" rel="noopener" class="group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1E6EA9,#0FA89A);">
+        <img src="https://images.unsplash.com/photo-1643660526741-094639fbe53a?w=600&h=450&auto=format&fit=crop&q=80" alt="Clinique Sorriso" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(10,30,50,.88);border:1px solid rgba(15,168,154,.3);border-radius:8px;padding:8px 10px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(15,168,154,.6);font-family:monospace;">clinique-sorriso.com</span>
+          </div>
+          <div style="color:#f0fffe;font-size:11px;font-weight:600;margin-bottom:3px;">Clinique Sorriso</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#0FA89A;color:white;font-size:8px;padding:3px 8px;border-radius:3px;">Prendre RDV</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">Voir le site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Clinique Sorriso — Médical</h3>
+      <p class="text-xs text-taupe mt-0.5">Prise de RDV · UX rassurante</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Avant/après &amp; réassurance patient</p>
+    </a>
+
+    <a href="dashboard.html" target="_blank" rel="noopener" class="group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#0D1424,#1e2a4a);">
+        <div style="position:absolute;inset:0;padding:10px;display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;gap:6px;">
+            <div style="flex:1;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.2);border-radius:6px;padding:8px;">
+              <div style="color:rgba(255,255,255,.4);font-size:8px;margin-bottom:4px;">Chiffre d'affaires</div>
+              <div style="color:#a5b4fc;font-size:14px;font-weight:700;">12.4M F</div>
+            </div>
+            <div style="flex:1;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.2);border-radius:6px;padding:8px;">
+              <div style="color:rgba(255,255,255,.4);font-size:8px;margin-bottom:4px;">Clients actifs</div>
+              <div style="color:#a5b4fc;font-size:14px;font-weight:700;">+284</div>
+            </div>
+          </div>
+          <div style="flex:1;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.15);border-radius:6px;padding:8px;">
+            <div style="display:flex;align-items:flex-end;gap:3px;height:40px;">
+              <div style="flex:1;background:rgba(99,102,241,.3);border-radius:2px;height:40%;"></div>
+              <div style="flex:1;background:rgba(99,102,241,.5);border-radius:2px;height:60%;"></div>
+              <div style="flex:1;background:rgba(99,102,241,.6);border-radius:2px;height:75%;"></div>
+              <div style="flex:1;background:#6366F1;border-radius:2px;height:90%;"></div>
+              <div style="flex:1;background:#818CF8;border-radius:2px;height:100%;"></div>
+            </div>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">Voir le site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Pulse — Dashboard SaaS</h3>
+      <p class="text-xs text-taupe mt-0.5">Business Intelligence · Reporting</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Graphiques temps réel &amp; KPI</p>
+    </a>
+
+    <a href="https://bowbosh22.github.io/Cyrflo-site/" target="_blank" rel="noopener" class="group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#0e7490,#164e63);">
+        <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&h=450&auto=format&fit=crop&q=80" alt="Cyrflo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(8,30,40,.88);border:1px solid rgba(14,116,144,.35);border-radius:8px;padding:8px 10px;">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(14,116,144,.7);font-family:monospace;">cyrflo-koulou.com</span>
+          </div>
+          <div style="color:#f0f9ff;font-size:11px;font-weight:600;margin-bottom:3px;">Cyrflo le Koulou</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#0e7490;color:white;font-size:8px;padding:3px 8px;border-radius:3px;">Réserver</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">Voir le site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Cyrflo le Koulou — Tourisme</h3>
+      <p class="text-xs text-taupe mt-0.5">Réservation fluviale · En production</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">+23 000 passagers transportés</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ht hb" style="background:#2A211B;">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8 py-14 sm:py-20 text-center">
+    <div class="eyebrow mb-5" style="color:#C49A74;">Votre projet</div>
+    <h2 class="font-serif serif-tight h-fluid mb-6" style="color:#F4EEE6;">Votre site pourrait être<br><span class="italic" style="color:#C49A74;">le prochain.</span></h2>
+    <a href="devis.html" style="display:inline-block;background:#F4EEE6;color:#2A211B;font-weight:500;border-radius:9999px;padding:.875rem 2rem;">Demander mon devis gratuit →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#2A211B;">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+    <a href="index.html" class="font-serif serif-tight text-lg" style="color:#F4EEE6;flex-shrink:0;">l'Atelier KPM<span style="color:#A6764E;">.</span></a>
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
+      <a href="services.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Services</a>
+      <a href="realisations.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Réalisations</a>
+      <a href="apropos.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Qui sommes-nous</a>
+      <a href="index.html#faq" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-5 text-xs" style="flex-shrink:0;">
+      <a href="tel:+242064114256" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#A6764E'" onmouseout="this.style.color='rgba(244,238,230,.5)'">+242 06 411 42 56</a>
+      <span style="color:rgba(244,238,230,.15);">|</span>
+      <a href="devis.html" style="color:#A6764E;font-weight:500;">Devis gratuit →</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(244,238,230,.06);">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex justify-between text-xs" style="color:rgba(244,238,230,.2);">
+      <span>© 2026 l'Atelier KPM</span><span>Brazzaville, Congo</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const updateNav = () => {
+    if (window.scrollY > 14) {
+      nav.style.background = 'rgba(244,238,230,.92)';
+      nav.style.backdropFilter = 'blur(14px)';
+      nav.style.borderBottom = '1px solid rgba(42,33,27,.10)';
+    } else { nav.style.background = ''; nav.style.backdropFilter = ''; nav.style.borderBottom = ''; }
+  };
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+</script>
+<script>document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));</script>
+
+  <!-- BOUTON WHATSAPP FLOTTANT -->
+  <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20devis%20pour%20mon%20site%20web." 
+     target="_blank" rel="noopener"
+     style="position:fixed;bottom:24px;right:24px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;"
+     onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.6)'"
+     onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45)'"
+     aria-label="Nous contacter sur WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+  </a>
+  <!-- FIN BOUTON WHATSAPP -->
+</body>
+</html>
