@@ -240,26 +240,16 @@ tailwind.config = {
 async function chargerActuBlog() {
   const btn = document.getElementById('actu-blog-btn');
   const list = document.getElementById('actu-blog');
-  btn.textContent = 'Recherche en cours…';
+  btn.textContent = 'Chargement…';
   btn.disabled = true;
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-        messages: [{ role: 'user', content: `Trouve les 3 actualités les plus récentes et importantes sur la digitalisation en Afrique (fintech, startups, mobile money, e-commerce, IA). Réponds UNIQUEMENT avec un JSON valide, sans markdown ni backticks :\n{"articles":[{"titre":"titre court max 10 mots","pays":"pays ou région","categorie":"Fintech|Startup|Mobile Money|E-commerce|IA|Infrastructure"}]}` }]
-      })
-    });
+    const res = await fetch('https://backend-kpm.onrender.com/api/actualites');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    let txt = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
-    txt = txt.slice(txt.indexOf('{'), txt.lastIndexOf('}') + 1);
-    const { articles } = JSON.parse(txt);
+    const articles = data.articles.slice(0, 3);
 
-    const CAT_C = { 'Fintech':'#2563eb','Startup':'#7c3aed','Mobile Money':'#15803d','E-commerce':'#b45309','IA':'#dc2626','Infrastructure':'#0f766e' };
+    const CAT_C = { 'Fintech':'#2563eb','Startup':'#7c3aed','Mobile Money':'#15803d','E-commerce':'#b45309','IA & Innovation':'#dc2626','Infrastructure':'#0f766e','Politique digitale':'#374151' };
     list.innerHTML = articles.map(a => {
       const c = CAT_C[a.categorie] || '#A6764E';
       return `<li style="border-top:1px solid rgba(244,238,230,.07);padding:.85rem 0;display:flex;align-items:center;gap:.75rem;">
