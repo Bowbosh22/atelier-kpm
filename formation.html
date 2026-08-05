@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProSkills Academy — Centre de formation à Brazzaville</title>
+<meta name="description" content="ProSkills Academy, le centre de formation professionnelle de référence à Brazzaville. Marketing, développement web, finance. Certifications reconnues.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #1E2A4A;
+  --amber: #F59E0B;
+  --amberlt: #FCD34D;
+  --white: #FFFFFF;
+  --light: #F8FAFC;
+  --muted: rgba(30,42,74,.5);
+  --ff-display: 'Space Grotesk', system-ui, sans-serif;
+  --ff-body: 'Inter', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--blue); font-family: var(--ff-body); font-weight: 300; overflow-x: hidden; }
+
+/* NAVBAR */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 64px;
+  background: rgba(255,255,255,.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(30,42,74,.08);
+}
+.nav-logo { font-family: var(--ff-display); font-size: 1.1rem; font-weight: 700; color: var(--blue); text-decoration: none; }
+.nav-logo span { color: var(--amber); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: .78rem; font-weight: 500; letter-spacing: .04em; color: var(--muted); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--blue); }
+.nav-cta { font-size: .78rem; font-weight: 600; background: var(--amber); color: var(--blue); padding: .55rem 1.4rem; border-radius: 6px; text-decoration: none; transition: background .2s; }
+.nav-cta:hover { background: var(--amberlt); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; padding-top: 64px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: var(--blue);
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 4rem 5rem 5rem;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(245,158,11,.15); border: 1px solid rgba(245,158,11,.3);
+  color: var(--amberlt); font-size: .68rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  padding: .35rem 1rem; border-radius: 4px; margin-bottom: 2rem; width: fit-content;
+}
+.hero-title {
+  font-family: var(--ff-display); font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700; line-height: 1.12; color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.hero-title span { color: var(--amber); }
+.hero-desc { font-size: .95rem; line-height: 1.8; color: rgba(255,255,255,.6); max-width: 400px; margin-bottom: 2.5rem; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.btn-amber { background: var(--amber); color: var(--blue); padding: .85rem 2rem; border-radius: 6px; font-size: .85rem; font-weight: 600; text-decoration: none; transition: background .2s; }
+.btn-amber:hover { background: var(--amberlt); }
+.btn-ghost { border: 1px solid rgba(255,255,255,.2); color: var(--white); padding: .85rem 2rem; border-radius: 6px; font-size: .85rem; font-weight: 500; text-decoration: none; transition: border-color .2s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,.5); }
+.hero-stats { display: flex; gap: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); }
+.hero-stat-num { font-family: var(--ff-display); font-size: 2rem; font-weight: 700; color: var(--amber); }
+.hero-stat-lbl { font-size: .72rem; color: rgba(255,255,255,.4); margin-top: .2rem; }
+.hero-right { position: relative; overflow: hidden; }
+.hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.hero-right::before { content: ''; position: absolute; inset: 0; background: rgba(30,42,74,.3); z-index: 1; }
+
+/* FORMATIONS */
+.formations { background: var(--light); padding: 7rem 5rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--amber); margin-bottom: .8rem; display: block; }
+.section-title { font-family: var(--ff-display); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; color: var(--blue); margin-bottom: 1rem; }
+.section-title span { color: var(--amber); }
+.section-sub { font-size: .9rem; color: var(--muted); line-height: 1.7; max-width: 500px; margin-bottom: 3rem; }
+
+.forma-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.forma-card {
+  background: var(--white); border-radius: 10px;
+  border: 1px solid rgba(30,42,74,.08);
+  padding: 1.8rem; transition: transform .3s, box-shadow .3s;
+  display: flex; flex-direction: column;
+}
+.forma-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(30,42,74,.1); }
+.forma-icon { font-size: 2rem; margin-bottom: 1rem; }
+.forma-badge { display: inline-block; font-size: .6rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: .25rem .7rem; border-radius: 4px; margin-bottom: 1rem; }
+.forma-badge.marketing { background: rgba(245,158,11,.12); color: #B45309; }
+.forma-badge.dev { background: rgba(99,102,241,.12); color: #4338CA; }
+.forma-badge.finance { background: rgba(16,185,129,.12); color: #065F46; }
+.forma-badge.rh { background: rgba(239,68,68,.12); color: #B91C1C; }
+.forma-badge.compta { background: rgba(168,85,247,.12); color: #7E22CE; }
+.forma-badge.communication { background: rgba(20,184,166,.12); color: #0F766E; }
+.forma-name { font-family: var(--ff-display); font-size: 1.05rem; font-weight: 600; color: var(--blue); margin-bottom: .5rem; }
+.forma-desc { font-size: .82rem; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 1.2rem; }
+.forma-meta { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(30,42,74,.07); padding-top: 1rem; }
+.forma-duree { font-size: .75rem; font-weight: 500; color: var(--muted); }
+.forma-prix { font-family: var(--ff-display); font-size: .95rem; font-weight: 600; color: var(--blue); }
+
+/* FORMATEURS */
+.formateurs { padding: 7rem 5rem; }
+.forma-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.form-card { text-align: center; }
+.form-avatar { width: 100px; height: 100px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.2rem; border: 3px solid var(--amber); }
+.form-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.form-name { font-family: var(--ff-display); font-size: 1rem; font-weight: 600; color: var(--blue); margin-bottom: .3rem; }
+.form-role { font-size: .75rem; font-weight: 500; color: var(--amber); margin-bottom: .6rem; letter-spacing: .06em; }
+.form-bio { font-size: .82rem; color: var(--muted); line-height: 1.65; }
+
+/* TEMOIGNAGES */
+.temoignages { background: var(--blue); padding: 7rem 5rem; }
+.temo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.temo-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 2rem; }
+.temo-stars { color: var(--amber); margin-bottom: 1rem; font-size: .9rem; }
+.temo-text { font-size: .9rem; line-height: 1.8; color: rgba(255,255,255,.75); margin-bottom: 1.5rem; font-style: italic; }
+.temo-author-row { display: flex; align-items: center; gap: .8rem; }
+.temo-avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+.temo-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.temo-name { font-size: .82rem; font-weight: 500; color: var(--white); }
+.temo-job { font-size: .72rem; color: rgba(255,255,255,.4); }
+
+/* INSCRIPTION */
+.inscription { background: var(--amber); padding: 7rem 5rem; }
+.insc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.insc-left .section-title { color: var(--blue); }
+.insc-left .eyebrow { color: var(--blue); opacity: .6; }
+.insc-left p { font-size: .9rem; color: rgba(30,42,74,.7); line-height: 1.8; margin-bottom: 1.5rem; }
+.insc-checklist { list-style: none; }
+.insc-checklist li { display: flex; align-items: center; gap: .8rem; font-size: .85rem; color: var(--blue); margin-bottom: .7rem; font-weight: 500; }
+.insc-checklist li::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+.insc-form { background: var(--white); border-radius: 12px; padding: 2.5rem; box-shadow: 0 20px 60px rgba(30,42,74,.2); }
+.insc-form h3 { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 700; color: var(--blue); margin-bottom: 1.5rem; }
+.form-field { margin-bottom: 1rem; }
+.form-label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .4rem; }
+.form-input { width: 100%; background: var(--light); border: 1px solid rgba(30,42,74,.1); border-radius: 6px; padding: .75rem 1rem; font-family: var(--ff-body); font-size: .88rem; color: var(--blue); outline: none; transition: border-color .2s; }
+.form-input:focus { border-color: var(--amber); }
+.form-submit { width: 100%; background: var(--blue); color: var(--white); border: none; padding: .9rem; border-radius: 6px; font-family: var(--ff-display); font-size: .9rem; font-weight: 600; cursor: pointer; transition: background .2s; margin-top: .5rem; }
+.form-submit:hover { background: #2D4070; }
+
+/* FOOTER */
+footer { background: #111827; padding: 3rem 5rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.footer-logo { font-family: var(--ff-display); font-size: 1rem; font-weight: 700; color: var(--white); }
+.footer-logo span { color: var(--amber); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: .78rem; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-credit a { font-size: .75rem; color: rgba(245,158,11,.5); text-decoration: none; }
+.footer-credit a:hover { color: var(--amber); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  section, .formations, .formateurs, .temoignages, .inscription { padding: 5rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { height: 50vw; }
+  .hero-left { padding: 4rem 1.5rem 2rem; }
+  .forma-grid, .forma-team { grid-template-columns: 1fr; }
+  .temo-grid, .insc-grid { grid-template-columns: 1fr; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  footer { padding: 3rem 1.5rem; }
+  .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
+
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.fade-up.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">ProSkills<span> Academy</span></a>
+  <ul class="nav-links">
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#formateurs">Formateurs</a></li>
+    <li><a href="#temoignages">Témoignages</a></li>
+    <li><a href="#inscription">S'inscrire</a></li>
+  </ul>
+  <a href="#inscription" class="nav-cta">S'inscrire →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">🎓 Certifications reconnues · Brazzaville</div>
+    <h1 class="hero-title">Formez-vous.<br>Progressez.<br><span>Réussissez.</span></h1>
+    <p class="hero-desc">ProSkills Academy vous donne les outils concrets pour accélérer votre carrière ou développer votre entreprise. Des formations pratiques, animées par des experts du terrain.</p>
+    <div class="hero-btns">
+      <a href="#formations" class="btn-amber">Voir les formations</a>
+      <a href="#inscription" class="btn-ghost">S'inscrire gratuitement</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">1 200+</div><div class="hero-stat-lbl">Apprenants formés</div></div>
+      <div><div class="hero-stat-num">18</div><div class="hero-stat-lbl">Formations actives</div></div>
+      <div><div class="hero-stat-num">94%</div><div class="hero-stat-lbl">Taux de satisfaction</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1573164574511-73c773193279?w=900&h=900&auto=format&fit=crop&q=85" alt="Formation ProSkills Academy">
+  </div>
+</div>
+
+<!-- FORMATIONS -->
+<section class="formations" id="formations">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Nos programmes</span>
+    <h2 class="section-title fade-up">Des formations <span>qui changent</span> les carrières.</h2>
+    <p class="section-sub fade-up">Toutes nos formations sont 100% pratiques, animées par des professionnels en activité et sanctionnées par une certification reconnue.</p>
+    <div class="forma-grid">
+
+      <div class="forma-card fade-up">
+        <div class="forma-icon">📈</div>
+        <span class="forma-badge marketing">Marketing digital</span>
+        <h3 class="forma-name">Marketing Digital & Réseaux Sociaux</h3>
+        <p class="forma-desc">Stratégie de contenu, publicité Facebook & Instagram, analytics, community management. Prenez le contrôle de votre présence en ligne.</p>
+        <div class="forma-meta">
+          <span class="forma-duree">⏱ 3 semaines · Week-end</span>
+          <span class="forma-prix">75 000 FCFA</span>
+        </div>
+      </div>
+
+      <div class="forma-card fade-up">
+        <div class="forma-icon">💻</div>
+        <span class="forma-badge dev">Développement web</span>
+        <h3 class="forma-name">Création de Sites Web</h3>
+        <p class="forma-desc">HTML, CSS, JavaScript, WordPress. De zéro à votre premier site professionnel en 6 semaines. Aucun prérequis technique nécessaire.</p>
+        <div class="forma-meta">
+          <span class="forma-duree">⏱ 6 semaines · Soir</span>
+          <span class="forma-prix">120 000 FCFA</span>
+        </div>
+      </div>
+
+      <div class="forma-card fade-up">
+        <div class="forma-icon">💰</div>
+        <span class="forma-badge finance">Finance</span>
+        <h3 class="forma-name">Gestion Financière des PME</h3>
+        <p class="forma-desc">Comptabilité de base, gestion de trésorerie, business plan, recherche de financement. Indispensable pour tout entrepreneur congolais.</p>
+        <div class="forma-meta">
+          <span class="forma-duree">⏱ 4 semaines · Week-end</span>
+          <span class="forma-prix">90 000 FCFA</span>
+        </div>
+      </div>
+
+      <div class="forma-card fade-up">
+        <div class="forma-icon">👥</div>
+        <span class="forma-badge rh">Ressources humaines</span>
+        <h3 class="forma-name">Management & Leadership</h3>
+        <p class="forma-desc">Techniques de management, gestion des équipes, recrutement, droit du travail congolais. Devenez le manager que vos équipes méritent.</p>
+        <div class="forma-meta">
+          <span class="forma-duree">⏱ 3 semaines · Week-end</span>
+          <span class="forma-prix">80 000 FCFA</span>
+        </div>
+      </div>
+
+      <div class="forma-card fade-up">
+        <div class="forma-icon">📊</div>
+        <span class="forma-badge compta">Comptabilité</span>
+        <h3 class="forma-name">Excel & Analyse de Données</h3>
+        <p class="forma-desc">Maîtrisez Excel de A à Z : formules avancées, tableaux croisés dynamiques, graphiques, automatisation. Un atout majeur pour votre carrière.</p>
+        <div class="forma-meta">
+          <span class="forma-duree">⏱ 2 semaines · Soir</span>
+          <span class="forma-prix">55 000 FCFA</span>
+        </div>
+      </div>
+
+      <div class="forma-card fade-up">
+        <div class="forma-icon">🎤</div>
+        <span class="forma-badge communication">Communication</span>
+        <h3 class="forma-name">Prise de Parole & Communication</h3>
+        <p class="forma-desc">Conférences, présentations clients, négociation, gestion du stress. Apprenez à vous exprimer avec impact et conviction en toutes circonstances.</p>
+        <div class="forma-meta">
+          <span class="forma-duree">⏱ 2 semaines · Week-end</span>
+          <span class="forma-prix">60 000 FCFA</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORMATEURS -->
+<section class="formateurs" id="formateurs">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Notre équipe</span>
+    <h2 class="section-title fade-up">Des experts <span style="color:var(--amber);">du terrain.</span></h2>
+    <p class="section-sub fade-up">Nos formateurs sont tous des professionnels en activité. Pas de théorie creuse — que de l'expérience concrète et applicable.</p>
+    <div class="forma-team">
+      <div class="form-card fade-up">
+        <div class="form-avatar">
+          <img src="https://images.unsplash.com/photo-1528901166007-3784c7dd3653?w=200&h=200&auto=format&fit=crop&q=80" alt="Formateur Marketing">
+        </div>
+        <p class="form-name">Alexis Kouamba</p>
+        <p class="form-role">Marketing Digital</p>
+        <p class="form-bio">10 ans d'expérience en marketing digital. Ex-directeur marketing d'une startup fintech nigériane. Certifié Google & Meta.</p>
+      </div>
+      <div class="form-card fade-up">
+        <div class="form-avatar">
+          <img src="https://images.unsplash.com/photo-1573164713712-03790a178651?w=200&h=200&auto=format&fit=crop&q=80" alt="Formatrice Dev Web">
+        </div>
+        <p class="form-name">Sarah Mbemba</p>
+        <p class="form-role">Développement Web</p>
+        <p class="form-bio">Développeuse full-stack avec 8 ans d'expérience. Fondatrice d'un studio digital à Brazzaville. Formatrice passionnée par la transmission.</p>
+      </div>
+      <div class="form-card fade-up">
+        <div class="form-avatar">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=200&h=200&auto=format&fit=crop&q=80" alt="Formateur Finance">
+        </div>
+        <p class="form-name">Jean-David Loko</p>
+        <p class="form-role">Finance & Gestion</p>
+        <p class="form-bio">Expert-comptable certifié, 15 ans d'expérience en accompagnement de PME congolaises. Ancien directeur financier du groupe Bolloré Congo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages" id="temoignages">
+  <div class="section-inner">
+    <span class="eyebrow fade-up" style="color:var(--amberlt);">Témoignages</span>
+    <h2 class="section-title fade-up" style="color:var(--white);">Ils ont <span style="color:var(--amber);">transformé</span> leur carrière.</h2>
+    <div class="temo-grid">
+      <div class="temo-card fade-up">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« La formation Marketing Digital de ProSkills m'a permis de tripler les ventes en ligne de mon commerce en 3 mois. Les outils enseignés sont directement applicables. »</p>
+        <div class="temo-author-row">
+          <div class="temo-avatar">
+            <img src="https://images.unsplash.com/photo-1573164574397-dd250bc8a598?w=80&h=80&auto=format&fit=crop&q=80" alt="">
+          </div>
+          <div>
+            <p class="temo-name">Christine Kibangou</p>
+            <p class="temo-job">Commerçante · Brazzaville</p>
+          </div>
+        </div>
+      </div>
+      <div class="temo-card fade-up">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« Grâce à la formation Création de Sites Web, j'ai lancé mon activité de freelance. J'ai déjà 4 clients et mes revenus ont doublé en 6 mois. ProSkills change des vies. »</p>
+        <div class="temo-author-row">
+          <div class="temo-avatar">
+            <img src="https://images.unsplash.com/photo-1655720357872-ce227e4164ba?w=80&h=80&auto=format&fit=crop&q=80" alt="">
+          </div>
+          <div>
+            <p class="temo-name">Rodrigue Mavoungou</p>
+            <p class="temo-job">Freelance Web · Pointe-Noire</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPTION -->
+<section class="inscription" id="inscription">
+  <div class="section-inner">
+    <div class="insc-grid">
+      <div class="insc-left fade-up">
+        <span class="eyebrow">Inscrivez-vous</span>
+        <h2 class="section-title">Commencez votre<br>parcours aujourd'hui.</h2>
+        <p>Choisissez votre formation et réservez votre place. Les sessions démarrent chaque mois — les places sont limitées à 15 participants pour garantir un suivi personnalisé.</p>
+        <ul class="insc-checklist">
+          <li>Certification officielle incluse</li>
+          <li>Support WhatsApp pendant la formation</li>
+          <li>Accès aux supports de cours à vie</li>
+          <li>Réseau alumni ProSkills</li>
+          <li>Paiement en 2 ou 3 fois possible</li>
+        </ul>
+      </div>
+      <div class="fade-up">
+        <div class="insc-form">
+          <h3>Réserver ma place</h3>
+          <form onsubmit="handleForm(event)">
+            <div class="form-field">
+              <label class="form-label">Nom complet</label>
+              <input type="text" placeholder="Jean Mbemba" class="form-input" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Téléphone / WhatsApp</label>
+              <input type="tel" placeholder="+242 ..." class="form-input" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Email</label>
+              <input type="email" placeholder="vous@email.com" class="form-input">
+            </div>
+            <div class="form-field">
+              <label class="form-label">Formation souhaitée</label>
+              <select class="form-input" required>
+                <option value="">Choisissez une formation…</option>
+                <option>Marketing Digital & Réseaux Sociaux — 75 000 FCFA</option>
+                <option>Création de Sites Web — 120 000 FCFA</option>
+                <option>Gestion Financière des PME — 90 000 FCFA</option>
+                <option>Management & Leadership — 80 000 FCFA</option>
+                <option>Excel & Analyse de Données — 55 000 FCFA</option>
+                <option>Prise de Parole & Communication — 60 000 FCFA</option>
+              </select>
+            </div>
+            <button type="submit" class="form-submit">Réserver ma place →</button>
+          </form>
+          <p id="form-msg" style="display:none;margin-top:1rem;color:var(--blue);font-size:.82rem;font-weight:500;">✓ Inscription reçue — on vous contacte dans les 24h.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">ProSkills<span> Academy</span></div>
+    <div class="footer-links">
+      <a href="#formations">Formations</a>
+      <a href="#formateurs">Formateurs</a>
+      <a href="#inscription">S'inscrire</a>
+      <a href="tel:+242066000000">+242 06 600 00 00</a>
+    </div>
+    <div class="footer-credit">
+      <a href="https://bowbosh22.github.io/atelier-kpm" target="_blank" rel="noopener">Site conçu par l'Atelier KPM</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/24206600000?text=Bonjour%2C%20je%20souhaite%20m%27inscrire%20%C3%A0%20une%20formation%20ProSkills."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   aria-label="S'inscrire sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function handleForm(e) {
+    e.preventDefault();
+    document.getElementById('form-msg').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

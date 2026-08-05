@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinique Sorriso — Dentiste à Brazzaville</title>
+<meta name="description" content="Clinique Sorriso, votre cabinet dentaire de confiance à Brazzaville. Soins modernes, équipe bienveillante, prise en charge rapide. Prenez rendez-vous en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #1E6EA9;
+  --teal: #0FA89A;
+  --orange: #F97316;
+  --bluelt: #EBF4FB;
+  --teallt: #E6F7F6;
+  --orangelt: #FFF7ED;
+  --white: #FFFFFF;
+  --dark: #0D2137;
+  --muted: rgba(13,33,55,.5);
+  --ff-display: 'Lora', Georgia, serif;
+  --ff-body: 'Nunito', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--dark); font-family: var(--ff-body); font-weight: 400; overflow-x: hidden; }
+
+/* NAVBAR */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 66px;
+  background: rgba(255,255,255,.97); backdrop-filter: blur(12px);
+  box-shadow: 0 1px 20px rgba(13,33,55,.07);
+}
+.nav-logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
+.nav-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--blue), var(--teal)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.nav-logo-text { font-family: var(--ff-display); font-size: 1.1rem; font-weight: 600; color: var(--dark); }
+.nav-logo-text span { color: var(--teal); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: .82rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--blue); }
+.nav-phone { font-size: .82rem; font-weight: 600; color: var(--blue); text-decoration: none; margin-right: 1rem; }
+.nav-cta { font-size: .78rem; font-weight: 600; background: linear-gradient(135deg, var(--blue), var(--teal)); color: var(--white); padding: .55rem 1.4rem; border-radius: 9999px; text-decoration: none; transition: opacity .2s; }
+.nav-cta:hover { opacity: .88; }
+
+/* HERO */
+.hero { padding-top: 66px; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+.hero-left {
+  background: linear-gradient(160deg, #0D2137 0%, #1E4A6A 100%);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 4rem 5rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-left::before {
+  content: ''; position: absolute;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: rgba(15,168,154,.12);
+  top: -100px; right: -100px;
+}
+.hero-left::after {
+  content: ''; position: absolute;
+  width: 250px; height: 250px; border-radius: 50%;
+  background: rgba(249,115,22,.08);
+  bottom: -60px; left: -60px;
+}
+.hero-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(15,168,154,.15); border: 1px solid rgba(15,168,154,.3); color: #5EEAD4; font-size: .7rem; font-weight: 600; letter-spacing: .1em; padding: .4rem 1rem; border-radius: 9999px; margin-bottom: 2rem; width: fit-content; position: relative; z-index: 1; }
+.hero-title { font-family: var(--ff-display); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 600; line-height: 1.15; color: var(--white); margin-bottom: 1.2rem; position: relative; z-index: 1; }
+.hero-title em { font-style: italic; color: #5EEAD4; }
+.hero-desc { font-size: .92rem; line-height: 1.8; color: rgba(255,255,255,.6); max-width: 400px; margin-bottom: 2rem; position: relative; z-index: 1; }
+.hero-features { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 2.2rem; position: relative; z-index: 1; }
+.hero-feature { display: flex; align-items: center; gap: .7rem; font-size: .85rem; font-weight: 500; color: rgba(255,255,255,.8); }
+.hero-feature-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; position: relative; z-index: 1; }
+.btn-primary { background: linear-gradient(135deg, var(--teal), #0891B2); color: var(--white); padding: .85rem 2rem; border-radius: 9999px; font-size: .85rem; font-weight: 600; text-decoration: none; transition: opacity .2s; box-shadow: 0 4px 20px rgba(15,168,154,.4); }
+.btn-primary:hover { opacity: .88; }
+.btn-ghost { border: 1px solid rgba(255,255,255,.25); color: var(--white); padding: .85rem 2rem; border-radius: 9999px; font-size: .85rem; font-weight: 600; text-decoration: none; transition: border-color .2s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,.6); }
+
+.hero-right { position: relative; overflow: hidden; }
+.hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(13,33,55,.4) 0%, transparent 50%); }
+.hero-card {
+  position: absolute; bottom: 2rem; right: 2rem;
+  background: var(--white); border-radius: 14px;
+  padding: 1.2rem 1.6rem; box-shadow: 0 8px 32px rgba(13,33,55,.2);
+  display: flex; align-items: center; gap: 1rem;
+}
+.hero-card-icon { font-size: 2rem; }
+.hero-card-num { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 600; color: var(--teal); line-height: 1; }
+.hero-card-lbl { font-size: .72rem; color: var(--muted); margin-top: .2rem; }
+
+/* SECTION */
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--teal); margin-bottom: .8rem; display: block; }
+.section-title { font-family: var(--ff-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 600; line-height: 1.2; color: var(--dark); margin-bottom: .8rem; }
+.section-title em { font-style: italic; color: var(--blue); }
+.section-sub { font-size: .9rem; color: var(--muted); line-height: 1.7; max-width: 480px; margin-bottom: 3rem; }
+
+/* STATS BANDE */
+.stats-band { background: linear-gradient(135deg, var(--blue), var(--teal)); padding: 2.5rem 3rem; }
+.stats-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+.stat-num { font-family: var(--ff-display); font-size: 2.2rem; font-weight: 600; color: var(--white); }
+.stat-lbl { font-size: .78rem; color: rgba(255,255,255,.65); margin-top: .3rem; }
+
+/* SERVICES */
+.services { padding: 7rem 3rem; background: var(--white); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.service-card { background: var(--white); border: 1px solid rgba(13,33,55,.08); border-radius: 14px; padding: 1.8rem; transition: all .3s; }
+.service-card:hover { border-color: var(--teal); box-shadow: 0 8px 32px rgba(15,168,154,.12); transform: translateY(-3px); }
+.service-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.2rem; }
+.bg-blue { background: var(--bluelt); }
+.bg-teal { background: var(--teallt); }
+.bg-orange { background: var(--orangelt); }
+.service-name { font-family: var(--ff-display); font-size: 1rem; font-weight: 600; color: var(--dark); margin-bottom: .5rem; }
+.service-desc { font-size: .82rem; color: var(--muted); line-height: 1.65; }
+.service-price { display: inline-block; margin-top: 1rem; font-size: .78rem; font-weight: 600; color: var(--teal); background: var(--teallt); padding: .25rem .75rem; border-radius: 9999px; }
+
+/* ÉQUIPE */
+.equipe { padding: 7rem 3rem; background: #F8FAFB; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.team-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(13,33,55,.07); transition: transform .3s, box-shadow .3s; }
+.team-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(13,33,55,.12); }
+.team-img { height: 260px; overflow: hidden; position: relative; }
+.team-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .4s; }
+.team-card:hover .team-img img { transform: scale(1.05); }
+.team-badge { position: absolute; bottom: 1rem; left: 1rem; background: var(--white); font-size: .65rem; font-weight: 700; color: var(--teal); padding: .3rem .8rem; border-radius: 9999px; letter-spacing: .06em; }
+.team-body { padding: 1.5rem; }
+.team-name { font-family: var(--ff-display); font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: .25rem; }
+.team-role { font-size: .75rem; font-weight: 600; color: var(--blue); margin-bottom: .7rem; text-transform: uppercase; letter-spacing: .06em; }
+.team-bio { font-size: .82rem; color: var(--muted); line-height: 1.65; }
+
+/* TEMOIGNAGES */
+.temoignages { padding: 7rem 3rem; background: linear-gradient(160deg, #0D2137 0%, #1A3A5C 100%); }
+.temo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.temo-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 1.8rem; transition: background .3s; }
+.temo-card:hover { background: rgba(255,255,255,.1); }
+.temo-stars { color: #FBBF24; font-size: .9rem; margin-bottom: 1rem; }
+.temo-text { font-size: .88rem; color: rgba(255,255,255,.75); line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; }
+.temo-author-row { display: flex; align-items: center; gap: .8rem; }
+.temo-avatar { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--teal); }
+.temo-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.temo-name { font-size: .82rem; font-weight: 600; color: var(--white); }
+.temo-job { font-size: .72rem; color: rgba(255,255,255,.4); }
+
+/* RDV */
+.rdv { padding: 7rem 3rem; background: var(--white); }
+.rdv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.rdv-left .section-title em { color: var(--teal); }
+.rdv-left p { font-size: .9rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+.rdv-info { display: flex; flex-direction: column; gap: 1.2rem; }
+.rdv-info-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: var(--bluelt); border-radius: 12px; }
+.rdv-info-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--blue), var(--teal)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.rdv-info-title { font-size: .82rem; font-weight: 600; color: var(--dark); margin-bottom: .2rem; }
+.rdv-info-val { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+.rdv-form { background: linear-gradient(160deg, #0D2137 0%, #1A3A5C 100%); border-radius: 20px; padding: 2.5rem; box-shadow: 0 20px 60px rgba(13,33,55,.2); }
+.rdv-form h3 { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 600; color: var(--white); margin-bottom: .4rem; }
+.rdv-form p { font-size: .82rem; color: rgba(255,255,255,.5); margin-bottom: 1.8rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-field { margin-bottom: 1rem; }
+.form-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); display: block; margin-bottom: .4rem; }
+.form-input { width: 100%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: .8rem 1rem; font-family: var(--ff-body); font-size: .88rem; color: var(--white); outline: none; transition: border-color .2s; }
+.form-input::placeholder { color: rgba(255,255,255,.3); }
+.form-input:focus { border-color: var(--teal); }
+.form-input option { color: var(--dark); background: var(--white); }
+.form-submit { width: 100%; background: linear-gradient(135deg, var(--teal), #0891B2); color: var(--white); border: none; padding: .95rem; border-radius: 9999px; font-family: var(--ff-body); font-size: .9rem; font-weight: 600; cursor: pointer; transition: opacity .2s; margin-top: .5rem; box-shadow: 0 4px 20px rgba(15,168,154,.4); }
+.form-submit:hover { opacity: .88; }
+
+/* FOOTER */
+footer { background: var(--dark); padding: 2.5rem 3rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: var(--ff-display); font-size: 1rem; font-weight: 600; color: var(--white); }
+.footer-logo span { color: var(--teal); }
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { font-size: .78rem; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-credit a { font-size: .75rem; color: rgba(15,168,154,.5); text-decoration: none; }
+.footer-credit a:hover { color: var(--teal); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 4rem 1.5rem; }
+  .hero-right { height: 60vw; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid, .team-grid, .temo-grid { grid-template-columns: 1fr 1fr; }
+  .rdv-grid { grid-template-columns: 1fr; }
+  .services, .equipe, .temoignages, .rdv { padding: 5rem 1.5rem; }
+  .stats-band { padding: 2rem 1.5rem; }
+  nav { padding: 0 1.5rem; }
+  .nav-links, .nav-phone { display: none; }
+  footer { padding: 2.5rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .services-grid, .team-grid, .temo-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.fade-up.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🦷</div>
+    <span class="nav-logo-text">Sorriso<span> Dental</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Nos soins</a></li>
+    <li><a href="#equipe">L'équipe</a></li>
+    <li><a href="#rdv">Rendez-vous</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:.5rem;">
+    <a href="tel:+242067000000" class="nav-phone">+242 06 700 00 00</a>
+    <a href="#rdv" class="nav-cta">Prendre RDV</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">✓ Cabinet agréé · Brazzaville</div>
+    <h1 class="hero-title">Votre sourire,<br>notre <em>fierté.</em></h1>
+    <p class="hero-desc">La Clinique Sorriso vous offre des soins dentaires modernes dans un cadre chaleureux et bienveillant. Une équipe congolaise expérimentée, des équipements de pointe.</p>
+    <div class="hero-features">
+      <div class="hero-feature"><div class="hero-feature-dot"></div>Consultation sans douleur garantie</div>
+      <div class="hero-feature"><div class="hero-feature-dot"></div>Équipements numériques dernière génération</div>
+      <div class="hero-feature"><div class="hero-feature-dot"></div>Urgences dentaires prises en charge 7j/7</div>
+      <div class="hero-feature"><div class="hero-feature-dot"></div>Paiement en plusieurs fois disponible</div>
+    </div>
+    <div class="hero-btns">
+      <a href="#rdv" class="btn-primary">Prendre rendez-vous</a>
+      <a href="#services" class="btn-ghost">Voir nos soins</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=900&h=900&auto=format&fit=crop&q=85" alt="Dentiste Sorriso Brazzaville">
+    <div class="hero-overlay"></div>
+    <div class="hero-card">
+      <div class="hero-card-icon">😊</div>
+      <div>
+        <div class="hero-card-num">2 500+</div>
+        <div class="hero-card-lbl">Patients satisfaits</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-grid">
+    <div><div class="stat-num">2 500+</div><div class="stat-lbl">Patients traités</div></div>
+    <div><div class="stat-num">3</div><div class="stat-lbl">Chirurgiens-dentistes</div></div>
+    <div><div class="stat-num">98%</div><div class="stat-lbl">Patients satisfaits</div></div>
+    <div><div class="stat-num">7j/7</div><div class="stat-lbl">Urgences dentaires</div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Nos soins</span>
+    <h2 class="section-title fade-up">Tous vos soins dentaires,<br><em>en un seul endroit.</em></h2>
+    <p class="section-sub fade-up">De la consultation au traitement spécialisé, notre équipe prend en charge l'ensemble de vos besoins avec expertise et bienveillance.</p>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon bg-blue">🔍</div>
+        <h3 class="service-name">Consultation & Bilan</h3>
+        <p class="service-desc">Examen complet avec radiographie numérique. Devis transparent fourni à l'issue de chaque consultation.</p>
+        <span class="service-price">À partir de 5 000 FCFA</span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon bg-teal">✨</div>
+        <h3 class="service-name">Détartrage & Hygiène</h3>
+        <p class="service-desc">Nettoyage professionnel pour éliminer le tartre et les taches. Conseils personnalisés pour une hygiène optimale.</p>
+        <span class="service-price">À partir de 15 000 FCFA</span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon bg-blue">🦷</div>
+        <h3 class="service-name">Soins & Obturations</h3>
+        <p class="service-desc">Traitement des caries avec matériaux composites de haute qualité, invisibles et durables. Anesthésie locale incluse.</p>
+        <span class="service-price">À partir de 20 000 FCFA</span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon bg-orange">😁</div>
+        <h3 class="service-name">Blanchiment Dentaire</h3>
+        <p class="service-desc">Blanchiment professionnel jusqu'à 8 nuances plus clair en une séance. Résultats durables avec gouttières personnalisées.</p>
+        <span class="service-price">À partir de 45 000 FCFA</span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon bg-teal">🏗️</div>
+        <h3 class="service-name">Prothèses & Couronnes</h3>
+        <p class="service-desc">Couronnes céramiques, bridges et prothèses amovibles sur mesure. Restauration complète avec matériaux biocompatibles.</p>
+        <span class="service-price">Sur devis</span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon bg-orange">🚨</div>
+        <h3 class="service-name">Urgences Dentaires</h3>
+        <p class="service-desc">Prise en charge rapide des douleurs aiguës, fractures et abcès. Ligne d'urgence disponible 7j/7. Consultation sous 2h.</p>
+        <span class="service-price">Prise en charge immédiate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section class="equipe" id="equipe">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Notre équipe</span>
+    <h2 class="section-title fade-up">Des professionnels<br><em>congolais</em> à votre service.</h2>
+    <p class="section-sub fade-up">Une équipe de chirurgiens-dentistes diplômés et formés aux dernières techniques pour vous offrir les meilleurs soins possibles à Brazzaville.</p>
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1622253694238-3b22139576c6?w=400&h=400&auto=format&fit=crop&q=80&facepad=3" alt="Dr. Nkounkou">
+          <span class="team-badge">Fondateur</span>
+        </div>
+        <div class="team-body">
+          <p class="team-name">Dr. Alphonse Nkounkou</p>
+          <p class="team-role">Chirurgien-dentiste</p>
+          <p class="team-bio">Diplômé de l'Université de Bordeaux. 15 ans d'expérience en chirurgie dentaire et implantologie. Formé aux techniques sans douleur.</p>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&h=400&auto=format&fit=crop&q=80&facepad=3" alt="Dr. Moukala">
+          <span class="team-badge">Orthodontiste</span>
+        </div>
+        <div class="team-body">
+          <p class="team-name">Dr. Élise Moukala</p>
+          <p class="team-role">Orthodontiste</p>
+          <p class="team-bio">Spécialiste en orthodontie pour adultes et enfants. Alignement invisible et appareils traditionnels. 8 ans d'expérience à Brazzaville.</p>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1666887360742-974c8fce8e6b?w=400&h=400&auto=format&fit=crop&q=80&facepad=3" alt="Dr. Itoua">
+          <span class="team-badge">Pédodontiste</span>
+        </div>
+        <div class="team-body">
+          <p class="team-name">Dr. Patrick Itoua</p>
+          <p class="team-role">Dentiste enfants</p>
+          <p class="team-bio">Spécialiste des soins pour enfants dès 3 ans. Approche douce et ludique pour apprivoiser le cabinet dentaire sans stress.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages">
+  <div class="section-inner">
+    <span class="eyebrow fade-up" style="color:var(--teal);">Témoignages</span>
+    <h2 class="section-title fade-up" style="color:var(--white);">Ils nous font <em style="color:#5EEAD4;">confiance.</em></h2>
+    <div class="temo-grid">
+      <div class="temo-card fade-up">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« J'avais très peur des dentistes. Dr. Nkounkou m'a mise à l'aise dès la première consultation. Les soins sont rapides, indolores et le résultat est parfait. »</p>
+        <div class="temo-author-row">
+          <div class="temo-avatar">
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=80&h=80&auto=format&fit=crop&q=80" alt="">
+          </div>
+          <div>
+            <p class="temo-name">Marie-Claire Oba</p>
+            <p class="temo-job">Commerçante · Brazzaville</p>
+          </div>
+        </div>
+      </div>
+      <div class="temo-card fade-up">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« Le blanchiment dentaire a complètement transformé mon sourire. En une seule séance ! Le personnel est professionnel et l'accueil est chaleureux. »</p>
+        <div class="temo-author-row">
+          <div class="temo-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&auto=format&fit=crop&q=80" alt="">
+          </div>
+          <div>
+            <p class="temo-name">Rodrigue Mavoungou</p>
+            <p class="temo-job">Entrepreneur · Pointe-Noire</p>
+          </div>
+        </div>
+      </div>
+      <div class="temo-card fade-up">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« Mon fils de 6 ans avait peur du dentiste. Dr. Itoua a été incroyable de patience. Il repart maintenant avec le sourire ! Je recommande à tous les parents. »</p>
+        <div class="temo-author-row">
+          <div class="temo-avatar">
+            <img src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=80&h=80&auto=format&fit=crop&q=80" alt="">
+          </div>
+          <div>
+            <p class="temo-name">Sandrine Loko</p>
+            <p class="temo-job">Enseignante · Brazzaville</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RDV -->
+<section class="rdv" id="rdv">
+  <div class="section-inner">
+    <div class="rdv-grid">
+      <div class="rdv-left fade-up">
+        <span class="eyebrow">Rendez-vous</span>
+        <h2 class="section-title">Prenez rendez-vous<br><em>en ligne.</em></h2>
+        <p>Réservez votre consultation en quelques secondes. Confirmation par SMS ou WhatsApp dans l'heure.</p>
+        <div class="rdv-info">
+          <div class="rdv-info-item">
+            <div class="rdv-info-icon">📍</div>
+            <div>
+              <p class="rdv-info-title">Notre adresse</p>
+              <p class="rdv-info-val">12, Avenue Foch · Plateau des 15 ans<br>Brazzaville, Congo</p>
+            </div>
+          </div>
+          <div class="rdv-info-item">
+            <div class="rdv-info-icon">⏰</div>
+            <div>
+              <p class="rdv-info-title">Horaires d'ouverture</p>
+              <p class="rdv-info-val">Lun–Ven : 8h00–18h00<br>Samedi : 8h00–13h00 · Urgences 7j/7</p>
+            </div>
+          </div>
+          <div class="rdv-info-item">
+            <div class="rdv-info-icon">📞</div>
+            <div>
+              <p class="rdv-info-title">Contact direct</p>
+              <p class="rdv-info-val"><a href="tel:+242067000000" style="color:var(--teal);">+242 06 700 00 00</a><br>WhatsApp disponible 24h/24</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="rdv-form">
+          <h3>Réserver une consultation</h3>
+          <p>Réponse garantie sous 1 heure</p>
+          <form onsubmit="handleRdv(event)">
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label">Prénom</label>
+                <input type="text" placeholder="Jean" class="form-input" required>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Nom</label>
+                <input type="text" placeholder="Mbemba" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Téléphone / WhatsApp</label>
+              <input type="tel" placeholder="+242 ..." class="form-input" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Type de soin</label>
+              <select class="form-input" required>
+                <option value="">Choisissez…</option>
+                <option>Consultation & Bilan</option>
+                <option>Détartrage</option>
+                <option>Soin / Carie</option>
+                <option>Blanchiment</option>
+                <option>Prothèse / Couronne</option>
+                <option>Urgence dentaire</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Date souhaitée</label>
+              <input type="date" class="form-input" required>
+            </div>
+            <button type="submit" class="form-submit">Confirmer mon rendez-vous →</button>
+          </form>
+          <p id="rdv-msg" style="display:none;margin-top:1rem;color:#5EEAD4;font-size:.82rem;font-weight:600;text-align:center;">✓ Demande reçue — confirmation par SMS dans l'heure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Sorriso <span>Dental</span></div>
+    <div class="footer-links">
+      <a href="#services">Soins</a>
+      <a href="#equipe">Équipe</a>
+      <a href="#rdv">Rendez-vous</a>
+      <a href="tel:+242067000000">+242 06 700 00 00</a>
+    </div>
+    <div class="footer-credit">
+      <a href="https://bowbosh22.github.io/atelier-kpm" target="_blank" rel="noopener">Site conçu par l'Atelier KPM</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/24206700000?text=Bonjour%2C%20je%20souhaite%20prendre%20rendez-vous%20%C3%A0%20la%20Clinique%20Sorriso."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   aria-label="Prendre RDV sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function handleRdv(e) {
+    e.preventDefault();
+    document.getElementById('rdv-msg').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

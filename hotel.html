@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hôtel Émeraude — Brazzaville</title>
+<meta name="description" content="Hôtel Émeraude, l'adresse de prestige à Brazzaville. Chambres luxueuses, piscine tropicale, restaurant gastronomique. Réservez en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #4A8C6A;
+  --greenlt: #7AB99A;
+  --ivory: #F8F4EE;
+  --dark: #1A2218;
+  --mid: #2E4A3A;
+  --muted: rgba(26,34,24,.5);
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-body: 'DM Sans', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--ivory); color: var(--dark); font-family: var(--ff-body); font-weight: 300; overflow-x: hidden; }
+
+/* NAVBAR */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 68px;
+  background: rgba(248,244,238,.95); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(74,140,106,.12);
+}
+.nav-logo { font-family: var(--ff-display); font-size: 1.3rem; color: var(--dark); text-decoration: none; letter-spacing: .02em; }
+.nav-logo span { color: var(--green); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .25s; }
+.nav-links a:hover { color: var(--green); }
+.nav-cta { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; background: var(--green); color: var(--ivory); padding: .6rem 1.5rem; border-radius: 9999px; text-decoration: none; transition: background .25s; }
+.nav-cta:hover { background: var(--mid); }
+
+/* HERO */
+.hero { position: relative; height: 100vh; overflow: hidden; }
+.hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,34,24,.3) 0%, rgba(26,34,24,.55) 100%); }
+.hero-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  padding: 0 6rem; padding-top: 68px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(74,140,106,.25); backdrop-filter: blur(8px);
+  border: 1px solid rgba(74,140,106,.4);
+  color: #A8D5BF; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+  padding: .4rem 1rem; border-radius: 9999px; margin-bottom: 1.8rem;
+}
+.hero-title {
+  font-family: var(--ff-display); font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 400; color: var(--ivory); line-height: 1.08;
+  letter-spacing: -.01em; margin-bottom: 1.5rem; max-width: 700px;
+}
+.hero-title em { font-style: italic; color: #A8D5BF; }
+.hero-desc { font-size: 1rem; color: rgba(248,244,238,.7); max-width: 440px; line-height: 1.8; margin-bottom: 2.5rem; }
+.hero-btns { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.btn-primary { background: var(--green); color: var(--ivory); padding: .85rem 2rem; border-radius: 9999px; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .25s; }
+.btn-primary:hover { background: var(--mid); }
+.btn-outline { background: transparent; color: var(--ivory); border: 1px solid rgba(248,244,238,.4); padding: .85rem 2rem; border-radius: 9999px; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: border-color .25s, color .25s; }
+.btn-outline:hover { border-color: var(--ivory); }
+
+/* Stats hero */
+.hero-stats {
+  position: absolute; bottom: 2.5rem; left: 6rem; right: 6rem;
+  display: flex; gap: 3rem;
+  border-top: 1px solid rgba(248,244,238,.15); padding-top: 1.5rem;
+}
+.hero-stat-num { font-family: var(--ff-display); font-size: 2rem; color: var(--ivory); line-height: 1; }
+.hero-stat-lbl { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(248,244,238,.5); margin-top: .3rem; }
+
+/* SECTION */
+section { padding: 7rem 5rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-size: .65rem; letter-spacing: .28em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; display: block; }
+.section-title { font-family: var(--ff-display); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.12; color: var(--dark); margin-bottom: 1.5rem; }
+.section-title em { font-style: italic; color: var(--green); }
+.divider { width: 40px; height: 2px; background: var(--green); margin-bottom: 2.5rem; }
+
+/* CHAMBRES */
+.chambres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.chambre-card { background: white; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 24px rgba(26,34,24,.07); transition: transform .3s, box-shadow .3s; }
+.chambre-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(26,34,24,.14); }
+.chambre-img { height: 220px; overflow: hidden; }
+.chambre-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.chambre-card:hover .chambre-img img { transform: scale(1.06); }
+.chambre-body { padding: 1.5rem; }
+.chambre-cat { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--green); margin-bottom: .5rem; }
+.chambre-name { font-family: var(--ff-display); font-size: 1.2rem; color: var(--dark); margin-bottom: .6rem; }
+.chambre-desc { font-size: .82rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.2rem; }
+.chambre-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(26,34,24,.08); padding-top: 1rem; }
+.chambre-price { font-family: var(--ff-display); font-size: 1.1rem; color: var(--green); }
+.chambre-price span { font-family: var(--ff-body); font-size: .72rem; color: var(--muted); }
+.chambre-btn { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(74,140,106,.3); padding-bottom: 1px; transition: color .25s; }
+.chambre-btn:hover { color: var(--mid); }
+
+/* EXPÉRIENCES */
+.experiences { background: var(--dark); }
+.experiences .section-title { color: var(--ivory); }
+.experiences .eyebrow { color: var(--greenlt); }
+.exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(248,244,238,.06); margin-top: 3rem; }
+.exp-item { background: var(--dark); padding: 2.5rem; transition: background .3s; }
+.exp-item:hover { background: var(--mid); }
+.exp-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.exp-title { font-family: var(--ff-display); font-size: 1.2rem; color: var(--ivory); margin-bottom: .7rem; }
+.exp-desc { font-size: .85rem; color: rgba(248,244,238,.55); line-height: 1.7; }
+
+/* GALERIE */
+.galerie-section { background: #EFF6F2; padding: 7rem 0; }
+.galerie-header { padding: 0 5rem; margin-bottom: 2.5rem; }
+.galerie-scroll {
+  display: flex; gap: 1rem; overflow-x: auto; padding: 0 5rem;
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.galerie-scroll::-webkit-scrollbar { display: none; }
+.galerie-item { flex-shrink: 0; width: 380px; height: 280px; border-radius: 6px; overflow: hidden; }
+.galerie-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.galerie-item:hover img { transform: scale(1.05); }
+
+/* TÉMOIGNAGES */
+.temo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.temo-card { padding: 2rem; background: white; border-radius: 6px; border-left: 3px solid var(--green); }
+.temo-stars { color: var(--green); font-size: .9rem; margin-bottom: .8rem; }
+.temo-text { font-family: var(--ff-display); font-style: italic; font-size: 1rem; line-height: 1.7; color: var(--dark); margin-bottom: 1rem; }
+.temo-author { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* RÉSERVATION */
+.resa-section { background: var(--green); padding: 7rem 5rem; text-align: center; }
+.resa-section .section-title { color: var(--ivory); }
+.resa-section .eyebrow { color: rgba(248,244,238,.7); }
+.resa-card { background: white; border-radius: 12px; padding: 2.5rem; max-width: 700px; margin: 2.5rem auto 0; box-shadow: 0 20px 60px rgba(26,34,24,.25); }
+.resa-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.resa-input {
+  background: var(--ivory); border: 1px solid rgba(26,34,24,.1);
+  border-radius: 6px; padding: .75rem 1rem;
+  font-family: var(--ff-body); font-size: .88rem; color: var(--dark);
+  outline: none; transition: border-color .25s; width: 100%;
+}
+.resa-input:focus { border-color: var(--green); }
+.resa-btn { grid-column: 1 / 3; background: var(--green); color: white; border: none; padding: .9rem; border-radius: 9999px; font-family: var(--ff-body); font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: background .25s; margin-top: .5rem; }
+.resa-btn:hover { background: var(--mid); }
+
+/* FOOTER */
+footer { background: var(--dark); padding: 4rem 5rem 2rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-logo { font-family: var(--ff-display); font-size: 1.4rem; color: var(--ivory); margin-bottom: 1rem; }
+.footer-logo span { color: var(--greenlt); }
+.footer-desc { font-size: .82rem; color: rgba(248,244,238,.4); line-height: 1.7; }
+.footer-col h4 { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--greenlt); margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: .6rem; }
+.footer-col ul li a { font-size: .82rem; color: rgba(248,244,238,.45); text-decoration: none; transition: color .25s; }
+.footer-col ul li a:hover { color: var(--ivory); }
+.footer-bottom { border-top: 1px solid rgba(248,244,238,.06); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: .75rem; color: rgba(248,244,238,.25); }
+.footer-bottom a { font-size: .75rem; color: rgba(74,140,106,.6); text-decoration: none; }
+.footer-bottom a:hover { color: var(--greenlt); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  section { padding: 5rem 1.5rem; }
+  .hero-content, .hero-stats { left: 1.5rem; right: 1.5rem; padding-left: 0; }
+  .chambres-grid, .temo-grid { grid-template-columns: 1fr; }
+  .exp-grid { grid-template-columns: 1fr; }
+  .resa-form { grid-template-columns: 1fr; }
+  .resa-btn { grid-column: 1; }
+  .footer-grid { grid-template-columns: 1fr; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .galerie-header { padding: 0 1.5rem; }
+  .galerie-scroll { padding: 0 1.5rem; }
+  .resa-section { padding: 5rem 1.5rem; }
+  footer { padding: 4rem 1.5rem 2rem; }
+}
+
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.fade-up.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">Hôtel <span>Émeraude</span></a>
+  <ul class="nav-links">
+    <li><a href="#chambres">Chambres</a></li>
+    <li><a href="#experiences">Expériences</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#infos">Infos</a></li>
+  </ul>
+  <a href="#reservation" class="nav-cta">Réserver</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=1600&h=900&auto=format&fit=crop&q=85" alt="Hôtel Émeraude piscine tropicale">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">★★★★★ &nbsp; Brazzaville</div>
+    <h1 class="hero-title">L'écrin tropical<br>au cœur du <em>Congo.</em></h1>
+    <p class="hero-desc">Bienvenue à l'Hôtel Émeraude. Où le luxe rencontre la sérénité de la nature africaine. Un refuge d'exception pour les voyageurs d'affaires et les âmes en quête d'évasion.</p>
+    <div class="hero-btns">
+      <a href="#reservation" class="btn-primary">Réserver une chambre</a>
+      <a href="#chambres" class="btn-outline">Découvrir les chambres</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">48</div>
+      <div class="hero-stat-lbl">Chambres & suites</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">5★</div>
+      <div class="hero-stat-lbl">Classement</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">1</div>
+      <div class="hero-stat-lbl">Restaurant gastronomique</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">24h</div>
+      <div class="hero-stat-lbl">Conciergerie</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAMBRES -->
+<section id="chambres">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Nos chambres & suites</span>
+    <h2 class="section-title fade-up">Un havre de paix<br><em>pour chaque voyageur.</em></h2>
+    <div class="divider fade-up"></div>
+    <div class="chambres-grid">
+
+      <div class="chambre-card fade-up">
+        <div class="chambre-img">
+          <img src="https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=600&h=400&auto=format&fit=crop&q=80" alt="Chambre Émeraude">
+        </div>
+        <div class="chambre-body">
+          <p class="chambre-cat">Chambre standard</p>
+          <h3 class="chambre-name">Chambre Émeraude</h3>
+          <p class="chambre-desc">32m² · Vue jardin tropicale. Lit king-size, climatisation, wifi haut débit, coffre-fort, minibar.</p>
+          <div class="chambre-footer">
+            <div class="chambre-price">85 000 FCFA <span>/ nuit</span></div>
+            <a href="#reservation" class="chambre-btn">Réserver →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chambre-card fade-up">
+        <div class="chambre-img">
+          <img src="https://images.unsplash.com/photo-1549294413-26f195200c16?w=600&h=400&auto=format&fit=crop&q=80" alt="Suite Forêt">
+        </div>
+        <div class="chambre-body">
+          <p class="chambre-cat">Suite</p>
+          <h3 class="chambre-name">Suite Forêt</h3>
+          <p class="chambre-desc">58m² · Vue piscine et jardin. Salon séparé, baignoire balnéo, terrasse privée avec transats.</p>
+          <div class="chambre-footer">
+            <div class="chambre-price">145 000 FCFA <span>/ nuit</span></div>
+            <a href="#reservation" class="chambre-btn">Réserver →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chambre-card fade-up">
+        <div class="chambre-img">
+          <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600&h=400&auto=format&fit=crop&q=80" alt="Villa Rivière">
+        </div>
+        <div class="chambre-body">
+          <p class="chambre-cat">Villa privée</p>
+          <h3 class="chambre-name">Villa Rivière</h3>
+          <p class="chambre-desc">120m² · Accès direct à la piscine. Chambre parentale, salon, cuisine équipée, terrasse sur l'eau.</p>
+          <div class="chambre-footer">
+            <div class="chambre-price">280 000 FCFA <span>/ nuit</span></div>
+            <a href="#reservation" class="chambre-btn">Réserver →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPÉRIENCES -->
+<section class="experiences" id="experiences">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Nos services</span>
+    <h2 class="section-title fade-up">Plus qu'un hôtel,<br><em>une expérience.</em></h2>
+    <div class="exp-grid">
+      <div class="exp-item fade-up">
+        <div class="exp-icon">🏊</div>
+        <h3 class="exp-title">Piscine tropicale</h3>
+        <p class="exp-desc">Bassin de 25m entouré de palmiers et de végétation luxuriante. Bar de piscine ouvert de 8h à 20h. Espace bain de soleil réservé aux résidents.</p>
+      </div>
+      <div class="exp-item fade-up">
+        <div class="exp-icon">🍽️</div>
+        <h3 class="exp-title">Restaurant La Canopée</h3>
+        <p class="exp-desc">Cuisine africaine contemporaine servie dans un cadre de verdure exceptionnel. Notre chef étoilé revisite les saveurs du Congo avec élégance.</p>
+      </div>
+      <div class="exp-item fade-up">
+        <div class="exp-icon">💆</div>
+        <h3 class="exp-title">Spa & bien-être</h3>
+        <p class="exp-desc">Massages aux huiles essentielles africaines, hammam, sauna et soins du visage. Un espace de détente total au cœur de la nature.</p>
+      </div>
+      <div class="exp-item fade-up">
+        <div class="exp-icon">🤝</div>
+        <h3 class="exp-title">Business center</h3>
+        <p class="exp-desc">Salles de réunion équipées, wifi 1Gbps, service de secrétariat et conciergerie 24h/24. L'hôtel de référence pour les voyageurs d'affaires.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie-section" id="galerie" style="padding:7rem 0;">
+  <div class="galerie-header">
+    <span class="eyebrow fade-up">Galerie</span>
+    <h2 class="section-title fade-up">L'Émeraude<br><em>en images.</em></h2>
+  </div>
+  <div class="galerie-scroll">
+    <div class="galerie-item"><img src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&h=400&auto=format&fit=crop&q=80" alt="Piscine"></div>
+    <div class="galerie-item"><img src="https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=600&h=400&auto=format&fit=crop&q=80" alt="Chambre"></div>
+    <div class="galerie-item"><img src="https://images.unsplash.com/photo-1549294413-26f195200c16?w=600&h=400&auto=format&fit=crop&q=80" alt="Palmiers"></div>
+    <div class="galerie-item"><img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=600&h=400&auto=format&fit=crop&q=80" alt="Villa"></div>
+    <div class="galerie-item"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&auto=format&fit=crop&q=80" alt="Suite"></div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section id="avis">
+  <div class="section-inner">
+    <span class="eyebrow fade-up">Avis clients</span>
+    <h2 class="section-title fade-up">Ils ont vécu<br><em>l'Émeraude.</em></h2>
+    <div class="temo-grid">
+      <div class="temo-card fade-up">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« Un hôtel qui dépasse toutes les attentes. La piscine, le restaurant, le personnel — tout est parfait. On se sent vraiment choyé. »</p>
+        <p class="temo-author">Olivier D. — Kinshasa</p>
+      </div>
+      <div class="temo-card fade-up">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« La Suite Forêt est un vrai paradis. Vue imprenable sur le jardin, baignoire balnéo, service aux petits soins. Je reviendrai sans hésiter. »</p>
+        <p class="temo-author">Sophie M. — Paris</p>
+      </div>
+      <div class="temo-card fade-up">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« Pour mes voyages d'affaires à Brazzaville, l'Émeraude est devenu mon QG. Business center impeccable, connexion ultra-rapide et calme absolu. »</p>
+        <p class="temo-author">Marc K. — Lagos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉSERVATION -->
+<section class="resa-section" id="reservation">
+  <span class="eyebrow">Réservation en ligne</span>
+  <h2 class="section-title" style="color:var(--ivory);margin-top:.8rem;">Réservez votre séjour<br><em style="color:rgba(248,244,238,.7);">en quelques secondes.</em></h2>
+  <div class="resa-card">
+    <form class="resa-form" onsubmit="handleResa(event)">
+      <input type="text" placeholder="Votre nom complet" class="resa-input" required>
+      <input type="tel" placeholder="Téléphone / WhatsApp" class="resa-input" required>
+      <input type="date" class="resa-input" required>
+      <input type="date" class="resa-input" required>
+      <select class="resa-input">
+        <option value="">Type de chambre</option>
+        <option>Chambre Émeraude — 85 000 FCFA</option>
+        <option>Suite Forêt — 145 000 FCFA</option>
+        <option>Villa Rivière — 280 000 FCFA</option>
+      </select>
+      <select class="resa-input">
+        <option value="">Nombre de personnes</option>
+        <option>1 personne</option>
+        <option>2 personnes</option>
+        <option>3 personnes</option>
+        <option>4+ personnes</option>
+      </select>
+      <button type="submit" class="resa-btn">Confirmer ma réservation →</button>
+    </form>
+    <p id="resa-msg" style="display:none;margin-top:1rem;color:var(--green);font-size:.85rem;text-align:center;">✓ Demande reçue — confirmation sous 2h par téléphone.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="infos">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Hôtel <span>Émeraude</span></div>
+      <p class="footer-desc">L'adresse de prestige à Brazzaville. 48 chambres et suites, restaurant gastronomique, spa et piscine tropicale.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#chambres">Chambres & Suites</a></li>
+        <li><a href="#experiences">Services</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#reservation">Réservation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Horaires</h4>
+      <ul>
+        <li><a href="#">Check-in : 14h00</a></li>
+        <li><a href="#">Check-out : 12h00</a></li>
+        <li><a href="#">Restaurant : 7h–23h</a></li>
+        <li><a href="#">Spa : 9h–20h</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+242065000000">+242 06 500 00 00</a></li>
+        <li><a href="mailto:info@hotel-emeraude.cg">info@hotel-emeraude.cg</a></li>
+        <li><a href="#">Avenue de l'Indépendance</a></li>
+        <li><a href="#">Brazzaville, Congo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Hôtel Émeraude — Brazzaville</p>
+    <a href="https://bowbosh22.github.io/atelier-kpm" target="_blank" rel="noopener">Site conçu par l'Atelier KPM</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/24206500000?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20chambre%20%C3%A0%20l%27H%C3%B4tel%20%C3%89meraude."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   aria-label="Réserver sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function handleResa(e) {
+    e.preventDefault();
+    document.getElementById('resa-msg').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

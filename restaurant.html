@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Velours — Restaurant gastronomique à Brazzaville</title>
+<meta name="description" content="Le Velours, restaurant gastronomique à Brazzaville. Une cuisine d'exception dans un cadre raffiné. Réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cr: #B8905A;       /* or chaud */
+  --cl: #F7F0E6;       /* ivoire clair */
+  --cd: #1A1108;       /* brun nuit */
+  --cm: #3D2B1A;       /* brun moyen */
+  --ct: rgba(26,17,8,.5); /* texte atténué */
+  --ff-display: 'Cormorant Garamond', Georgia, serif;
+  --ff-body: 'Jost', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--cl); color: var(--cd); font-family: var(--ff-body); font-weight: 300; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
+
+/* ── NAVBAR ─────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: 64px;
+  background: rgba(247,240,230,.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(184,144,90,.15);
+  transition: background .3s;
+}
+.nav-logo { font-family: var(--ff-display); font-size: 1.4rem; font-weight: 400; letter-spacing: .04em; color: var(--cd); text-decoration: none; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ct); text-decoration: none; transition: color .25s; }
+.nav-links a:hover { color: var(--cr); }
+.nav-cta { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; background: var(--cd); color: var(--cl); padding: .55rem 1.4rem; border-radius: 9999px; text-decoration: none; transition: background .25s; }
+.nav-cta:hover { background: var(--cr); }
+.nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-burger span { display: block; width: 22px; height: 1px; background: var(--cd); transition: .3s; }
+
+/* ── HERO ────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: 64px;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 6rem 4rem 6rem 5rem;
+  background: var(--cl);
+}
+.hero-right {
+  position: relative; overflow: hidden;
+}
+.hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.hero-right::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, var(--cl) 0%, transparent 25%);
+}
+.eyebrow { font-size: .68rem; letter-spacing: .28em; text-transform: uppercase; color: var(--cr); margin-bottom: 1.5rem; }
+.hero-title {
+  font-family: var(--ff-display); font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300; line-height: 1.05; letter-spacing: -.01em;
+  color: var(--cd); margin-bottom: 1.5rem;
+}
+.hero-title em { font-style: italic; color: var(--cr); }
+.hero-desc { font-size: .95rem; line-height: 1.8; color: var(--ct); max-width: 380px; margin-bottom: 2.5rem; }
+.hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.btn-primary { background: var(--cd); color: var(--cl); padding: .85rem 2rem; border-radius: 9999px; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; transition: background .25s; }
+.btn-primary:hover { background: var(--cr); }
+.btn-ghost-link { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--cd); text-decoration: none; border-bottom: 1px solid rgba(26,17,8,.25); padding-bottom: 2px; transition: color .25s, border-color .25s; }
+.btn-ghost-link:hover { color: var(--cr); border-color: var(--cr); }
+
+/* ── SECTION GÉNÉRIQUE ──────────────────────────────── */
+section { padding: 7rem 5rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: .65rem; letter-spacing: .28em; text-transform: uppercase; color: var(--cr); margin-bottom: 1rem; display: block; }
+.section-title { font-family: var(--ff-display); font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.1; letter-spacing: -.01em; color: var(--cd); margin-bottom: 1.5rem; }
+.section-title em { font-style: italic; }
+.divider { width: 48px; height: 1px; background: var(--cr); margin-bottom: 2rem; }
+
+/* ── PHILOSOPHIE ────────────────────────────────────── */
+.philosophie { background: var(--cd); color: var(--cl); }
+.philosophie .section-title { color: var(--cl); }
+.philosophie .section-label { color: var(--cr); }
+.philo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.philo-text p { font-size: 1rem; line-height: 1.9; color: rgba(247,240,230,.7); margin-bottom: 1.2rem; }
+.philo-text p:last-child { margin-bottom: 0; }
+.philo-img { position: relative; }
+.philo-img img { width: 100%; height: 520px; object-fit: cover; border-radius: 3px; }
+.philo-img::before {
+  content: ''; position: absolute; top: -16px; left: -16px; right: 16px; bottom: 16px;
+  border: 1px solid rgba(184,144,90,.3); border-radius: 3px; z-index: 0;
+}
+.philo-img img { position: relative; z-index: 1; }
+
+/* ── MENU SIGNATURE ─────────────────────────────────── */
+.menu-bg { background: #FBF6EE; }
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(26,17,8,.08); border: 1px solid rgba(26,17,8,.08); }
+.menu-item { background: var(--cl); padding: 2rem 2.2rem; }
+.menu-item:hover { background: #FBF6EE; }
+.menu-cat { font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--cr); margin-bottom: .6rem; }
+.menu-name { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 400; color: var(--cd); margin-bottom: .5rem; }
+.menu-desc { font-size: .82rem; color: var(--ct); line-height: 1.65; margin-bottom: 1rem; }
+.menu-price { font-family: var(--ff-display); font-size: 1.1rem; color: var(--cr); }
+
+/* ── GALERIE ─────────────────────────────────────────── */
+.galerie { background: var(--cd); padding: 5rem; }
+.galerie-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 6px;
+  margin-top: 3rem;
+}
+.galerie-grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.galerie-grid img:hover { transform: scale(1.03); }
+.galerie-grid .g-main { grid-row: 1 / 3; overflow: hidden; }
+.galerie-grid .g-sm { overflow: hidden; }
+
+/* ── TÉMOIGNAGES ────────────────────────────────────── */
+.temoignages { background: var(--cl); }
+.temo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.temo-card { border-top: 1px solid rgba(26,17,8,.12); padding-top: 1.8rem; }
+.temo-text { font-family: var(--ff-display); font-size: 1.05rem; font-style: italic; line-height: 1.7; color: var(--cd); margin-bottom: 1.2rem; }
+.temo-author { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--cr); }
+
+/* ── RÉSERVATION ─────────────────────────────────────── */
+.reservation { background: var(--cd); text-align: center; padding: 8rem 5rem; }
+.reservation .section-title { color: var(--cl); margin-bottom: 1rem; }
+.reservation p { color: rgba(247,240,230,.6); font-size: .95rem; margin-bottom: 2.5rem; line-height: 1.8; }
+.resa-form { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; max-width: 640px; margin: 0 auto; }
+.resa-input {
+  flex: 1; min-width: 160px;
+  background: transparent; border: 0; border-bottom: 1px solid rgba(247,240,230,.2);
+  padding: .7rem 0; font-family: var(--ff-body); font-size: .9rem;
+  color: var(--cl); outline: none; transition: border-color .25s;
+}
+.resa-input::placeholder { color: rgba(247,240,230,.35); }
+.resa-input:focus { border-color: var(--cr); }
+.resa-btn { background: var(--cr); color: var(--cl); border: none; padding: .8rem 2rem; border-radius: 9999px; font-family: var(--ff-body); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: opacity .25s; white-space: nowrap; }
+.resa-btn:hover { opacity: .85; }
+
+/* ── INFOS ───────────────────────────────────────────── */
+.infos { background: #FBF6EE; }
+.infos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+.info-block h3 { font-family: var(--ff-display); font-size: 1.2rem; font-weight: 400; color: var(--cd); margin-bottom: 1rem; }
+.info-block p, .info-block address { font-size: .88rem; line-height: 1.8; color: var(--ct); font-style: normal; }
+.info-block a { color: var(--cr); text-decoration: none; }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+footer {
+  background: var(--cd); color: rgba(247,240,230,.4);
+  padding: 2rem 5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: .75rem; letter-spacing: .08em;
+  border-top: 1px solid rgba(184,144,90,.15);
+}
+footer a { color: rgba(184,144,90,.6); text-decoration: none; }
+footer a:hover { color: var(--cr); }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  section { padding: 5rem 2rem; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 5rem 2rem 3rem; }
+  .hero-right { height: 60vw; }
+  .philo-grid, .temo-grid, .infos-grid { grid-template-columns: 1fr; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .galerie { padding: 5rem 2rem; }
+  .galerie-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+  .galerie-grid .g-main { grid-row: auto; }
+  .resa-form { flex-direction: column; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+}
+
+/* ── ANIMATIONS ──────────────────────────────────────── */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.fade-up.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">Le Velours</a>
+  <ul class="nav-links">
+    <li><a href="#philosophie">Notre philosophie</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#infos">Infos pratiques</a></li>
+  </ul>
+  <a href="#reservation" class="nav-cta">Réserver une table</a>
+  <button class="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <p class="eyebrow">Restaurant gastronomique · Brazzaville</p>
+    <h1 class="hero-title">L'art de la table,<br><em>réinventé.</em></h1>
+    <p class="hero-desc">Au cœur de Brazzaville, Le Velours célèbre la gastronomie africaine contemporaine. Des produits d'exception, une cuisine de précision, un cadre où chaque détail compte.</p>
+    <div class="hero-actions">
+      <a href="#reservation" class="btn-primary">Réserver une table</a>
+      <a href="#menu" class="btn-ghost-link">Découvrir le menu</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&h=900&auto=format&fit=crop&q=85" alt="Plat gastronomique Le Velours">
+  </div>
+</section>
+
+<!-- PHILOSOPHIE -->
+<section class="philosophie" id="philosophie">
+  <div class="section-inner">
+    <div class="philo-grid">
+      <div class="philo-text fade-up">
+        <span class="section-label">Notre philosophie</span>
+        <h2 class="section-title">Une cuisine qui<br><em>raconte l'Afrique.</em></h2>
+        <div class="divider"></div>
+        <p>Chez Le Velours, chaque assiette est une déclaration. Nous puisons dans la richesse des saveurs africaines pour créer une gastronomie contemporaine qui surprend, émeut et nourrit l'âme autant que le corps.</p>
+        <p>Notre chef, formé dans les plus grandes maisons européennes, est revenu à Brazzaville avec une conviction : la cuisine congolaise mérite sa place sur la scène gastronomique mondiale. C'est ce que nous prouvons, soir après soir.</p>
+        <p>Produits locaux sélectionnés à la source, techniques de haute gastronomie, présentation obsessionnelle du détail — voilà notre promesse.</p>
+      </div>
+      <div class="philo-img fade-up">
+        <img src="https://images.unsplash.com/photo-1611520175743-30ff00129621?w=700&h=900&auto=format&fit=crop&q=85" alt="Chef Le Velours">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU SIGNATURE -->
+<section class="menu-bg" id="menu">
+  <div class="section-inner">
+    <span class="section-label fade-up">Menu signature</span>
+    <h2 class="section-title fade-up">Nos créations<br><em>du moment.</em></h2>
+    <div class="divider fade-up"></div>
+
+    <div class="menu-grid fade-up">
+      <div class="menu-item">
+        <p class="menu-cat">Entrée</p>
+        <h3 class="menu-name">Carpaccio de capitaine fumé</h3>
+        <p class="menu-desc">Fines tranches de poisson fumé au bois de manguier, vinaigrette aux agrumes du Kongo, mousse de manioc, huile de palme vierge.</p>
+        <p class="menu-price">8 500 FCFA</p>
+      </div>
+      <div class="menu-item">
+        <p class="menu-cat">Entrée</p>
+        <h3 class="menu-name">Velouté de ndolé</h3>
+        <p class="menu-desc">Crème onctueuse aux feuilles de ndolé, tuile de crevettes séchées, émulsion de noix de coco fraîche et gingembre.</p>
+        <p class="menu-price">7 000 FCFA</p>
+      </div>
+      <div class="menu-item">
+        <p class="menu-cat">Plat</p>
+        <h3 class="menu-name">Filet de bœuf, sauce aux arachides</h3>
+        <p class="menu-desc">Filet mignon, jus de viande réduit aux arachides torréfiées, purée de banane plantain, chips de taro, herbes fraîches du jardin.</p>
+        <p class="menu-price">22 000 FCFA</p>
+      </div>
+      <div class="menu-item">
+        <p class="menu-cat">Plat</p>
+        <h3 class="menu-name">Homard du fleuve Congo</h3>
+        <p class="menu-desc">Crustacé poché au beurre clarifié, risotto au lait de coco et citron vert, sabayon de safran, caviar de tomate.</p>
+        <p class="menu-price">28 000 FCFA</p>
+      </div>
+      <div class="menu-item">
+        <p class="menu-cat">Dessert</p>
+        <h3 class="menu-name">Fondant chocolat-café Congo</h3>
+        <p class="menu-desc">Cœur coulant au chocolat noir 72% du Kivu, glace café arabica, tuile de sésame caramélisé, crème anglaise à la vanille de Madagascar.</p>
+        <p class="menu-price">6 500 FCFA</p>
+      </div>
+      <div class="menu-item">
+        <p class="menu-cat">Menu dégustation</p>
+        <h3 class="menu-name">L'expérience Velours — 7 services</h3>
+        <p class="menu-desc">Notre voyage gastronomique complet : amuse-bouches, 2 entrées, intermezzo, 2 plats, pré-dessert et dessert. Accord mets-vins disponible.</p>
+        <p class="menu-price">85 000 FCFA / personne</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie" id="galerie">
+  <div class="section-inner">
+    <span class="section-label" style="color:var(--cr);">Galerie</span>
+    <h2 class="section-title" style="color:var(--cl);">L'atmosphère<br><em>du Velours.</em></h2>
+  </div>
+  <div class="section-inner" style="margin-top:2rem;">
+    <div class="galerie-grid">
+      <img class="g-main" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&h=600&auto=format&fit=crop&q=80" alt="Salle Le Velours">
+      <img class="g-sm" src="https://images.unsplash.com/photo-1510924199351-4e9d94df18a6?w=400&h=280&auto=format&fit=crop&q=80" alt="Détail de table">
+      <img class="g-sm" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=280&auto=format&fit=crop&q=80" alt="Plat signature">
+      <img class="g-sm" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=280&auto=format&fit=crop&q=80" alt="Cuisine ouverte">
+      <img class="g-sm" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=280&auto=format&fit=crop&q=80" alt="Dessert">
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages" id="avis">
+  <div class="section-inner">
+    <span class="section-label fade-up">Ce qu'ils en disent</span>
+    <h2 class="section-title fade-up">Des soirées<br><em>inoubliables.</em></h2>
+    <div class="temo-grid">
+      <div class="temo-card fade-up">
+        <p class="temo-text">« Une révélation. On ne s'attendait pas à vivre une expérience gastronomique de ce niveau à Brazzaville. Le chef a réussi quelque chose d'exceptionnel. »</p>
+        <p class="temo-author">Marie K. — Kinshasa</p>
+      </div>
+      <div class="temo-card fade-up">
+        <p class="temo-text">« J'emmène tous mes clients d'affaires dîner au Velours. C'est le seul endroit en ville qui allie raffinement, cuisine de qualité et service digne des grandes tables. »</p>
+        <p class="temo-author">Jean-Pierre M. — Brazzaville</p>
+      </div>
+      <div class="temo-card fade-up">
+        <p class="temo-text">« Le menu dégustation 7 services était un voyage. Chaque plat raconte une histoire. On comprend enfin ce que peut être la haute gastronomie africaine. »</p>
+        <p class="temo-author">Sophie D. — Paris</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉSERVATION -->
+<section class="reservation" id="reservation">
+  <div class="section-inner">
+    <span class="section-label" style="color:var(--cr);display:block;margin-bottom:1rem;">Réservation</span>
+    <h2 class="section-title" style="color:var(--cl);">Réservez votre<br><em>table.</em></h2>
+    <p>Nous vous confirmons votre réservation sous 2 heures.<br>Pour les groupes de plus de 8 personnes, contactez-nous directement.</p>
+    <form class="resa-form" onsubmit="handleResa(event)">
+      <input type="text" placeholder="Votre nom" class="resa-input" required>
+      <input type="tel" placeholder="Téléphone" class="resa-input" required>
+      <input type="date" class="resa-input" required>
+      <select class="resa-input" style="cursor:pointer;">
+        <option value="">Nombre de couverts</option>
+        <option>1 personne</option>
+        <option>2 personnes</option>
+        <option>3 personnes</option>
+        <option>4 personnes</option>
+        <option>5–6 personnes</option>
+        <option>7–8 personnes</option>
+      </select>
+      <button type="submit" class="resa-btn">Confirmer →</button>
+    </form>
+    <p id="resa-msg" style="margin-top:1.5rem;color:var(--cr);font-size:.85rem;display:none;">✓ Demande reçue — nous vous confirmons sous 2h.</p>
+    <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(247,240,230,.08);">
+      <p style="font-size:.8rem;color:rgba(247,240,230,.4);">Ou appelez-nous directement</p>
+      <a href="tel:+242064000000" style="font-family:var(--ff-display);font-size:1.8rem;color:var(--cr);text-decoration:none;display:inline-block;margin-top:.5rem;">+242 06 400 00 00</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS PRATIQUES -->
+<section class="infos" id="infos">
+  <div class="section-inner">
+    <span class="section-label fade-up">Infos pratiques</span>
+    <h2 class="section-title fade-up">Nous trouver,<br><em>nous rejoindre.</em></h2>
+    <div class="divider fade-up"></div>
+    <div class="infos-grid">
+      <div class="info-block fade-up">
+        <h3>Adresse</h3>
+        <address>
+          15, Avenue de la Paix<br>
+          Plateau des 15 ans<br>
+          Brazzaville, Congo<br><br>
+          <a href="https://wa.me/24206400000">Nous écrire sur WhatsApp →</a>
+        </address>
+      </div>
+      <div class="info-block fade-up">
+        <h3>Horaires</h3>
+        <p>
+          Mardi — Samedi<br>
+          Déjeuner : 12h00 – 14h30<br>
+          Dîner : 19h00 – 23h00<br><br>
+          Dimanche : Brunch 11h – 15h<br>
+          Lundi : fermé
+        </p>
+      </div>
+      <div class="info-block fade-up">
+        <h3>Contact & accès</h3>
+        <p>
+          <a href="tel:+242064000000">+242 06 400 00 00</a><br>
+          <a href="mailto:contact@levelours-bzv.com">contact@levelours-bzv.com</a><br><br>
+          Parking privé disponible.<br>
+          Valet sur réservation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Le Velours — Brazzaville</span>
+  <a href="https://bowbosh22.github.io/atelier-kpm" target="_blank" rel="noopener">Site conçu par l'Atelier KPM</a>
+</footer>
+
+<!-- BOUTON WHATSAPP -->
+<a href="https://wa.me/24206400000?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20table%20au%20Velours."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
+   aria-label="Réserver sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+  // Animations scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Formulaire réservation
+  function handleResa(e) {
+    e.preventDefault();
+    document.getElementById('resa-msg').style.display = 'block';
+    e.target.reset();
+  }
+
+  // Navbar scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 40
+      ? 'rgba(247,240,230,.97)'
+      : 'rgba(247,240,230,.92)';
+  }, { passive: true });
+</script>
+</body>
+</html>
