@@ -26,18 +26,23 @@ body { font-family: var(--ff-body); background: var(--sand); color: var(--cocoa)
 /* ── NAVBAR ── */
 nav {
   position: fixed; top: 0; inset-x: 0; z-index: 50;
-  height: 64px; display: flex; align-items: center;
-  padding: 0 3rem; justify-content: space-between;
+  height: 64px;
   background: rgba(244,238,230,.92); backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(42,33,27,.07);
   transition: box-shadow .3s;
 }
 nav.scrolled { box-shadow: 0 2px 24px rgba(42,33,27,.08); }
-.nav-logo { font-family: var(--ff-serif); font-size: 1.15rem; color: var(--cocoa); text-decoration: none; letter-spacing: -.01em; }
-.nav-links { display: flex; gap: 2.2rem; list-style: none; }
-.nav-links a { font-size: .78rem; font-weight: 500; letter-spacing: .04em; color: var(--taupe); text-decoration: none; transition: color .2s; }
+.nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  height: 100%; padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem;
+}
+.nav-logo { font-family: var(--ff-serif); font-size: 1.1rem; color: var(--cocoa); text-decoration: none; letter-spacing: -.01em; white-space: nowrap; flex-shrink: 0; }
+.nav-links { display: flex; gap: 1.6rem; list-style: none; }
+.nav-links a { font-size: .75rem; font-weight: 500; letter-spacing: .03em; color: var(--taupe); text-decoration: none; transition: color .2s; white-space: nowrap; }
 .nav-links a:hover, .nav-links a.active { color: var(--cocoa); }
-.nav-cta { font-size: .72rem; font-weight: 600; background: var(--cocoa); color: var(--sand); padding: .55rem 1.4rem; border-radius: 9999px; text-decoration: none; transition: background .2s; }
+.nav-cta { font-size: .72rem; font-weight: 600; background: var(--cocoa); color: var(--sand); padding: .5rem 1.2rem; border-radius: 9999px; text-decoration: none; transition: background .2s; white-space: nowrap; flex-shrink: 0; }
 .nav-cta:hover { background: var(--clay); }
 
 /* ── HERO ── */
@@ -58,7 +63,7 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(42,33,27,.08); }
   background: radial-gradient(circle, rgba(166,118,78,.08) 0%, transparent 70%);
 }
 .hero-eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--clay); margin-bottom: 1rem; }
-.hero-title { font-family: var(--ff-serif); font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.08; color: var(--cocoa); margin-bottom: 1.2rem; }
+.hero-title { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; color: var(--cocoa); margin-bottom: 1.2rem; }
 .hero-title em { font-style: italic; color: var(--clay); }
 .hero-desc { font-size: .95rem; color: var(--taupe); line-height: 1.8; max-width: 540px; margin: 0 auto 2rem; }
 .hero-stats { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; }
@@ -219,15 +224,17 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
 
 <!-- NAVBAR -->
 <nav id="navbar">
-  <a href="index.html" class="nav-logo">l'Atelier KPM.</a>
-  <ul class="nav-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="realisations.html" class="active">Réalisations</a></li>
-    <li><a href="apropos.html">Qui sommes-nous</a></li>
-    <li><a href="actualites.html">Actualités</a></li>
-    <li><a href="blog.html">Blog</a></li>
-  </ul>
-  <a href="devis.html" class="nav-cta">Devis gratuit</a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">l'Atelier KPM.</a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="realisations.html" class="active">Réalisations</a></li>
+      <li><a href="apropos.html">Qui sommes-nous</a></li>
+      <li><a href="actualites.html">Actualités</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <a href="devis.html" class="nav-cta">Devis gratuit</a>
+  </div>
 </nav>
 
 <!-- HERO -->
