@@ -94,6 +94,13 @@ tailwind.config = {
   }
   .svc-cta:hover { opacity: .7; gap: .9rem; }
   .svc-card-wide { grid-template-columns: 420px 1fr; }
+  .svc-card-wide.reverse { grid-template-columns: 1fr 420px; }
+  .svc-card-wide.reverse .svc-photo { order: 2; }
+  .svc-card-wide.reverse .svc-body { order: 1; border-left: 0; border-right: 1px solid rgba(255,255,255,.06); }
+  @media (max-width: 768px) {
+    .svc-card-wide.reverse .svc-photo,
+    .svc-card-wide.reverse .svc-body { order: initial; border-right: 0; }
+  }
 
   /* Cartes packs tarifs */
   .pack-card {
@@ -177,7 +184,7 @@ tailwind.config = {
 </section>
 
 <!-- GRILLE SERVICES -->
-<section class="max-w-5xl mx-auto px-5 sm:px-8 pb-20 space-y-5">
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pb-20 space-y-5" style="padding-top:.5rem;">
 
   <!-- Ligne 1 : 01 + 02 -->
   <div class="grid sm:grid-cols-2 gap-5">
@@ -296,8 +303,8 @@ tailwind.config = {
     </div>
   </div>
 
-  <!-- Ligne 4 : 06 Maintenance pleine largeur -->
-  <div class="svc-card svc-card-wide">
+  <!-- Ligne 4 : 06 Maintenance pleine largeur (inversée pour rythme visuel) -->
+  <div class="svc-card svc-card-wide reverse">
     <div class="svc-photo">
       <span class="svc-num">06</span>
       <img src="laptop_dark_minimal.jpg" alt="Maintenance" style="object-position:center 30%;filter:brightness(.5) saturate(.6) hue-rotate(180deg);">
@@ -327,7 +334,7 @@ tailwind.config = {
      SECTION TARIFS
 ══════════════════════════════ -->
 <!-- TEASER TARIFS -->
-<section id="tarifs" style="background:#120d08;border-top:1px solid rgba(255,255,255,.06);">
+<section id="tarifs" style="background:linear-gradient(180deg,#1A1210 0%,#120d08 12%,#120d08 100%);border-top:1px solid rgba(255,255,255,.04);">
   <div class="max-w-4xl mx-auto px-5 sm:px-8 py-20 sm:py-28 text-center">
     <div class="eyebrow mb-5">Tarifs</div>
     <h2 class="font-serif serif-tight mb-6" style="color:#F4EEE6;font-size:clamp(2rem,7vw,3.6rem);line-height:1.08;">
@@ -400,6 +407,11 @@ tailwind.config = {
   // Délai en cascade pour les packs
   document.querySelectorAll('.pack-card').forEach((el, i) => {
     el.style.transitionDelay = `${i * 0.12}s`;
+  });
+
+  // Délai en cascade pour les cartes services, ligne par ligne (fluidité de l'apparition)
+  document.querySelectorAll('.svc-card:not(.svc-card-wide)').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 2) * 0.1}s`;
   });
 </script>
 
