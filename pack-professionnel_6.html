@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Eldorado — Sanctuaire · Brazzaville</title>
+<meta name="description" content="The Eldorado, sanctuaire hôtelier au cœur de Brazzaville. Chambres inspirées par la nature, spa, gastronomie durable. Un lieu que l'on ressent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --forest: #1D2B22;
+  --forestlt: #2B3E30;
+  --sand:   #D8C7A1;
+  --cream:  #F6F1E7;
+  --gold:   #B99A5B;
+  --muted:  rgba(246,241,231,.55);
+  --ff-serif: 'Fraunces', Georgia, serif;
+  --ff-body:  'Jost', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-body); background: var(--forest); color: var(--cream); font-weight: 300; overflow-x: hidden; line-height: 1.6; }
+
+/* NAV */
+nav { position: fixed; top: 0; inset-x: 0; z-index: 100; height: 76px; transition: background .4s, border .4s; }
+nav.scrolled { background: rgba(29,43,34,.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(246,241,231,.08); }
+.nav-inner { max-width: 1200px; margin: 0 auto; height: 100%; padding: 0 2.5rem; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; }
+.nav-logo { font-family: var(--ff-serif); font-size: 1.2rem; font-style: italic; color: var(--cream); text-decoration: none; letter-spacing: .03em; justify-self: start; }
+.nav-links { display: flex; gap: 2.2rem; list-style: none; justify-self: center; }
+.nav-links a { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(246,241,231,.65); text-decoration: none; transition: color .3s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { font-size: .68rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; border: 1px solid var(--gold); color: var(--gold); padding: .6rem 1.6rem; text-decoration: none; justify-self: end; transition: all .3s; }
+.nav-cta:hover { background: var(--gold); color: var(--forest); }
+.burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: .5rem; justify-self: end; }
+.burger span { width: 20px; height: 1px; background: var(--cream); transition: all .3s; }
+.mobile-menu { display: none; position: fixed; top: 76px; inset-inline: 0; background: var(--forest); border-bottom: 1px solid rgba(246,241,231,.08); z-index: 99; padding: 1.5rem 2.5rem 2rem; flex-direction: column; gap: 1.2rem; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--cream); text-decoration: none; }
+
+/* HERO */
+.hero { min-height: 100vh; position: relative; display: flex; align-items: flex-end; padding: 0 2.5rem 5rem; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; overflow: hidden; }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(29,43,34,.92) 10%, rgba(29,43,34,.25) 60%); }
+.hero-content { position: relative; z-index: 2; max-width: 720px; }
+.hero-eyebrow { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.6rem; }
+.hero-title { font-family: var(--ff-serif); font-style: italic; font-weight: 300; font-size: clamp(3rem, 8vw, 6.5rem); line-height: 1; color: var(--cream); margin-bottom: 1.5rem; }
+.hero-desc { font-size: 1rem; color: rgba(246,241,231,.7); max-width: 480px; line-height: 1.8; margin-bottom: 2.5rem; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-gold { background: var(--gold); color: var(--forest); font-size: .74rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding: 1rem 2.4rem; text-decoration: none; transition: opacity .3s; }
+.btn-gold:hover { opacity: .85; }
+.btn-outline { border: 1px solid rgba(246,241,231,.3); color: var(--cream); font-size: .74rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding: 1rem 2.4rem; text-decoration: none; transition: border-color .3s; }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.scroll-cue-eldo { position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%); z-index: 2; font-size: .62rem; letter-spacing: .25em; text-transform: uppercase; color: rgba(246,241,231,.6); display: flex; flex-direction: column; align-items: center; gap: .6rem; }
+.scroll-cue-eldo::after { content: ''; width: 1px; height: 30px; background: var(--gold); animation: eldoscroll 1.8s ease-in-out infinite; }
+@keyframes eldoscroll { 0%,100% { transform: scaleY(1); opacity: .6; } 50% { transform: scaleY(.4); opacity: 1; } }
+
+/* PHILOSOPHIE */
+.section { padding: 7rem 2.5rem; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.eyebrow { font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.2rem; }
+.section-title { font-family: var(--ff-serif); font-style: italic; font-weight: 300; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.15; color: var(--cream); margin-bottom: 1.2rem; }
+
+.philo { background: var(--forestlt); text-align: center; }
+.philo-quote { font-family: var(--ff-serif); font-style: italic; font-weight: 300; font-size: clamp(1.4rem, 3.5vw, 2.4rem); line-height: 1.5; max-width: 780px; margin: 0 auto 2.5rem; color: var(--cream); }
+.philo-desc { font-size: .9rem; color: rgba(246,241,231,.55); max-width: 560px; margin: 0 auto; line-height: 1.9; }
+
+/* STATS */
+.stats-row { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid rgba(246,241,231,.08); border-bottom: 1px solid rgba(246,241,231,.08); }
+.stat-item { padding: 2.8rem; text-align: center; border-right: 1px solid rgba(246,241,231,.08); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-family: var(--ff-serif); font-style: italic; font-size: 2.6rem; color: var(--gold); }
+.stat-lbl { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(246,241,231,.4); margin-top: .5rem; }
+
+/* CHAMBRES */
+.chambres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.chambre-card { background: var(--forestlt); border: 1px solid rgba(246,241,231,.06); overflow: hidden; transition: transform .4s; }
+.chambre-card:hover { transform: translateY(-6px); }
+.chambre-img { height: 240px; overflow: hidden; }
+.chambre-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.chambre-card:hover .chambre-img img { transform: scale(1.06); }
+.chambre-body { padding: 1.8rem; }
+.chambre-cat { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .6rem; }
+.chambre-name { font-family: var(--ff-serif); font-style: italic; font-size: 1.4rem; color: var(--cream); margin-bottom: .6rem; }
+.chambre-desc { font-size: .8rem; color: rgba(246,241,231,.5); line-height: 1.7; margin-bottom: 1.4rem; }
+.chambre-foot { display: flex; justify-content: space-between; align-items: baseline; padding-top: 1.2rem; border-top: 1px solid rgba(246,241,231,.08); }
+.chambre-price { font-family: var(--ff-serif); font-size: 1.2rem; color: var(--gold); }
+.chambre-price small { font-family: var(--ff-body); font-size: .62rem; color: rgba(246,241,231,.4); }
+
+/* BIEN-ÊTRE - split image/text like 1Hotels sustainability blocks */
+.bienetre { background: var(--forest); }
+.bienetre-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+.be-card { text-align: left; }
+.be-img { aspect-ratio: 4/3; overflow: hidden; margin-bottom: 1.5rem; }
+.be-img img { width: 100%; height: 100%; object-fit: cover; }
+.be-title { font-family: var(--ff-serif); font-style: italic; font-size: 1.3rem; color: var(--cream); margin-bottom: .6rem; }
+.be-desc { font-size: .82rem; color: rgba(246,241,231,.5); line-height: 1.75; }
+
+/* GALERIE */
+.galerie-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 280px 280px; gap: 4px; }
+.galerie-item { overflow: hidden; }
+.galerie-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; filter: brightness(.88); }
+.galerie-item:hover img { transform: scale(1.06); filter: brightness(1); }
+.galerie-item.large { grid-column: span 2; grid-row: span 2; }
+
+/* ADMIN PREVIEW */
+.admin-preview { background: var(--forestlt); }
+.admin-mockup { background: #14201A; border: 1px solid rgba(246,241,231,.08); border-radius: 8px; padding: 1.5rem; max-width: 900px; margin: 3rem auto 0; }
+.admin-bar { display: flex; align-items: center; gap: .4rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(246,241,231,.06); margin-bottom: 1.5rem; }
+.admin-dot { width: 8px; height: 8px; border-radius: 50%; }
+.admin-bar-title { margin-left: 1rem; font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(246,241,231,.4); }
+.admin-content { display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; }
+.admin-sidebar { background: rgba(246,241,231,.03); padding: 1rem; border-radius: 4px; }
+.admin-sidebar-item { padding: .6rem .8rem; font-size: .7rem; color: rgba(246,241,231,.5); border-radius: 3px; margin-bottom: .3rem; }
+.admin-sidebar-item.active { background: var(--gold); color: var(--forest); }
+.admin-main { display: flex; flex-direction: column; gap: 1rem; }
+.admin-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.admin-kpi { background: rgba(246,241,231,.04); padding: 1rem; border-radius: 4px; }
+.admin-kpi-lbl { font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(246,241,231,.4); margin-bottom: .5rem; }
+.admin-kpi-val { font-family: var(--ff-serif); font-style: italic; font-size: 1.4rem; color: var(--gold); }
+.admin-table { background: rgba(246,241,231,.04); border-radius: 4px; padding: 1rem; flex: 1; }
+.admin-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid rgba(246,241,231,.05); font-size: .72rem; color: rgba(246,241,231,.6); align-items: center; }
+.admin-row:last-child { border: none; }
+.admin-status { font-size: .56rem; padding: .2rem .6rem; border-radius: 9999px; background: rgba(185,154,91,.2); color: var(--gold); letter-spacing: .08em; text-transform: uppercase; }
+.admin-status.ok { background: rgba(90,155,110,.2); color: #7ac68a; }
+
+/* TÉMOIGNAGES */
+.temo { background: var(--forestlt); text-align: center; }
+.temo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; text-align: left; }
+.temo-card { background: rgba(246,241,231,.04); border: 1px solid rgba(246,241,231,.08); padding: 2rem; }
+.temo-stars { color: var(--gold); font-size: .8rem; margin-bottom: 1rem; letter-spacing: .1em; }
+.temo-text { font-family: var(--ff-serif); font-style: italic; font-size: 1.05rem; color: var(--cream); line-height: 1.65; margin-bottom: 1.2rem; }
+.temo-author { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(246,241,231,.4); }
+
+/* RESERVATION */
+.resa { background: var(--forest); }
+.resa-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: start; }
+.resa-info-list { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 2.2rem; }
+.resa-info-item { padding-bottom: 1.6rem; border-bottom: 1px solid rgba(246,241,231,.08); }
+.resa-info-item:last-child { border: none; }
+.resa-label { font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+.resa-val { font-family: var(--ff-serif); font-style: italic; font-size: 1.15rem; color: var(--cream); line-height: 1.6; }
+.resa-val a { color: var(--cream); text-decoration: none; }
+.resa-val a:hover { color: var(--gold); }
+
+.resa-form { background: var(--forestlt); border: 1px solid rgba(246,241,231,.08); padding: 2.8rem; }
+.form-title { font-family: var(--ff-serif); font-style: italic; font-size: 1.5rem; color: var(--cream); margin-bottom: 2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.f-field { margin-bottom: 1.1rem; }
+.f-label { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: .5rem; }
+.f-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(246,241,231,.15); padding: .65rem 0; font-family: var(--ff-body); font-size: .86rem; color: var(--cream); outline: none; transition: border-color .2s; }
+.f-input::placeholder { color: rgba(246,241,231,.25); }
+.f-input:focus { border-color: var(--gold); }
+.f-input option { background: var(--forestlt); }
+.f-submit { width: 100%; background: var(--gold); color: var(--forest); border: none; padding: 1rem; font-family: var(--ff-body); font-size: .7rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: opacity .2s; margin-top: 1rem; }
+.f-submit:hover { opacity: .85; }
+
+/* FOOTER */
+footer { background: #12190F; padding: 4rem 2.5rem 2rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-logo { font-family: var(--ff-serif); font-style: italic; font-size: 1.8rem; color: var(--cream); margin-bottom: 1rem; }
+.footer-tagline { font-size: .8rem; color: rgba(246,241,231,.45); line-height: 1.8; max-width: 320px; }
+.footer-col-title { font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+.footer-col a { display: block; font-size: .8rem; color: rgba(246,241,231,.45); text-decoration: none; margin-bottom: .7rem; }
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom { border-top: 1px solid rgba(246,241,231,.08); padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: .68rem; color: rgba(246,241,231,.2); }
+.footer-bottom a { color: rgba(185,154,91,.5); text-decoration: none; }
+
+@media (max-width: 1000px) {
+  nav .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .burger { display: flex; }
+  nav { padding: 0 1.5rem; }
+  .hero { padding: 0 1.5rem 3rem; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(246,241,231,.08); }
+  .chambres-grid, .bienetre-grid, .temo-grid { grid-template-columns: 1fr; }
+  .galerie-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .galerie-item.large { grid-column: span 2; grid-row: span 1; }
+  .resa-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .admin-content { grid-template-columns: 1fr; }
+  .admin-sidebar { display: none; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .section { padding: 5rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* GASTRONOMIE - split large */
+.taste { background: var(--forest); }
+.taste-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.taste-img { aspect-ratio: 4/5; overflow: hidden; }
+.taste-img img { width: 100%; height: 100%; object-fit: cover; }
+.taste-features { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 2.5rem; }
+.taste-feat { padding-bottom: 1.4rem; border-bottom: 1px solid rgba(246,241,231,.08); }
+.taste-feat:last-child { border: none; }
+.taste-feat-title { font-family: var(--ff-serif); font-style: italic; font-size: 1.15rem; color: var(--cream); margin-bottom: .5rem; }
+.taste-feat-desc { font-size: .82rem; color: rgba(246,241,231,.5); line-height: 1.7; }
+
+/* EXPERIENCES */
+.experiences { background: var(--forestlt); }
+.exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.exp-card { background: rgba(246,241,231,.04); border: 1px solid rgba(246,241,231,.08); padding: 1.8rem; transition: transform .3s, border-color .3s; }
+.exp-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+.exp-icon { font-family: var(--ff-serif); font-style: italic; font-size: 1.6rem; color: var(--gold); margin-bottom: 1rem; }
+.exp-name { font-family: var(--ff-serif); font-style: italic; font-size: 1.1rem; color: var(--cream); margin-bottom: .6rem; }
+.exp-desc { font-size: .76rem; color: rgba(246,241,231,.5); line-height: 1.65; }
+
+/* PRESSE */
+.presse { background: var(--forest); padding: 3.5rem 2.5rem; border-top: 1px solid rgba(246,241,231,.08); border-bottom: 1px solid rgba(246,241,231,.08); }
+.presse-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+.presse-label { font-size: .6rem; letter-spacing: .24em; text-transform: uppercase; color: rgba(246,241,231,.35); margin-bottom: 2rem; }
+.presse-logos { display: flex; justify-content: center; gap: 3.5rem; flex-wrap: wrap; align-items: center; }
+.presse-logo { font-family: var(--ff-serif); font-style: italic; font-size: 1.3rem; color: rgba(246,241,231,.35); }
+
+/* DESTINATION */
+.destination { background: var(--forestlt); }
+.dest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+.dest-card { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+.dest-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.dest-card:hover img { transform: scale(1.08); }
+.dest-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(19,29,22,.9), transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.6rem; }
+.dest-name { font-family: var(--ff-serif); font-style: italic; font-size: 1.3rem; color: var(--cream); margin-bottom: .3rem; }
+.dest-dist { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+
+/* FAQ */
+.faq { background: var(--forest); }
+.faq-list { max-width: 760px; margin: 3rem auto 0; text-align: left; }
+.faq-item { border-bottom: 1px solid rgba(246,241,231,.08); padding: 1.5rem 0; }
+.faq-q { display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; font-family: var(--ff-serif); font-style: italic; font-size: 1.1rem; color: var(--cream); }
+.faq-q .plus { font-size: 1.3rem; color: var(--gold); transition: transform .3s; flex-shrink: 0; }
+.faq-item.open .plus { transform: rotate(45deg); }
+.faq-a { font-size: .84rem; color: rgba(246,241,231,.55); line-height: 1.8; margin-top: .9rem; display: none; }
+.faq-item.open .faq-a { display: block; }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">The Eldorado</a>
+    <ul class="nav-links">
+      <li><a href="#philo">Sanctuaire</a></li>
+      <li><a href="#chambres">Chambres</a></li>
+      <li><a href="#bienetre">Bien-être</a></li>
+      <li><a href="#temoignages">Avis</a></li>
+      <li><a href="#resa">Réserver</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:.5rem;justify-self:end;">
+      <a href="#resa" class="nav-cta">Réserver</a>
+      <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#philo" onclick="closeMenu()">Sanctuaire</a>
+    <a href="#chambres" onclick="closeMenu()">Chambres</a>
+    <a href="#bienetre" onclick="closeMenu()">Bien-être</a>
+    <a href="#temoignages" onclick="closeMenu()">Avis</a>
+    <a href="#resa" onclick="closeMenu()" style="color:var(--gold);">Réserver un séjour →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero-section">
+  <div class="hero-bg">
+    <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1800&h=1100&auto=format&fit=crop&q=85">
+      <source src="hero-eldorado.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="scroll-cue-eldo">Découvrir</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Brazzaville · Congo</p>
+    <h1 class="hero-title">The Eldorado.</h1>
+    <p class="hero-desc">Il y a des lieux que l'on visite. D'autres que l'on ressent.</p>
+    <div class="hero-btns">
+      <a href="#resa" class="btn-gold">Réserver un séjour</a>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHIE -->
+<section class="section philo" id="philo">
+  <div class="section-inner reveal">
+    <span class="eyebrow">Philosophie</span>
+    <p class="philo-quote">« La nature n'est pas un décor. Elle est notre manière de recevoir. »</p>
+    <p class="philo-desc">The Eldorado a été pensé comme un sanctuaire urbain — matériaux naturels, lumière du jour, silence retrouvé. Chaque espace invite à ralentir, dans le respect de son environnement et de ceux qui l'habitent.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-item reveal"><div class="stat-num">32</div><div class="stat-lbl">Chambres & suites</div></div>
+  <div class="stat-item reveal"><div class="stat-num">100%</div><div class="stat-lbl">Matériaux locaux</div></div>
+  <div class="stat-item reveal"><div class="stat-num">4.9</div><div class="stat-lbl">Note moyenne</div></div>
+  <div class="stat-item reveal"><div class="stat-num">24h</div><div class="stat-lbl">Conciergerie</div></div>
+</div>
+
+<!-- CHAMBRES -->
+<section class="section" id="chambres">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="eyebrow">Hébergement</span>
+      <h2 class="section-title">Des chambres pensées<br>comme des refuges.</h2>
+    </div>
+    <div class="chambres-grid">
+      <div class="chambre-card reveal">
+        <div class="chambre-img"><img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600&h=450&auto=format&fit=crop&q=80" alt="Chambre Nature"></div>
+        <div class="chambre-body">
+          <p class="chambre-cat">Entrée de gamme</p>
+          <h3 class="chambre-name">Chambre Nature</h3>
+          <p class="chambre-desc">Lumière naturelle, matériaux bruts, vue sur le jardin intérieur. Le calme comme point de départ.</p>
+          <div class="chambre-foot">
+            <div class="chambre-price">95 000 <small>FCFA / nuit</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="chambre-card reveal">
+        <div class="chambre-img"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&h=450&auto=format&fit=crop&q=80" alt="Suite Sanctuaire"></div>
+        <div class="chambre-body">
+          <p class="chambre-cat">Signature</p>
+          <h3 class="chambre-name">Suite Sanctuaire</h3>
+          <p class="chambre-desc">Espace généreux, baignoire îlot, terrasse privée. Notre catégorie la plus demandée.</p>
+          <div class="chambre-foot">
+            <div class="chambre-price">165 000 <small>FCFA / nuit</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="chambre-card reveal">
+        <div class="chambre-img"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&auto=format&fit=crop&q=80" alt="Villa Eldorado"></div>
+        <div class="chambre-body">
+          <p class="chambre-cat">Exclusivité</p>
+          <h3 class="chambre-name">Villa Eldorado</h3>
+          <p class="chambre-desc">Villa indépendante, piscine privée, majordome dédié. L'expérience ultime du sanctuaire.</p>
+          <div class="chambre-foot">
+            <div class="chambre-price">320 000 <small>FCFA / nuit</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIEN-ÊTRE / NATURE (inspiré 1 Hotels) -->
+<section class="section bienetre" id="bienetre">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="eyebrow">Notre engagement</span>
+      <h2 class="section-title">Ici, la nature<br>mène la danse.</h2>
+      <p class="philo-desc" style="margin:0 auto;">Trois piliers guident chaque détail de The Eldorado — du mobilier à l'assiette.</p>
+    </div>
+    <div class="bienetre-grid">
+      <div class="be-card reveal">
+        <div class="be-img"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&h=375&auto=format&fit=crop&q=80" alt="Spa"></div>
+        <h3 class="be-title">Spa & Bien-être</h3>
+        <p class="be-desc">Un espace dédié aux soins et à la reconnexion — massages, sauna, yoga au lever du soleil.</p>
+      </div>
+      <div class="be-card reveal">
+        <div class="be-img"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&h=375&auto=format&fit=crop&q=80" alt="Gastronomie"></div>
+        <h3 class="be-title">Gastronomie durable</h3>
+        <p class="be-desc">Une cuisine locale et de saison, en circuit court avec les producteurs des environs de Brazzaville.</p>
+      </div>
+      <div class="be-card reveal">
+        <div class="be-img"><img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=500&h=375&auto=format&fit=crop&q=80" alt="Architecture"></div>
+        <h3 class="be-title">Architecture responsable</h3>
+        <p class="be-desc">Matériaux locaux, ventilation naturelle, mobilier artisanal — construit pour durer, pas pour impressionner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GASTRONOMIE -->
+<section class="section taste">
+  <div class="section-inner">
+    <div class="taste-grid">
+      <div class="taste-img reveal">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=750&auto=format&fit=crop&q=85" alt="Restaurant The Eldorado">
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Table</span>
+        <h2 class="section-title">Une cuisine qui raconte le Congo.</h2>
+        <p class="philo-desc" style="text-align:left;margin:0;">Notre chef propose une carte de saison, ancrée dans les produits locaux, entre tradition congolaise revisitée et gastronomie internationale.</p>
+        <div class="taste-features">
+          <div class="taste-feat">
+            <h3 class="taste-feat-title">Le Restaurant</h3>
+            <p class="taste-feat-desc">Cuisine ouverte, produits de saison, menu renouvelé chaque mois. Petit-déjeuner, déjeuner et dîner.</p>
+          </div>
+          <div class="taste-feat">
+            <h3 class="taste-feat-title">Le Bar du Jardin</h3>
+            <p class="taste-feat-desc">Cocktails signature et vins sélectionnés, servis en terrasse au coucher du soleil.</p>
+          </div>
+          <div class="taste-feat">
+            <h3 class="taste-feat-title">Room Service</h3>
+            <p class="taste-feat-desc">Disponible 24h/24 pour tous les résidents, avec la même exigence qu'en salle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section class="section experiences">
+  <div class="section-inner" style="text-align:center;">
+    <span class="eyebrow reveal">À vivre sur place</span>
+    <h2 class="section-title reveal">Des expériences,<br>pas seulement un séjour.</h2>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <div class="exp-icon">☀</div>
+        <h3 class="exp-name">Yoga au lever du jour</h3>
+        <p class="exp-desc">Séance guidée chaque matin dans le jardin intérieur.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">🌿</div>
+        <h3 class="exp-name">Atelier plantes locales</h3>
+        <p class="exp-desc">Découverte de la flore congolaise avec notre botaniste résident.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">♨</div>
+        <h3 class="exp-name">Rituel spa signature</h3>
+        <p class="exp-desc">Un parcours bien-être de 2h, pensé comme une parenthèse complète.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">✦</div>
+        <h3 class="exp-name">Dîner sous les étoiles</h3>
+        <p class="exp-desc">Table privée dressée dans le jardin, sur réservation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESSE -->
+<div class="presse">
+  <div class="presse-inner">
+    <p class="presse-label reveal">Ils en parlent</p>
+    <div class="presse-logos reveal">
+      <span class="presse-logo">Condé Nast Traveler</span>
+      <span class="presse-logo">Travel + Leisure</span>
+      <span class="presse-logo">Le Point Afrique</span>
+      <span class="presse-logo">Jeune Afrique</span>
+    </div>
+  </div>
+</div>
+
+<!-- GALERIE -->
+<div class="galerie-grid">
+  <div class="galerie-item large"><img src="https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=900&h=700&auto=format&fit=crop&q=85" alt=""></div>
+  <div class="galerie-item"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=450&h=320&auto=format&fit=crop&q=80" alt=""></div>
+  <div class="galerie-item"><img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=450&h=320&auto=format&fit=crop&q=80" alt=""></div>
+  <div class="galerie-item"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=450&h=320&auto=format&fit=crop&q=80" alt=""></div>
+  <div class="galerie-item"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=450&h=320&auto=format&fit=crop&q=80" alt=""></div>
+</div>
+
+<!-- TÉMOIGNAGES -->
+<section class="section temo" id="temoignages">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Ils y sont retournés</span>
+    <h2 class="section-title reveal" style="text-align:center;">Un lieu que l'on n'oublie pas.</h2>
+    <div class="temo-grid">
+      <div class="temo-card reveal">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« Dès l'arrivée, on sent que c'est différent. Le calme, les matériaux, l'attention aux détails — un vrai sanctuaire. »</p>
+        <p class="temo-author">M. Loko · Suite Sanctuaire</p>
+      </div>
+      <div class="temo-card reveal">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« La Villa Eldorado a rendu notre séjour inoubliable. Service impeccable, intimité totale. »</p>
+        <p class="temo-author">Famille Itoua · Villa Eldorado</p>
+      </div>
+      <div class="temo-card reveal">
+        <div class="temo-stars">★★★★★</div>
+        <p class="temo-text">« Le spa et la cuisine locale ont dépassé toutes mes attentes. Je recommande sans hésiter. »</p>
+        <p class="temo-author">Mme Nkodia · Chambre Nature</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN PREVIEW -->
+<section class="section admin-preview">
+  <div class="section-inner" style="text-align:center;">
+    <span class="eyebrow reveal">Espace gestion</span>
+    <h2 class="section-title reveal">Un hôtel, aussi piloté<br>en coulisses.</h2>
+    <div class="admin-mockup reveal">
+      <div class="admin-bar">
+        <div class="admin-dot" style="background:#ff5f57"></div>
+        <div class="admin-dot" style="background:#febc2e"></div>
+        <div class="admin-dot" style="background:#28c840"></div>
+        <div class="admin-bar-title">Admin · The Eldorado</div>
+      </div>
+      <div class="admin-content">
+        <div class="admin-sidebar">
+          <div class="admin-sidebar-item active">Tableau de bord</div>
+          <div class="admin-sidebar-item">Réservations</div>
+          <div class="admin-sidebar-item">Chambres</div>
+          <div class="admin-sidebar-item">Clients</div>
+          <div class="admin-sidebar-item">Statistiques</div>
+        </div>
+        <div class="admin-main">
+          <div class="admin-kpis">
+            <div class="admin-kpi"><div class="admin-kpi-lbl">Taux d'occupation</div><div class="admin-kpi-val">87%</div></div>
+            <div class="admin-kpi"><div class="admin-kpi-lbl">CA du mois</div><div class="admin-kpi-val">14.2M</div></div>
+            <div class="admin-kpi"><div class="admin-kpi-lbl">Séjours actifs</div><div class="admin-kpi-val">21</div></div>
+          </div>
+          <div class="admin-table">
+            <div class="admin-row"><span>M. Loko</span><span>Suite Sanctuaire</span><span>3 nuits</span><span class="admin-status ok">Confirmé</span></div>
+            <div class="admin-row"><span>Mme Nkodia</span><span>Chambre Nature</span><span>2 nuits</span><span class="admin-status ok">Confirmé</span></div>
+            <div class="admin-row"><span>M. & Mme Itoua</span><span>Villa Eldorado</span><span>5 nuits</span><span class="admin-status">En attente</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DESTINATION -->
+<section class="section destination">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="eyebrow">Autour de vous</span>
+      <h2 class="section-title">Brazzaville, à explorer.</h2>
+    </div>
+    <div class="dest-grid">
+      <div class="dest-card reveal">
+        <img src="https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=500&h=650&auto=format&fit=crop&q=80" alt="Bord du fleuve">
+        <div class="dest-overlay">
+          <h3 class="dest-name">Bord du fleuve Congo</h3>
+          <p class="dest-dist">10 minutes en voiture</p>
+        </div>
+      </div>
+      <div class="dest-card reveal">
+        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=500&h=650&auto=format&fit=crop&q=80" alt="Centre-ville">
+        <div class="dest-overlay">
+          <h3 class="dest-name">Centre-ville & marchés</h3>
+          <p class="dest-dist">5 minutes à pied</p>
+        </div>
+      </div>
+      <div class="dest-card reveal">
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&h=650&auto=format&fit=crop&q=80" alt="Aéroport">
+        <div class="dest-overlay">
+          <h3 class="dest-name">Aéroport Maya-Maya</h3>
+          <p class="dest-dist">20 minutes en voiture</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq">
+  <div class="section-inner" style="text-align:center;">
+    <span class="eyebrow reveal">Questions fréquentes</span>
+    <h2 class="section-title reveal">Avant votre séjour.</h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Quelle est l'heure d'arrivée et de départ ?</span><span class="plus">+</span></div>
+        <p class="faq-a">Check-in à partir de 14h, check-out avant 12h. Un départ tardif peut être organisé sur demande selon disponibilité.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Le petit-déjeuner est-il inclus ?</span><span class="plus">+</span></div>
+        <p class="faq-a">Oui, le petit-déjeuner est inclus dans toutes nos catégories de chambres et servi de 6h30 à 10h30.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Proposez-vous un transfert depuis l'aéroport ?</span><span class="plus">+</span></div>
+        <p class="faq-a">Oui, sur réservation. Notre équipe vous accueille dès votre arrivée à Maya-Maya pour un transfert privé.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Puis-je annuler ma réservation ?</span><span class="plus">+</span></div>
+        <p class="faq-a">Annulation gratuite jusqu'à 48h avant l'arrivée. Au-delà, la première nuit sera facturée.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section class="section resa" id="resa">
+  <div class="section-inner">
+    <div class="resa-grid">
+      <div class="reveal">
+        <span class="eyebrow">Réservation directe</span>
+        <h2 class="section-title">Votre séjour<br>commence ici.</h2>
+        <p class="philo-desc" style="margin:1.5rem 0 0;text-align:left;">Meilleur tarif garanti en réservation directe. Confirmation sous 2h.</p>
+        <div class="resa-info-list">
+          <div class="resa-info-item">
+            <p class="resa-label">Adresse</p>
+            <p class="resa-val">32, Avenue de l'Indépendance<br>Centre-ville · Brazzaville</p>
+          </div>
+          <div class="resa-info-item">
+            <p class="resa-label">Téléphone</p>
+            <p class="resa-val"><a href="tel:+242066345678">+242 06 634 5678</a></p>
+          </div>
+          <div class="resa-info-item">
+            <p class="resa-label">Email</p>
+            <p class="resa-val"><a href="mailto:reservation@theeldorado.cg">reservation@theeldorado.cg</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="resa-form">
+          <h3 class="form-title">Réserver un séjour</h3>
+          <form onsubmit="handleForm(event)">
+            <div class="form-row">
+              <div class="f-field"><label class="f-label">Arrivée</label><input type="date" class="f-input" required></div>
+              <div class="f-field"><label class="f-label">Départ</label><input type="date" class="f-input" required></div>
+            </div>
+            <div class="f-field"><label class="f-label">Type de chambre</label>
+              <select class="f-input" required>
+                <option value="">Sélectionner...</option>
+                <option>Chambre Nature — 95 000 F/nuit</option>
+                <option>Suite Sanctuaire — 165 000 F/nuit</option>
+                <option>Villa Eldorado — 320 000 F/nuit</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="f-field"><label class="f-label">Nom</label><input type="text" class="f-input" placeholder="Votre nom" required></div>
+              <div class="f-field"><label class="f-label">Téléphone</label><input type="tel" class="f-input" placeholder="+242 ..." required></div>
+            </div>
+            <button type="submit" class="f-submit">Vérifier la disponibilité</button>
+            <p id="form-msg" style="display:none;margin-top:1rem;font-size:.76rem;color:var(--gold);text-align:center;letter-spacing:.05em;">✓ Demande reçue — nous vous confirmons sous 2h</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">The Eldorado</div>
+        <p class="footer-tagline">Sanctuaire hôtelier au cœur de Brazzaville. Nature, sérénité, hospitalité authentique.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Navigation</p>
+        <a href="#philo">Sanctuaire</a>
+        <a href="#chambres">Chambres</a>
+        <a href="#bienetre">Bien-être</a>
+        <a href="#resa">Réserver</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Contact</p>
+        <a href="tel:+242066345678">+242 06 634 5678</a>
+        <a href="mailto:reservation@theeldorado.cg">reservation@theeldorado.cg</a>
+        <a href="#">32, Avenue de l'Indépendance</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 The Eldorado · Brazzaville</span>
+      <a href="https://bowbosh22.github.io/atelier-kpm" target="_blank" rel="noopener">Site conçu par l'Atelier KPM</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/242066345678?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20s%C3%A9jour."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;"
+   onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+const obs = new IntersectionObserver(e => e.forEach(i => { if(i.isIntersecting) { i.target.classList.add('in'); obs.unobserve(i.target); } }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+function handleForm(e) { e.preventDefault(); document.getElementById('form-msg').style.display = 'block'; e.target.reset(); }
+
+const burgerBtn = document.getElementById('burgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMenu() { mobileMenu.classList.remove('open'); }
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('open'); });
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
