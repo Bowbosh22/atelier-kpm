@@ -124,6 +124,7 @@ tailwind.config = {
       </nav>
 
       <div class="flex items-center gap-4">
+        <a href="index-en.html" id="nav-lang" class="text-xs font-medium transition" style="color:rgba(244,238,230,.6);">EN</a>
         <a href="devis.html" id="nav-devis" class="text-sm font-medium" style="color:#C49A74;border-bottom:1px solid rgba(196,154,116,.45);padding-bottom:2px">Devis gratuit</a>
         <!-- Burger mobile -->
         <button id="burger" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
@@ -145,6 +146,7 @@ tailwind.config = {
       <a href="actualites.html" class="text-taupe hover:text-cocoa transition" onclick="closeMenu()">Actualités</a>
       <a href="blog.html" class="text-taupe hover:text-cocoa transition" onclick="closeMenu()">Blog</a>
       <a href="devis.html" class="btn-dark text-center mt-2" onclick="closeMenu()">Devis gratuit →</a>
+      <a href="index-en.html" class="text-taupe hover:text-cocoa transition text-center" onclick="closeMenu()">🇬🇧 English version</a>
     </nav>
   </div>
 </header>
@@ -710,6 +712,7 @@ const navEl    = document.getElementById('nav');
 const navLogo  = document.getElementById('nav-logo');
 const navDot   = document.getElementById('nav-dot');
 const navDevis = document.getElementById('nav-devis');
+const navLang  = document.getElementById('nav-lang');
 const navLinks = document.querySelectorAll('.nav-link');
 
 function updateNav() {
@@ -722,6 +725,7 @@ function updateNav() {
     navDot.style.color         = '#A6764E';
     navDevis.style.color       = '#A6764E';
     navDevis.style.borderBottomColor = 'rgba(166,118,78,.45)';
+    navLang.style.color        = '#83766A';
     navLinks.forEach(l => { l.style.color = '#83766A'; });
   } else {
     navEl.style.background     = 'rgba(20,15,10,.45)';
@@ -731,6 +735,7 @@ function updateNav() {
     navDot.style.color         = '#C49A74';
     navDevis.style.color       = '#C49A74';
     navDevis.style.borderBottomColor = 'rgba(196,154,116,.45)';
+    navLang.style.color        = 'rgba(244,238,230,.6)';
     navLinks.forEach(l => { l.style.color = 'rgba(244,238,230,.8)'; });
   }
 }
