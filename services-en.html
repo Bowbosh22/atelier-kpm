@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services & Pricing — l'Atelier KPM</title>
+<meta name="description" content="Services and pricing at l'Atelier KPM: showcase sites, booking, e-commerce, dashboards. Clear packages, custom options for every budget.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { sand:'#F4EEE6', shell:'#FBF7F1', clay:'#A6764E', claylt:'#C49A74', cocoa:'#2A211B', taupe:'#83766A' },
+      fontFamily: { serif:['Instrument Serif','Georgia','serif'], sans:['Hanken Grotesk','system-ui','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #1A1210; overflow-x: hidden; }
+  .serif-tight { letter-spacing: -.013em; }
+  .eyebrow { color:#C49A74; letter-spacing:.22em; font-size:.68rem; text-transform:uppercase; }
+
+  /* Cartes services */
+  .svc-card {
+    background: #231812;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 320px;
+    opacity: 0;
+    transform: scale(0.95) translateY(30px);
+    transition: opacity .7s cubic-bezier(.22,.8,.22,1),
+                transform .7s cubic-bezier(.22,.8,.22,1),
+                border-color .35s, box-shadow .35s;
+  }
+  .svc-card.visible { opacity: 1; transform: scale(1) translateY(0); }
+  .svc-card:hover {
+    border-color: rgba(196,154,116,.4);
+    box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    transform: scale(1) translateY(-5px) !important;
+  }
+  .svc-photo {
+    position: relative;
+    overflow: hidden;
+    min-height: 260px;
+  }
+  .svc-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.22,.8,.22,1);
+    filter: brightness(.7) saturate(.85);
+  }
+  .svc-card:hover .svc-photo img { transform: scale(1.06); filter: brightness(.85) saturate(1); }
+  .svc-photo::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(26,18,16,.2) 0%, transparent 70%),
+                linear-gradient(to top, rgba(26,18,16,.6) 0%, transparent 60%);
+  }
+  .svc-num {
+    position: absolute; top: 1.2rem; left: 1.4rem;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1rem; color: rgba(244,238,230,.6); z-index: 2;
+    background: rgba(26,18,16,.5); backdrop-filter: blur(6px);
+    padding: .25rem .7rem; border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,.1);
+  }
+  .svc-body {
+    padding: 2.2rem 2.2rem 2.2rem 1.8rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-left: 1px solid rgba(255,255,255,.06);
+  }
+  .svc-tag {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,.1); border-radius: 9999px;
+    padding: .25rem .75rem; font-size: .65rem; color: rgba(244,238,230,.4);
+    transition: border-color .25s, color .25s;
+  }
+  .svc-card:hover .svc-tag { border-color: rgba(196,154,116,.35); color: rgba(196,154,116,.8); }
+  .svc-cta {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .82rem; font-weight: 500; color: #C49A74;
+    border-bottom: 1px solid rgba(196,154,116,.3);
+    padding-bottom: 1px; width: fit-content;
+    transition: opacity .2s, gap .2s;
+  }
+  .svc-cta:hover { opacity: .7; gap: .9rem; }
+  .svc-card-wide { grid-template-columns: 420px 1fr; }
+  .svc-card-wide.reverse { grid-template-columns: 1fr 420px; }
+  .svc-card-wide.reverse .svc-photo { order: 2; }
+  .svc-card-wide.reverse .svc-body { order: 1; border-left: 0; border-right: 1px solid rgba(255,255,255,.06); }
+  @media (max-width: 768px) {
+    .svc-card-wide.reverse .svc-photo,
+    .svc-card-wide.reverse .svc-body { order: initial; border-right: 0; }
+  }
+
+  /* Cartes packs tarifs */
+  .pack-card {
+    background: #1a1208;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 14px;
+    padding: 2rem;
+    display: flex; flex-direction: column;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s cubic-bezier(.22,.8,.22,1),
+                transform .6s cubic-bezier(.22,.8,.22,1),
+                border-color .3s, box-shadow .3s;
+  }
+  .pack-card.visible { opacity: 1; transform: translateY(0); }
+  .pack-card:hover { border-color: rgba(196,154,116,.25); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+  .pack-card.featured {
+    background: #231a0e;
+    border-color: rgba(196,154,116,.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,.5), 0 0 0 1px rgba(196,154,116,.15);
+    transform: translateY(0) scale(1.03);
+  }
+  .pack-card.featured.visible { transform: scale(1.03) translateY(0); }
+  .pack-feature {
+    font-size: .82rem; color: rgba(244,238,230,.6);
+    padding: .45rem 0; border-bottom: 1px solid rgba(255,255,255,.05);
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .pack-feature:last-child { border-bottom: none; }
+
+  /* Tableau tarifs */
+  .tarif-row {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    transition: background .2s;
+  }
+  .tarif-row:last-child { border-bottom: none; }
+  .tarif-row:hover { background: rgba(196,154,116,.04); }
+
+  @media (max-width: 768px) {
+    .svc-card, .svc-card-wide { grid-template-columns: 1fr; min-height: auto; }
+    .svc-photo { min-height: 220px; }
+    .svc-body { border-left: 0; border-top: 1px solid rgba(255,255,255,.06); padding: 1.8rem; }
+    .pack-card.featured { transform: scale(1); }
+  }
+</style>
+</head>
+<body style="background:#1A1210;" class="font-sans antialiased">
+
+<!-- HEADER -->
+<header id="top" class="fixed top-0 inset-x-0 z-50">
+  <div id="nav" class="transition-all duration-300" style="background:rgba(26,18,16,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:60px">
+      <a href="index-en.html" class="font-serif serif-tight text-xl" style="color:#F4EEE6;">l'Atelier KPM<span style="color:#C49A74;">.</span></a>
+      <nav class="hidden md:flex items-center gap-8 text-sm">
+        <a href="services-en.html"     style="color:rgba(244,238,230,.6);" class="hover:text-white transition">Services</a>
+      <a href="tarifs-en.html"     style="color:rgba(244,238,230,.6);" class="hover:text-white transition">Pricing</a>
+        <a href="realisations-en.html" style="color:rgba(244,238,230,.6);" class="hover:text-white transition">Portfolio</a>
+        <a href="apropos-en.html"      style="color:rgba(244,238,230,.6);" class="hover:text-white transition">About us</a>
+        <a href="blog.html"         style="color:rgba(244,238,230,.6);" class="hover:text-white transition">Blog</a>
+      </nav>
+      <a href="devis.html" class="text-sm font-medium" style="color:#C49A74;border-bottom:1px solid rgba(196,154,116,.4);padding-bottom:2px">Free quote</a>
+      <a href="services.html" class="text-xs font-medium" style="color:rgba(244,238,230,.5);margin-left:1.2rem;">FR</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pt-36 pb-14 sm:pt-48 sm:pb-20">
+  <div class="eyebrow mb-6">Our services</div>
+  <h1 class="font-serif serif-tight max-w-3xl" style="font-size:clamp(2rem,8vw,4.5rem);line-height:1.06;color:#F4EEE6;">
+    What we do.<br><span class="italic" style="color:#C49A74;">And how we do it.</span>
+  </h1>
+  <p class="mt-6 text-base leading-relaxed max-w-xl" style="color:rgba(244,238,230,.5);">
+    Six areas of expertise, one obsession: websites that generate real results for Congolese SMEs.
+  </p>
+  <!-- Ancres rapides -->
+  <div class="flex flex-wrap gap-3 mt-8">
+    <a href="#tarifs" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:rgba(244,238,230,.5);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:.35rem 1rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(196,154,116,.4)';this.style.color='#C49A74'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='rgba(244,238,230,.5)'">See pricing ↓</a>
+  </div>
+</section>
+
+<!-- GRILLE SERVICES -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pb-20 space-y-5" style="padding-top:.5rem;">
+
+  <!-- Ligne 1 : 01 + 02 -->
+  <div class="grid sm:grid-cols-2 gap-5">
+    <!-- 01 Site vitrine -->
+    <div class="svc-card">
+      <div class="svc-photo">
+        <span class="svc-num">01</span>
+        <img src="laptop_dark_minimal.jpg" alt="Showcase website" style="object-position:center 80%;">
+      </div>
+      <div class="svc-body">
+        <div>
+          <div class="eyebrow mb-3" style="font-size:.6rem;">Showcase website</div>
+          <h2 class="font-serif serif-tight text-2xl mb-3" style="color:#F4EEE6;line-height:1.2;">Powerfully<br><span class="italic" style="color:#C49A74;">present</span></h2>
+          <p class="text-sm leading-relaxed mb-5" style="color:rgba(244,238,230,.5);">A fast, elegant site designed to convert your visitors into clients. Ideal for restaurants, clinics, hotels and SMEs.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="svc-tag">Custom design</span>
+            <span class="svc-tag">Mobile first</span>
+            <span class="svc-tag">SSL included</span>
+            <span class="svc-tag">2–3 weeks</span>
+          </div>
+        </div>
+        <a href="devis.html" class="svc-cta">Request a quote →</a>
+      </div>
+    </div>
+
+    <!-- 02 Réservation -->
+    <div class="svc-card">
+      <div class="svc-photo">
+        <span class="svc-num">02</span>
+        <img src="design_workspace_dark.jpg" alt="Booking website" style="object-position:center 20%;">
+      </div>
+      <div class="svc-body">
+        <div>
+          <div class="eyebrow mb-3" style="font-size:.6rem;">Booking website</div>
+          <h2 class="font-serif serif-tight text-2xl mb-3" style="color:#F4EEE6;line-height:1.2;">Book.<br><span class="italic" style="color:#C49A74;">Automatically.</span></h2>
+          <p class="text-sm leading-relaxed mb-5" style="color:rgba(244,238,230,.5);">Online calendar, availability management, automatic notifications. Perfect for hotels, restaurants and service providers.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="svc-tag">Online calendar</span>
+            <span class="svc-tag">Auto notifications</span>
+            <span class="svc-tag">Backend included</span>
+            <span class="svc-tag">Admin interface</span>
+          </div>
+        </div>
+        <a href="tarifs-en.html" class="svc-cta">See pricing →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ligne 2 : 03 + 04 -->
+  <div class="grid sm:grid-cols-2 gap-5">
+    <!-- 03 Refonte -->
+    <div class="svc-card">
+      <div class="svc-photo">
+        <span class="svc-num">03</span>
+        <img src="dark_shopping_online.jpg" alt="Redesign" style="object-position:60% 30%;">
+      </div>
+      <div class="svc-body">
+        <div>
+          <div class="eyebrow mb-3" style="font-size:.6rem;">Website redesign</div>
+          <h2 class="font-serif serif-tight text-2xl mb-3" style="color:#F4EEE6;line-height:1.2;">New<br><span class="italic" style="color:#C49A74;">image</span></h2>
+          <p class="text-sm leading-relaxed mb-5" style="color:rgba(244,238,230,.5);">Your site exists but doesn't reflect you anymore? We turn it into a modern showcase. Free audit included.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="svc-tag">Free audit</span>
+            <span class="svc-tag">Content migration</span>
+            <span class="svc-tag">Zero downtime</span>
+          </div>
+        </div>
+        <a href="devis.html" class="svc-cta">Request a quote →</a>
+      </div>
+    </div>
+
+    <!-- 04 E-commerce -->
+    <div class="svc-card">
+      <div class="svc-photo">
+        <span class="svc-num">04</span>
+        <img src="data_analytics.jpg" alt="E-commerce" style="object-position:30% center;">
+      </div>
+      <div class="svc-body">
+        <div>
+          <div class="eyebrow mb-3" style="font-size:.6rem;">E-commerce</div>
+          <h2 class="font-serif serif-tight text-2xl mb-3" style="color:#F4EEE6;line-height:1.2;">Sell<br><span class="italic" style="color:#C49A74;">online</span></h2>
+          <p class="text-sm leading-relaxed mb-5" style="color:rgba(244,238,230,.5);">Catalog, cart, integrated mobile payment. A complete store adapted to the Congolese market.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="svc-tag">Mobile payment</span>
+            <span class="svc-tag">Product catalog</span>
+            <span class="svc-tag">WhatsApp integration</span>
+          </div>
+        </div>
+        <a href="tarifs-en.html" class="svc-cta">See pricing →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ligne 3 : 05 Dashboard pleine largeur -->
+  <div class="svc-card svc-card-wide">
+    <div class="svc-photo">
+      <span class="svc-num">05</span>
+      <img src="server_dark_technology.jpg" alt="Dashboard" style="object-position:center 40%;">
+    </div>
+    <div class="svc-body">
+      <div>
+        <div class="eyebrow mb-3" style="font-size:.6rem;">Dashboard & SaaS</div>
+        <h2 class="font-serif serif-tight mb-4" style="color:#F4EEE6;font-size:clamp(1.6rem,4vw,2.8rem);line-height:1.15;">
+          Manage<br><span class="italic" style="color:#C49A74;">your business.</span>
+        </h2>
+        <p class="text-sm leading-relaxed mb-6" style="color:rgba(244,238,230,.5);max-width:400px;">Custom management interface. KPIs, clients, dashboards — accessible from any device.</p>
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="svc-tag">Real-time</span>
+          <span class="svc-tag">Multi-user</span>
+          <span class="svc-tag">Custom-built</span>
+          <span class="svc-tag">Data export</span>
+          <span class="svc-tag">Role management</span>
+        </div>
+      </div>
+      <a href="devis.html" class="svc-cta">Request a quote →</a>
+    </div>
+  </div>
+
+  <!-- Ligne 4 : 06 Maintenance pleine largeur (inversée pour rythme visuel) -->
+  <div class="svc-card svc-card-wide reverse">
+    <div class="svc-photo">
+      <span class="svc-num">06</span>
+      <img src="laptop_dark_minimal.jpg" alt="Maintenance" style="object-position:center 30%;filter:brightness(.5) saturate(.6) hue-rotate(180deg);">
+    </div>
+    <div class="svc-body">
+      <div>
+        <div class="eyebrow mb-3" style="font-size:.6rem;">Maintenance & hosting</div>
+        <h2 class="font-serif serif-tight mb-4" style="color:#F4EEE6;font-size:clamp(1.6rem,4vw,2.8rem);line-height:1.15;">
+          Your site always<br><span class="italic" style="color:#C49A74;">in shape.</span>
+        </h2>
+        <p class="text-sm leading-relaxed mb-6" style="color:rgba(244,238,230,.5);max-width:400px;">Automatic backups, updates, quick fixes and SSL included. You focus on your business — we take care of the rest.</p>
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="svc-tag">Auto backups</span>
+          <span class="svc-tag">SSL included</span>
+          <span class="svc-tag">Fast support</span>
+          <span class="svc-tag">Monthly report</span>
+          <span class="svc-tag">From 25,000 FCFA/month</span>
+        </div>
+      </div>
+      <a href="tarifs-en.html" class="svc-cta">See pricing →</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════
+     SECTION TARIFS
+══════════════════════════════ -->
+<!-- TEASER TARIFS -->
+<section id="tarifs" style="background:linear-gradient(180deg,#1A1210 0%,#120d08 12%,#120d08 100%);border-top:1px solid rgba(255,255,255,.04);">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 py-20 sm:py-28 text-center">
+    <div class="eyebrow mb-5">Pricing</div>
+    <h2 class="font-serif serif-tight mb-6" style="color:#F4EEE6;font-size:clamp(2rem,7vw,3.6rem);line-height:1.08;">
+      Clear packages.<br><span class="italic" style="color:#C49A74;">No surprises.</span>
+    </h2>
+    <p class="mb-10 text-sm sm:text-base leading-relaxed max-w-lg mx-auto" style="color:rgba(244,238,230,.5);">
+      All our prices are fixed. No hidden fees, no bad surprises at the end of the project. Discover our detailed packages and maintenance offer.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center">
+      <a href="tarifs-en.html" style="display:inline-block;background:#C49A74;color:#2A211B;font-weight:700;border-radius:9999px;padding:.9rem 2.5rem;font-size:.85rem;transition:opacity .25s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">See all our pricing →</a>
+      <a href="devis.html" style="color:#C49A74;font-size:.85rem;font-weight:500;border-bottom:1px solid rgba(196,154,116,.4);padding-bottom:2px;">Request a free quote →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section style="border-top:1px solid rgba(255,255,255,.06);background:#0e0a07;">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8 py-20 sm:py-28 text-center">
+    <div class="eyebrow mb-5">Ready to start?</div>
+    <h2 class="font-serif serif-tight mb-6" style="color:#F4EEE6;font-size:clamp(2rem,8vw,4rem);line-height:1.06;">
+      Your free quote<br><span class="italic" style="color:#C49A74;">within 24h.</span>
+    </h2>
+    <p class="mb-8 text-sm leading-relaxed max-w-sm mx-auto" style="color:rgba(244,238,230,.4);">No commitment. A clear proposal, tailored to your business and your budget.</p>
+    <a href="devis.html" style="display:inline-block;background:#C49A74;color:#2A211B;font-weight:700;border-radius:9999px;padding:.9rem 2.5rem;transition:opacity .25s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Request my quote →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0e0a07;border-top:1px solid rgba(255,255,255,.04);">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+    <a href="index-en.html" class="font-serif serif-tight text-lg" style="color:#F4EEE6;flex-shrink:0;">l'Atelier KPM<span style="color:#C49A74;">.</span></a>
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
+      <a href="services-en.html"     style="color:rgba(244,238,230,.3);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.3)'">Services</a>
+      <a href="realisations-en.html" style="color:rgba(244,238,230,.3);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.3)'">Portfolio</a>
+      <a href="apropos-en.html"      style="color:rgba(244,238,230,.3);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.3)'">About us</a>
+      <a href="blog.html"         style="color:rgba(244,238,230,.3);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.3)'">Blog</a>
+      <a href="index-en.html#faq"    style="color:rgba(244,238,230,.3);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.3)'">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-5 text-xs" style="flex-shrink:0;">
+      <a href="tel:+242064114256" style="color:rgba(244,238,230,.3);" onmouseover="this.style.color='#C49A74'" onmouseout="this.style.color='rgba(244,238,230,.3)'">+242 06 411 42 56</a>
+      <span style="color:rgba(244,238,230,.08);">|</span>
+      <a href="devis.html" style="color:#C49A74;font-weight:500;">Free quote →</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.04);">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex justify-between text-xs" style="color:rgba(244,238,230,.15);">
+      <span>© 2026 l'Atelier KPM</span><span>Brazzaville, Congo</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 20 ? 'rgba(14,10,7,.96)' : 'rgba(26,18,16,.88)';
+  }, { passive: true });
+
+  // Animation scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+      else e.target.classList.remove('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.svc-card, .pack-card').forEach(el => observer.observe(el));
+
+  // Délai en cascade pour les packs
+  document.querySelectorAll('.pack-card').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.12}s`;
+  });
+
+  // Délai en cascade pour les cartes services, ligne par ligne (fluidité de l'apparition)
+  document.querySelectorAll('.svc-card:not(.svc-card-wide)').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 2) * 0.1}s`;
+  });
+</script>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20devis%20pour%20mon%20site%20web."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;"
+   onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.6)'"
+   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45)'"
+   aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script src="transitions.js"></script>
+</body>
+</html>

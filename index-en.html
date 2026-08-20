@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>l'Atelier KPM — Websites that bring you clients</title>
+<meta name="description" content="Premium web studio. Modern, fast websites designed to generate clients. Free quote within 24h.">
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+ 
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sand:  '#F4EEE6',
+        shell: '#FBF7F1',
+        clay:  '#A6764E',
+        claylt:'#C49A74',
+        cocoa: '#2A211B',
+        taupe: '#83766A',
+      },
+      fontFamily: {
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        sans:  ['Hanken Grotesk', 'system-ui', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+ 
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #F4EEE6; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  .ht { border-top:    1px solid rgba(42,33,27,.10); }
+  .hb { border-bottom: 1px solid rgba(42,33,27,.10); }
+  .hx { border:        1px solid rgba(42,33,27,.10); }
+  .div { border-top:   1px solid rgba(42,33,27,.10); }
+  .serif-tight { letter-spacing: -.013em; }
+  .eyebrow { color:#A6764E; letter-spacing:.22em; font-size:.68rem; text-transform:uppercase; }
+  .h-fluid { font-size: clamp(1.75rem, 8vw, 4.5rem); line-height: 1.06; }
+  .h-fluid-lg { font-size: clamp(2rem, 10vw, 5.5rem); line-height: 1.04; }
+  .btn-dark {
+    display: block; width: 100%; text-align: center;
+    background: #2A211B; color: #F4EEE6;
+    font-weight: 500; border-radius: 9999px;
+    padding: .875rem 1.5rem;
+    transition: opacity .3s;
+  }
+  .btn-dark:hover { opacity: .88; }
+  .btn-dark:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-ghost {
+    display: block; width: 100%; text-align: center;
+    color: #2A211B; font-weight: 500;
+    border-bottom: 1px solid rgba(42,33,27,.25);
+    padding-bottom: 3px;
+    transition: border-color .3s, color .3s;
+  }
+  .btn-ghost:hover { border-color: #A6764E; color: #A6764E; }
+  .row-item { border-top: 1px solid rgba(42,33,27,.10); transition: padding-left .35s ease; }
+  .row-item:hover { padding-left: .35rem; }
+  .row-item:hover .row-t { color: #A6764E; }
+  .row-t { transition: color .35s; }
+  .reveal { opacity:1; transform:none; transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+  details > summary { list-style:none; -webkit-list-style:none; }
+  details > summary::-webkit-details-marker { display:none; }
+  .fi { transition:transform .3s ease; display:block; flex-shrink:0; }
+  details[open] .fi { transform:rotate(45deg); }
+  .field {
+    display:block; width:100%; background:transparent;
+    border:0; border-bottom:1px solid rgba(42,33,27,.18);
+    padding:.55rem 0; font-size:1rem; color:#2A211B;
+    font-family:inherit;
+    transition:border-color .3s;
+  }
+  .field:focus { outline:none; border-color:#A6764E; }
+  .field::placeholder { color:rgba(131,118,106,.5); }
+  ::selection { background:rgba(166,118,78,.25); }
+
+  /* ── Section démo animée ── */
+  .demo-screen { background:#111827; border-radius:14px; overflow:hidden; box-shadow:0 40px 80px -20px rgba(42,33,27,.4); position:relative; }
+  .demo-bar { background:#0a0f1a; padding:10px 16px; display:flex; align-items:center; gap:6px; border-bottom:1px solid rgba(255,255,255,.06); }
+  .demo-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .demo-url { margin-left:8px; background:rgba(255,255,255,.07); border-radius:20px; padding:3px 14px; font-size:11px; color:rgba(255,255,255,.35); font-family:monospace; flex:1; max-width:240px; }
+  .demo-content { height:360px; overflow:hidden; position:relative; }
+  .demo-scroll { animation:scrollUp 14s linear infinite; }
+  @keyframes scrollUp { 0%{transform:translateY(0)} 100%{transform:translateY(-52%)} }
+  .demo-fade-top { position:absolute; top:0; left:0; right:0; height:50px; background:linear-gradient(to bottom,#111827,transparent); z-index:3; pointer-events:none; }
+  .demo-fade-bot { position:absolute; bottom:0; left:0; right:0; height:70px; background:linear-gradient(to top,#111827,transparent); z-index:3; pointer-events:none; }
+  .bar { border-radius:4px; }
+  .shimmer { background:linear-gradient(90deg,rgba(255,255,255,.05) 25%,rgba(255,255,255,.12) 50%,rgba(255,255,255,.05) 75%); background-size:200% 100%; animation:shimmer 2s infinite; }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  .pulse-dot { width:8px; height:8px; border-radius:50%; background:#A6764E; animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+ 
+<body class="bg-sand text-cocoa font-sans antialiased">
+ 
+<!-- HEADER -->
+<header id="top" class="fixed top-0 inset-x-0 z-50">
+  <div id="nav" class="transition-all duration-300">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:60px">
+      <a href="index-en.html" id="nav-logo" class="font-serif serif-tight text-xl" style="color:#F4EEE6;">l'Atelier KPM<span id="nav-dot" style="color:#C49A74;">.</span></a>
+
+      <!-- Nav desktop -->
+      <nav class="hidden md:flex items-center gap-8 text-sm" id="main-nav">
+        <a href="services-en.html" class="nav-link transition" style="color:rgba(244,238,230,.8);">Services</a>
+      <a href="tarifs-en.html" class="nav-link transition" style="color:rgba(244,238,230,.8);">Pricing</a>
+        <a href="realisations-en.html" class="nav-link transition" style="color:rgba(244,238,230,.8);">Portfolio</a>
+        <a href="apropos-en.html" class="nav-link transition" style="color:rgba(244,238,230,.8);">About us</a>
+        <a href="actualites.html" class="nav-link transition" style="color:rgba(244,238,230,.8);">News</a>
+        <a href="blog.html" class="nav-link transition" style="color:rgba(244,238,230,.8);">Blog</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="index.html" id="nav-lang" class="text-xs font-medium transition" style="color:rgba(244,238,230,.6);">FR</a>
+        <a href="devis.html" id="nav-devis" class="text-sm font-medium" style="color:#C49A74;border-bottom:1px solid rgba(196,154,116,.45);padding-bottom:2px">Free quote</a>
+        <!-- Burger mobile -->
+        <button id="burger" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+          <span class="burger-line block w-5 h-px bg-cocoa transition-all duration-300"></span>
+          <span class="burger-line block w-5 h-px bg-cocoa transition-all duration-300"></span>
+          <span class="burger-line block w-5 h-px bg-cocoa transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu mobile -->
+  <div id="mobile-menu" class="md:hidden hidden" style="background:rgba(244,238,230,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(42,33,27,.10);">
+    <nav class="max-w-5xl mx-auto px-5 py-6 flex flex-col gap-5 text-sm">
+      <a href="services-en.html" class="text-taupe hover:text-cocoa transition" onclick="closeMenu()">Services</a>
+      <a href="tarifs-en.html" class="text-taupe hover:text-cocoa transition" onclick="closeMenu()">Pricing</a>
+      <a href="realisations-en.html" class="text-taupe hover:text-cocoa transition" onclick="closeMenu()">Portfolio</a>
+      <a href="apropos-en.html" class="text-taupe hover:text-cocoa transition" onclick="closeMenu()">About us</a>
+      <a href="actualites.html" class="text-taupe hover:text-cocoa transition" onclick="closeMenu()">News</a>
+      <a href="blog.html" class="text-taupe hover:text-cocoa transition" onclick="closeMenu()">Blog</a>
+      <a href="devis.html" class="btn-dark text-center mt-2" onclick="closeMenu()">Free quote →</a>
+      <a href="index.html" class="text-taupe hover:text-cocoa transition text-center" onclick="closeMenu()">🇫🇷 Version française</a>
+    </nav>
+  </div>
+</header>
+ 
+<!-- HERO VIDÉO -->
+<section class="relative overflow-hidden" style="min-height:100vh;display:flex;align-items:center;">
+
+  <!-- Vidéo en fond -->
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+
+  <!-- Overlay sombre -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(42,33,27,.82) 0%,rgba(20,15,10,.65) 100%);z-index:1;"></div>
+
+  <!-- Contenu -->
+  <div class="relative max-w-5xl mx-auto px-5 sm:px-8 py-32 sm:py-0" style="z-index:2;">
+    <div class="eyebrow reveal" style="color:#C49A74;">Premium web studio · Francophone Africa</div>
+    <h1 class="font-serif serif-tight h-fluid-lg mt-5 reveal" style="color:#F4EEE6;">
+      <span class="italic" style="color:#C49A74;">Digital</span> that drives your success.
+    </h1>
+    <p class="mt-5 text-base sm:text-lg leading-relaxed max-w-xl reveal" style="color:rgba(244,238,230,.75);">
+      We design elegant, fast, professional websites — turning your visitors into inquiries and calls.
+    </p>
+    <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6 reveal">
+      <a href="#devis" style="display:inline-block;background:#F4EEE6;color:#2A211B;font-weight:500;border-radius:9999px;padding:.875rem 2rem;transition:opacity .3s;" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Request a free quote</a>
+      <a href="tarifs-en.html" style="display:inline-block;color:rgba(244,238,230,.8);font-weight:500;border-bottom:1px solid rgba(244,238,230,.3);padding-bottom:3px;transition:border-color .3s;" onmouseover="this.style.borderColor='rgba(196,154,116,.8)';this.style.color='#C49A74'" onmouseout="this.style.borderColor='rgba(244,238,230,.3)';this.style.color='rgba(244,238,230,.8)'">See our pricing →</a>
+    </div>
+    <p class="mt-6 text-xs reveal" style="color:rgba(244,238,230,.45);">
+      Reply within 24h &nbsp;·&nbsp; No commitment &nbsp;·&nbsp; Payment in installments
+    </p>
+  </div>
+
+  <!-- Flèche scroll -->
+  <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite;">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 3v14M3 10l7 7 7-7" stroke="rgba(244,238,230,.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+@keyframes bounce {
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(6px)}
+}
+</style>
+ 
+<!-- DÉMO ANIMÉE -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 pb-12 sm:pb-20 reveal">
+  <div class="text-center mb-8">
+    <div class="eyebrow mb-3">In action</div>
+    <h2 class="font-serif serif-tight h-fluid">What we build <span class="italic text-clay">for you.</span></h2>
+    <p class="text-sm text-taupe mt-3">Live demo — Le Velours, fine dining restaurant</p>
+  </div>
+
+  <div class="demo-screen">
+    <div class="demo-bar">
+      <span class="demo-dot" style="background:#ff5f57"></span>
+      <span class="demo-dot" style="background:#febc2e"></span>
+      <span class="demo-dot" style="background:#28c840"></span>
+      <span class="demo-url">le-velours-brazzaville.com</span>
+      <div class="pulse-dot ml-auto"></div>
+    </div>
+    <div class="demo-content">
+      <div class="demo-fade-top"></div>
+      <div class="demo-fade-bot"></div>
+      <div class="demo-scroll">
+        <!-- Nav Le Velours -->
+        <div style="background:rgba(8,6,4,.95); padding:0 24px; display:flex; align-items:center; justify-content:space-between; height:52px; border-bottom:1px solid rgba(184,144,90,.18);">
+          <div style="color:#F4EDE2; font-family:Georgia,serif; font-size:13px; letter-spacing:.22em; text-transform:uppercase;">Le Velours</div>
+          <div style="display:flex; gap:18px;">
+            <span style="color:#9B9184; font-size:10px; letter-spacing:.16em; text-transform:uppercase;">The Chef</span>
+            <span style="color:#9B9184; font-size:10px; letter-spacing:.16em; text-transform:uppercase;">Menu</span>
+            <span style="color:#9B9184; font-size:10px; letter-spacing:.16em; text-transform:uppercase;">Gallery</span>
+          </div>
+          <div style="border:1px solid rgba(184,144,90,.6); color:#D4B07A; font-size:10px; letter-spacing:.18em; text-transform:uppercase; padding:5px 14px;">Book</div>
+        </div>
+        <!-- Hero Le Velours -->
+        <div style="background:linear-gradient(rgba(8,6,4,.78),rgba(12,10,7,.88)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&auto=format&fit=crop&q=80') center/cover no-repeat; padding:56px 24px 48px; text-align:center; min-height:220px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+          <div style="color:#B8905A; font-size:9px; letter-spacing:.28em; text-transform:uppercase; margin-bottom:14px;">Brazzaville · Franco-African Fine Dining</div>
+          <div style="color:#F4EDE2; font-family:Georgia,serif; font-size:32px; letter-spacing:.22em; text-transform:uppercase; line-height:1; margin-bottom:10px;">LE VELOURS</div>
+          <div style="color:#D4B07A; font-family:Georgia,serif; font-style:italic; font-size:14px; margin-bottom:24px;">Where flavor becomes memory.</div>
+          <div style="display:flex; gap:10px; justify-content:center;">
+            <div style="background:#B8905A; color:#080806; font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; padding:8px 18px;">Book a table</div>
+            <div style="border:1px solid rgba(184,144,90,.6); color:#D4B07A; font-size:10px; letter-spacing:.18em; text-transform:uppercase; padding:8px 18px;">Discover the menu</div>
+          </div>
+        </div>
+        <!-- Ligne or -->
+        <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(184,144,90,.9) 30%,rgba(212,176,122,1) 50%,rgba(184,144,90,.9) 70%,transparent);"></div>
+        <!-- Philosophie -->
+        <div style="background:#080806; padding:32px 24px; text-align:center;">
+          <div style="color:#B8905A; font-size:9px; letter-spacing:.28em; text-transform:uppercase; margin-bottom:12px;">Our philosophy</div>
+          <div style="color:rgba(244,237,226,.88); font-family:Georgia,serif; font-style:italic; font-size:14px; line-height:1.65; max-width:480px; margin:0 auto;">« A cuisine rooted in African generosity and French precision. Every plate is a conversation between two worlds. »</div>
+        </div>
+        <!-- Ligne or -->
+        <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(184,144,90,.9) 30%,rgba(212,176,122,1) 50%,rgba(184,144,90,.9) 70%,transparent);"></div>
+        <!-- Chef -->
+        <div style="background:#080806; padding:28px 24px; display:grid; grid-template-columns:1fr 1.4fr; gap:20px; align-items:center;">
+          <div style="background:linear-gradient(rgba(8,6,4,.35),rgba(8,6,4,.65)), url('https://images.unsplash.com/photo-1611520175743-30ff00129621?w=300&h=400&auto=format&fit=crop&q=80') center/cover no-repeat; aspect-ratio:3/4; border-radius:2px; position:relative;">
+            <div style="position:absolute; bottom:10px; left:10px;">
+              <div style="color:#B8905A; font-size:8px; letter-spacing:.2em; text-transform:uppercase;">Head Chef</div>
+              <div style="color:#F4EDE2; font-family:Georgia,serif; font-size:14px; margin-top:2px;">Ibrahim Soumah</div>
+            </div>
+          </div>
+          <div>
+            <div style="color:#B8905A; font-size:9px; letter-spacing:.28em; text-transform:uppercase; margin-bottom:8px;">The chef</div>
+            <div style="color:#F4EDE2; font-family:Georgia,serif; font-size:18px; margin-bottom:10px;">Ibrahim Soumah</div>
+            <div style="height:1px; background:linear-gradient(90deg,rgba(184,144,90,.9),transparent); width:40px; margin-bottom:10px;"></div>
+            <div style="color:#9B9184; font-size:11px; line-height:1.7;">Trained between Paris and Dakar, Chef Ibrahim reinvents Franco-African cuisine with unique precision and generosity.</div>
+          </div>
+        </div>
+        <!-- Menu -->
+        <div style="background:#080806; padding:28px 24px; border-top:1px solid rgba(184,144,90,.12);">
+          <div style="text-align:center; margin-bottom:20px;">
+            <div style="color:#B8905A; font-size:9px; letter-spacing:.28em; text-transform:uppercase; margin-bottom:8px;">Our menu</div>
+            <div style="color:#F4EDE2; font-family:Georgia,serif; font-size:22px;"Tonight's menu/div>
+          </div>
+          <div style="border-top:1px solid rgba(184,144,90,.12); padding-top:16px; margin-bottom:16px;">
+            <div style="color:#B8905A; font-size:9px; letter-spacing:.22em; text-transform:uppercase; margin-bottom:12px;">Starters</div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;">
+              <div><div style="color:#F4EDE2; font-family:Georgia,serif; font-size:13px;">Tuna tartare</div><div style="color:#9B9184; font-size:10px; margin-top:2px;">Avocado, green mango, kaffir lime</div></div>
+              <div style="color:#D4B07A; font-family:Georgia,serif; font-size:13px;">4 500 F</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+              <div><div style="color:#F4EDE2; font-family:Georgia,serif; font-size:13px;">Plantain velouté</div><div style="color:#9B9184; font-size:10px; margin-top:2px;">Coconut cream, ginger</div></div>
+              <div style="color:#D4B07A; font-family:Georgia,serif; font-size:13px;">3 800 F</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid rgba(184,144,90,.12); padding-top:16px;">
+            <div style="color:#B8905A; font-size:9px; letter-spacing:.22em; text-transform:uppercase; margin-bottom:12px;">Mains</div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;">
+              <div><div style="color:#F4EDE2; font-family:Georgia,serif; font-size:13px;">Captain fish fillet</div><div style="color:#9B9184; font-size:10px; margin-top:2px;">Ndolé sauce, spiced pilaf rice</div></div>
+              <div style="color:#D4B07A; font-family:Georgia,serif; font-size:13px;">9 500 F</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline;">
+              <div><div style="color:#F4EDE2; font-family:Georgia,serif; font-size:13px;">Duck breast</div><div style="color:#9B9184; font-size:10px; margin-top:2px;">Tamarind reduction, market vegetables</div></div>
+              <div style="color:#D4B07A; font-family:Georgia,serif; font-size:13px;">11 000 F</div>
+            </div>
+          </div>
+        </div>
+        <!-- Galerie -->
+        <div style="background:#080806; padding:28px 24px; border-top:1px solid rgba(184,144,90,.12);">
+          <div style="text-align:center; margin-bottom:16px;">
+            <div style="color:#B8905A; font-size:9px; letter-spacing:.28em; text-transform:uppercase; margin-bottom:8px;">Gallery</div>
+            <div style="color:#F4EDE2; font-family:Georgia,serif; font-size:20px;">The art on the plate</div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px;">
+            <div style="aspect-ratio:4/3; background:linear-gradient(rgba(8,6,4,.25),rgba(8,6,4,.55)), url('https://images.unsplash.com/photo-1663530761401-15eefb544889?w=300&h=225&auto=format&fit=crop&q=80') center/cover; border-radius:2px;"></div>
+            <div style="aspect-ratio:4/3; background:linear-gradient(rgba(8,6,4,.25),rgba(8,6,4,.55)), url('https://images.unsplash.com/photo-1694021408920-922ff450c525?w=300&h=225&auto=format&fit=crop&q=80') center/cover; border-radius:2px;"></div>
+            <div style="aspect-ratio:4/3; background:linear-gradient(rgba(8,6,4,.25),rgba(8,6,4,.55)), url('https://images.unsplash.com/photo-1643879397174-4f10ac503566?w=300&h=225&auto=format&fit=crop&q=80') center/cover; border-radius:2px;"></div>
+          </div>
+        </div>
+        <!-- Réservation -->
+        <div style="background:#080806; padding:32px 24px; border-top:1px solid rgba(184,144,90,.12); text-align:center;">
+          <div style="color:#B8905A; font-size:9px; letter-spacing:.28em; text-transform:uppercase; margin-bottom:10px;">Reservation</div>
+          <div style="color:#F4EDE2; font-family:Georgia,serif; font-size:20px; margin-bottom:20px;">Book your table</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:360px; margin:0 auto 16px;">
+            <div style="border-bottom:1px solid rgba(184,144,90,.25); padding:8px 0; color:rgba(155,145,132,.5); font-size:11px; text-align:left;">Your name</div>
+            <div style="border-bottom:1px solid rgba(184,144,90,.25); padding:8px 0; color:rgba(155,145,132,.5); font-size:11px; text-align:left;">Phone</div>
+            <div style="border-bottom:1px solid rgba(184,144,90,.25); padding:8px 0; color:rgba(155,145,132,.5); font-size:11px; text-align:left;">Preferred date</div>
+            <div style="border-bottom:1px solid rgba(184,144,90,.25); padding:8px 0; color:rgba(155,145,132,.5); font-size:11px; text-align:left;">Number of guests</div>
+          </div>
+          <div style="background:#B8905A; color:#080806; font-size:11px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; padding:10px 28px; display:inline-block;">Confirm my reservation</div>
+        </div>
+        <!-- Footer Le Velours -->
+        <div style="background:#080806; border-top:1px solid rgba(184,144,90,.18); padding:20px 24px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="color:#F4EDE2; font-family:Georgia,serif; font-size:12px; letter-spacing:.22em; text-transform:uppercase;">Le Velours</div>
+          <div style="color:#9B9184; font-size:10px;">© 2026 · Website by l'Atelier KPM</div>
+        </div>
+      </div><!-- /demo-scroll -->
+    </div><!-- /demo-content -->
+  </div><!-- /demo-screen -->
+
+  <div class="mt-5 flex items-center justify-center gap-4">
+    <p class="text-xs text-taupe">Website built for Le Velours, Brazzaville</p>
+    <a href="restaurant.html" target="_blank" class="text-xs text-clay font-medium" style="border-bottom:1px solid rgba(166,118,78,.4)">See the real site ↗</a>
+  </div>
+</section>
+
+<!-- TYPES DE SITES -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
+  <div class="eyebrow mb-8 reveal">What we build</div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="reveal hx rounded-xl p-6" style="background:#FBF7F1">
+      <div class="font-serif serif-tight text-2xl mb-2">Showcase website</div>
+      <p class="text-sm text-taupe leading-relaxed">Your professional online presence. Ideal for restaurants, clinics, craftspeople and SMEs.</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Restaurant</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Clinic</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Craftsperson</span>
+      </div>
+    </div>
+    <div class="reveal hx rounded-xl p-6" style="background:#FBF7F1">
+      <div class="font-serif serif-tight text-2xl mb-2">E-commerce</div>
+      <p class="text-sm text-taupe leading-relaxed">Sell your products online with integrated mobile payment. Catalog, cart, orders.</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Shop</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Mobile payment</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Catalog</span>
+      </div>
+    </div>
+    <div class="reveal hx rounded-xl p-6" style="background:#FBF7F1">
+      <div class="font-serif serif-tight text-2xl mb-2">Dashboard & SaaS</div>
+      <p class="text-sm text-taupe leading-relaxed">Management interface, dashboards and custom business tools for your team.</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Reporting</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">KPIs</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Management</span>
+      </div>
+    </div>
+    <div class="reveal hx rounded-xl p-6" style="background:#FBF7F1">
+      <div class="font-serif serif-tight text-2xl mb-2">Hotel website</div>
+      <p class="text-sm text-taupe leading-relaxed">Direct booking, room gallery, availability bar. No more OTA commissions.</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Reservation</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Hotel</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Lodge</span>
+      </div>
+    </div>
+    <div class="reveal hx rounded-xl p-6" style="background:#FBF7F1">
+      <div class="font-serif serif-tight text-2xl mb-2">Training center</div>
+      <p class="text-sm text-taupe leading-relaxed">Course catalog, online enrollment, instructor profiles and student testimonials.</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Training</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Enrollment</span>
+        <span class="text-xs px-3 py-1 rounded-full hx text-taupe">Catalog</span>
+      </div>
+    </div>
+    <div class="reveal hx rounded-xl p-6 flex flex-col justify-between" style="background:#2A211B">
+      <div>
+        <div class="font-serif serif-tight text-2xl mb-2 text-sand">Your project</div>
+        <p class="text-sm leading-relaxed" style="color:rgba(244,238,230,.65)">A specific need? We build exactly what you need, custom-made.</p>
+      </div>
+      <a href="#devis" class="mt-5 text-xs font-medium text-clay" style="border-bottom:1px solid rgba(166,118,78,.4);padding-bottom:2px;display:inline-block">Let's discuss your project →</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- COMMENT ÇA MARCHE -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 py-14 sm:py-24">
+  <div class="reveal mb-12">
+    <div class="eyebrow mb-4">How it works</div>
+    <h2 class="font-serif serif-tight h-fluid">Simple, fast,<br><span class="italic text-clay">no headaches.</span></h2>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-0 mb-16">
+    <div class="div py-8 pr-8 reveal">
+      <div class="font-serif serif-tight text-5xl mb-4" style="color:rgba(166,118,78,.2)">01</div>
+      <h3 class="font-serif serif-tight text-xl mb-3"We talk/h3>
+      <p class="text-sm text-taupe leading-relaxed">A 30-minute conversation to understand your business, your clients and your goals. Free, no commitment.</p>
+    </div>
+    <div class="div py-8 pr-8 reveal">
+      <div class="font-serif serif-tight text-5xl mb-4" style="color:rgba(166,118,78,.2)">02</div>
+      <h3 class="font-serif serif-tight text-xl mb-3"We propose/h3>
+      <p class="text-sm text-taupe leading-relaxed">A clear, fixed quote, no surprises. You approve before we start. No bad surprises along the way.</p>
+    </div>
+    <div class="div py-8 pr-8 reveal">
+      <div class="font-serif serif-tight text-5xl mb-4" style="color:rgba(166,118,78,.2)">03</div>
+      <h3 class="font-serif serif-tight text-xl mb-3"We build/h3>
+      <p class="text-sm text-taupe leading-relaxed">Design, development, content. You track progress and approve each step. The site reflects who you are.</p>
+    </div>
+    <div class="div py-8 reveal">
+      <div class="font-serif serif-tight text-5xl mb-4 text-clay">04</div>
+      <h3 class="font-serif serif-tight text-xl mb-3"We launch/h3>
+      <p class="text-sm text-taupe leading-relaxed">Launch, onboarding guide, startup support. Your site works for you from day one.</p>
+    </div>
+  </div>
+  <div class="ht pt-14">
+    <div class="eyebrow mb-8 reveal">What you gain</div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
+      <div class="reveal flex gap-4 items-start">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5" style="background:rgba(166,118,78,.12);"><span class="text-clay text-sm font-medium">✓</span></div>
+        <div><h3 class="font-medium mb-1">An image that inspires trust</h3><p class="text-sm text-taupe leading-relaxed">Your clients judge you in 3 seconds. A polished site says everything your words can't.</p></div>
+      </div>
+      <div class="reveal flex gap-4 items-start">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5" style="background:rgba(166,118,78,.12);"><span class="text-clay text-sm font-medium">✓</span></div>
+        <div><h3 class="font-medium mb-1">Clients who come to you</h3><p class="text-sm text-taupe leading-relaxed">Forms, calls, WhatsApp — a journey designed to convert your visitors into real contacts.</p></div>
+      </div>
+      <div class="reveal flex gap-4 items-start">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5" style="background:rgba(166,118,78,.12);"><span class="text-clay text-sm font-medium">✓</span></div>
+        <div><h3 class="font-medium mb-1">Visible 24/7</h3><p class="text-sm text-taupe leading-relaxed">Your site works while you sleep. Every visitor is a potential client, at any hour.</p></div>
+      </div>
+      <div class="reveal flex gap-4 items-start">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5" style="background:rgba(166,118,78,.12);"><span class="text-clay text-sm font-medium">✓</span></div>
+        <div><h3 class="font-medium mb-1">Fast on every device</h3><p class="text-sm text-taupe leading-relaxed">Perfect on mobile, tablet and desktop. Your clients browse from their phone — so does your site.</p></div>
+      </div>
+      <div class="reveal flex gap-4 items-start">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5" style="background:rgba(166,118,78,.12);"><span class="text-clay text-sm font-medium">✓</span></div>
+        <div><h3 class="font-medium mb-1">You own it 100%</h3><p class="text-sm text-taupe leading-relaxed">Your domain, your content, your site. No lock-in, no hidden subscriptions.</p></div>
+      </div>
+      <div class="reveal flex gap-4 items-start">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5" style="background:rgba(166,118,78,.12);"><span class="text-clay text-sm font-medium">✓</span></div>
+        <div><h3 class="font-medium mb-1">One point of contact, always</h3><p class="text-sm text-taupe leading-relaxed">No anonymous support tickets. One dedicated person who knows your project inside out.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="realisations" class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
+  <div class="flex items-end justify-between gap-4 reveal mb-8">
+    <div><div class="eyebrow mb-4">Portfolio</div><h2 class="font-serif serif-tight h-fluid">Real results.</h2></div>
+    <a href="realisations-en.html" class="text-xs text-taupe whitespace-nowrap" style="border-bottom:1px solid rgba(131,118,106,.4)">See all →</a>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+    <!-- 1. Restaurant -->
+    <a href="restaurant.html" target="_blank" rel="noopener" class="reveal group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#2a2018,#0a0806);">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=450&auto=format&fit=crop&q=80" alt="Le Velours" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(8,6,4,.88);border:1px solid rgba(184,144,90,.3);border-radius:8px;padding:8px 10px;backdrop-filter:blur(4px);">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(212,176,122,.6);font-family:monospace;">le-velours.com</span>
+          </div>
+          <div style="color:#F4EDE2;font-family:Georgia,serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px;">Le Velours</div>
+          <div style="color:rgba(212,176,122,.7);font-family:Georgia,serif;font-style:italic;font-size:10px;margin-bottom:6px;">Restaurant gastronomique · Brazzaville</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#B8905A;color:#080806;font-size:8px;padding:3px 8px;letter-spacing:.1em;text-transform:uppercase;">Book</span>
+            <span style="border:1px solid rgba(184,144,90,.4);color:#D4B07A;font-size:8px;padding:3px 8px;letter-spacing:.1em;text-transform:uppercase;">Menu</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">View site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Le Velours — Restaurant</h3>
+      <p class="text-xs text-taupe mt-0.5">Fine dining · Menu &amp; booking</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Premium Franco-African design</p>
+    </a>
+
+    <!-- 2. Hôtel -->
+    <a href="hotel.html" target="_blank" rel="noopener" class="reveal group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#4A8C6A,#2E6B4E);">
+        <img src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&h=450&auto=format&fit=crop&q=80" alt="Hôtel Émeraude" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(20,50,35,.88);border:1px solid rgba(74,140,106,.35);border-radius:8px;padding:8px 10px;backdrop-filter:blur(4px);">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(150,210,180,.5);font-family:monospace;">hotel-emeraude.com</span>
+          </div>
+          <div style="color:#f0faf5;font-size:11px;font-weight:600;margin-bottom:3px;">Hôtel Émeraude ★★★★★</div>
+          <div style="color:rgba(150,210,180,.7);font-size:10px;margin-bottom:6px;">Réservation directe · Meilleur tarif garanti</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#4A8C6A;color:white;font-size:8px;padding:3px 8px;border-radius:3px;">Book</span>
+            <span style="border:1px solid rgba(74,140,106,.4);color:rgba(150,210,180,.8);font-size:8px;padding:3px 8px;border-radius:3px;">Nos chambres</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">View site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Hôtel Émeraude — Hospitality</h3>
+      <p class="text-xs text-taupe mt-0.5">Direct booking · Anti-OTA</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Booking bar &amp; best rate guaranteed</p>
+    </a>
+
+    <!-- 3. Formation -->
+    <a href="formation.html" target="_blank" rel="noopener" class="reveal group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1E2A4A,#2D3E6E);">
+        <img src="https://images.unsplash.com/photo-1573164574511-73c773193279?w=600&h=450&auto=format&fit=crop&q=80" alt="ProSkills" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(15,20,50,.88);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:8px 10px;backdrop-filter:blur(4px);">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(245,158,11,.5);font-family:monospace;">proskills-academy.com</span>
+          </div>
+          <div style="color:#f8faff;font-size:11px;font-weight:600;margin-bottom:3px;">ProSkills Academy</div>
+          <div style="color:rgba(245,158,11,.8);font-size:10px;margin-bottom:6px;">Centre de formation professionnelle</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#F59E0B;color:#1E2A4A;font-size:8px;padding:3px 8px;border-radius:3px;font-weight:600;">S'inscrire</span>
+            <span style="border:1px solid rgba(245,158,11,.3);color:rgba(245,158,11,.7);font-size:8px;padding:3px 8px;border-radius:3px;">Formations</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">View site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">ProSkills — Training</h3>
+      <p class="text-xs text-taupe mt-0.5">Catalog &amp; online enrollment</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Interactive course cards</p>
+    </a>
+
+    <!-- 4. Dentaire -->
+    <a href="dentaire.html" target="_blank" rel="noopener" class="reveal group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1E6EA9,#0FA89A);">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=450&auto=format&fit=crop&q=80" alt="Clinique Sorriso" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(10,30,50,.88);border:1px solid rgba(15,168,154,.3);border-radius:8px;padding:8px 10px;backdrop-filter:blur(4px);">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(15,168,154,.6);font-family:monospace;">clinique-sorriso.com</span>
+          </div>
+          <div style="color:#f0fffe;font-size:11px;font-weight:600;margin-bottom:3px;">Clinique Sorriso</div>
+          <div style="color:rgba(15,168,154,.9);font-size:10px;margin-bottom:6px;">Votre sourire, notre expertise</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#0FA89A;color:white;font-size:8px;padding:3px 8px;border-radius:3px;">Prendre RDV</span>
+            <span style="border:1px solid rgba(15,168,154,.3);color:rgba(15,168,154,.8);font-size:8px;padding:3px 8px;border-radius:3px;">Nos soins</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">View site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Clinique Sorriso — Medical</h3>
+      <p class="text-xs text-taupe mt-0.5">Appointment booking · Reassuring UX</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Before/after &amp; patient reassurance</p>
+    </a>
+
+    <!-- 5. Dashboard -->
+    <a href="dashboard.html" target="_blank" rel="noopener" class="reveal group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#0D1424,#1e2a4a);">
+        <div style="position:absolute;inset:0;padding:10px;display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;gap:6px;">
+            <div style="flex:1;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.2);border-radius:6px;padding:8px;">
+              <div style="color:rgba(255,255,255,.4);font-size:8px;margin-bottom:4px;">Chiffre d'affaires</div>
+              <div style="color:#a5b4fc;font-size:14px;font-weight:700;">12.4M F</div>
+            </div>
+            <div style="flex:1;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.2);border-radius:6px;padding:8px;">
+              <div style="color:rgba(255,255,255,.4);font-size:8px;margin-bottom:4px;">Clients actifs</div>
+              <div style="color:#a5b4fc;font-size:14px;font-weight:700;">+284</div>
+            </div>
+          </div>
+          <div style="flex:1;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.15);border-radius:6px;padding:8px;">
+            <div style="color:rgba(255,255,255,.4);font-size:8px;margin-bottom:6px;">Évolution mensuelle</div>
+            <div style="display:flex;align-items:flex-end;gap:3px;height:40px;">
+              <div style="flex:1;background:rgba(99,102,241,.3);border-radius:2px;height:40%;"></div>
+              <div style="flex:1;background:rgba(99,102,241,.4);border-radius:2px;height:60%;"></div>
+              <div style="flex:1;background:rgba(99,102,241,.5);border-radius:2px;height:50%;"></div>
+              <div style="flex:1;background:rgba(99,102,241,.6);border-radius:2px;height:75%;"></div>
+              <div style="flex:1;background:rgba(99,102,241,.7);border-radius:2px;height:65%;"></div>
+              <div style="flex:1;background:#6366F1;border-radius:2px;height:90%;"></div>
+              <div style="flex:1;background:#818CF8;border-radius:2px;height:100%;"></div>
+            </div>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">View site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Pulse — SaaS Dashboard</h3>
+      <p class="text-xs text-taupe mt-0.5">Business Intelligence · Reporting</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Real-time charts &amp; KPIs</p>
+    </a>
+
+    <!-- 6. Cyrflo -->
+    <a href="https://bowbosh22.github.io/Cyrflo-site/" target="_blank" rel="noopener" class="reveal group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#0e7490,#164e63);">
+        <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&h=450&auto=format&fit=crop&q=80" alt="Cyrflo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(8,30,40,.88);border:1px solid rgba(14,116,144,.35);border-radius:8px;padding:8px 10px;backdrop-filter:blur(4px);">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(14,116,144,.7);font-family:monospace;">cyrflo-koulou.com</span>
+          </div>
+          <div style="color:#f0f9ff;font-size:11px;font-weight:600;margin-bottom:3px;">Cyrflo le Koulou</div>
+          <div style="color:rgba(125,211,252,.8);font-size:10px;margin-bottom:6px;">Tourisme fluvial · En production</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#0e7490;color:white;font-size:8px;padding:3px 8px;border-radius:3px;">Book</span>
+            <span style="border:1px solid rgba(14,116,144,.4);color:rgba(125,211,252,.7);font-size:8px;padding:3px 8px;border-radius:3px;">Nos croisières</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">View site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">Cyrflo le Koulou — Tourism</h3>
+      <p class="text-xs text-taupe mt-0.5">River booking · Live in production</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">23,000+ passengers carried</p>
+    </a>
+
+    <!-- 7. Pack Essentiel — L'Écrin de Beauté -->
+    <a href="pack-essentiel.html" target="_blank" rel="noopener" class="reveal group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#EFE6D9,#C69C92);">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=450&auto=format&fit=crop&q=80" alt="L'Écrin de Beauté" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(43,38,34,.88);border:1px solid rgba(198,156,146,.35);border-radius:8px;padding:8px 10px;backdrop-filter:blur(4px);">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(198,156,146,.7);font-family:monospace;">ecrin-de-beaute.com</span>
+          </div>
+          <div style="color:#FBF7F1;font-family:Georgia,serif;font-style:italic;font-size:11px;letter-spacing:.05em;margin-bottom:3px;">L'Écrin de Beauté</div>
+          <div style="color:rgba(198,156,146,.85);font-size:10px;margin-bottom:6px;">Institut & Spa · Vidéo hero</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#C69C92;color:#2B2622;font-size:8px;padding:3px 8px;border-radius:3px;">Book</span>
+            <span style="border:1px solid rgba(198,156,146,.4);color:rgba(198,156,146,.9);font-size:8px;padding:3px 8px;border-radius:3px;">Nos soins</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">View site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">L'Écrin de Beauté — Spa</h3>
+      <p class="text-xs text-taupe mt-0.5">Pack Essentiel · Spa & bien-être</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Immersive video &amp; tile navigation</p>
+    </a>
+
+    <!-- 8. Pack Professionnel — The Eldorado -->
+    <a href="pack-professionnel.html" target="_blank" rel="noopener" class="reveal group block">
+      <div class="rounded-xl overflow-hidden relative" style="aspect-ratio:4/3;background:linear-gradient(135deg,#1D2B22,#B99A5B);">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&h=450&auto=format&fit=crop&q=80" alt="The Eldorado" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;">
+        <div style="position:absolute;bottom:12px;left:12px;right:12px;background:rgba(20,25,20,.88);border:1px solid rgba(185,154,91,.35);border-radius:8px;padding:8px 10px;backdrop-filter:blur(4px);">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#febc2e;flex-shrink:0;"></span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;flex-shrink:0;"></span>
+            <span style="margin-left:4px;font-size:9px;color:rgba(185,154,91,.7);font-family:monospace;">theeldorado.cg</span>
+          </div>
+          <div style="color:#F6F1E7;font-family:Georgia,serif;font-style:italic;font-size:11px;letter-spacing:.05em;margin-bottom:3px;">The Eldorado</div>
+          <div style="color:rgba(185,154,91,.85);font-size:10px;margin-bottom:6px;">Hôtellerie · Vidéo hero</div>
+          <div style="display:flex;gap:6px;">
+            <span style="background:#B99A5B;color:#1D2B22;font-size:8px;padding:3px 8px;border-radius:3px;">Book</span>
+            <span style="border:1px solid rgba(185,154,91,.4);color:rgba(185,154,91,.9);font-size:8px;padding:3px 8px;border-radius:3px;">Nos chambres</span>
+          </div>
+        </div>
+        <span class="absolute top-3 right-3 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition" style="background:rgba(244,238,230,.95);color:#2A211B">View site ↗</span>
+      </div>
+      <h3 class="font-serif serif-tight text-lg mt-4">The Eldorado — Hospitality</h3>
+      <p class="text-xs text-taupe mt-0.5">Professional Pack · Hotel sanctuary</p>
+      <p class="text-xs text-clay mt-1.5 font-medium">Immersive video &amp; direct booking</p>
+    </a>
+
+  </div>
+</section>
+ 
+<!-- TÉMOIGNAGE -->
+<section class="max-w-4xl mx-auto px-5 sm:px-8 py-14 sm:py-24 text-center reveal">
+  <div class="eyebrow mb-6">Trusted by our clients</div>
+  <blockquote class="font-serif serif-tight leading-snug" style="font-size:clamp(1.3rem,5.5vw,2.8rem)">
+    « We used to rely on word of mouth. Our site opened doors to companies and partners — without it, things would have been <span class="italic text-clay">far more difficult.</span> »
+  </blockquote>
+  <div class="mt-6 flex flex-col items-center gap-2">
+    <p class="text-xs sm:text-sm text-taupe">Cyrflo le Koulou — Tourism fluvial sur le Koulou, Congo</p>
+    <a href="https://bowbosh22.github.io/Cyrflo-site/" target="_blank" rel="noopener" class="text-xs text-clay font-medium" style="border-bottom:1px solid rgba(166,118,78,.4);padding-bottom:1px;">See their site →</a>
+  </div>
+</section>
+ 
+<!-- ENCART ACTUALITÉS -->
+<section class="max-w-5xl mx-auto px-5 sm:px-8 py-10 sm:py-14">
+  <div class="hx rounded" style="background:#2A211B;padding:1.75rem 2rem;">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+      <div class="flex items-center gap-3">
+        <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2);display:inline-block;flex-shrink:0;"></span>
+        <span class="eyebrow" style="color:#C49A74;letter-spacing:.2em;font-size:.62rem;">News · Digital in Africa</span>
+      </div>
+      <a href="actualites.html" class="text-xs font-medium hover:opacity-70 transition" style="color:#C49A74;border-bottom:1px solid rgba(196,154,116,.35);padding-bottom:1px;flex-shrink:0;">See all news →</a>
+    </div>
+    <ul id="actu-home" class="space-y-0">
+      <li class="actu-item" style="border-top:1px solid rgba(244,238,230,.07);padding:.9rem 0;">
+        <div style="width:120px;height:10px;background:rgba(244,238,230,.08);border-radius:3px;"></div>
+      </li>
+      <li class="actu-item" style="border-top:1px solid rgba(244,238,230,.07);padding:.9rem 0;">
+        <div style="width:200px;height:10px;background:rgba(244,238,230,.08);border-radius:3px;"></div>
+      </li>
+      <li class="actu-item" style="border-top:1px solid rgba(244,238,230,.07);padding:.9rem 0;">
+        <div style="width:160px;height:10px;background:rgba(244,238,230,.08);border-radius:3px;"></div>
+      </li>
+    </ul>
+    <div class="mt-1" style="border-top:1px solid rgba(244,238,230,.07);padding-top:.9rem;">
+      <button onclick="chargerActuHome()" id="actu-home-btn" class="text-xs font-medium hover:opacity-70 transition" style="color:rgba(244,238,230,.4);">
+        Load latest news →
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+// ── Navbar adaptative ──
+const navEl    = document.getElementById('nav');
+const navLogo  = document.getElementById('nav-logo');
+const navDot   = document.getElementById('nav-dot');
+const navDevis = document.getElementById('nav-devis');
+const navLang  = document.getElementById('nav-lang');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function updateNav() {
+  const scrolled = window.scrollY > 60;
+  if (scrolled) {
+    navEl.style.background     = 'rgba(244,238,230,.95)';
+    navEl.style.backdropFilter = 'blur(14px)';
+    navEl.style.borderBottom   = '1px solid rgba(42,33,27,.10)';
+    navLogo.style.color        = '#2A211B';
+    navDot.style.color         = '#A6764E';
+    navDevis.style.color       = '#A6764E';
+    navDevis.style.borderBottomColor = 'rgba(166,118,78,.45)';
+    navLang.style.color        = '#83766A';
+    navLinks.forEach(l => { l.style.color = '#83766A'; });
+  } else {
+    navEl.style.background     = 'rgba(20,15,10,.45)';
+    navEl.style.backdropFilter = 'blur(10px)';
+    navEl.style.borderBottom   = '1px solid rgba(255,255,255,.06)';
+    navLogo.style.color        = '#F4EEE6';
+    navDot.style.color         = '#C49A74';
+    navDevis.style.color       = '#C49A74';
+    navDevis.style.borderBottomColor = 'rgba(196,154,116,.45)';
+    navLang.style.color        = 'rgba(244,238,230,.6)';
+    navLinks.forEach(l => { l.style.color = 'rgba(244,238,230,.8)'; });
+  }
+}
+updateNav();
+window.addEventListener('scroll', updateNav, { passive: true });
+
+// ── Menu burger ──
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobile-menu');
+burger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+});
+function closeMenu() {
+  mobileMenu.classList.add('hidden');
+}
+
+// ── Actualités home ──
+async function chargerActuHome() {
+  const btn = document.getElementById('actu-home-btn');
+  const list = document.getElementById('actu-home');
+  btn.textContent = 'Loading…';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://backend-kpm.onrender.com/api/actualites');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const articles = data.articles.slice(0, 3);
+    const CAT_C = { 'Fintech':'#2563eb','Startup':'#7c3aed','Mobile Money':'#15803d','E-commerce':'#b45309','IA & Innovation':'#dc2626','Infrastructure':'#0f766e','Politique digitale':'#374151' };
+    list.innerHTML = articles.map(a => {
+      const c = CAT_C[a.categorie] || '#A6764E';
+      return `<li style="border-top:1px solid rgba(244,238,230,.07);padding:.85rem 0;display:flex;align-items:center;gap:.75rem;">
+        <span style="display:inline-block;background:${c}22;color:${c};font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:2px 8px;border-radius:9999px;white-space:nowrap;flex-shrink:0;">${a.categorie}</span>
+        <span style="color:rgba(244,238,230,.82);font-size:.82rem;line-height:1.4;">${a.titre}</span>
+        <span style="color:rgba(244,238,230,.28);font-size:.72rem;margin-left:auto;white-space:nowrap;flex-shrink:0;">${a.pays}</span>
+      </li>`;
+    }).join('');
+    btn.textContent = 'Refresh →';
+    btn.disabled = false;
+  } catch {
+    btn.textContent = 'Retry →';
+    btn.disabled = false;
+  }
+}
+</script>
+
+<!-- FAQ -->
+<section id="faq" class="ht hb" style="background:#FBF7F1">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
+    <div class="reveal mb-8">
+      <div class="eyebrow mb-4">Frequently asked questions</div>
+      <h2 class="font-serif serif-tight h-fluid">We answer your last questions.</h2>
+    </div>
+    <div class="ht">
+      <details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif serif-tight text-lg leading-snug">How much does a website cost?</span><span class="fi text-clay text-xl leading-none">+</span></summary><p class="text-sm text-taupe pb-5 leading-relaxed">It depends on your needs. A showcase site starts at an accessible price, with installment payment available. Clear, fixed quote before we start.</p></details>
+      <details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif serif-tight text-lg leading-snug">How long until my site is ready?</span><span class="fi text-clay text-xl leading-none">+</span></summary><p class="text-sm text-taupe pb-5 leading-relaxed">Expect 2 to 4 weeks for a showcase site, depending on the content provided. A clear timeline from day one.</p></details>
+      <details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif serif-tight text-lg leading-snug">I already have a website, is this useful?</span><span class="fi text-clay text-xl leading-none">+</span></summary><p class="text-sm text-taupe pb-5 leading-relaxed">Often, yes. A modern redesign can turn a site that generates nothing into a real source of clients. We offer a free audit of your existing site.</p></details>
+      <details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif serif-tight text-lg leading-snug">Do I really own the website?</span><span class="fi text-clay text-xl leading-none">+</span></summary><p class="text-sm text-taupe pb-5 leading-relaxed">Yes, 100%. You own your site, your domain and your content. No lock-in, no dependency.</p></details>
+      <details class="div reveal"><summary class="flex items-center justify-between cursor-pointer py-5 gap-4"><span class="font-serif serif-tight text-lg leading-snug">What happens after launch?</span><span class="fi text-clay text-xl leading-none">+</span></summary><p class="text-sm text-taupe pb-5 leading-relaxed">We stay by your side: maintenance, updates, backups and advice. You're never alone with the technical side.</p></details>
+    </div>
+  </div>
+</section>
+ 
+<!-- DEVIS -->
+<section id="devis" class="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-20">
+  <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+    <div class="reveal">
+      <div class="eyebrow mb-4">Free quote</div>
+      <h2 class="font-serif serif-tight h-fluid">Get your quote <span class="italic text-clay">within 24h.</span></h2>
+      <p class="text-sm text-taupe mt-5 leading-relaxed">Describe your project in a minute. We'll call you back with a clear, no-commitment proposal.</p>
+      <ul class="mt-5 space-y-2 text-sm text-taupe">
+        <li><span class="text-clay mr-2">—</span>Personalized reply within 24h</li>
+        <li><span class="text-clay mr-2">—</span>Fixed quote, no surprises</li>
+        <li><span class="text-clay mr-2">—</span>No commitment</li>
+      </ul>
+    </div>
+    <form id="leadForm" class="reveal space-y-5" novalidate>
+      <div>
+        <label class="eyebrow block mb-2">Full name *</label>
+        <input required name="nom" type="text" placeholder="John Smith" class="field">
+      </div>
+      <div>
+        <label class="eyebrow block mb-2">Phone *</label>
+        <input required name="tel" type="tel" placeholder="+242 ..." class="field">
+      </div>
+      <div>
+        <label class="eyebrow block mb-2">Email *</label>
+        <input required name="email" type="email" placeholder="you@email.com" class="field">
+      </div>
+      <div>
+        <label class="eyebrow block mb-2">Company</label>
+        <input name="entreprise" type="text" placeholder="Company name" class="field">
+      </div>
+      <div>
+        <label class="eyebrow block mb-2">Your project</label>
+        <textarea name="message" rows="2" placeholder="E.g.: I run a restaurant, I want a site with online booking…" class="field" style="resize:none"></textarea>
+      </div>
+      <button type="submit" id="submitBtn" class="btn-dark">Get my free quote →</button>
+      <p id="formMsg" class="text-sm hidden"></p>
+    </form>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer style="background:#2A211B;">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+    <a href="index-en.html" class="font-serif serif-tight text-lg" style="color:#F4EEE6;flex-shrink:0;">l'Atelier KPM<span style="color:#A6764E;">.</span></a>
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
+      <a href="services-en.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Services</a>
+      <a href="realisations-en.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Portfolio</a>
+      <a href="apropos-en.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">About us</a>
+      <a href="actualites.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">News</a>
+      <a href="index-en.html#faq" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-5 text-xs" style="flex-shrink:0;">
+      <a href="tel:+242064114256" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#A6764E'" onmouseout="this.style.color='rgba(244,238,230,.5)'">+242 06 411 42 56</a>
+      <span style="color:rgba(244,238,230,.15);">|</span>
+      <a href="devis.html" style="color:#A6764E;font-weight:500;">Free quote →</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(244,238,230,.06);">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex justify-between text-xs" style="color:rgba(244,238,230,.2);">
+      <span>© 2026 l'Atelier KPM</span><span>Brazzaville, Congo</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BOUTON WHATSAPP FLOTTANT -->
+<a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20devis%20pour%20mon%20site%20web."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;"
+   onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(37,211,102,.6)'"
+   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,.45)'"
+   aria-label="Contact us on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script src="transitions.js"></script>
+</body>
+</html>
