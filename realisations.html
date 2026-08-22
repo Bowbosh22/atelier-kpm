@@ -79,6 +79,92 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(42,33,27,.08); }
 .hero-stat-num { font-family: var(--ff-serif); font-size: 1.8rem; color: var(--cocoa); line-height: 1; }
 .hero-stat-lbl { font-size: .68rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--taupe); margin-top: .2rem; }
 
+/* ── SIGNATURE DEMO ── */
+.signature-demo {
+  background: var(--cocoa);
+  color: var(--sand);
+  padding: 5rem 3rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.signature-demo::before {
+  content: '';
+  position: absolute; top: -20%; left: -10%;
+  width: 45vw; height: 45vw; max-width: 600px; max-height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,154,116,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.signature-demo-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+
+.signature-demo-header {
+  max-width: 720px; margin: 0 auto 3rem; text-align: center;
+}
+.signature-demo-eyebrow {
+  font-size: .68rem; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--claylt); margin-bottom: 1rem;
+}
+.signature-demo-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1; color: var(--sand); margin-bottom: 1.2rem;
+}
+.signature-demo-title em { font-style: italic; color: var(--claylt); }
+.signature-demo-lead {
+  font-size: .95rem; color: rgba(244,238,230,.65);
+  line-height: 1.8; max-width: 560px; margin: 0 auto;
+}
+
+.signature-demo-frame {
+  position: relative;
+  width: 100%; aspect-ratio: 16/10; max-height: 72vh;
+  background: #0A0A0A;
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(244,238,230,.08);
+  box-shadow: 0 30px 80px -25px rgba(0,0,0,.6);
+}
+.signature-demo-frame iframe {
+  width: 100%; height: 100%; border: 0; display: block;
+}
+.signature-demo-hint {
+  position: absolute; top: 1rem; right: 1rem;
+  padding: .5rem .9rem;
+  background: rgba(10,10,10,.65); backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  font-size: .6rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--sand);
+  display: flex; align-items: center; gap: .5rem;
+  pointer-events: none; opacity: .9;
+}
+.signature-demo-hint span { color: var(--claylt); font-size: .8rem; }
+
+.signature-demo-actions {
+  display: flex; gap: 1rem; justify-content: center;
+  margin-top: 2.5rem; flex-wrap: wrap;
+}
+.signature-demo-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--ff-body); font-size: .8rem; font-weight: 600;
+  padding: .85rem 2rem; border-radius: 9999px;
+  text-decoration: none; transition: all .25s;
+  white-space: nowrap;
+}
+.signature-demo-btn--primary {
+  background: var(--sand); color: var(--cocoa);
+  border: 1px solid var(--sand);
+}
+.signature-demo-btn--primary:hover {
+  background: transparent; color: var(--sand);
+}
+.signature-demo-btn--ghost {
+  background: transparent; color: var(--sand);
+  border: 1px solid rgba(244,238,230,.25);
+  font-weight: 500;
+}
+.signature-demo-btn--ghost:hover {
+  border-color: var(--claylt); color: var(--claylt);
+}
+
 /* ── FILTRES ── */
 .filters { padding: 2.5rem 3rem 0; max-width: 1200px; margin: 0 auto; display: flex; gap: .6rem; flex-wrap: wrap; }
 .filter-btn {
@@ -222,6 +308,11 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
   .hero { padding: 5rem 1.2rem 3rem; }
   .cta-section { padding: 4rem 1.2rem; }
   footer { padding: 2rem 1.2rem; }
+  .signature-demo { padding: 3.5rem 1.2rem 4.5rem; }
+  .signature-demo-frame { aspect-ratio: 9/14; max-height: 80vh; border-radius: 12px; }
+  .signature-demo-actions { flex-direction: column; align-items: stretch; max-width: 320px; margin: 2rem auto 0; }
+  .signature-demo-btn { justify-content: center; }
+  .signature-demo-hint { top: auto; bottom: .8rem; right: .8rem; font-size: .55rem; }
 }
 
 /* ── ANIMATIONS ── */
@@ -266,6 +357,46 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
       <div class="hero-stat-num">100%</div>
       <div class="hero-stat-lbl">Clients satisfaits</div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     DÉMO SIGNATURE — Beyond the Address
+     ═══════════════════════════════════════════ -->
+<section class="signature-demo">
+  <div class="signature-demo-inner">
+
+    <header class="signature-demo-header">
+      <p class="signature-demo-eyebrow fade-up">Démo signature · Expérience immersive</p>
+      <h2 class="signature-demo-title fade-up">
+        Beyond the Address —<br><em>une expérience à défiler.</em>
+      </h2>
+      <p class="signature-demo-lead fade-up">
+        Un site immobilier de prestige où le scroll devient une visite. La vidéo, les textes et l'interface se synchronisent au rythme du visiteur. Un aperçu de ce que l'Atelier KPM peut livrer sur mesure — pour votre marque, votre marché, votre récit.
+      </p>
+    </header>
+
+    <div class="signature-demo-frame fade-up">
+      <iframe
+        src="https://beyond-the-address.vercel.app"
+        title="Beyond the Address — démo interactive"
+        loading="lazy"
+        allow="autoplay"
+      ></iframe>
+      <div class="signature-demo-hint">
+        <span>↕</span> Défilez dans le cadre pour explorer
+      </div>
+    </div>
+
+    <div class="signature-demo-actions fade-up">
+      <a href="https://beyond-the-address.vercel.app" target="_blank" rel="noopener" class="signature-demo-btn signature-demo-btn--primary">
+        Ouvrir en plein écran <span aria-hidden="true">→</span>
+      </a>
+      <a href="devis.html" class="signature-demo-btn signature-demo-btn--ghost">
+        Discuter d'un projet similaire
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -395,7 +526,7 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
       </div>
     </a>
 
-    <!-- 3. ProSkills Academy -->
+    <!-- 6. ProSkills Academy -->
     <a href="formation.html" target="_blank" rel="noopener" class="project-card fade-up" data-category="formation" style="transition-delay:.16s">
       <div class="card-thumb">
         <img src="https://images.unsplash.com/photo-1573164574511-73c773193279?w=600&h=400&auto=format&fit=crop&q=80" alt="ProSkills Academy">
@@ -417,7 +548,7 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
       </div>
     </a>
 
-    <!-- 4. Clinique Sorriso -->
+    <!-- 7. Clinique Sorriso -->
     <a href="dentaire.html" target="_blank" rel="noopener" class="project-card fade-up" data-category="sante" style="transition-delay:.08s">
       <div class="card-thumb">
         <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=400&auto=format&fit=crop&q=80" alt="Clinique Sorriso">
@@ -439,7 +570,7 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
       </div>
     </a>
 
-    <!-- 5. Pulse Dashboard -->
+    <!-- 8. Pulse Dashboard -->
     <a href="dashboard.html" target="_blank" rel="noopener" class="project-card fade-up" data-category="dashboard" style="transition-delay:.16s">
       <div class="card-thumb-ui">
         <div class="dash-preview">
@@ -502,7 +633,7 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
       </div>
     </a>
 
-    <!-- 6. Cyrflo le Koulou — Client réel -->
+    <!-- 9. Cyrflo le Koulou — Client réel -->
     <a href="https://bowbosh22.github.io/Cyrflo-site/" target="_blank" rel="noopener" class="project-card card-real fade-up" data-category="tourisme" style="transition-delay:.24s">
       <div class="card-thumb">
         <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=400&auto=format&fit=crop&q=80" alt="Cyrflo le Koulou">
@@ -524,7 +655,7 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
       </div>
     </a>
 
-    <!-- 7. L'Écrin de Beauté — Pack Essentiel -->
+    <!-- 10. L'Écrin de Beauté — Pack Essentiel -->
     <a href="pack-essentiel.html" target="_blank" rel="noopener" class="project-card fade-up" data-category="spa" style="transition-delay:.26s">
       <div class="card-thumb">
         <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=400&auto=format&fit=crop&q=80" alt="L'Écrin de Beauté">
@@ -545,7 +676,7 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
       </div>
     </a>
 
-    <!-- 8. The Eldorado — Pack Professionnel -->
+    <!-- 11. The Eldorado — Pack Professionnel -->
     <a href="pack-professionnel.html" target="_blank" rel="noopener" class="project-card fade-up" data-category="hotellerie" style="transition-delay:.28s">
       <div class="card-thumb">
         <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&h=400&auto=format&fit=crop&q=80" alt="The Eldorado">
