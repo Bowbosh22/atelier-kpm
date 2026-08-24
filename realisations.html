@@ -79,7 +79,7 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(42,33,27,.08); }
 .hero-stat-num { font-family: var(--ff-serif); font-size: 1.8rem; color: var(--cocoa); line-height: 1; }
 .hero-stat-lbl { font-size: .68rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--taupe); margin-top: .2rem; }
 
-/* ── SIGNATURE DEMO ── */
+/* ── SIGNATURE DEMO (Beyond the Address - sombre) ── */
 .signature-demo {
   background: var(--cocoa);
   color: var(--sand);
@@ -163,6 +163,71 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(42,33,27,.08); }
 }
 .signature-demo-btn--ghost:hover {
   border-color: var(--claylt); color: var(--claylt);
+}
+
+/* ── SIGNATURE DEMO 2 — VARIANTE CLAIRE (Maison Verte) ── */
+.signature-demo-light {
+  background: var(--sand);
+  color: var(--cocoa);
+  padding: 5rem 3rem 6rem;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(42,33,27,.06);
+}
+.signature-demo-light::before {
+  content: '';
+  position: absolute; top: -20%; right: -10%;
+  width: 45vw; height: 45vw; max-width: 600px; max-height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(90,122,95,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.signature-demo-eyebrow-light {
+  font-size: .68rem; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: #5A7A5F; margin-bottom: 1rem;
+}
+.signature-demo-title-light {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1; color: var(--cocoa); margin-bottom: 1.2rem;
+}
+.signature-demo-title-light em { font-style: italic; color: #5A7A5F; }
+.signature-demo-lead-light {
+  font-size: .95rem; color: var(--taupe);
+  line-height: 1.8; max-width: 620px; margin: 0 auto;
+}
+.signature-demo-hint-light {
+  position: absolute; top: 1rem; right: 1rem;
+  padding: .5rem .9rem;
+  background: rgba(42,33,27,.75); backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  font-size: .6rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--sand);
+  display: flex; align-items: center; gap: .5rem;
+  pointer-events: none; opacity: .95;
+}
+.signature-demo-hint-light span { color: #C49A74; font-size: .8rem; }
+.signature-demo-btn-light {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--ff-body); font-size: .8rem; font-weight: 600;
+  padding: .85rem 2rem; border-radius: 9999px;
+  text-decoration: none; transition: all .25s;
+  white-space: nowrap;
+}
+.signature-demo-btn-light--primary {
+  background: var(--cocoa); color: var(--sand);
+  border: 1px solid var(--cocoa);
+}
+.signature-demo-btn-light--primary:hover {
+  background: #5A7A5F; border-color: #5A7A5F;
+}
+.signature-demo-btn-light--ghost {
+  background: transparent; color: var(--cocoa);
+  border: 1px solid rgba(42,33,27,.25);
+  font-weight: 500;
+}
+.signature-demo-btn-light--ghost:hover {
+  border-color: #5A7A5F; color: #5A7A5F;
 }
 
 /* ── FILTRES ── */
@@ -309,10 +374,11 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
   .cta-section { padding: 4rem 1.2rem; }
   footer { padding: 2rem 1.2rem; }
   .signature-demo { padding: 3.5rem 1.2rem 4.5rem; }
+  .signature-demo-light { padding: 3.5rem 1.2rem 4.5rem; }
   .signature-demo-frame { aspect-ratio: 9/14; max-height: 80vh; border-radius: 12px; }
   .signature-demo-actions { flex-direction: column; align-items: stretch; max-width: 320px; margin: 2rem auto 0; }
-  .signature-demo-btn { justify-content: center; }
-  .signature-demo-hint { top: auto; bottom: .8rem; right: .8rem; font-size: .55rem; }
+  .signature-demo-btn, .signature-demo-btn-light { justify-content: center; }
+  .signature-demo-hint, .signature-demo-hint-light { top: auto; bottom: .8rem; right: .8rem; font-size: .55rem; }
 }
 
 /* ── ANIMATIONS ── */
@@ -361,7 +427,7 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
 </section>
 
 <!-- ═══════════════════════════════════════════
-     DÉMO SIGNATURE — Beyond the Address
+     DÉMO SIGNATURE 1 — Beyond the Address
      ═══════════════════════════════════════════ -->
 <section class="signature-demo">
   <div class="signature-demo-inner">
@@ -394,6 +460,46 @@ footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); 
       </a>
       <a href="devis.html" class="signature-demo-btn signature-demo-btn--ghost">
         Discuter d'un projet similaire
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     DÉMO SIGNATURE 2 — Maison Verte
+     ═══════════════════════════════════════════ -->
+<section class="signature-demo-light">
+  <div class="signature-demo-inner">
+
+    <header class="signature-demo-header">
+      <p class="signature-demo-eyebrow-light fade-up">Démo signature · Hôtellerie éco-luxe</p>
+      <h2 class="signature-demo-title-light fade-up">
+        Maison Verte —<br><em>un lodge à défiler.</em>
+      </h2>
+      <p class="signature-demo-lead-light fade-up">
+        Une expérience narrative pour l'hôtellerie de charme. Le visiteur découvre le lieu avant même d'apprendre son nom : la vidéo d'arrivée pilote le scroll, la marque se révèle après. Un exemple de ce que l'Atelier KPM peut concevoir pour votre hôtel, votre lodge ou votre maison d'hôtes.
+      </p>
+    </header>
+
+    <div class="signature-demo-frame fade-up">
+      <iframe
+        src="https://maison-verte-ten.vercel.app"
+        title="Maison Verte — démo interactive"
+        loading="lazy"
+        allow="autoplay"
+      ></iframe>
+      <div class="signature-demo-hint-light">
+        <span>↕</span> Défilez dans le cadre pour explorer
+      </div>
+    </div>
+
+    <div class="signature-demo-actions fade-up">
+      <a href="https://maison-verte-ten.vercel.app" target="_blank" rel="noopener" class="signature-demo-btn-light signature-demo-btn-light--primary">
+        Ouvrir en plein écran <span aria-hidden="true">→</span>
+      </a>
+      <a href="devis.html" class="signature-demo-btn-light signature-demo-btn-light--ghost">
+        Discuter d'un projet hôtelier
       </a>
     </div>
 
