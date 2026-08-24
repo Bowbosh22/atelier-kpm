@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarifs Premium — Projets signature · l'Atelier KPM</title>
+<meta name="description" content="Tarifs des sites premium scroll-driven de l'Atelier KPM. Projets signature pour hôtels, agences immobilières, restaurants gastronomiques et marques de luxe à Brazzaville et Kinshasa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sand:   #F4EEE6;
+  --ivory:  #EDE3D6;
+  --clay:   #A6764E;
+  --claylt: #C49A74;
+  --cocoa:  #2A211B;
+  --taupe:  #83766A;
+  --white:  #FFFFFF;
+  --moss:   #5A7A5F;
+  --ff-serif: 'Instrument Serif', Georgia, serif;
+  --ff-body:  'Hanken Grotesk', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-body); background: var(--sand); color: var(--cocoa); overflow-x: hidden; }
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top: 0; inset-x: 0; z-index: 50;
+  height: 64px;
+  background: rgba(244,238,230,.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(42,33,27,.07);
+  transition: box-shadow .3s;
+}
+nav.scrolled { box-shadow: 0 2px 24px rgba(42,33,27,.08); }
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; height: 100%; padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+}
+.nav-logo { font-family: var(--ff-serif); font-size: 1.1rem; color: var(--cocoa); text-decoration: none; letter-spacing: -.01em; white-space: nowrap; }
+.nav-links { display: flex; gap: 1.6rem; list-style: none; }
+.nav-links a { font-size: .75rem; font-weight: 500; letter-spacing: .03em; color: var(--taupe); text-decoration: none; transition: color .2s; white-space: nowrap; }
+.nav-links a:hover, .nav-links a.active { color: var(--cocoa); }
+.nav-cta { font-size: .72rem; font-weight: 600; background: var(--cocoa); color: var(--sand); padding: .5rem 1.2rem; border-radius: 9999px; text-decoration: none; transition: background .2s; white-space: nowrap; }
+.nav-cta:hover { background: var(--clay); }
+
+/* ── HERO ── */
+.hero {
+  padding: 128px 1.5rem 5rem;
+  min-height: 60vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  background: linear-gradient(160deg, var(--cocoa) 0%, #1a1310 100%);
+  color: var(--sand);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -30%; right: -10%;
+  width: 55vw; height: 55vw; max-width: 700px; max-height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,154,116,.15) 0%, transparent 70%);
+}
+.hero-eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--claylt); margin-bottom: 1.2rem; position: relative; z-index: 2; }
+.hero-title { font-family: var(--ff-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; color: var(--sand); margin-bottom: 1.5rem; max-width: 900px; position: relative; z-index: 2; }
+.hero-title em { font-style: italic; color: var(--claylt); }
+.hero-desc { font-size: 1rem; color: rgba(244,238,230,.7); line-height: 1.8; max-width: 640px; margin: 0 auto; position: relative; z-index: 2; }
+
+/* ── INTRO ── */
+.intro { padding: 5rem 3rem 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+.intro-eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--clay); margin-bottom: 1rem; }
+.intro-title { font-family: var(--ff-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15; color: var(--cocoa); margin-bottom: 1.5rem; }
+.intro-title em { font-style: italic; color: var(--clay); }
+.intro-desc { font-size: .95rem; color: var(--taupe); line-height: 1.8; }
+
+/* ── GRILLE OFFRES ── */
+.pricing {
+  padding: 3rem 3rem 6rem;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+
+.offer {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  display: flex; flex-direction: column;
+  border: 1px solid rgba(42,33,27,.06);
+  transition: transform .3s, box-shadow .3s;
+}
+.offer:hover { transform: translateY(-6px); box-shadow: 0 20px 60px -20px rgba(42,33,27,.15); }
+
+.offer-featured {
+  background: var(--cocoa);
+  color: var(--sand);
+  transform: scale(1.03);
+  box-shadow: 0 20px 60px -20px rgba(42,33,27,.3);
+}
+.offer-featured:hover { transform: scale(1.03) translateY(-6px); }
+
+.offer-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--claylt); color: var(--cocoa);
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  padding: .4rem 1rem; border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.offer-tier { font-size: .65rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--clay); margin-bottom: .8rem; }
+.offer-featured .offer-tier { color: var(--claylt); }
+
+.offer-name { font-family: var(--ff-serif); font-size: 1.6rem; line-height: 1.15; color: var(--cocoa); margin-bottom: .5rem; }
+.offer-featured .offer-name { color: var(--sand); }
+
+.offer-tagline { font-family: var(--ff-serif); font-size: .95rem; font-style: italic; color: var(--taupe); margin-bottom: 1.8rem; line-height: 1.5; }
+.offer-featured .offer-tagline { color: rgba(244,238,230,.65); }
+
+.offer-price {
+  font-family: var(--ff-serif);
+  font-size: 2rem; line-height: 1.1;
+  color: var(--cocoa); margin-bottom: .3rem;
+}
+.offer-featured .offer-price { color: var(--sand); }
+
+.offer-price-range {
+  font-size: .75rem; color: var(--taupe); font-weight: 500; margin-bottom: .3rem;
+}
+.offer-featured .offer-price-range { color: rgba(244,238,230,.6); }
+
+.offer-price-eur { font-size: .7rem; color: var(--taupe); font-weight: 400; margin-bottom: 1.8rem; }
+.offer-featured .offer-price-eur { color: rgba(244,238,230,.5); }
+
+.offer-features {
+  list-style: none;
+  display: flex; flex-direction: column; gap: .7rem;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+.offer-features li {
+  font-size: .82rem;
+  color: var(--cocoa);
+  line-height: 1.55;
+  display: flex; align-items: flex-start; gap: .6rem;
+}
+.offer-featured .offer-features li { color: rgba(244,238,230,.85); }
+
+.offer-features li::before {
+  content: '';
+  display: block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--clay);
+  margin-top: .55rem; flex-shrink: 0;
+}
+.offer-featured .offer-features li::before { background: var(--claylt); }
+
+.offer-target {
+  font-size: .72rem; color: var(--taupe);
+  font-style: italic; line-height: 1.5;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(42,33,27,.08);
+  margin-bottom: 1.5rem;
+}
+.offer-featured .offer-target { color: rgba(244,238,230,.55); border-top-color: rgba(244,238,230,.1); }
+
+.offer-cta {
+  display: block; text-align: center;
+  padding: .9rem 1.5rem;
+  border-radius: 9999px;
+  font-size: .78rem; font-weight: 600; letter-spacing: .05em;
+  text-decoration: none;
+  transition: all .25s;
+}
+.offer-cta-primary { background: var(--cocoa); color: var(--sand); }
+.offer-cta-primary:hover { background: var(--clay); }
+.offer-featured .offer-cta-primary { background: var(--sand); color: var(--cocoa); }
+.offer-featured .offer-cta-primary:hover { background: var(--claylt); }
+
+/* ── OPTIONS ── */
+.options-section {
+  background: var(--ivory);
+  padding: 5rem 3rem;
+}
+.options-inner { max-width: 900px; margin: 0 auto; }
+.options-header { text-align: center; margin-bottom: 3rem; }
+.options-eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--clay); margin-bottom: 1rem; }
+.options-title { font-family: var(--ff-serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.15; color: var(--cocoa); margin-bottom: 1rem; }
+.options-title em { font-style: italic; color: var(--clay); }
+.options-desc { font-size: .9rem; color: var(--taupe); line-height: 1.8; max-width: 600px; margin: 0 auto; }
+
+.options-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+}
+.option {
+  background: var(--white); padding: 1.4rem 1.6rem;
+  border-radius: 12px;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  border: 1px solid rgba(42,33,27,.06);
+}
+.option-name { font-family: var(--ff-body); font-size: .88rem; font-weight: 500; color: var(--cocoa); }
+.option-name-sub { display: block; font-size: .72rem; color: var(--taupe); font-weight: 400; margin-top: .2rem; }
+.option-price { font-family: var(--ff-serif); font-size: 1.1rem; color: var(--clay); white-space: nowrap; }
+
+/* ── PROCESS ── */
+.process { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+.process-header { text-align: center; margin-bottom: 3.5rem; }
+.process-eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--clay); margin-bottom: 1rem; }
+.process-title { font-family: var(--ff-serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.15; color: var(--cocoa); }
+.process-title em { font-style: italic; color: var(--clay); }
+
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+}
+.step-num {
+  font-family: var(--ff-serif); font-size: 3rem; line-height: 1;
+  color: var(--claylt); margin-bottom: 1rem;
+}
+.step-title { font-family: var(--ff-serif); font-size: 1.2rem; color: var(--cocoa); margin-bottom: .5rem; }
+.step-desc { font-size: .82rem; color: var(--taupe); line-height: 1.7; }
+
+.payment-info {
+  margin-top: 4rem;
+  background: var(--cocoa); color: var(--sand);
+  padding: 2.5rem;
+  border-radius: 16px;
+  text-align: center;
+}
+.payment-eyebrow { font-size: .65rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--claylt); margin-bottom: .8rem; }
+.payment-title { font-family: var(--ff-serif); font-size: 1.4rem; margin-bottom: 1.5rem; }
+.payment-schedule { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.payment-item strong { display: block; font-family: var(--ff-serif); font-size: 1.8rem; color: var(--claylt); }
+.payment-item span { font-size: .75rem; color: rgba(244,238,230,.6); }
+
+/* ── COMPARAISON ── */
+.comparison { background: var(--ivory); padding: 5rem 3rem; text-align: center; }
+.comparison-inner { max-width: 800px; margin: 0 auto; }
+.comparison-quote {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-style: italic;
+  color: var(--cocoa);
+  line-height: 1.4;
+  margin-bottom: 2rem;
+}
+.comparison-quote::before { content: '« '; color: var(--clay); }
+.comparison-quote::after { content: ' »'; color: var(--clay); }
+.comparison-source { font-size: .8rem; color: var(--taupe); letter-spacing: .05em; }
+
+/* ── CTA FINAL ── */
+.cta-section { background: var(--cocoa); padding: 6rem 3rem; text-align: center; }
+.cta-eyebrow { font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--clay); margin-bottom: 1rem; }
+.cta-title { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15; color: var(--sand); margin-bottom: 1rem; }
+.cta-title em { font-style: italic; color: var(--claylt); }
+.cta-sub { font-size: .9rem; color: rgba(244,238,230,.55); margin-bottom: 2rem; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-sand { background: var(--sand); color: var(--cocoa); font-size: .8rem; font-weight: 600; padding: .95rem 2.2rem; border-radius: 9999px; text-decoration: none; transition: opacity .2s; }
+.btn-sand:hover { opacity: .88; }
+.btn-outline-sand { border: 1px solid rgba(244,238,230,.25); color: var(--sand); font-size: .8rem; font-weight: 500; padding: .95rem 2.2rem; border-radius: 9999px; text-decoration: none; transition: border-color .2s; }
+.btn-outline-sand:hover { border-color: rgba(244,238,230,.7); }
+
+/* ── FOOTER ── */
+footer { background: var(--cocoa); border-top: 1px solid rgba(244,238,230,.06); padding: 2rem 3rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-family: var(--ff-serif); font-size: 1rem; color: var(--sand); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: .75rem; color: rgba(244,238,230,.35); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--sand); }
+.footer-copy { font-size: .7rem; color: rgba(244,238,230,.2); }
+
+/* ── WHATSAPP ── */
+.wa-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4);
+  transition: transform .2s;
+}
+.wa-btn:hover { transform: scale(1.1); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .pricing { grid-template-columns: 1fr; gap: 2rem; }
+  .offer-featured { transform: none; }
+  .offer-featured:hover { transform: translateY(-6px); }
+  .options-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+}
+@media (max-width: 640px) {
+  nav { padding: 0 1.2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 1.2rem 3.5rem; }
+  .intro, .options-section, .process, .comparison, .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+  .pricing { padding: 2rem 1.2rem 4rem; }
+  .process-steps { grid-template-columns: 1fr; gap: 2rem; }
+  footer { padding: 2rem 1.2rem; }
+  .payment-schedule { gap: 1.5rem; }
+}
+
+/* ── ANIMATIONS ── */
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.fade-up.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">l'Atelier KPM.</a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="realisations.html">Réalisations</a></li>
+      <li><a href="apropos.html">Qui sommes-nous</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <a href="devis.html" class="nav-cta">Devis gratuit</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow fade-up">Projets Signature</p>
+  <h1 class="hero-title fade-up">
+    Le prix d'une <em>expérience</em><br>
+    qui vous positionne au sommet.
+  </h1>
+  <p class="hero-desc fade-up">
+    Des sites premium scroll-driven, conçus sur mesure pour les marques qui refusent d'être invisibles. Voici nos gammes pour hôtels, agences immobilières, restaurants gastronomiques et maisons de luxe.
+  </p>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <p class="intro-eyebrow fade-up">Notre positionnement</p>
+  <h2 class="intro-title fade-up">
+    Pas un site web —<br><em>une signature de marque</em>.
+  </h2>
+  <p class="intro-desc fade-up">
+    Nos concurrents locaux facturent des sites templates à 300 000 FCFA. Nous, nous créons des expériences digitales qui rivalisent avec les grandes agences européennes. À Paris ou Londres, ce que nous livrons se vend entre 6 000 € et 15 000 €. Voici nos tarifs adaptés au marché africain.
+  </p>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+
+  <!-- ESSENTIELLE -->
+  <div class="offer fade-up">
+    <p class="offer-tier">Gamme Essentielle</p>
+    <h3 class="offer-name">Signature Light</h3>
+    <p class="offer-tagline">Le prestige, en version épurée.</p>
+
+    <p class="offer-price">900 000 – 1 500 000</p>
+    <p class="offer-price-range">FCFA</p>
+    <p class="offer-price-eur">soit ~1 400 – 2 300 €</p>
+
+    <ul class="offer-features">
+      <li>Site premium avec animations élégantes</li>
+      <li>4 à 5 pages sur mesure</li>
+      <li>Design éditorial adapté à votre marque</li>
+      <li>Responsive mobile impeccable</li>
+      <li>Nom de domaine + hébergement 1 an</li>
+      <li>Formulaire de contact fonctionnel</li>
+      <li>Livraison en 3 à 4 semaines</li>
+    </ul>
+
+    <p class="offer-target">Pour les entreprises qui veulent le prestige avec un budget maîtrisé.</p>
+
+    <a href="devis.html" class="offer-cta offer-cta-primary">Demander un devis</a>
+  </div>
+
+  <!-- PREMIUM (mise en avant) -->
+  <div class="offer offer-featured fade-up">
+    <span class="offer-badge">Le plus choisi</span>
+    <p class="offer-tier">Gamme Premium</p>
+    <h3 class="offer-name">Signature Premium</h3>
+    <p class="offer-tagline">L'expérience scroll-driven complète.</p>
+
+    <p class="offer-price">1 800 000 – 3 500 000</p>
+    <p class="offer-price-range">FCFA</p>
+    <p class="offer-price-eur">soit ~2 700 – 5 300 €</p>
+
+    <ul class="offer-features">
+      <li>Site scroll-driven immersif (style Beyond the Address / Maison Verte)</li>
+      <li>5 à 7 pages complètes sur mesure</li>
+      <li>Vidéo hero optimisée et intégrée</li>
+      <li>Design system unique complet</li>
+      <li>Animations GSAP professionnelles</li>
+      <li>Responsive mobile parfait</li>
+      <li>Nom de domaine + hébergement 1 an</li>
+      <li>Guide de mise à jour + accompagnement</li>
+      <li>Optimisation SEO de base</li>
+      <li>Livraison en 5 à 7 semaines</li>
+    </ul>
+
+    <p class="offer-target">Pour hôtels 4-5★, agences immobilières haut de gamme, restaurants gastronomiques, cliniques privées.</p>
+
+    <a href="devis.html" class="offer-cta offer-cta-primary">Demander un devis</a>
+  </div>
+
+  <!-- EXCEPTIONNELLE -->
+  <div class="offer fade-up">
+    <p class="offer-tier">Gamme Exceptionnelle</p>
+    <h3 class="offer-name">Signature Or</h3>
+    <p class="offer-tagline">L'exception, sans compromis.</p>
+
+    <p class="offer-price">4 000 000 – 8 000 000</p>
+    <p class="offer-price-range">FCFA</p>
+    <p class="offer-price-eur">soit ~6 000 – 12 000 €</p>
+
+    <ul class="offer-features">
+      <li>Tout ce qui est inclus dans Premium</li>
+      <li>Tournage vidéo sur place (drone + steadicam)</li>
+      <li>Séance photo professionnelle</li>
+      <li>Direction artistique complète</li>
+      <li>Rédaction française professionnelle</li>
+      <li>Version multilingue (FR + EN)</li>
+      <li>Espace administrateur sur mesure</li>
+      <li>Suivi et retouches 3 mois après livraison</li>
+      <li>Formation approfondie de l'équipe</li>
+      <li>Livraison en 8 à 12 semaines</li>
+    </ul>
+
+    <p class="offer-target">Pour palaces, groupes hôteliers, promoteurs immobiliers majeurs, marques établies.</p>
+
+    <a href="devis.html" class="offer-cta offer-cta-primary">Demander un devis</a>
+  </div>
+
+</section>
+
+<!-- OPTIONS -->
+<section class="options-section">
+  <div class="options-inner">
+    <div class="options-header">
+      <p class="options-eyebrow fade-up">Options complémentaires</p>
+      <h2 class="options-title fade-up">Personnalisez <em>votre projet</em>.</h2>
+      <p class="options-desc fade-up">
+        Toutes nos gammes peuvent être enrichies d'options selon vos besoins spécifiques.
+      </p>
+    </div>
+
+    <div class="options-grid">
+      <div class="option fade-up">
+        <div class="option-name">
+          Vidéo drone tournée sur place
+          <span class="option-name-sub">Prise de vues aériennes professionnelles</span>
+        </div>
+        <div class="option-price">+500 000 FCFA</div>
+      </div>
+
+      <div class="option fade-up">
+        <div class="option-name">
+          Séance photo professionnelle
+          <span class="option-name-sub">30 à 50 photos retouchées</span>
+        </div>
+        <div class="option-price">+400 000 FCFA</div>
+      </div>
+
+      <div class="option fade-up">
+        <div class="option-name">
+          Version anglaise complète
+          <span class="option-name-sub">Traduction + adaptation culturelle</span>
+        </div>
+        <div class="option-price">+600 000 FCFA</div>
+      </div>
+
+      <div class="option fade-up">
+        <div class="option-name">
+          Espace admin sur mesure
+          <span class="option-name-sub">Pour gérer votre contenu vous-même</span>
+        </div>
+        <div class="option-price">+800 000 FCFA</div>
+      </div>
+
+      <div class="option fade-up">
+        <div class="option-name">
+          Formulaire de réservation avancé
+          <span class="option-name-sub">Avec paiement en ligne intégré</span>
+        </div>
+        <div class="option-price">+500 000 FCFA</div>
+      </div>
+
+      <div class="option fade-up">
+        <div class="option-name">
+          Maintenance annuelle
+          <span class="option-name-sub">Mises à jour, sécurité, sauvegardes</span>
+        </div>
+        <div class="option-price">300 000 FCFA/an</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-header">
+    <p class="process-eyebrow fade-up">Notre méthode</p>
+    <h2 class="process-title fade-up">De l'idée à la <em>mise en ligne</em>.</h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="fade-up">
+      <p class="step-num">01</p>
+      <h3 class="step-title">Écoute</h3>
+      <p class="step-desc">Un rendez-vous pour comprendre votre marque, votre marché, vos ambitions.</p>
+    </div>
+    <div class="fade-up">
+      <p class="step-num">02</p>
+      <h3 class="step-title">Concept</h3>
+      <p class="step-desc">Nous concevons l'expérience narrative et l'univers visuel.</p>
+    </div>
+    <div class="fade-up">
+      <p class="step-num">03</p>
+      <h3 class="step-title">Création</h3>
+      <p class="step-desc">Design, développement, animations, contenu — tout sur mesure.</p>
+    </div>
+    <div class="fade-up">
+      <p class="step-num">04</p>
+      <h3 class="step-title">Livraison</h3>
+      <p class="step-desc">Mise en ligne, formation, accompagnement au démarrage.</p>
+    </div>
+  </div>
+
+  <div class="payment-info fade-up">
+    <p class="payment-eyebrow">Modalités de paiement</p>
+    <h3 class="payment-title">Un paiement échelonné en trois temps.</h3>
+    <div class="payment-schedule">
+      <div class="payment-item">
+        <strong>30%</strong>
+        <span>À la commande</span>
+      </div>
+      <div class="payment-item">
+        <strong>40%</strong>
+        <span>À mi-parcours</span>
+      </div>
+      <div class="payment-item">
+        <strong>30%</strong>
+        <span>À la livraison</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARAISON -->
+<section class="comparison">
+  <div class="comparison-inner">
+    <p class="comparison-quote fade-up">
+      Un hôtel 5★ investit des millions dans son architecture. Son site web mérite le même soin. Un site premium à 3 millions FCFA qui convertit pendant 5 ans, c'est un excellent retour sur investissement.
+    </p>
+    <p class="comparison-source">— La conviction de l'Atelier KPM</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <p class="cta-eyebrow fade-up">Prêt à commencer</p>
+  <h2 class="cta-title fade-up">Parlons de <em>votre projet</em>.</h2>
+  <p class="cta-sub fade-up">Devis gratuit, réponse sous 24h. Aucun engagement.</p>
+  <div class="cta-btns fade-up">
+    <a href="devis.html" class="btn-sand">Demander un devis</a>
+    <a href="realisations.html" class="btn-outline-sand">Voir les démos</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">l'Atelier KPM.</span>
+    <div class="footer-links">
+      <a href="services.html">Services</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="devis.html">Devis</a>
+    </div>
+    <span class="footer-copy">© 2026 l'Atelier KPM · Brazzaville</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20projet%20premium."
+   target="_blank" rel="noopener" class="wa-btn" aria-label="Nous contacter sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
