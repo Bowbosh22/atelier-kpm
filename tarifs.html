@@ -231,6 +231,106 @@ tailwind.config = {
   }
   .faq-item.open .faq-a { display: block; }
 
+  /* ── SIGNATURE TEASER ── */
+  .signature-teaser {
+    background: #2A211B;
+    color: #F4EEE6;
+    padding: 3.5rem 3rem;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .signature-teaser::before {
+    content: '';
+    position: absolute; top: -30%; right: -10%;
+    width: 40vw; height: 40vw; max-width: 500px; max-height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,154,116,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .signature-teaser-content {
+    max-width: 720px; position: relative; z-index: 2;
+  }
+  .signature-teaser-tag {
+    display: inline-block;
+    font-size: .62rem; font-weight: 600;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: #C49A74;
+    background: rgba(196,154,116,.12);
+    padding: .4rem 1rem; border-radius: 9999px;
+    margin-bottom: 1.5rem;
+  }
+  .signature-teaser-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1; letter-spacing: -.02em;
+    margin-bottom: 1.2rem;
+  }
+  .signature-teaser-title em {
+    font-style: italic; color: #C49A74;
+  }
+  .signature-teaser-desc {
+    font-size: .95rem;
+    color: rgba(244,238,230,.7);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 620px;
+  }
+  .signature-teaser-highlights {
+    display: flex; gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding: 1.2rem 0;
+    border-top: 1px solid rgba(244,238,230,.1);
+    border-bottom: 1px solid rgba(244,238,230,.1);
+  }
+  .signature-teaser-highlight {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: .82rem;
+    color: rgba(244,238,230,.85);
+  }
+  .signature-teaser-icon {
+    color: #C49A74; font-size: .65rem;
+  }
+  .signature-teaser-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .signature-teaser-btn-primary {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: #F4EEE6; color: #2A211B;
+    font-size: .8rem; font-weight: 600;
+    letter-spacing: .04em;
+    padding: .9rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all .25s;
+  }
+  .signature-teaser-btn-primary:hover {
+    background: #C49A74; color: #2A211B;
+  }
+  .signature-teaser-btn-ghost {
+    display: inline-flex; align-items: center; gap: .5rem;
+    border: 1px solid rgba(244,238,230,.25);
+    color: #F4EEE6;
+    font-size: .8rem; font-weight: 500;
+    letter-spacing: .04em;
+    padding: .9rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: border-color .25s, color .25s;
+  }
+  .signature-teaser-btn-ghost:hover {
+    border-color: #C49A74; color: #C49A74;
+  }
+  @media (max-width: 640px) {
+    .signature-teaser { padding: 2.5rem 1.5rem; }
+    .signature-teaser-highlights { gap: 1rem; flex-direction: column; }
+    .signature-teaser-actions { flex-direction: column; }
+    .signature-teaser-btn-primary, .signature-teaser-btn-ghost {
+      width: 100%; justify-content: center;
+    }
+  }
+
   /* ── ANIMATIONS ── */
   .reveal { opacity: 1; transform: none; transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
 
@@ -407,6 +507,50 @@ tailwind.config = {
         <li>Temps de réponse garanti 4h</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROJETS SIGNATURE — Renvoi vers tarifs premium
+     ═══════════════════════════════════════════ -->
+<section class="max-w-6xl mx-auto px-5 sm:px-8 pb-14 sm:pb-20">
+  <div class="signature-teaser reveal">
+
+    <div class="signature-teaser-content">
+      <div class="signature-teaser-tag">Projets Signature</div>
+      <h2 class="signature-teaser-title">
+        Pour les marques qui refusent<br>
+        <em>d'être invisibles.</em>
+      </h2>
+      <p class="signature-teaser-desc">
+        Des sites premium scroll-driven, taillés sur mesure pour hôtels d'exception, agences immobilières haut de gamme, restaurants gastronomiques et marques de luxe. Une gamme à part, avec ses propres tarifs — de 900 000 à 8 000 000 FCFA.
+      </p>
+
+      <div class="signature-teaser-highlights">
+        <div class="signature-teaser-highlight">
+          <span class="signature-teaser-icon">◆</span>
+          <span>Vidéo scroll-driven immersive</span>
+        </div>
+        <div class="signature-teaser-highlight">
+          <span class="signature-teaser-icon">◆</span>
+          <span>Design system unique</span>
+        </div>
+        <div class="signature-teaser-highlight">
+          <span class="signature-teaser-icon">◆</span>
+          <span>Positionnement au sommet</span>
+        </div>
+      </div>
+
+      <div class="signature-teaser-actions">
+        <a href="tarifs-premium.html" class="signature-teaser-btn-primary">
+          Découvrir les gammes signature →
+        </a>
+        <a href="realisations.html" class="signature-teaser-btn-ghost">
+          Voir les démos live
+        </a>
+      </div>
+    </div>
+
   </div>
 </section>
 
