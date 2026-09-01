@@ -1,3 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos offres — l'Atelier KPM</title>
+<meta name="description" content="Bien plus qu'un site web. Des solutions digitales pensées pour renforcer votre visibilité, votre expérience de marque et vos conversions. Formules de 350 000 FCFA à sur mesure, avec accompagnement mensuel.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sand:  '#F4EEE6',
+        shell: '#FBF7F1',
+        clay:  '#A6764E',
+        claylt:'#C49A74',
+        cocoa: '#2A211B',
+        taupe: '#83766A',
+      },
+      fontFamily: {
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        sans:  ['Hanken Grotesk', 'system-ui', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #F4EEE6; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  .ht { border-top:    1px solid rgba(42,33,27,.10); }
+  .hb { border-bottom: 1px solid rgba(42,33,27,.10); }
+  .hx { border:        1px solid rgba(42,33,27,.10); }
+  .serif-tight { letter-spacing: -.013em; }
+  .eyebrow { color:#A6764E; letter-spacing:.22em; font-size:.68rem; text-transform:uppercase; }
+  .h-fluid { font-size: clamp(1.75rem, 8vw, 4.5rem); line-height: 1.06; }
+  .h-fluid-lg { font-size: clamp(2rem, 10vw, 5.5rem); line-height: 1.04; }
+
+  /* ── PILIERS HERO ── */
+  .pillar-row {
+    display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap;
+  }
+  .pillar-chip {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: #FBF7F1; border: 1px solid rgba(42,33,27,.1);
+    padding: .5rem 1.1rem; border-radius: 9999px;
+    font-size: .78rem; color: #2A211B; font-weight: 500;
+  }
+
+  /* ── PLANS ── */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 820px) { .plans-grid { grid-template-columns: 1fr; } }
+
+  .plan {
+    background: #FBF7F1;
+    border: 1.5px solid rgba(42,33,27,.10);
+    border-radius: 18px;
+    padding: 2.5rem 2.2rem;
+    position: relative;
+    display: flex; flex-direction: column;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .plan:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -18px rgba(42,33,27,.18); }
+  .plan.featured {
+    background: #2A211B;
+    color: #F4EEE6;
+    border-color: #2A211B;
+  }
+  .plan.signature {
+    background: linear-gradient(160deg, #2A211B 0%, #3a2c22 100%);
+    color: #F4EEE6;
+    border-color: #2A211B;
+  }
+
+  .plan-badge {
+    position: absolute; top: -13px; left: 2.2rem;
+    font-size: .62rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    background: #A6764E; color: #F4EEE6;
+    padding: .32rem .85rem;
+    border-radius: 9999px;
+  }
+
+  .plan-name {
+    font-size: .74rem; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: #A6764E; margin-bottom: 1rem;
+  }
+  .plan.featured .plan-name,
+  .plan.signature .plan-name { color: #C49A74; }
+
+  .plan-price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 2.5rem; font-weight: 400;
+    line-height: 1.05;
+    color: #2A211B;
+  }
+  .plan.featured .plan-price,
+  .plan.signature .plan-price { color: #F4EEE6; }
+
+  .plan-tagline {
+    font-size: .88rem; color: #83766A;
+    line-height: 1.6; margin-top: 1rem;
+  }
+  .plan.featured .plan-tagline,
+  .plan.signature .plan-tagline { color: rgba(244,238,230,.65); }
+
+  .plan-longdesc {
+    font-size: .85rem; color: #83766A;
+    line-height: 1.7; margin-top: .6rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid rgba(42,33,27,.10);
+  }
+  .plan.featured .plan-longdesc,
+  .plan.signature .plan-longdesc {
+    color: rgba(244,238,230,.55);
+    border-bottom-color: rgba(244,238,230,.12);
+  }
+
+  .plan-group-label {
+    font-size: .68rem; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: #2A211B;
+    margin: 1.3rem 0 .5rem;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .plan.featured .plan-group-label,
+  .plan.signature .plan-group-label { color: #C49A74; }
+
+  .plan-features { list-style: none; padding: 0; margin: 0 0 1.2rem; }
+  .plan-features li {
+    display: flex; align-items: flex-start; gap: .55rem;
+    font-size: .84rem; color: #4a4038;
+    padding: .32rem 0;
+    line-height: 1.5;
+  }
+  .plan.featured .plan-features li,
+  .plan.signature .plan-features li { color: rgba(244,238,230,.82); }
+  .plan-features li::before {
+    content: "✓"; font-size: .75rem;
+    color: #A6764E; flex-shrink: 0; margin-top: 2px;
+    font-weight: 600;
+  }
+  .plan.featured .plan-features li::before,
+  .plan.signature .plan-features li::before { color: #C49A74; }
+
+  .plan-goal {
+    margin-top: auto;
+    padding-top: 1.3rem;
+    border-top: 1px solid rgba(42,33,27,.10);
+    margin-bottom: 1.4rem;
+  }
+  .plan.featured .plan-goal,
+  .plan.signature .plan-goal { border-top-color: rgba(244,238,230,.12); }
+  .plan-goal-label {
+    font-size: .66rem; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: #A6764E; margin-bottom: .35rem;
+  }
+  .plan.featured .plan-goal-label,
+  .plan.signature .plan-goal-label { color: #C49A74; }
+  .plan-goal-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 1.05rem; color: #2A211B; line-height: 1.4;
+  }
+  .plan.featured .plan-goal-text,
+  .plan.signature .plan-goal-text { color: #F4EEE6; }
+
+  .plan-cta {
+    display: block; text-align: center;
+    font-size: .82rem; font-weight: 500;
+    letter-spacing: .04em;
+    padding: .9rem 1.25rem;
+    border: 1px solid #2A211B;
+    color: #2A211B; text-decoration: none;
+    border-radius: 9999px;
+    transition: all .2s;
+  }
+  .plan-cta:hover { background: #2A211B; color: #F4EEE6; }
+  .plan.featured .plan-cta,
+  .plan.signature .plan-cta {
+    border-color: #F4EEE6; color: #F4EEE6;
+  }
+  .plan.featured .plan-cta:hover,
+  .plan.signature .plan-cta:hover {
+    background: #F4EEE6; color: #2A211B;
+  }
+
+  /* ── APPROCHE (3 piliers) ── */
+  .approach-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: rgba(42,33,27,.10);
+    border: 1px solid rgba(42,33,27,.10);
+    margin-top: 2rem;
+  }
+  @media (max-width: 820px) { .approach-grid { grid-template-columns: 1fr; } }
+  .approach-card { background: #FBF7F1; padding: 2rem 1.8rem; }
+  .approach-icon { font-size: 1.4rem; margin-bottom: 1rem; }
+  .approach-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.4rem; color: #2A211B; margin-bottom: .6rem;
+  }
+  .approach-desc { font-size: .85rem; color: #83766A; line-height: 1.7; margin-bottom: 1rem; }
+  .approach-tags { font-size: .72rem; color: #A6764E; letter-spacing: .04em; }
+
   /* ── CARE PLANS (accompagnement mensuel) ── */
   .care-grid {
     display: grid;
@@ -107,3 +323,510 @@
     text-align: center;
     line-height: 1.5;
   }
+
+  /* ── BENEFITS LIST ── */
+  .benefits-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2,1fr); gap: .6rem 2rem; margin-top: 1.5rem; }
+  @media (max-width: 640px) { .benefits-list { grid-template-columns: 1fr; } }
+  .benefits-list li {
+    display: flex; align-items: flex-start; gap: .6rem;
+    font-size: .9rem; color: #2A211B; line-height: 1.5;
+  }
+  .benefits-list li::before {
+    content: "✓"; color: #A6764E; font-weight: 600; flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* ── FAQ ── */
+  .faq-item { border-top: 1px solid rgba(42,33,27,.10); padding: 1.5rem 0; }
+  .faq-item:last-child { border-bottom: 1px solid rgba(42,33,27,.10); }
+  .faq-q {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.15rem; letter-spacing: -.01em;
+    color: #2A211B; cursor: pointer;
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 1rem;
+    user-select: none;
+  }
+  .faq-q .toggle {
+    font-size: 1.3rem; font-weight: 300;
+    color: #A6764E; flex-shrink: 0;
+    transition: transform .25s;
+  }
+  .faq-item.open .toggle { transform: rotate(45deg); }
+  .faq-a {
+    font-size: .88rem; color: #83766A;
+    line-height: 1.7; margin-top: .75rem;
+    display: none;
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  .reveal { opacity: 1; transform: none; transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  ::selection { background: rgba(166,118,78,.25); }
+</style>
+</head>
+
+<body class="bg-sand text-cocoa font-sans antialiased">
+
+<!-- HEADER / NAV -->
+<header id="top" class="fixed top-0 inset-x-0 z-50" style="background:rgba(244,238,230,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(42,33,27,.10);">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:60px">
+    <a href="index.html" class="font-serif serif-tight text-xl" style="color:#2A211B;">l'Atelier KPM<span style="color:#A6764E;">.</span></a>
+    <nav class="hidden md:flex items-center gap-8 text-sm">
+      <a href="services.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Services</a>
+      <a href="tarifs.html" class="transition" style="color:#2A211B;font-weight:500;">Tarifs</a>
+      <a href="realisations.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Réalisations</a>
+      <a href="apropos.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Qui sommes-nous</a>
+      <a href="actualites.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Actualités</a>
+      <a href="blog.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Blog</a>
+    </nav>
+    <a href="devis.html" class="text-sm font-medium" style="color:#A6764E;border-bottom:1px solid rgba(166,118,78,.45);padding-bottom:2px">Devis gratuit</a>
+    <a href="tarifs-en.html" class="text-xs font-medium" style="color:#83766A;margin-left:1.2rem;">EN</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="max-w-4xl mx-auto px-5 sm:px-8 pt-32 sm:pt-40 pb-10 sm:pb-14 text-center">
+  <div class="eyebrow mb-5 reveal">Nos offres</div>
+  <h1 class="font-serif serif-tight h-fluid-lg reveal">Bien plus qu'<span class="italic text-clay">un site web.</span></h1>
+  <p class="mt-6 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto text-taupe reveal">
+    Votre site est souvent le premier contact entre votre entreprise et vos futurs clients. C'est pourquoi nous ne concevons pas simplement de beaux sites internet — nous créons des expériences digitales pensées pour renforcer votre image, améliorer votre visibilité et transformer vos visiteurs en clients.
+  </p>
+  <div class="mt-8 pillar-row reveal">
+    <span class="pillar-chip">📍 Visibilité</span>
+    <span class="pillar-chip">🎨 Expérience</span>
+    <span class="pillar-chip">🎯 Conversion</span>
+  </div>
+</section>
+
+<!-- INTRO OFFRES -->
+<section class="max-w-3xl mx-auto px-5 sm:px-8 pb-10 sm:pb-14 text-center">
+  <h2 class="font-serif serif-tight h-fluid reveal">Des solutions adaptées<br><span class="italic text-clay">à votre ambition.</span></h2>
+  <p class="mt-5 text-sm sm:text-base text-taupe leading-relaxed reveal max-w-xl mx-auto">
+    Que vous souhaitiez simplement développer votre présence en ligne ou créer une expérience digitale complète, nous vous proposons des solutions adaptées à votre entreprise.
+  </p>
+</section>
+
+<!-- GRILLE TARIFS — PAIEMENT UNIQUE -->
+<section id="tarifs" class="max-w-6xl mx-auto px-5 sm:px-8 pb-16 sm:pb-24">
+  <div class="plans-grid reveal">
+
+    <!-- ESSENTIEL -->
+    <div class="plan">
+      <p class="plan-name">Essentiel</p>
+      <p class="plan-price">350 000 FCFA</p>
+      <p class="plan-tagline">Pour les entreprises qui souhaitent construire une présence professionnelle et crédible en ligne.</p>
+      <p class="plan-longdesc">Une solution idéale pour présenter votre activité, vos services et permettre à vos futurs clients de vous contacter facilement.</p>
+
+      <p class="plan-group-label">Inclus dans cette offre</p>
+      <ul class="plan-features">
+        <li>Site vitrine professionnel</li>
+        <li>Jusqu'à 5 pages</li>
+        <li>Design UI personnalisé</li>
+        <li>Expérience utilisateur simple et intuitive</li>
+        <li>Design responsive, mobile et tablette</li>
+        <li>Formulaire de contact</li>
+        <li>Intégration WhatsApp</li>
+        <li>Intégration des réseaux sociaux</li>
+        <li>Google Maps</li>
+        <li>SEO technique de base</li>
+        <li>Optimisation locale de base</li>
+        <li>Optimisation des performances</li>
+        <li>Sécurité et configuration initiale</li>
+      </ul>
+
+      <div class="plan-goal">
+        <p class="plan-goal-label">Votre objectif</p>
+        <p class="plan-goal-text">Être présent, crédible et facilement accessible en ligne.</p>
+      </div>
+
+      <a href="devis.html" class="plan-cta">Démarrer mon projet</a>
+    </div>
+
+    <!-- BUSINESS (featured) -->
+    <div class="plan featured">
+      <span class="plan-badge">⭐ Le plus choisi</span>
+      <p class="plan-name">Business</p>
+      <p class="plan-price">750 000 FCFA</p>
+      <p class="plan-tagline">La solution idéale pour développer votre visibilité et générer davantage de demandes.</p>
+      <p class="plan-longdesc">Pensée pour les restaurants, hôtels, salons, cabinets, agences, commerces et entreprises de services qui souhaitent utiliser leur site comme un véritable outil commercial. Tout ce qui est inclus dans Essentiel, plus :</p>
+
+      <p class="plan-group-label">🎨 Expérience</p>
+      <ul class="plan-features">
+        <li>Design UX/UI entièrement personnalisé</li>
+        <li>Analyse et optimisation du parcours utilisateur</li>
+        <li>Architecture pensée pour la navigation</li>
+        <li>Design cohérent avec votre image de marque</li>
+        <li>Animations et interactions professionnelles</li>
+        <li>Optimisation mobile avancée</li>
+      </ul>
+
+      <p class="plan-group-label">📍 Visibilité</p>
+      <ul class="plan-features">
+        <li>Optimisation du référencement local</li>
+        <li>Optimisation des mots-clés liés à votre activité</li>
+        <li>Optimisation pour les recherches locales</li>
+        <li>Présence Google optimisée</li>
+        <li>Google Maps optimisé</li>
+        <li>Structure SEO améliorée</li>
+      </ul>
+
+      <p class="plan-group-label">🎯 Conversion</p>
+      <ul class="plan-features">
+        <li>Appels à l'action stratégiques</li>
+        <li>Boutons WhatsApp optimisés</li>
+        <li>Formulaires pensés pour générer des demandes</li>
+        <li>Parcours orienté vers la prise de contact</li>
+        <li>Sections conçues pour rassurer et convaincre</li>
+      </ul>
+
+      <div class="plan-goal">
+        <p class="plan-goal-label">Votre objectif</p>
+        <p class="plan-goal-text">Être trouvé, convaincre vos visiteurs et générer davantage de contacts.</p>
+      </div>
+
+      <a href="devis.html" class="plan-cta">Développer mon entreprise</a>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="plan">
+      <p class="plan-name">Premium</p>
+      <p class="plan-price">À partir de 1 500 000 FCFA</p>
+      <p class="plan-tagline">Une expérience digitale complète, conçue pour les entreprises ambitieuses.</p>
+      <p class="plan-longdesc">Destinée aux hôtels, entreprises touristiques, agences immobilières, marques et entreprises souhaitant créer une présence digitale premium et se différencier de leur concurrence. Tout ce qui est inclus dans Business, plus :</p>
+
+      <p class="plan-group-label">🎨 Design & Expérience</p>
+      <ul class="plan-features">
+        <li>UX/UI premium entièrement sur mesure</li>
+        <li>Direction artistique personnalisée</li>
+        <li>Storytelling digital</li>
+        <li>Animations immersives</li>
+        <li>Interactions avancées</li>
+        <li>Expérience visuelle haut de gamme</li>
+        <li>Design conçu pour renforcer votre image</li>
+      </ul>
+
+      <p class="plan-group-label">⚙️ Fonctionnalités avancées</p>
+      <ul class="plan-features">
+        <li>Système de réservation</li>
+        <li>Demande de devis avancée</li>
+        <li>Espace client</li>
+        <li>Tableau d'administration</li>
+        <li>Gestion de contenu</li>
+        <li>Galerie photo et vidéo premium</li>
+        <li>Site multilingue</li>
+        <li>Fonctionnalités et intégrations sur mesure</li>
+      </ul>
+
+      <p class="plan-group-label">📈 Visibilité & Performance</p>
+      <ul class="plan-features">
+        <li>Référencement local avancé</li>
+        <li>Structure SEO stratégique</li>
+        <li>Optimisation des performances</li>
+        <li>Analyse du comportement des visiteurs</li>
+        <li>Suivi des conversions</li>
+        <li>Intégration d'outils analytiques</li>
+      </ul>
+
+      <div class="plan-goal">
+        <p class="plan-goal-label">Votre objectif</p>
+        <p class="plan-goal-text">Créer une expérience digitale premium qui attire, impressionne et transforme vos visiteurs en clients.</p>
+      </div>
+
+      <a href="devis.html" class="plan-cta">Créer une expérience premium</a>
+    </div>
+
+    <!-- SIGNATURE -->
+    <div class="plan signature">
+      <p class="plan-name">Signature</p>
+      <p class="plan-price">Projet sur mesure</p>
+      <p class="plan-tagline">Pour les projets qui sortent du cadre.</p>
+      <p class="plan-longdesc">Vous avez une idée ambitieuse ou un besoin spécifique ? Nous concevons des solutions digitales entièrement personnalisées, adaptées à vos objectifs et à votre activité — dans l'esprit de nos démonstrations scroll-driven, immersives et sur mesure.</p>
+
+      <p class="plan-group-label">Exemples de projets</p>
+      <ul class="plan-features">
+        <li>Sites premium scroll-driven signature</li>
+        <li>Plateformes web complexes</li>
+        <li>Applications web</li>
+        <li>E-commerce avancé</li>
+        <li>Plateformes immobilières</li>
+        <li>Systèmes de réservation complexes</li>
+        <li>Expériences 3D et immersives</li>
+        <li>Interfaces sur mesure</li>
+        <li>Projets digitaux innovants</li>
+      </ul>
+
+      <div class="plan-goal">
+        <p class="plan-goal-label">Votre objectif</p>
+        <p class="plan-goal-text">Votre projet est unique. Votre solution doit l'être aussi.</p>
+      </div>
+
+      <a href="tarifs-premium.html" class="plan-cta">Découvrir les gammes signature →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- NOTRE APPROCHE -->
+<section class="ht hb" style="background:#FBF7F1">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
+    <div class="reveal">
+      <div class="eyebrow mb-4">Notre approche</div>
+      <h2 class="font-serif serif-tight h-fluid">Un site pensé pour<br><span class="italic text-clay">produire des résultats.</span></h2>
+      <p class="mt-5 text-sm sm:text-base text-taupe leading-relaxed max-w-2xl">
+        Nous construisons chaque projet autour de trois objectifs essentiels.
+      </p>
+    </div>
+
+    <div class="approach-grid reveal">
+      <div class="approach-card">
+        <div class="approach-icon">📍</div>
+        <h3 class="approach-title">Être trouvé</h3>
+        <p class="approach-desc">Nous travaillons votre présence digitale afin que vos futurs clients puissent vous trouver lorsqu'ils recherchent vos services.</p>
+        <p class="approach-tags">Référencement · Google · SEO local · Visibilité</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">🎨</div>
+        <h3 class="approach-title">Convaincre</h3>
+        <p class="approach-desc">Nous créons une expérience visuelle et intuitive qui renforce la confiance et valorise votre entreprise.</p>
+        <p class="approach-tags">UX · UI · Design · Expérience utilisateur</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">🎯</div>
+        <h3 class="approach-title">Transformer</h3>
+        <p class="approach-desc">Nous structurons votre site pour encourager vos visiteurs à passer à l'action.</p>
+        <p class="approach-tags">Réservation · WhatsApp · Contact · Devis · Conversion</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ACCOMPAGNEMENT MENSUEL — CARE / BUSINESS CARE / GROWTH / PERFORMANCE
+     ═══════════════════════════════════════════ -->
+<section class="ht hb" style="background:#FBF7F1">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
+
+    <div class="reveal max-w-2xl">
+      <div class="eyebrow mb-4">Après la livraison</div>
+      <h2 class="font-serif serif-tight h-fluid">Votre site évolue<br><span class="italic text-clay">avec votre entreprise.</span></h2>
+      <p class="mt-5 text-sm sm:text-base text-taupe leading-relaxed">
+        Un site internet ne doit pas rester identique pendant des années. Nous vous accompagnons pour assurer sa maintenance, renforcer votre visibilité et améliorer continuellement ses performances.
+      </p>
+    </div>
+
+    <div class="care-grid reveal">
+
+      <!-- CARE -->
+      <div class="care-card">
+        <p class="care-name">🟢 Care</p>
+        <p class="care-price">25 000</p>
+        <p class="care-unit">FCFA / mois</p>
+        <p class="care-tagline">L'essentiel pour garder votre site performant et sécurisé.</p>
+        <ul class="care-features">
+          <li>Mises à jour techniques</li>
+          <li>Sauvegardes régulières</li>
+          <li>Vérification du bon fonctionnement</li>
+          <li>Sécurité de base</li>
+          <li>Corrections mineures</li>
+        </ul>
+        <p class="care-ideal">Idéal pour les petits sites vitrines.</p>
+      </div>
+
+      <!-- BUSINESS CARE -->
+      <div class="care-card">
+        <p class="care-name">🔵 Business Care</p>
+        <p class="care-price">50 000</p>
+        <p class="care-unit">FCFA / mois</p>
+        <p class="care-tagline">Maintenance + accompagnement pour garder votre site à jour.</p>
+        <ul class="care-features">
+          <li>Tout ce qui est inclus dans Care</li>
+          <li>Mises à jour de contenus</li>
+          <li>Modification de textes et images</li>
+          <li>Assistance technique</li>
+          <li>Corrections prioritaires</li>
+          <li>Vérification régulière des performances</li>
+        </ul>
+        <p class="care-ideal">Idéal pour les entreprises qui font régulièrement évoluer leur activité.</p>
+      </div>
+
+      <!-- GROWTH (featured) -->
+      <div class="care-card care-featured">
+        <span class="care-badge">⭐ La plus populaire</span>
+        <p class="care-name">🟣 Growth</p>
+        <p class="care-price">125 000</p>
+        <p class="care-unit">FCFA / mois</p>
+        <p class="care-tagline">Pour développer votre visibilité en ligne.</p>
+        <ul class="care-features">
+          <li>Tout ce qui est inclus dans Business Care</li>
+          <li>Optimisation continue du référencement local</li>
+          <li>Suivi de la visibilité Google</li>
+          <li>Optimisation de la fiche Google Business Profile</li>
+          <li>Optimisation de mots-clés locaux</li>
+          <li>Amélioration progressive des pages importantes</li>
+          <li>Analyse des opportunités d'amélioration</li>
+        </ul>
+        <p class="care-ideal">Pour les entreprises qui veulent être vues, pas seulement en ligne.</p>
+      </div>
+
+      <!-- PERFORMANCE -->
+      <div class="care-card">
+        <p class="care-name">🔥 Performance</p>
+        <p class="care-price">250 000</p>
+        <p class="care-unit">FCFA / mois</p>
+        <p class="care-tagline">Un accompagnement digital plus complet.</p>
+        <ul class="care-features">
+          <li>Tout ce qui est inclus dans Growth</li>
+          <li>Stratégie de référencement local avancée</li>
+          <li>Optimisation régulière de la conversion</li>
+          <li>Analyse du comportement des visiteurs</li>
+          <li>Suivi des performances</li>
+          <li>Analyse des concurrents</li>
+          <li>Recommandations stratégiques</li>
+          <li>Améliorations continues du site</li>
+        </ul>
+        <p class="care-ideal">Pour hôtels, entreprises touristiques, immobilier et entreprises qui investissent réellement dans leur croissance digitale.</p>
+      </div>
+
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="care-disclaimer reveal">
+      <p><strong>Ce qui n'est pas inclus dans les abonnements :</strong> les nouvelles fonctionnalités importantes, la refonte complète de pages, la création de nouveaux sites et les dépenses externes ne sont pas incluses dans les abonnements, sauf mention contraire.</p>
+    </div>
+
+    <!-- PHRASE DE POSITIONNEMENT -->
+    <p class="care-closing reveal">
+      Nous créons votre présence digitale. Puis nous vous accompagnons pour la maintenir, la rendre visible et l'améliorer.
+    </p>
+
+  </div>
+</section>
+
+<!-- POURQUOI INVESTIR -->
+<section class="ht hb" style="background:#FBF7F1">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
+    <div class="eyebrow mb-4 reveal">Pourquoi investir dans un site professionnel ?</div>
+    <h2 class="font-serif serif-tight h-fluid reveal">Un site internet ne doit pas être<br><span class="italic text-clay">une simple vitrine.</span></h2>
+    <p class="mt-5 text-sm sm:text-base text-taupe leading-relaxed reveal max-w-2xl">
+      Il doit permettre à votre entreprise de :
+    </p>
+    <ul class="benefits-list reveal">
+      <li>Renforcer sa crédibilité</li>
+      <li>Présenter clairement son offre</li>
+      <li>Être visible sur Internet</li>
+      <li>Attirer de nouveaux clients</li>
+      <li>Faciliter la prise de contact</li>
+      <li>Recevoir des demandes 24h/24</li>
+      <li>Se différencier de la concurrence</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA INTERMÉDIAIRE -->
+<section class="max-w-3xl mx-auto px-5 sm:px-8 py-14 sm:py-20 text-center">
+  <div class="eyebrow mb-4 reveal">Une question ? Un projet ?</div>
+  <h2 class="font-serif serif-tight h-fluid reveal">Parlons de<br><span class="italic text-clay">votre entreprise.</span></h2>
+  <p class="mt-5 text-base text-taupe leading-relaxed reveal max-w-xl mx-auto">
+    Chaque projet est différent. Nous prenons le temps de comprendre votre activité, vos objectifs et vos besoins afin de vous proposer la solution la plus adaptée. Votre présence digitale peut devenir un véritable moteur pour votre entreprise.
+  </p>
+  <a href="devis.html" class="reveal inline-block mt-7 text-sm font-medium" style="background:#2A211B;color:#F4EEE6;padding:.95rem 2.2rem;border-radius:9999px;transition:opacity .3s;" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Discutons de votre projet →</a>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="ht hb" style="background:#FBF7F1">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
+    <div class="reveal mb-8">
+      <div class="eyebrow mb-4">Questions fréquentes</div>
+      <h2 class="font-serif serif-tight h-fluid">On lève vos <span class="italic text-clay">derniers doutes.</span></h2>
+    </div>
+
+    <div class="faq-item open">
+      <div class="faq-q">Combien de temps faut-il pour créer un site ? <span class="toggle">+</span></div>
+      <p class="faq-a">La durée dépend de la complexité du projet. Un site vitrine peut être réalisé en quelques semaines, tandis qu'un projet premium ou sur mesure nécessite davantage de temps.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Le site fonctionnera-t-il sur mobile ? <span class="toggle">+</span></div>
+      <p class="faq-a">Oui. Tous nos sites sont conçus pour offrir une expérience optimale sur ordinateur, tablette et smartphone.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Puis-je modifier mon site après sa livraison ? <span class="toggle">+</span></div>
+      <p class="faq-a">Oui. Selon le projet, nous pouvons mettre en place un système de gestion permettant de modifier certains contenus. Nous proposons également des formules d'accompagnement mensuel (Care, Business Care, Growth, Performance) pour vous décharger complètement de cette gestion.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Le référencement est-il inclus ? <span class="toggle">+</span></div>
+      <p class="faq-a">Une optimisation SEO de base est intégrée à nos projets. Les stratégies de référencement local plus avancées et le suivi continu sont proposés dans nos formules d'accompagnement mensuel Growth et Performance.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Puis-je payer en plusieurs fois ? <span class="toggle">+</span></div>
+      <p class="faq-a">Oui. Un échéancier de paiement peut être défini selon la nature et le montant du projet.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Quelle est la différence entre l'achat du site et l'abonnement mensuel ? <span class="toggle">+</span></div>
+      <p class="faq-a">L'achat (Essentiel, Business, Premium ou Signature) correspond à la création de votre site, en paiement unique. L'abonnement mensuel (Care, Business Care, Growth ou Performance) est optionnel et intervient après la livraison : il couvre la maintenance, les mises à jour de contenu et l'accompagnement pour faire évoluer votre visibilité dans le temps.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="max-w-3xl mx-auto px-5 sm:px-8 py-14 sm:py-20 text-center">
+  <div class="eyebrow mb-4 reveal">Prêt à commencer ?</div>
+  <h2 class="font-serif serif-tight h-fluid reveal">Ne vous contentez pas<br>d'<span class="italic text-clay">être présent en ligne.</span></h2>
+  <p class="mt-5 text-base text-taupe leading-relaxed reveal max-w-xl mx-auto">
+    Soyez trouvé. Convainquez. Transformez.
+  </p>
+  <a href="devis.html" class="reveal inline-block mt-7 text-sm font-medium" style="background:#2A211B;color:#F4EEE6;padding:.95rem 2.2rem;border-radius:9999px;transition:opacity .3s;" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Démarrer mon projet →</a>
+  <p class="mt-4 text-xs text-taupe reveal">Réponse sous 24h &nbsp;·&nbsp; Devis fixe &nbsp;·&nbsp; Sans engagement</p>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#2A211B;">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+    <a href="index.html" class="font-serif serif-tight text-lg" style="color:#F4EEE6;flex-shrink:0;">l'Atelier KPM<span style="color:#A6764E;">.</span></a>
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
+      <a href="services.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Services</a>
+      <a href="tarifs.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Tarifs</a>
+      <a href="realisations.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Réalisations</a>
+      <a href="apropos.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Qui sommes-nous</a>
+      <a href="index.html#faq" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-5 text-xs" style="flex-shrink:0;">
+      <a href="tel:+242064114256" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#A6764E'" onmouseout="this.style.color='rgba(244,238,230,.5)'">+242 06 411 42 56</a>
+      <span style="color:rgba(244,238,230,.15);">|</span>
+      <a href="devis.html" style="color:#A6764E;font-weight:500;">Devis gratuit →</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(244,238,230,.06);">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex justify-between text-xs" style="color:rgba(244,238,230,.2);">
+      <span>© 2026 l'Atelier KPM</span><span>Brazzaville, Congo</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20devis%20pour%20mon%20site%20web."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s;"
+   onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+   aria-label="Nous contacter sur WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      q.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+<script src="transitions.js"></script>
+</body>
+</html>
