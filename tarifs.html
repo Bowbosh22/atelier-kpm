@@ -1,655 +1,109 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tarifs — l'Atelier KPM</title>
-<meta name="description" content="Des tarifs clairs et sans surprise pour créer votre site web. Packs à partir de 185 000 FCFA. Paiement en plusieurs fois disponible.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        sand:  '#F4EEE6',
-        shell: '#FBF7F1',
-        clay:  '#A6764E',
-        claylt:'#C49A74',
-        cocoa: '#2A211B',
-        taupe: '#83766A',
-      },
-      fontFamily: {
-        serif: ['Instrument Serif', 'Georgia', 'serif'],
-        sans:  ['Hanken Grotesk', 'system-ui', 'sans-serif'],
-      },
-    }
-  }
-}
-</script>
-
-<style>
-  html { scroll-behavior: smooth; }
-  body { background: #F4EEE6; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
-  .ht { border-top:    1px solid rgba(42,33,27,.10); }
-  .hb { border-bottom: 1px solid rgba(42,33,27,.10); }
-  .hx { border:        1px solid rgba(42,33,27,.10); }
-  .serif-tight { letter-spacing: -.013em; }
-  .eyebrow { color:#A6764E; letter-spacing:.22em; font-size:.68rem; text-transform:uppercase; }
-  .h-fluid { font-size: clamp(1.75rem, 8vw, 4.5rem); line-height: 1.06; }
-  .h-fluid-lg { font-size: clamp(2rem, 10vw, 5.5rem); line-height: 1.04; }
-
-  /* ── PLANS ── */
-  .plans-grid {
+  /* ── CARE PLANS (accompagnement mensuel) ── */
+  .care-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5px;
-    background: rgba(42,33,27,.10);
-    border: 1.5px solid rgba(42,33,27,.10);
+    gap: 1rem;
+    margin-top: 2.5rem;
   }
-  @media (max-width: 900px) {
-    .plans-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 600px) {
-    .plans-grid { grid-template-columns: 1fr; }
-  }
-  .plan {
-    background: #FBF7F1;
-    padding: 2.5rem 2rem;
-    position: relative;
-    transition: background .25s;
-  }
-  .plan:hover { background: #F7F0E5; }
-  .plan.featured {
-    background: #2A211B;
-    color: #F4EEE6;
-  }
-  .plan.featured:hover { background: #33281F; }
+  @media (max-width: 1000px) { .care-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px)  { .care-grid { grid-template-columns: 1fr; } }
 
-  .plan-badge {
-    position: absolute; top: 1.5rem; right: 1.5rem;
-    font-size: .62rem; font-weight: 600;
+  .care-card {
+    background: #FFFFFF;
+    border: 1.5px solid rgba(42,33,27,.10);
+    border-radius: 16px;
+    padding: 1.8rem 1.5rem;
+    position: relative;
+    display: flex; flex-direction: column;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .care-card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px -16px rgba(42,33,27,.16); }
+
+  .care-featured {
+    background: #2A211B;
+    border-color: #2A211B;
+  }
+
+  .care-badge {
+    position: absolute; top: -12px; left: 1.5rem;
+    font-size: .6rem; font-weight: 600;
     letter-spacing: .1em; text-transform: uppercase;
     background: #A6764E; color: #F4EEE6;
-    padding: .28rem .7rem;
+    padding: .3rem .75rem;
     border-radius: 9999px;
+    white-space: nowrap;
   }
 
-  .plan-name {
-    font-size: .72rem; font-weight: 500;
-    letter-spacing: .18em; text-transform: uppercase;
-    color: #83766A; margin-bottom: 1rem;
+  .care-name {
+    font-size: .85rem; font-weight: 600;
+    color: #2A211B; margin-bottom: 1rem;
   }
-  .plan.featured .plan-name { color: rgba(196,154,116,.9); }
+  .care-featured .care-name { color: #F4EEE6; }
 
-  .plan-price {
+  .care-price {
     font-family: 'Instrument Serif', serif;
-    font-size: 2.8rem; font-weight: 400;
-    line-height: 1;
-    color: #2A211B;
+    font-size: 2.1rem; font-weight: 400;
+    color: #2A211B; line-height: 1;
   }
-  .plan.featured .plan-price { color: #F4EEE6; }
+  .care-featured .care-price { color: #F4EEE6; }
 
-  .plan-currency {
-    font-size: .78rem; color: #83766A;
-    margin-top: .35rem;
+  .care-unit {
+    font-size: .72rem; color: #83766A; margin-top: .3rem; margin-bottom: 1rem;
   }
-  .plan.featured .plan-currency { color: rgba(244,238,230,.5); }
+  .care-featured .care-unit { color: rgba(244,238,230,.5); }
 
-  .plan-desc {
-    font-size: .88rem; color: #83766A;
-    line-height: 1.55; margin-top: 1.25rem;
-    padding-bottom: 1.5rem;
+  .care-tagline {
+    font-size: .8rem; color: #2A211B;
+    line-height: 1.5; margin-bottom: 1.1rem;
+    padding-bottom: 1.1rem;
     border-bottom: 1px solid rgba(42,33,27,.10);
+    font-weight: 500;
   }
-  .plan.featured .plan-desc {
-    color: rgba(244,238,230,.65);
+  .care-featured .care-tagline {
+    color: #F4EEE6;
     border-bottom-color: rgba(244,238,230,.12);
   }
 
-  .plan-features { list-style: none; padding: 0; margin: 1.5rem 0 2rem; }
-  .plan-features li {
-    display: flex; align-items: flex-start; gap: .6rem;
-    font-size: .85rem; color: #83766A;
-    padding: .45rem 0;
-    line-height: 1.5;
-  }
-  .plan.featured .plan-features li { color: rgba(244,238,230,.78); }
-  .plan-features li::before {
-    content: "→"; font-size: .78rem;
-    color: #A6764E; flex-shrink: 0; margin-top: 2px;
-    font-weight: 500;
-  }
-
-  .plan-cta {
-    display: block; text-align: center;
-    font-size: .82rem; font-weight: 500;
-    letter-spacing: .04em;
-    padding: .85rem 1.25rem;
-    border: 1px solid #2A211B;
-    color: #2A211B; text-decoration: none;
-    border-radius: 9999px;
-    transition: all .2s;
-  }
-  .plan-cta:hover { background: #2A211B; color: #F4EEE6; }
-  .plan.featured .plan-cta {
-    border-color: #F4EEE6; color: #F4EEE6;
-  }
-  .plan.featured .plan-cta:hover {
-    background: #F4EEE6; color: #2A211B;
-  }
-
-  .plan-timing {
-    text-align: center; font-size: .72rem;
-    color: #83766A; margin-top: .8rem;
-    letter-spacing: .02em;
-  }
-  .plan.featured .plan-timing { color: rgba(244,238,230,.35); }
-
-  /* ── PAYMENT NOTE ── */
-  .payment-note {
-    margin-top: 2rem; padding: 1.5rem 2rem;
-    background: rgba(196,154,116,.12);
-    border-left: 2px solid #A6764E;
-    display: flex; align-items: center; gap: 1rem;
-    border-radius: 4px;
-  }
-  .payment-note-icon { font-size: 1.4rem; flex-shrink: 0; }
-  .payment-note p { font-size: .88rem; color: #83766A; line-height: 1.55; }
-  .payment-note strong { color: #2A211B; font-weight: 500; }
-
-  /* ── MAINTENANCE ── */
-  .maint-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(42,33,27,.10);
-    border: 1px solid rgba(42,33,27,.10);
-    margin-top: 2rem;
-  }
-  @media (max-width: 700px) { .maint-grid { grid-template-columns: 1fr; } }
-  .maint-card {
-    background: #FBF7F1;
-    padding: 1.75rem 1.5rem;
-  }
-  .maint-card:hover { background: #F7F0E5; }
-  .maint-name {
-    font-size: .7rem; font-weight: 500;
-    letter-spacing: .16em; text-transform: uppercase;
-    color: #83766A; margin-bottom: .75rem;
-  }
-  .maint-price {
-    font-family: 'Instrument Serif', serif;
-    font-size: 1.9rem; font-weight: 400;
-    color: #2A211B; margin-bottom: .25rem;
-    line-height: 1;
-  }
-  .maint-unit {
-    font-size: .75rem; color: #83766A; margin-bottom: 1rem;
-  }
-  .maint-features { list-style: none; padding: 0; }
-  .maint-features li {
-    font-size: .82rem; color: #83766A;
-    padding: .3rem 0 .3rem 1rem;
-    position: relative;
+  .care-features { list-style: none; padding: 0; margin: 0 0 1.2rem; flex: 1; }
+  .care-features li {
+    display: flex; align-items: flex-start; gap: .5rem;
+    font-size: .78rem; color: #4a4038;
+    padding: .28rem 0;
     line-height: 1.45;
   }
-  .maint-features li::before {
-    content: "—"; position: absolute; left: 0;
-    color: #A6764E;
+  .care-featured .care-features li { color: rgba(244,238,230,.8); }
+  .care-features li::before {
+    content: "—"; color: #A6764E; flex-shrink: 0;
   }
+  .care-featured .care-features li::before { color: #C49A74; }
 
-  /* ── FAQ ── */
-  .faq-item {
+  .care-ideal {
+    font-size: .76rem; font-style: italic;
+    color: #83766A; line-height: 1.5;
+    padding-top: .9rem;
     border-top: 1px solid rgba(42,33,27,.10);
-    padding: 1.5rem 0;
   }
-  .faq-item:last-child { border-bottom: 1px solid rgba(42,33,27,.10); }
-  .faq-q {
+  .care-featured .care-ideal {
+    color: rgba(244,238,230,.6);
+    border-top-color: rgba(244,238,230,.12);
+  }
+
+  .care-disclaimer {
+    margin-top: 2rem;
+    padding: 1.3rem 1.6rem;
+    background: rgba(166,118,78,.08);
+    border-left: 2px solid #A6764E;
+    border-radius: 4px;
+  }
+  .care-disclaimer p { font-size: .82rem; color: #83766A; line-height: 1.65; }
+  .care-disclaimer strong { color: #2A211B; font-weight: 600; }
+
+  .care-closing {
+    margin-top: 2.5rem;
     font-family: 'Instrument Serif', serif;
-    font-size: 1.15rem; letter-spacing: -.01em;
-    color: #2A211B; cursor: pointer;
-    display: flex; justify-content: space-between;
-    align-items: center; gap: 1rem;
-    user-select: none;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: #2A211B;
+    text-align: center;
+    line-height: 1.5;
   }
-  .faq-q .toggle {
-    font-size: 1.3rem; font-weight: 300;
-    color: #A6764E; flex-shrink: 0;
-    transition: transform .25s;
-  }
-  .faq-item.open .toggle { transform: rotate(45deg); }
-  .faq-a {
-    font-size: .88rem; color: #83766A;
-    line-height: 1.7; margin-top: .75rem;
-    display: none;
-  }
-  .faq-item.open .faq-a { display: block; }
-
-  /* ── SIGNATURE TEASER ── */
-  .signature-teaser {
-    background: #2A211B;
-    color: #F4EEE6;
-    padding: 3.5rem 3rem;
-    border-radius: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-  .signature-teaser::before {
-    content: '';
-    position: absolute; top: -30%; right: -10%;
-    width: 40vw; height: 40vw; max-width: 500px; max-height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(196,154,116,.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .signature-teaser-content {
-    max-width: 720px; position: relative; z-index: 2;
-  }
-  .signature-teaser-tag {
-    display: inline-block;
-    font-size: .62rem; font-weight: 600;
-    letter-spacing: .22em; text-transform: uppercase;
-    color: #C49A74;
-    background: rgba(196,154,116,.12);
-    padding: .4rem 1rem; border-radius: 9999px;
-    margin-bottom: 1.5rem;
-  }
-  .signature-teaser-title {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    line-height: 1.1; letter-spacing: -.02em;
-    margin-bottom: 1.2rem;
-  }
-  .signature-teaser-title em {
-    font-style: italic; color: #C49A74;
-  }
-  .signature-teaser-desc {
-    font-size: .95rem;
-    color: rgba(244,238,230,.7);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    max-width: 620px;
-  }
-  .signature-teaser-highlights {
-    display: flex; gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-    padding: 1.2rem 0;
-    border-top: 1px solid rgba(244,238,230,.1);
-    border-bottom: 1px solid rgba(244,238,230,.1);
-  }
-  .signature-teaser-highlight {
-    display: flex; align-items: center; gap: .6rem;
-    font-size: .82rem;
-    color: rgba(244,238,230,.85);
-  }
-  .signature-teaser-icon {
-    color: #C49A74; font-size: .65rem;
-  }
-  .signature-teaser-actions {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
-  .signature-teaser-btn-primary {
-    display: inline-flex; align-items: center; gap: .5rem;
-    background: #F4EEE6; color: #2A211B;
-    font-size: .8rem; font-weight: 600;
-    letter-spacing: .04em;
-    padding: .9rem 2rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    transition: all .25s;
-  }
-  .signature-teaser-btn-primary:hover {
-    background: #C49A74; color: #2A211B;
-  }
-  .signature-teaser-btn-ghost {
-    display: inline-flex; align-items: center; gap: .5rem;
-    border: 1px solid rgba(244,238,230,.25);
-    color: #F4EEE6;
-    font-size: .8rem; font-weight: 500;
-    letter-spacing: .04em;
-    padding: .9rem 2rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    transition: border-color .25s, color .25s;
-  }
-  .signature-teaser-btn-ghost:hover {
-    border-color: #C49A74; color: #C49A74;
-  }
-  @media (max-width: 640px) {
-    .signature-teaser { padding: 2.5rem 1.5rem; }
-    .signature-teaser-highlights { gap: 1rem; flex-direction: column; }
-    .signature-teaser-actions { flex-direction: column; }
-    .signature-teaser-btn-primary, .signature-teaser-btn-ghost {
-      width: 100%; justify-content: center;
-    }
-  }
-
-  /* ── ANIMATIONS ── */
-  .reveal { opacity: 1; transform: none; transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
-
-  ::selection { background: rgba(166,118,78,.25); }
-</style>
-</head>
-
-<body class="bg-sand text-cocoa font-sans antialiased">
-
-<!-- HEADER / NAV -->
-<header id="top" class="fixed top-0 inset-x-0 z-50" style="background:rgba(244,238,230,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(42,33,27,.10);">
-  <div class="max-w-5xl mx-auto px-5 sm:px-8 flex items-center justify-between" style="height:60px">
-    <a href="index.html" class="font-serif serif-tight text-xl" style="color:#2A211B;">l'Atelier KPM<span style="color:#A6764E;">.</span></a>
-    <nav class="hidden md:flex items-center gap-8 text-sm">
-      <a href="services.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Services</a>
-      <a href="tarifs.html" class="transition" style="color:#2A211B;font-weight:500;">Tarifs</a>
-      <a href="realisations.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Réalisations</a>
-      <a href="apropos.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Qui sommes-nous</a>
-      <a href="actualites.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Actualités</a>
-      <a href="blog.html" class="transition" style="color:#83766A;" onmouseover="this.style.color='#2A211B'" onmouseout="this.style.color='#83766A'">Blog</a>
-    </nav>
-    <a href="devis.html" class="text-sm font-medium" style="color:#A6764E;border-bottom:1px solid rgba(166,118,78,.45);padding-bottom:2px">Devis gratuit</a>
-    <a href="tarifs-en.html" class="text-xs font-medium" style="color:#83766A;margin-left:1.2rem;">EN</a>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="max-w-4xl mx-auto px-5 sm:px-8 pt-32 sm:pt-40 pb-14 sm:pb-20 text-center">
-  <div class="eyebrow mb-5 reveal">Tarifs transparents</div>
-  <h1 class="font-serif serif-tight h-fluid-lg reveal">Un site professionnel,<br><span class="italic text-clay">à un prix juste.</span></h1>
-  <p class="mt-6 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto text-taupe reveal">
-    Des formules claires, sans surprise. Vous connaissez le prix avant de commencer. Paiement en plusieurs fois disponible pour toutes les formules.
-  </p>
-  <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 justify-center text-sm text-taupe reveal">
-    <span><span class="text-clay mr-1.5">·</span>Devis gratuit sous 24h</span>
-    <span><span class="text-clay mr-1.5">·</span>Paiement en 2 ou 3 fois</span>
-    <span><span class="text-clay mr-1.5">·</span>Vous êtes propriétaire à 100%</span>
-  </div>
-</section>
-
-<!-- GRILLE TARIFS -->
-<section id="tarifs" class="max-w-6xl mx-auto px-5 sm:px-8 pb-14 sm:pb-20">
-  <div class="eyebrow mb-6 reveal">Nos formules</div>
-
-  <div class="plans-grid reveal">
-
-    <!-- ESSENTIEL -->
-    <div class="plan">
-      <p class="plan-name">Essentiel</p>
-      <p class="plan-price">350 000</p>
-      <p class="plan-currency">FCFA · ≈ 533 €</p>
-      <p class="plan-desc">Votre présence en ligne professionnelle. Idéal pour démarrer et être visible immédiatement.</p>
-      <ul class="plan-features">
-        <li>Site vitrine jusqu'à 5 pages</li>
-        <li>Design 100% responsive</li>
-        <li>Formulaire de contact</li>
-        <li>Bouton WhatsApp intégré</li>
-        <li>SEO de base optimisé</li>
-        <li>Hébergement + SSL inclus</li>
-        <li>Délai : 2 à 3 semaines</li>
-      </ul>
-      <a href="devis.html" class="plan-cta">Demander un devis</a>
-      <p class="plan-timing">Paiement en 2 fois possible</p>
-    </div>
-
-    <!-- BUSINESS (featured) -->
-    <div class="plan featured">
-      <span class="plan-badge">Le plus choisi</span>
-      <p class="plan-name">Professionnel</p>
-      <p class="plan-price">650 000</p>
-      <p class="plan-currency">FCFA · ≈ 991 €</p>
-      <p class="plan-desc">La solution complète pour les PME qui veulent un vrai outil commercial et générer des demandes.</p>
-      <ul class="plan-features">
-        <li>Tout ce qui est dans Essentiel</li>
-        <li>Jusqu'à 10 pages</li>
-        <li>Design sur mesure + animations</li>
-        <li>Système de réservation ou devis</li>
-        <li>Tableau d'administration</li>
-        <li>Optimisation SEO avancée</li>
-        <li>Statistiques de visite</li>
-        <li>Délai : 3 à 4 semaines</li>
-      </ul>
-      <a href="devis.html" class="plan-cta">Demander un devis</a>
-      <p class="plan-timing">Paiement en 2 ou 3 fois</p>
-    </div>
-
-    <!-- PREMIUM -->
-    <div class="plan">
-      <p class="plan-name">Premium</p>
-      <p class="plan-price">1 200 000</p>
-      <p class="plan-currency">FCFA · ≈ 1 830 €</p>
-      <p class="plan-desc">Pour les projets ambitieux nécessitant une solution complète et personnalisée.</p>
-      <ul class="plan-features">
-        <li>Tout ce qui est dans Professionnel</li>
-        <li>Fonctionnalités sur mesure</li>
-        <li>Base de données + API</li>
-        <li>Comptes utilisateurs</li>
-        <li>Dashboard + statistiques</li>
-        <li>Guide de prise en main fourni</li>
-        <li>3 mois de maintenance offerts</li>
-        <li>Délai : 4 à 6 semaines</li>
-      </ul>
-      <a href="devis.html" class="plan-cta">Demander un devis</a>
-      <p class="plan-timing">Paiement en 3 fois</p>
-    </div>
-
-    <!-- SUR MESURE -->
-    <div class="plan">
-      <p class="plan-name">Sur mesure</p>
-      <p class="plan-price" style="font-size:1.9rem;padding-top:.5rem">Devis<br>gratuit</p>
-      <p class="plan-currency">Sous 24h · Sans engagement</p>
-      <p class="plan-desc">E-commerce, SaaS, dashboard de gestion, application métier. Pour les projets complexes et spécifiques.</p>
-      <ul class="plan-features">
-        <li>Analyse de votre besoin</li>
-        <li>Proposition technique détaillée</li>
-        <li>Prix fixe, sans surprise</li>
-        <li>Développement 100% sur mesure</li>
-        <li>Maintenance et évolution incluses</li>
-        <li>Accompagnement long terme</li>
-      </ul>
-      <a href="devis.html" class="plan-cta">Obtenir un devis</a>
-      <p class="plan-timing">Paiement adapté au projet</p>
-    </div>
-
-  </div>
-
-  <!-- NOTE PAIEMENT -->
-  <div class="payment-note reveal">
-    <div class="payment-note-icon">💳</div>
-    <p><strong>Paiement en plusieurs fois disponible pour toutes les formules.</strong> Un acompte de 40% au démarrage, le solde à la mise en ligne. Paiement accepté en espèces, Mobile Money (MTN / Airtel Money) ou virement bancaire.</p>
-  </div>
-</section>
-
-<!-- MAINTENANCE -->
-<section class="max-w-6xl mx-auto px-5 sm:px-8 pb-14 sm:pb-20">
-  <div class="eyebrow mb-4 reveal">Maintenance mensuelle</div>
-  <h2 class="font-serif serif-tight h-fluid reveal mb-4">Votre site, toujours <span class="italic text-clay">en forme.</span></h2>
-  <p class="text-sm sm:text-base text-taupe max-w-2xl leading-relaxed reveal">
-    Optionnelle mais recommandée. Votre site reste à jour, sécurisé et performant, sans que vous ayez à vous en occuper. Un contrat de 6 mois vous donne accès à un tarif préférentiel.
-  </p>
-
-  <div class="maint-grid reveal">
-    <div class="maint-card">
-      <p class="maint-name">Essentiel</p>
-      <p class="maint-price">25 000 <span style="font-family:'Hanken Grotesk';font-size:.9rem;font-weight:400;color:#83766A">F</span></p>
-      <p class="maint-unit">FCFA / mois · avec contrat 6 mois</p>
-      <ul class="maint-features">
-        <li>Mises à jour de contenu (2/mois)</li>
-        <li>Sauvegardes hebdomadaires</li>
-        <li>Surveillance technique</li>
-        <li>Support WhatsApp</li>
-      </ul>
-    </div>
-    <div class="maint-card">
-      <p class="maint-name">Professionnel</p>
-      <p class="maint-price">40 000 <span style="font-family:'Hanken Grotesk';font-size:.9rem;font-weight:400;color:#83766A">F</span></p>
-      <p class="maint-unit">FCFA / mois</p>
-      <ul class="maint-features">
-        <li>Mises à jour illimitées</li>
-        <li>Sauvegardes quotidiennes</li>
-        <li>Rapport mensuel de performance</li>
-        <li>Support prioritaire 24h</li>
-      </ul>
-    </div>
-    <div class="maint-card">
-      <p class="maint-name">Premium</p>
-      <p class="maint-price">65 000 <span style="font-family:'Hanken Grotesk';font-size:.9rem;font-weight:400;color:#83766A">F</span></p>
-      <p class="maint-unit">FCFA / mois</p>
-      <ul class="maint-features">
-        <li>Tout le pack Professionnel</li>
-        <li>Optimisation SEO mensuelle</li>
-        <li>Ajout de fonctionnalités mineures</li>
-        <li>Rapport détaillé + recommandations</li>
-        <li>Temps de réponse garanti 4h</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     PROJETS SIGNATURE — Renvoi vers tarifs premium
-     ═══════════════════════════════════════════ -->
-<section class="max-w-6xl mx-auto px-5 sm:px-8 pb-14 sm:pb-20">
-  <div class="signature-teaser reveal">
-
-    <div class="signature-teaser-content">
-      <div class="signature-teaser-tag">Projets Signature</div>
-      <h2 class="signature-teaser-title">
-        Pour les marques qui refusent<br>
-        <em>d'être invisibles.</em>
-      </h2>
-      <p class="signature-teaser-desc">
-        Des sites premium scroll-driven, taillés sur mesure pour hôtels d'exception, agences immobilières haut de gamme, restaurants gastronomiques et marques de luxe. Une gamme à part, avec ses propres tarifs — de 900 000 à 8 000 000 FCFA.
-      </p>
-
-      <div class="signature-teaser-highlights">
-        <div class="signature-teaser-highlight">
-          <span class="signature-teaser-icon">◆</span>
-          <span>Vidéo scroll-driven immersive</span>
-        </div>
-        <div class="signature-teaser-highlight">
-          <span class="signature-teaser-icon">◆</span>
-          <span>Design system unique</span>
-        </div>
-        <div class="signature-teaser-highlight">
-          <span class="signature-teaser-icon">◆</span>
-          <span>Positionnement au sommet</span>
-        </div>
-      </div>
-
-      <div class="signature-teaser-actions">
-        <a href="tarifs-premium.html" class="signature-teaser-btn-primary">
-          Découvrir les gammes signature →
-        </a>
-        <a href="realisations.html" class="signature-teaser-btn-ghost">
-          Voir les démos live
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="ht hb" style="background:#FBF7F1">
-  <div class="max-w-3xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
-    <div class="reveal mb-8">
-      <div class="eyebrow mb-4">Questions fréquentes</div>
-      <h2 class="font-serif serif-tight h-fluid">On lève vos <span class="italic text-clay">derniers doutes.</span></h2>
-    </div>
-
-    <div class="faq-item open">
-      <div class="faq-q">Le prix est-il vraiment fixe, sans surprise ? <span class="toggle">+</span></div>
-      <p class="faq-a">Oui. Vous recevez un devis clair avant de commencer. Le montant ne change pas en cours de projet, sauf si vous ajoutez des fonctionnalités nouvelles à votre demande. Aucune mauvaise surprise à la livraison.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Est-ce que je peux vraiment payer en plusieurs fois ? <span class="toggle">+</span></div>
-      <p class="faq-a">Oui. Pour toutes les formules, vous versez 40% au démarrage, et le solde est dû à la mise en ligne du site. Le paiement en 3 fois est disponible pour les formules Professionnel et Premium.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Combien de temps faut-il pour créer mon site ? <span class="toggle">+</span></div>
-      <p class="faq-a">Entre 2 et 6 semaines selon la formule. Le délai dépend aussi de la rapidité avec laquelle vous nous transmettez vos contenus (photos, textes, logo). Nous vous guidons à chaque étape avec un planning précis.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Je n'ai pas de logo ni de photos. C'est un problème ? <span class="toggle">+</span></div>
-      <p class="faq-a">Non. Nous pouvons vous aider à créer un logo simple et choisir des visuels professionnels adaptés à votre activité. Ces éléments peuvent être inclus dans votre devis sur demande.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Le site m'appartient vraiment après la livraison ? <span class="toggle">+</span></div>
-      <p class="faq-a">Oui, à 100%. Votre site, votre domaine, vos contenus. Aucune dépendance vis-à-vis de l'Atelier KPM. Si vous souhaitez changer de prestataire à l'avenir, vous pouvez. Nous vous remettons tous les accès.</p>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Et si j'ai besoin de modifier mon site après la livraison ? <span class="toggle">+</span></div>
-      <p class="faq-a">Vous avez deux options : soit vous faites les mises à jour vous-même (on vous forme), soit vous souscrivez à notre pack de maintenance mensuelle. Des interventions ponctuelles sont aussi possibles sur devis.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="max-w-3xl mx-auto px-5 sm:px-8 py-14 sm:py-20 text-center">
-  <div class="eyebrow mb-4 reveal">Prêt à commencer ?</div>
-  <h2 class="font-serif serif-tight h-fluid reveal">Votre devis gratuit<br><span class="italic text-clay">en 24h.</span></h2>
-  <p class="mt-5 text-base text-taupe leading-relaxed reveal max-w-xl mx-auto">
-    Sans engagement. Une proposition claire, adaptée à votre activité et à votre budget.
-  </p>
-  <a href="devis.html" class="reveal inline-block mt-7 text-sm font-medium" style="background:#2A211B;color:#F4EEE6;padding:.95rem 2.2rem;border-radius:9999px;transition:opacity .3s;" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">Recevoir mon devis gratuit →</a>
-  <p class="mt-4 text-xs text-taupe reveal">Réponse sous 24h &nbsp;·&nbsp; Devis fixe &nbsp;·&nbsp; Sans engagement</p>
-</section>
-
-<!-- FOOTER -->
-<footer style="background:#2A211B;">
-  <div class="max-w-5xl mx-auto px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
-    <a href="index.html" class="font-serif serif-tight text-lg" style="color:#F4EEE6;flex-shrink:0;">l'Atelier KPM<span style="color:#A6764E;">.</span></a>
-    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs">
-      <a href="services.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Services</a>
-      <a href="tarifs.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Tarifs</a>
-      <a href="realisations.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Réalisations</a>
-      <a href="apropos.html" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">Qui sommes-nous</a>
-      <a href="index.html#faq" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#F4EEE6'" onmouseout="this.style.color='rgba(244,238,230,.5)'">FAQ</a>
-    </nav>
-    <div class="flex items-center gap-5 text-xs" style="flex-shrink:0;">
-      <a href="tel:+242064114256" style="color:rgba(244,238,230,.5);" onmouseover="this.style.color='#A6764E'" onmouseout="this.style.color='rgba(244,238,230,.5)'">+242 06 411 42 56</a>
-      <span style="color:rgba(244,238,230,.15);">|</span>
-      <a href="devis.html" style="color:#A6764E;font-weight:500;">Devis gratuit →</a>
-    </div>
-  </div>
-  <div style="border-top:1px solid rgba(244,238,230,.06);">
-    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex justify-between text-xs" style="color:rgba(244,238,230,.2);">
-      <span>© 2026 l'Atelier KPM</span><span>Brazzaville, Congo</span>
-    </div>
-  </div>
-</footer>
-
-<!-- WHATSAPP -->
-<a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20devis%20pour%20mon%20site%20web."
-   target="_blank" rel="noopener"
-   style="position:fixed;bottom:24px;right:24px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s;"
-   onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
-   aria-label="Nous contacter sur WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-  </svg>
-</a>
-
-<script>
-  document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      q.parentElement.classList.toggle('open');
-    });
-  });
-</script>
-
-<script src="transitions.js"></script>
-</body>
-</html>
