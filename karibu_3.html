@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karibu Bzv — Restaurant & Lounge-Bar · Brazzaville</title>
+<meta name="description" content="Karibu Bzv, restaurant et lounge-bar au cœur du Plateau des 15 ans à Brazzaville. Cuisine congolaise et africaine, terrasse Karibu Beach, réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --rouge:   #C0392B;
+  --rougelt: #E74C3C;
+  --or:      #D4AC2B;
+  --orlt:    #F1C40F;
+  --noir:    #0D0A07;
+  --dark:    #17110B;
+  --text:    #F5F0E8;
+  --muted:   rgba(245,240,232,.58);
+  --line:    rgba(245,240,232,.1);
+  --ff-serif: 'Playfair Display', Georgia, serif;
+  --ff-body:  'DM Sans', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-body); background: var(--noir); color: var(--text); overflow-x: hidden; }
+a { color: inherit; }
+img { display: block; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  height: 76px;
+  transition: background .4s, border-color .4s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled { background: rgba(13,10,7,.94); backdrop-filter: blur(16px); border-bottom-color: var(--line); }
+.nav-inner { max-width: 1180px; margin: 0 auto; height: 100%; padding: 0 clamp(20px,4vw,40px); display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--ff-serif); font-size: 1.25rem; color: var(--text); text-decoration: none; letter-spacing: .03em; }
+.nav-logo span { color: var(--or); font-style: italic; }
+.nav-links { display: flex; gap: 2.4rem; list-style: none; }
+.nav-links a { font-size: .72rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(245,240,232,.28); color: var(--text); padding: .65rem 1.5rem; border-radius: 2px; text-decoration: none; transition: border-color .2s, background .2s; }
+.nav-cta:hover { border-color: var(--or); background: rgba(212,172,43,.08); }
+
+/* HERO — video, minimal overlay */
+.hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: var(--noir); }
+.hero video, .hero .hero-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(13,10,7,.55) 0%, rgba(13,10,7,.15) 30%, rgba(13,10,7,.2) 60%, rgba(13,10,7,.92) 100%);
+}
+.hero-content { position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
+.hero-emblem { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+.hero-emblem-ring { width: 92px; height: 92px; border: 1px solid rgba(245,240,232,.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.hero-emblem-ring span { font-family: var(--ff-serif); font-style: italic; font-size: 1.7rem; color: var(--or); }
+.hero-wordmark { font-family: var(--ff-serif); font-size: clamp(2.6rem, 8vw, 5rem); letter-spacing: .01em; color: var(--text); text-shadow: 0 2px 30px rgba(0,0,0,.5); }
+.hero-wordmark em { font-style: italic; color: var(--or); }
+.hero-tagline { font-size: .75rem; letter-spacing: .28em; text-transform: uppercase; color: rgba(245,240,232,.72); margin-top: .3rem; }
+.hero-scrolldown { position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; color: rgba(245,240,232,.5); }
+.hero-scrolldown-line { width: 1px; height: 34px; background: linear-gradient(180deg, rgba(245,240,232,.6), transparent); animation: scrolldown 2s infinite; }
+@keyframes scrolldown { 0% { opacity: 0; transform: translateY(-6px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(10px); } }
+
+/* STATEMENT */
+.statement { padding: clamp(88px,13vw,140px) 1.5rem clamp(64px,9vw,96px); text-align: center; }
+.statement-inner { max-width: 760px; margin: 0 auto; }
+.eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--rouge); display: block; margin-bottom: 1.6rem; }
+.statement-text { font-family: var(--ff-serif); font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2.3rem); line-height: 1.42; color: var(--text); }
+.statement-text strong { color: var(--or); font-weight: 500; }
+.statement-rating { display: inline-flex; align-items: center; gap: .5rem; font-size: .8rem; color: var(--muted); margin-top: 2rem; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.statement-rating:hover { border-color: var(--muted); }
+.statement-rating .stars-txt { color: var(--or); letter-spacing: .05em; }
+.statement-rating strong { color: var(--text); }
+.statement-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2.6rem; }
+.btn-line { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 1rem 2.1rem; border: 1px solid rgba(245,240,232,.3); border-radius: 2px; text-decoration: none; color: var(--text); transition: border-color .2s, color .2s; }
+.btn-line:hover { border-color: var(--or); color: var(--or); }
+.btn-line.solid { background: var(--rouge); border-color: var(--rouge); color: var(--text); }
+.btn-line.solid:hover { background: var(--rougelt); border-color: var(--rougelt); color: var(--text); }
+
+/* EXPERIENCES — two paths */
+.experiences { display: grid; grid-template-columns: 1fr 1fr; }
+.exp-card { position: relative; aspect-ratio: 4/5; overflow: hidden; }
+.exp-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.exp-card:hover img { transform: scale(1.04); }
+.exp-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,10,7,.05) 0%, rgba(13,10,7,.75) 100%); }
+.exp-card-content { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(28px,4vw,52px); z-index: 2; }
+.exp-eyebrow { font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--or); margin-bottom: .7rem; display: block; }
+.exp-title { font-family: var(--ff-serif); font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--text); margin-bottom: .6rem; }
+.exp-title em { font-style: italic; color: var(--or); }
+.exp-desc { font-size: .84rem; color: rgba(245,240,232,.75); max-width: 320px; line-height: 1.6; margin-bottom: 1.2rem; }
+.exp-link { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text); text-decoration: none; border-bottom: 1px solid rgba(245,240,232,.4); padding-bottom: 2px; }
+
+/* SECTIONS shared */
+.section { padding: clamp(80px,11vw,120px) 1.5rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-head { text-align: center; max-width: 620px; margin: 0 auto clamp(48px,7vw,72px); }
+.section-title { font-family: var(--ff-serif); font-size: clamp(1.9rem, 4.2vw, 2.9rem); font-weight: 400; line-height: 1.2; color: var(--text); }
+.section-title em { font-style: italic; color: var(--or); }
+.section-desc { font-size: .88rem; color: var(--muted); line-height: 1.75; max-width: 480px; margin: 1rem auto 0; }
+
+/* MENU — curated */
+.menu { background: var(--dark); }
+.menu-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(32px,5vw,60px); }
+.menu-col-title { font-family: var(--ff-serif); font-style: italic; font-size: 1.1rem; color: var(--or); margin-bottom: 1.4rem; padding-bottom: .8rem; border-bottom: 1px solid var(--line); }
+.menu-item { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; padding: .7rem 0; border-bottom: 1px dashed rgba(245,240,232,.08); }
+.menu-item:last-child { border-bottom: none; }
+.menu-name { font-size: .86rem; color: var(--text); }
+.menu-name span { display: block; font-size: .72rem; color: var(--muted); margin-top: .15rem; }
+.menu-price { font-family: var(--ff-serif); font-size: .86rem; color: var(--or); white-space: nowrap; }
+.menu-note { text-align: center; margin-top: clamp(40px,6vw,60px); font-size: .8rem; color: var(--muted); }
+.menu-note a { color: var(--rouge); text-decoration: none; }
+
+/* GALLERY */
+.gallery-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; height: 520px; }
+.gallery-item { overflow: hidden; position: relative; grid-row: span 2; }
+.gallery-item.small { grid-row: span 1; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-label { position: absolute; bottom: 1rem; left: 1rem; font-size: .64rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text); background: rgba(13,10,7,.72); padding: .3rem .8rem; border-radius: 2px; }
+
+/* LOUNGE features */
+.lounge { background: var(--dark); }
+.lounge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px); align-items: center; }
+.lounge-img { border-radius: 2px; overflow: hidden; aspect-ratio: 4/5; }
+.lounge-img img { width: 100%; height: 100%; object-fit: cover; }
+.lounge-features { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 2.2rem; }
+.lounge-feature { display: flex; align-items: flex-start; gap: 1rem; }
+.lounge-feature-icon { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.lounge-feature-title { font-size: .84rem; font-weight: 600; color: var(--text); margin-bottom: .2rem; }
+.lounge-feature-desc { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+/* RESERVATION */
+.resa { background: var(--noir); border-top: 1px solid var(--line); }
+.resa-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(40px,6vw,72px); align-items: start; }
+.resa-form { border: 1px solid var(--line); padding: clamp(28px,4vw,40px); }
+.resa-form h3 { font-family: var(--ff-serif); font-weight: 400; font-size: 1.5rem; color: var(--text); margin-bottom: .4rem; }
+.resa-form > p { font-size: .8rem; color: var(--muted); margin-bottom: 2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-field { margin-bottom: 1.1rem; }
+.form-label { font-size: .64rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .5rem; }
+.form-input { width: 100%; background: rgba(245,240,232,.04); border: 1px solid var(--line); border-radius: 2px; padding: .75rem 1rem; font-family: var(--ff-body); font-size: .86rem; color: var(--text); outline: none; transition: border-color .2s; }
+.form-input::placeholder { color: rgba(245,240,232,.22); }
+.form-input:focus { border-color: var(--rouge); }
+.form-input option { background: var(--noir); }
+.form-submit { width: 100%; background: var(--rouge); color: var(--text); border: none; padding: .95rem; border-radius: 2px; font-family: var(--ff-body); font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: background .2s; }
+.form-submit:hover { background: var(--rougelt); }
+.resa-info { display: flex; flex-direction: column; gap: 1.2rem; }
+.resa-info-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.3rem 0; border-bottom: 1px solid var(--line); }
+.resa-info-item:last-child { border-bottom: none; }
+.resa-info-icon { font-size: 1.15rem; flex-shrink: 0; }
+.resa-info-title { font-size: .78rem; font-weight: 600; letter-spacing: .04em; color: var(--text); margin-bottom: .25rem; text-transform: uppercase; }
+.resa-info-val { font-size: .84rem; color: var(--muted); line-height: 1.65; }
+.resa-info-val a { color: var(--rouge); text-decoration: none; }
+
+/* FOOTER */
+footer { background: #070502; border-top: 1px solid var(--line); padding: clamp(48px,7vw,64px) 1.5rem 2rem; }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-logo { font-family: var(--ff-serif); font-size: 1.4rem; color: var(--text); margin-bottom: .8rem; }
+.footer-logo em { color: var(--or); font-style: italic; }
+.footer-tagline { font-size: .82rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; max-width: 280px; }
+.footer-socials { display: flex; gap: .7rem; }
+.footer-social { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: .8rem; text-decoration: none; transition: border-color .2s; }
+.footer-social:hover { border-color: var(--rouge); }
+.footer-col-title { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--rouge); margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .8rem; color: var(--muted); text-decoration: none; margin-bottom: .6rem; transition: color .2s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom { border-top: 1px solid var(--line); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: .7rem; color: rgba(245,240,232,.22); }
+.footer-credit a { font-size: .7rem; color: rgba(192,57,43,.55); text-decoration: none; }
+.footer-credit a:hover { color: var(--rouge); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .experiences { grid-template-columns: 1fr; }
+  .exp-card { aspect-ratio: 3/2.3; }
+  .menu-cols { grid-template-columns: 1fr; gap: 40px; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; height: auto; }
+  .gallery-item { grid-row: span 1 !important; }
+  .lounge-grid, .resa-grid { grid-template-columns: 1fr; gap: 2.6rem; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  nav .nav-links { display: none; }
+  .section { padding: 4.5rem 1.25rem; }
+}
+
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.fade-up.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Karibu <span>Bzv</span></a>
+    <ul class="nav-links">
+      <li><a href="#experiences">L'établissement</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#reservation">Réservation</a></li>
+    </ul>
+    <a href="#reservation" class="nav-cta">Réserver</a>
+  </div>
+</nav>
+
+<!-- HERO — vidéo -->
+<section class="hero">
+  <video autoplay muted loop playsinline poster="karibu-kitchen-poster.jpg">
+    <source src="karibu-kitchen.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="hero-emblem">
+      <div class="hero-emblem-ring"><span>K</span></div>
+      <h1 class="hero-wordmark">Karibu <em>Bzv</em></h1>
+      <p class="hero-tagline">Restaurant · Lounge-Bar · Brazzaville</p>
+    </div>
+  </div>
+  <div class="hero-scrolldown"><span class="hero-scrolldown-line"></span></div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="statement-inner">
+    <span class="eyebrow fade-up">Plateau des 15 ans</span>
+    <p class="statement-text fade-up">
+      Karibu est un restaurant et lounge-bar au cœur de Brazzaville, où la
+      <strong>cuisine congolaise et africaine</strong> se prépare sans détour —
+      et où la terrasse <strong>Karibu Beach</strong> prolonge la soirée jusque tard.
+    </p>
+    <a href="https://www.google.com/maps/search/?api=1&query=Karibu+Restaurant+Rue+Nko+Brazzaville" target="_blank" rel="noopener" class="statement-rating fade-up">
+      <span class="stars-txt">★★★★☆</span> <strong>3,8/5</strong> · 28 avis Google
+    </a>
+    <div class="statement-ctas fade-up">
+      <a href="#experiences" class="btn-line">Le restaurant</a>
+      <a href="#experiences" class="btn-line">Karibu Beach</a>
+      <a href="#reservation" class="btn-line solid">Réserver une table</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES — deux ambiances -->
+<div class="experiences" id="experiences">
+  <div class="exp-card fade-up">
+    <img src="karibu-kitchen-poster.jpg" alt="Cuisine Karibu">
+    <div class="exp-card-content">
+      <span class="exp-eyebrow">Le restaurant</span>
+      <h3 class="exp-title">Cuisine <em>généreuse</em></h3>
+      <p class="exp-desc">Poissons, viandes, volailles et plats congolais préparés à la commande — service continu de 12h à 23h.</p>
+      <a href="#menu" class="exp-link">Voir le menu →</a>
+    </div>
+  </div>
+  <div class="exp-card fade-up">
+    <img src="karibu-terrace.jpg" alt="Terrasse Karibu Beach">
+    <div class="exp-card-content">
+      <span class="exp-eyebrow">La terrasse</span>
+      <h3 class="exp-title">Karibu <em>Beach</em></h3>
+      <p class="exp-desc">Terrasse en plein air, cocktails et ambiance lounge — l'endroit pour prolonger la soirée à Brazzaville.</p>
+      <a href="#lounge" class="exp-link">Découvrir →</a>
+    </div>
+  </div>
+</div>
+
+<!-- MENU — sélection -->
+<section class="section menu" id="menu">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow fade-up">Notre carte</span>
+      <h2 class="section-title fade-up">Une sélection <em>Karibu Beach</em></h2>
+      <p class="section-desc fade-up">Poissons, viandes et volailles congolaises, préparés à la demande. Voici quelques incontournables de la carte.</p>
+    </div>
+    <div class="menu-cols">
+      <div class="fade-up">
+        <p class="menu-col-title">Poissons</p>
+        <div class="menu-item"><div class="menu-name">Capitaine meunière</div><div class="menu-price">40.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Crevette à l'ail</div><div class="menu-price">35.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Poisson chat braisé</div><div class="menu-price">45.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Papillote de poisson frais<span>pimenté</span></div><div class="menu-price">30.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Tilapia</div><div class="menu-price">20.000 FC</div></div>
+      </div>
+      <div class="fade-up">
+        <p class="menu-col-title">Viandes</p>
+        <div class="menu-item"><div class="menu-name">Planche mixte</div><div class="menu-price">75.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Steak de bœuf</div><div class="menu-price">40.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Épaule de chèvre</div><div class="menu-price">50.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Brochette de bœuf<span>3 pièces</span></div><div class="menu-price">25.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">1kg porc du chef<span>+ 2 accompagnements au choix</span></div><div class="menu-price">50.000 FC</div></div>
+      </div>
+      <div class="fade-up">
+        <p class="menu-col-title">Volailles & pâtes</p>
+        <div class="menu-item"><div class="menu-name">Poulet mayo</div><div class="menu-price">35.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Poulet entier</div><div class="menu-price">30.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Brochette poulet<span>3 pièces</span></div><div class="menu-price">20.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Sandwiches Karibu</div><div class="menu-price">10.000 FC</div></div>
+        <div class="menu-item"><div class="menu-name">Pâte à la bolognaise</div><div class="menu-price">10.000 FC</div></div>
+      </div>
+    </div>
+    <p class="menu-note fade-up">Carte complète sur place, accompagnements (frite, plantain, fufu, riz) dès 1.500 FC · Prix confirmés au <a href="tel:+242067119191">+242 06 711 9191</a></p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" style="padding-top:0;">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow fade-up">Ambiance</span>
+      <h2 class="section-title fade-up">Un cadre <em>chaleureux</em></h2>
+    </div>
+    <div class="gallery-grid fade-up">
+      <div class="gallery-item">
+        <img src="night-sign.jpg" alt="Enseigne Karibu de nuit">
+        <span class="gallery-label">De nuit</span>
+      </div>
+      <div class="gallery-item small">
+        <img src="karibu-terrace.jpg" alt="Terrasse Karibu Beach">
+        <span class="gallery-label">La terrasse</span>
+      </div>
+      <div class="gallery-item small">
+        <img src="karibu-kitchen-poster.jpg" alt="En cuisine">
+        <span class="gallery-label">En cuisine</span>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&h=500&auto=format&fit=crop&q=80" alt="Spécialités Karibu">
+        <span class="gallery-label">Spécialités</span>
+      </div>
+      <div class="gallery-item small">
+        <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=700&h=500&auto=format&fit=crop&q=80" alt="Nos plats">
+        <span class="gallery-label">Nos plats</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOUNGE -->
+<section class="section lounge" id="lounge">
+  <div class="section-inner">
+    <div class="lounge-grid">
+      <div class="lounge-img fade-up">
+        <img src="karibu-terrace.jpg" alt="Lounge Karibu Beach">
+      </div>
+      <div class="fade-up">
+        <span class="eyebrow">Karibu Beach</span>
+        <h2 class="section-title">Plus qu'un restaurant,<br>une <em>expérience.</em></h2>
+        <p class="section-desc" style="margin:1rem 0 0;">Le soir venu, la terrasse Karibu Beach devient le lounge-bar de référence du Plateau des 15 ans — cocktails, ambiance et bonne humeur jusqu'à 23h.</p>
+        <div class="lounge-features">
+          <div class="lounge-feature">
+            <div class="lounge-feature-icon">🌿</div>
+            <div>
+              <div class="lounge-feature-title">Terrasse en plein air</div>
+              <div class="lounge-feature-desc">Assise colorée et conviviale, en extérieur — l'endroit pour un déjeuner comme pour une soirée.</div>
+            </div>
+          </div>
+          <div class="lounge-feature">
+            <div class="lounge-feature-icon">🍹</div>
+            <div>
+              <div class="lounge-feature-title">Excellents cocktails</div>
+              <div class="lounge-feature-desc">Bar complet, cocktails maison, bières fraîches et jus naturels africains.</div>
+            </div>
+          </div>
+          <div class="lounge-feature">
+            <div class="lounge-feature-icon">👥</div>
+            <div>
+              <div class="lounge-feature-title">Événements privés</div>
+              <div class="lounge-feature-desc">Anniversaires, repas d'affaires, soirées entre amis — contactez-nous pour privatiser l'espace.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section class="section resa" id="reservation">
+  <div class="section-inner">
+    <div class="resa-grid">
+      <div class="fade-up">
+        <span class="eyebrow">Réservation</span>
+        <h2 class="section-title">Réservez votre<br>table <em>chez Karibu.</em></h2>
+        <p class="section-desc" style="margin:1rem 0 2rem;">Garantissez votre place et arrivez sans attendre. Nous confirmons votre réservation par appel ou WhatsApp dans l'heure.</p>
+        <div class="resa-info">
+          <div class="resa-info-item">
+            <div class="resa-info-icon">📍</div>
+            <div>
+              <div class="resa-info-title">Notre adresse</div>
+              <div class="resa-info-val">
+                1928 rue Nko, Plateau des 15 ans<br>Brazzaville, République du Congo
+                <br><a href="https://www.google.com/maps/search/?api=1&query=Karibu+Restaurant+Rue+Nko+Brazzaville" target="_blank" rel="noopener">Itinéraire sur Google Maps →</a>
+              </div>
+            </div>
+          </div>
+          <div class="resa-info-item">
+            <div class="resa-info-icon">⏰</div>
+            <div>
+              <div class="resa-info-title">Horaires d'ouverture</div>
+              <div class="resa-info-val">Tous les jours · 12h00 – 23h00<br>Cuisine chaude jusqu'à 22h30</div>
+            </div>
+          </div>
+          <div class="resa-info-item">
+            <div class="resa-info-icon">📞</div>
+            <div>
+              <div class="resa-info-title">Nous appeler</div>
+              <div class="resa-info-val"><a href="tel:+242067119191">+242 06 711 9191</a><br>WhatsApp disponible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="resa-form">
+          <h3>Réserver une table</h3>
+          <p>Confirmation sous 1 heure par appel ou WhatsApp</p>
+          <form onsubmit="handleResa(event)">
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label">Prénom</label>
+                <input type="text" class="form-input" placeholder="Jean" required>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Nom</label>
+                <input type="text" class="form-input" placeholder="Mbemba" required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Téléphone / WhatsApp</label>
+              <input type="tel" class="form-input" placeholder="+242 ..." required>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-input" required>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Heure</label>
+                <select class="form-input" required>
+                  <option value="">Choisir...</option>
+                  <option>12h00</option><option>13h00</option><option>14h00</option>
+                  <option>19h00</option><option>20h00</option><option>21h00</option><option>22h00</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Nombre de personnes</label>
+              <select class="form-input" required>
+                <option value="">Choisir...</option>
+                <option>1 personne</option><option>2 personnes</option><option>3–4 personnes</option>
+                <option>5–6 personnes</option><option>7–10 personnes</option><option>Plus de 10</option>
+              </select>
+            </div>
+            <button type="submit" class="form-submit">Confirmer ma réservation →</button>
+            <p id="resa-msg" style="display:none;margin-top:1rem;color:#2ecc71;font-size:.82rem;text-align:center;">✓ Demande envoyée — nous vous rappelons dans l'heure !</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Karibu <em>Bzv</em></div>
+        <p class="footer-tagline">Restaurant & Lounge-Bar au cœur du Plateau des 15 ans. Cuisine congolaise et africaine, terrasse Karibu Beach, 7 jours sur 7 à Brazzaville.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/karibubzv/" target="_blank" rel="noopener" class="footer-social">📸</a>
+          <a href="https://www.facebook.com/p/Karibu-Bzv-100089827038948/" target="_blank" rel="noopener" class="footer-social">👍</a>
+          <a href="https://www.tiktok.com/@karibubzv" target="_blank" rel="noopener" class="footer-social">🎵</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Navigation</div>
+        <a href="#experiences">L'établissement</a>
+        <a href="#menu">Menu</a>
+        <a href="#reservation">Réservation</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <a href="tel:+242067119191">+242 06 711 9191</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Karibu+Restaurant+Rue+Nko+Brazzaville" target="_blank" rel="noopener">1928 rue Nko, Plateau des 15 ans</a>
+        <a href="#">Brazzaville, Congo</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Karibu Bzv · Tous droits réservés</span>
+      <div class="footer-credit"><a href="https://bowbosh22.github.io/atelier-kpm" target="_blank" rel="noopener">Site conçu par l'Atelier KPM</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/242067119191?text=Bonjour%20Karibu%2C%20je%20souhaite%20r%C3%A9server%20une%20table."
+   target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .2s;"
+   onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+   aria-label="Réserver sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.856L.057 23.428a.75.75 0 00.916.916l5.578-1.474A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.184-1.435l-.372-.22-3.862 1.02 1.02-3.843-.228-.381A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+const obs = new IntersectionObserver(e => e.forEach(i => { if(i.isIntersecting) i.target.classList.add('in'); }), { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+function handleResa(e) {
+  e.preventDefault();
+  document.getElementById('resa-msg').style.display = 'block';
+  e.target.reset();
+}
+</script>
+</body>
+</html>
