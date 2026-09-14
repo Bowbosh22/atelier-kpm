@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analysez votre CV — KPM Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#1B2A4A;--navy2:#243758;--blue:#2E5B9A;--cyan:#3B9EE8;--cyan2:#60B4F0;
+  --bg:#F8F9FB;--bg2:#EEF2F8;--border:#DDE4EF;--text:#1A2535;--text2:#4A5A6A;--text3:#7A8A9A;
+  --blanc:#FFFFFF;--green:#2EA86A;--orange:#E87A1B;--red:#E83B3B;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+nav{background:var(--navy);padding:0 2rem;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-size:1rem;font-weight:700;color:#fff;}.nav-logo span{color:var(--cyan);}
+.nav-badge{font-size:0.7rem;background:rgba(59,158,232,0.15);border:1px solid rgba(59,158,232,0.3);color:var(--cyan2);padding:3px 10px;border-radius:20px;}
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#1A3A6A 100%);padding:4rem 2rem 3.5rem;text-align:center;}
+.hero-eyebrow{display:inline-block;font-size:0.72rem;font-weight:500;color:var(--cyan2);letter-spacing:0.06em;margin-bottom:1.25rem;background:rgba(59,158,232,0.1);border:1px solid rgba(59,158,232,0.25);padding:4px 14px;border-radius:20px;}
+.hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:0.85rem;}
+.hero h1 em{font-style:normal;color:var(--cyan);}
+.hero p{font-size:0.95rem;color:rgba(255,255,255,0.6);max-width:46ch;margin:0 auto 2.5rem;line-height:1.7;}
+
+.upload-zone{background:#fff;border-radius:16px;max-width:680px;margin:0 auto;overflow:hidden;box-shadow:0 8px 40px rgba(27,42,74,0.18);}
+.upload-tabs{display:flex;border-bottom:1px solid var(--border);}
+.upload-tab{flex:1;padding:0.85rem;font-size:0.85rem;font-weight:500;cursor:pointer;color:var(--text3);border:none;background:none;font-family:'Inter',sans-serif;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;}
+.upload-tab.active{color:var(--cyan);border-bottom-color:var(--cyan);}
+.upload-panel{display:none;padding:1.5rem;}
+.upload-panel.active{display:block;}
+
+.drop-area{border:2px dashed var(--border);border-radius:10px;padding:2.5rem 1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;}
+.drop-area:hover,.drop-area.dragging{border-color:var(--cyan);background:rgba(59,158,232,0.04);}
+.drop-icon{font-size:2.5rem;margin-bottom:0.75rem;}
+.drop-title{font-size:0.9rem;font-weight:500;color:var(--text);margin-bottom:0.3rem;}
+.drop-sub{font-size:0.8rem;color:var(--text3);}
+.drop-input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.file-selected{display:none;align-items:center;gap:10px;background:var(--bg2);border-radius:8px;padding:10px 14px;margin-top:1rem;}
+.file-selected.visible{display:flex;}
+.file-name{font-size:0.83rem;color:var(--text);flex:1;}
+.file-remove{font-size:0.8rem;color:var(--text3);cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;}
+.cv-textarea{width:100%;min-height:200px;border:1.5px solid var(--border);border-radius:10px;padding:1rem;font-family:'Inter',sans-serif;font-size:0.88rem;color:var(--text);resize:vertical;outline:none;transition:border-color 0.2s;line-height:1.6;}
+.cv-textarea:focus{border-color:var(--cyan);}
+.textarea-hint{font-size:0.75rem;color:var(--text3);margin-top:0.5rem;}
+.btn-analyse{width:100%;background:var(--cyan);color:#fff;border:none;border-radius:10px;padding:0.9rem;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;margin-top:1rem;transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-analyse:hover{background:#2A8ED0;}
+.btn-analyse:disabled{background:var(--border);color:var(--text3);cursor:not-allowed;}
+
+.loader{display:none;text-align:center;padding:3rem 2rem;}
+.loader.visible{display:block;}
+.spinner{width:48px;height:48px;border:3px solid var(--border);border-top-color:var(--cyan);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1.25rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loader-text{font-size:0.9rem;color:var(--text2);}
+.loader-sub{font-size:0.78rem;color:var(--text3);margin-top:0.4rem;}
+
+.results{display:none;max-width:760px;margin:2.5rem auto 0;padding:0 1.5rem 4rem;}
+.results.visible{display:block;}
+
+/* Score card */
+.score-card{background:#fff;border-radius:16px;padding:2rem;display:flex;align-items:center;gap:2rem;box-shadow:0 2px 16px rgba(27,42,74,0.08);margin-bottom:1rem;flex-wrap:wrap;}
+.score-circle{position:relative;width:110px;height:110px;flex-shrink:0;}
+.score-svg{width:110px;height:110px;transform:rotate(-90deg);}
+.score-track{fill:none;stroke:var(--bg2);stroke-width:10;}
+.score-fill{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1);}
+.score-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.score-num{font-size:1.6rem;font-weight:700;}
+.score-max{font-size:0.7rem;color:var(--text3);}
+.score-info{flex:1;min-width:200px;}
+.score-title{font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:0.35rem;}
+.score-verdict{font-size:0.87rem;color:var(--text2);line-height:1.65;margin-bottom:0.75rem;}
+.pills{display:flex;gap:6px;flex-wrap:wrap;}
+.pill{font-size:0.7rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.pill-green{background:rgba(46,168,106,0.12);color:var(--green);}
+.pill-orange{background:rgba(232,122,27,0.12);color:var(--orange);}
+.pill-red{background:rgba(232,59,59,0.12);color:var(--red);}
+.pill-blue{background:rgba(59,158,232,0.12);color:var(--cyan);}
+
+/* Barres de progression */
+.scores-overview{background:#fff;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;box-shadow:0 2px 12px rgba(27,42,74,0.06);}
+.scores-title{font-size:0.8rem;font-weight:600;color:var(--text3);margin-bottom:1rem;letter-spacing:0.04em;}
+.score-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:0.75rem;}
+.score-bar-row:last-child{margin-bottom:0;}
+.score-bar-label{font-size:0.8rem;color:var(--text2);width:180px;flex-shrink:0;}
+.score-bar-track{flex:1;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;}
+.score-bar-fill{height:100%;border-radius:3px;transition:width 1s ease;width:0;}
+.score-bar-val{font-size:0.75rem;font-weight:600;width:32px;text-align:right;flex-shrink:0;}
+
+/* Sections */
+.analysis-sections{display:flex;flex-direction:column;gap:0.75rem;}
+.analysis-section{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(27,42,74,0.06);}
+.section-header{padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;transition:background 0.15s;}
+.section-header:hover{background:var(--bg);}
+.section-left{display:flex;align-items:center;gap:10px;}
+.section-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.section-name{font-size:0.88rem;font-weight:600;color:var(--navy);}
+.section-right{display:flex;align-items:center;gap:10px;}
+.section-score-pill{font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:20px;}
+.chevron{font-size:0.75rem;color:var(--text3);transition:transform 0.2s;}
+.chevron.open{transform:rotate(180deg);}
+.section-body{display:none;padding:0 1.25rem 1.25rem;border-top:1px solid var(--border);}
+.section-body.open{display:block;}
+
+.analyse-text{font-size:0.87rem;color:var(--text2);line-height:1.7;margin-top:0.85rem;margin-bottom:1rem;padding:0.85rem;background:var(--bg);border-radius:8px;border-left:3px solid var(--cyan);}
+
+.sub-label{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;color:var(--text3);margin-bottom:0.5rem;margin-top:0.75rem;}
+.points-forts{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:0.85rem;}
+.point-fort{display:flex;gap:8px;align-items:flex-start;font-size:0.84rem;color:#1A6A3A;line-height:1.5;}
+.pf-icon{color:var(--green);flex-shrink:0;margin-top:1px;}
+.conseils-list{display:flex;flex-direction:column;gap:0.5rem;}
+.conseil-item{display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--text2);line-height:1.5;padding:0.6rem 0.75rem;background:var(--bg);border-radius:6px;}
+.conseil-num{font-size:0.7rem;font-weight:700;color:#fff;background:var(--cyan);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+
+/* Faute détectée */
+.fautes-box{background:rgba(232,59,59,0.06);border:1px solid rgba(232,59,59,0.2);border-radius:8px;padding:0.75rem 1rem;margin-top:0.75rem;font-size:0.82rem;color:#8B1A1A;}
+
+/* CTA */
+.cta-kpm{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:2rem;text-align:center;margin-top:1.25rem;}
+.cta-kpm h3{font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:0.5rem;}
+.cta-kpm p{font-size:0.85rem;color:rgba(255,255,255,0.6);margin:0 auto 1.25rem;max-width:44ch;line-height:1.6;}
+.btn-kpm{display:inline-block;background:var(--cyan);color:#fff;padding:0.8rem 2rem;border-radius:8px;font-size:0.85rem;font-weight:600;text-decoration:none;}
+.btn-kpm:hover{background:#2A8ED0;}
+.btn-retry{display:block;margin:1rem auto 0;font-size:0.78rem;color:rgba(255,255,255,0.35);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-retry:hover{color:rgba(255,255,255,0.6);}
+
+footer{background:var(--navy);text-align:center;padding:1.25rem;font-size:0.75rem;color:rgba(255,255,255,0.3);}
+footer a{color:var(--cyan);text-decoration:none;}
+
+@media(max-width:600px){
+  .hero{padding:2.5rem 1.25rem 2rem;}
+  .score-card{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .results{padding:0 1rem 3rem;}
+  .score-bar-label{width:120px;font-size:0.75rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">KPM <span>Express</span></div>
+  <div class="nav-badge">Analyse CV · IA · Gratuit</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Outil gratuit · Propulsé par IA</div>
+  <h1>Votre CV mérite<br>un regard <em>expert</em></h1>
+  <p>Collez votre texte ou uploadez votre PDF — analyse professionnelle en 15 secondes avec conseils personnalisés.</p>
+
+  <div class="upload-zone">
+    <div class="upload-tabs">
+      <button class="upload-tab active" onclick="switchTab('text')">Coller le texte</button>
+      <button class="upload-tab" onclick="switchTab('pdf')">Uploader un PDF</button>
+    </div>
+    <div id="panel-text" class="upload-panel active">
+      <textarea class="cv-textarea" id="cv-text" placeholder="Collez ici le contenu complet de votre CV...&#10;&#10;Nom, prénom, poste visé, expériences, formations, compétences, langues..."></textarea>
+      <div class="textarea-hint">Copiez tout le texte de votre CV pour une analyse précise.</div>
+      <button class="btn-analyse" id="btn-text" onclick="analyseText()">Analyser mon CV →</button>
+    </div>
+    <div id="panel-pdf" class="upload-panel">
+      <div class="drop-area" id="drop-area">
+        <input type="file" class="drop-input" id="pdf-input" accept=".pdf" onchange="handleFile(this.files[0])">
+        <div class="drop-icon">📄</div>
+        <div class="drop-title">Glissez votre PDF ici</div>
+        <div class="drop-sub">ou cliquez pour sélectionner · PDF uniquement · max 5 Mo</div>
+      </div>
+      <div class="file-selected" id="file-selected">
+        <span>📎</span>
+        <span class="file-name" id="file-name">—</span>
+        <button class="file-remove" onclick="removeFile()">✕</button>
+      </div>
+      <button class="btn-analyse" id="btn-pdf" onclick="analysePDF()" disabled>Analyser mon CV →</button>
+    </div>
+  </div>
+</section>
+
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+  <div class="loader-text">Analyse en cours…</div>
+  <div class="loader-sub">Lecture du CV · Évaluation par section · Génération des conseils</div>
+</div>
+
+<div class="results" id="results"></div>
+
+<footer>
+  Outil gratuit proposé par <a href="https://bowbosh22.github.io/atelier-kpm">l'Atelier KPM</a> · Brazzaville, Congo
+</footer>
+
+<script>
+const SYSTEM_PROMPT = `Tu es un expert RH senior avec 15 ans d'expérience en recrutement en Afrique francophone (Congo, Cameroun, Côte d'Ivoire, Sénégal) et en Europe francophone. Tu as présélectionné plus de 10 000 CV et formé des candidats à décrocher des postes dans des multinationales, ONG internationales, administrations et PME locales.
+
+Tu analyses les CV avec rigueur professionnelle. Tu notes chaque section sur 100 avec un barème précis, et tu fournis des conseils actionnables ultra-spécifiques basés sur le contenu réel du CV fourni — jamais des conseils génériques.
+
+BARÈME DE NOTATION (poids global)
+
+1. PRÉSENTATION & CONTACT (15% du score global)
+   - Nom/prénom lisible et bien placé (10 pts)
+   - Titre professionnel ou poste visé clairement énoncé (20 pts)
+   - Téléphone présent et format correct (15 pts)
+   - Email professionnel (15 pts)
+   - Ville/pays mentionné (10 pts)
+   - LinkedIn ou portfolio (10 pts)
+   - Accroche / résumé professionnel (20 pts)
+   Pénalités : email non professionnel (-15), aucun contact (-30), titre absent (-20)
+
+2. EXPÉRIENCES PROFESSIONNELLES (35% du score global)
+   - Nombre et pertinence des expériences (20 pts)
+   - Dates complètes mois+année pour chaque poste (15 pts)
+   - Nom de l'entreprise + secteur + ville (10 pts)
+   - Intitulé de poste précis (10 pts)
+   - Descriptions avec verbes d'action forts (diriger, développer, négocier, réduire, implémenter...) (20 pts)
+   - Résultats quantifiés (chiffres, %, durées, volumes) (15 pts)
+   - Cohérence chronologique et absence de trous inexpliqués (10 pts)
+   Pénalités : descriptions vagues (-20), trous > 6 mois sans explication (-15), dates incomplètes (-10 par occurrence)
+
+3. FORMATION & DIPLÔMES (20% du score global)
+   - Diplôme le plus élevé clairement mentionné (30 pts)
+   - Nom complet de l'établissement (20 pts)
+   - Année d'obtention (15 pts)
+   - Adéquation formation/expérience/poste visé (25 pts)
+   - Formations complémentaires ou certifications pertinentes (10 pts)
+
+4. COMPÉTENCES (20% du score global)
+   - Compétences techniques spécifiques au métier (30 pts)
+   - Logiciels et outils nommés précisément (20 pts)
+   - Langues avec niveau précis (20 pts)
+   - Compétences transversales pertinentes et non banales (10 pts)
+   - Absence de compétences vagues sans preuve (20 pts)
+   Pénalités : "maîtrise de Word et Excel" sans précision (-10), compétences hors sujet (-5 par item)
+
+5. PRÉSENTATION VISUELLE & STRUCTURE (10% du score global)
+   - Longueur adaptée : 1 page junior, 2 pages senior (25 pts)
+   - Sections clairement délimitées (20 pts)
+   - Absence de fautes d'orthographe détectables (25 pts)
+   - Ordre logique des sections (15 pts)
+   - Cohérence typographique (15 pts)
+
+CALCUL DU SCORE GLOBAL :
+Score = (score1 × 0.15) + (score2 × 0.35) + (score3 × 0.20) + (score4 × 0.20) + (score5 × 0.10)
+
+RÈGLES ABSOLUES :
+- Tes conseils citent TOUJOURS le contenu réel du CV (noms d'entreprises, postes, diplômes mentionnés)
+- JAMAIS de conseil générique sans précision concrète
+- Détecte et cite explicitement les fautes d'orthographe visibles
+- Si une section est absente, explique exactement ce qu'il faut ajouter
+- Adapte l'exigence au profil : junior (0-3 ans), confirmé (3-8 ans), senior (8+ ans)
+- Tiens compte du marché africain francophone (photo, âge parfois attendus localement)
+- Le verdict doit être honnête, bienveillant, et citer les 2 points prioritaires à corriger
+
+Réponds UNIQUEMENT en JSON valide, sans texte avant ou après, sans balises markdown :
+{
+  "score": <entier 0-100>,
+  "verdict": "<2-3 phrases honnêtes et bienveillantes résumant le niveau et les 2 priorités>",
+  "niveau": "<Faible|Moyen|Bon|Excellent>",
+  "profil_detecte": "<Junior|Confirmé|Senior>",
+  "sections": [
+    {
+      "nom": "Présentation & Contact",
+      "icon": "👤",
+      "score": <0-100>,
+      "analyse": "<2-3 phrases précises citant le contenu réel>",
+      "points_forts": ["<point fort spécifique, ou chaîne vide si aucun>"],
+      "conseils": ["<conseil ultra-spécifique>", "<conseil 2>", "<conseil 3 optionnel>"]
+    },
+    { "nom": "Expériences professionnelles", "icon": "💼", "score": <0-100>, "analyse": "<...>", "points_forts": ["<...>"], "conseils": ["<...>", "<...>", "<...>"] },
+    { "nom": "Formation & Diplômes", "icon": "🎓", "score": <0-100>, "analyse": "<...>", "points_forts": ["<...>"], "conseils": ["<...>", "<...>"] },
+    { "nom": "Compétences", "icon": "⚡", "score": <0-100>, "analyse": "<...>", "points_forts": ["<...>"], "conseils": ["<...>", "<...>"] },
+    { "nom": "Présentation visuelle", "icon": "🎨", "score": <0-100>, "analyse": "<...>", "points_forts": ["<...>"], "conseils": ["<...>", "<...>"] }
+  ]
+}`;
+
+let pdfBase64 = null;
+
+function switchTab(tab) {
+  document.querySelectorAll('.upload-tab').forEach((t,i) => t.classList.toggle('active',(tab==='text'&&i===0)||(tab==='pdf'&&i===1)));
+  document.getElementById('panel-text').classList.toggle('active',tab==='text');
+  document.getElementById('panel-pdf').classList.toggle('active',tab==='pdf');
+}
+
+function handleFile(file) {
+  if(!file) return;
+  if(file.size > 5*1024*1024){alert('Fichier trop volumineux (max 5 Mo)');return;}
+  document.getElementById('file-name').textContent = file.name;
+  document.getElementById('file-selected').classList.add('visible');
+  document.getElementById('btn-pdf').disabled = false;
+  const reader = new FileReader();
+  reader.onload = e => { pdfBase64 = e.target.result.split(',')[1]; };
+  reader.readAsDataURL(file);
+}
+
+function removeFile() {
+  pdfBase64 = null;
+  document.getElementById('file-name').textContent='—';
+  document.getElementById('file-selected').classList.remove('visible');
+  document.getElementById('btn-pdf').disabled=true;
+  document.getElementById('pdf-input').value='';
+}
+
+const dropArea = document.getElementById('drop-area');
+['dragenter','dragover'].forEach(e=>dropArea.addEventListener(e,ev=>{ev.preventDefault();dropArea.classList.add('dragging');}));
+['dragleave','drop'].forEach(e=>dropArea.addEventListener(e,ev=>{ev.preventDefault();dropArea.classList.remove('dragging');}));
+dropArea.addEventListener('drop',ev=>{const f=ev.dataTransfer.files[0];if(f&&f.type==='application/pdf')handleFile(f);});
+
+function showLoader(){
+  document.getElementById('loader').classList.add('visible');
+  document.getElementById('results').classList.remove('visible');
+  document.getElementById('results').innerHTML='';
+  window.scrollTo({top:document.querySelector('.hero').offsetHeight+52,behavior:'smooth'});
+}
+function hideLoader(){document.getElementById('loader').classList.remove('visible');}
+
+async function callClaude(messages){
+  const res = await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,system:SYSTEM_PROMPT,messages})
+  });
+  const data = await res.json();
+  return data.content[0].text;
+}
+
+async function analyseText(){
+  const text = document.getElementById('cv-text').value.trim();
+  if(text.length<100){alert('Veuillez coller un CV plus complet (minimum 100 caractères).');return;}
+  showLoader();
+  try{
+    const raw = await callClaude([{role:'user',content:`Analyse ce CV et applique le barème complet :\n\n${text}`}]);
+    const clean = raw.replace(/```json|```/g,'').trim();
+    renderResults(JSON.parse(clean));
+  }catch(e){hideLoader();renderError();}
+}
+
+async function analysePDF(){
+  if(!pdfBase64) return;
+  showLoader();
+  try{
+    const messages=[{role:'user',content:[
+      {type:'document',source:{type:'base64',media_type:'application/pdf',data:pdfBase64}},
+      {type:'text',text:'Analyse ce CV en PDF et applique le barème complet.'}
+    ]}];
+    const raw = await callClaude(messages);
+    const clean = raw.replace(/```json|```/g,'').trim();
+    renderResults(JSON.parse(clean));
+  }catch(e){hideLoader();renderError();}
+}
+
+function scoreColor(s){return s>=70?'var(--green)':s>=45?'var(--orange)':'var(--red)';}
+function pillClass(s){return s>=70?'pill-green':s>=45?'pill-orange':'pill-red';}
+function pillLabel(s){return s>=80?'Excellent':s>=65?'Bon':s>=45?'À améliorer':'Faible';}
+function niveauClass(n){return(n==='Excellent'||n==='Bon')?'pill-green':n==='Moyen'?'pill-orange':'pill-red';}
+function barColor(s){return s>=70?'#2EA86A':s>=45?'#E87A1B':'#E83B3B';}
+function iconBg(s){return s>=70?'rgba(46,168,106,0.12)':s>=45?'rgba(232,122,27,0.12)':'rgba(232,59,59,0.12)';}
+
+function renderResults(data){
+  hideLoader();
+  const circ = 2*Math.PI*45;
+  const offset = circ-(data.score/100)*circ;
+  const color = scoreColor(data.score);
+
+  // Barres de progression
+  const barsHTML = data.sections.map(s=>`
+    <div class="score-bar-row">
+      <span class="score-bar-label">${s.icon} ${s.nom}</span>
+      <div class="score-bar-track"><div class="score-bar-fill" style="background:${barColor(s.score)}" data-width="${s.score}%"></div></div>
+      <span class="score-bar-val" style="color:${barColor(s.score)}">${s.score}</span>
+    </div>`).join('');
+
+  // Sections détaillées
+  const sectionsHTML = data.sections.map((s,i)=>{
+    const pfHTML = (s.points_forts||[]).filter(p=>p).map(p=>`
+      <div class="point-fort"><span class="pf-icon">✓</span><span>${p}</span></div>`).join('');
+    const conseilsHTML = (s.conseils||[]).filter(c=>c).map((c,j)=>`
+      <div class="conseil-item"><div class="conseil-num">${j+1}</div><span>${c}</span></div>`).join('');
+
+    return `
+    <div class="analysis-section">
+      <div class="section-header" onclick="toggleSection(${i})">
+        <div class="section-left">
+          <div class="section-icon" style="background:${iconBg(s.score)}">${s.icon}</div>
+          <span class="section-name">${s.nom}</span>
+        </div>
+        <div class="section-right">
+          <span class="section-score-pill ${pillClass(s.score)}">${s.score}/100 · ${pillLabel(s.score)}</span>
+          <span class="chevron" id="chev-${i}">▼</span>
+        </div>
+      </div>
+      <div class="section-body" id="body-${i}">
+        <div class="analyse-text">${s.analyse}</div>
+        ${pfHTML?`<div class="sub-label">POINTS FORTS</div><div class="points-forts">${pfHTML}</div>`:''}
+        <div class="sub-label">CONSEILS PRIORITAIRES</div>
+        <div class="conseils-list">${conseilsHTML}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('results').innerHTML = `
+    <div class="score-card">
+      <div class="score-circle">
+        <svg class="score-svg" viewBox="0 0 100 100">
+          <circle class="score-track" cx="50" cy="50" r="45"/>
+          <circle class="score-fill" cx="50" cy="50" r="45" stroke="${color}"
+            stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="score-arc"/>
+        </svg>
+        <div class="score-label">
+          <div class="score-num" style="color:${color}">${data.score}</div>
+          <div class="score-max">/100</div>
+        </div>
+      </div>
+      <div class="score-info">
+        <div class="score-title">Score global de votre CV</div>
+        <div class="score-verdict">${data.verdict}</div>
+        <div class="pills">
+          <span class="pill ${niveauClass(data.niveau)}">${data.niveau}</span>
+          <span class="pill pill-blue">${data.profil_detecte}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scores-overview">
+      <div class="scores-title">DÉTAIL PAR SECTION</div>
+      ${barsHTML}
+    </div>
+
+    <div class="analysis-sections">${sectionsHTML}</div>
+
+    <div class="cta-kpm">
+      <h3>Votre CV mérite un design professionnel</h3>
+      <p>L'Atelier KPM crée votre CV premium en 24h — mis en page, structuré et prêt à envoyer.</p>
+      <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20souhaite%20un%20CV%20premium%20KPM%20Express" class="btn-kpm">Obtenir mon CV premium — 10 000 FCFA</a>
+      <button class="btn-retry" onclick="retry()">← Analyser un autre CV</button>
+    </div>`;
+
+  document.getElementById('results').classList.add('visible');
+
+  // Animer cercle
+  setTimeout(()=>{
+    const arc=document.getElementById('score-arc');
+    if(arc) arc.style.strokeDashoffset=offset;
+    document.querySelectorAll('.score-bar-fill').forEach(b=>{b.style.width=b.dataset.width;});
+  },150);
+
+  // Ouvrir section la plus faible
+  const scores = data.sections.map(s=>s.score);
+  const weakest = scores.indexOf(Math.min(...scores));
+  toggleSection(weakest);
+
+  window.scrollTo({top:document.getElementById('results').offsetTop-70,behavior:'smooth'});
+}
+
+function toggleSection(i){
+  const body=document.getElementById('body-'+i);
+  const chev=document.getElementById('chev-'+i);
+  if(!body||!chev)return;
+  const open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  chev.classList.toggle('open',!open);
+}
+
+function retry(){
+  document.getElementById('results').classList.remove('visible');
+  document.getElementById('results').innerHTML='';
+  document.getElementById('cv-text').value='';
+  removeFile();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderError(){
+  hideLoader();
+  const r=document.getElementById('results');
+  r.innerHTML=`<div style="text-align:center;padding:3rem 1.5rem;">
+    <div style="font-size:2rem;margin-bottom:1rem;">⚠️</div>
+    <div style="font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:0.5rem;">Analyse impossible</div>
+    <div style="font-size:0.85rem;color:var(--text2);margin-bottom:1.5rem;">Une erreur s'est produite. Vérifiez votre connexion et réessayez.</div>
+    <button onclick="retry()" style="background:var(--cyan);color:#fff;border:none;padding:0.8rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Réessayer</button>
+  </div>`;
+  r.classList.add('visible');
+}
+</script>
+</body>
+</html>
