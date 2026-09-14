@@ -9,8 +9,9 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --navy:#1B2A4A;--navy2:#243758;--blue:#2E5B9A;--cyan:#3B9EE8;--cyan2:#60B4F0;
-  --bg:#F8F9FB;--bg2:#EEF2F8;--border:#DDE4EF;--text:#1A2535;--text2:#4A5A6A;--text3:#7A8A9A;
+  --navy:#1B2A4A;--navy2:#243758;--cyan:#3B9EE8;--cyan2:#60B4F0;
+  --bg:#F8F9FB;--bg2:#EEF2F8;--border:#DDE4EF;
+  --text:#1A2535;--text2:#4A5A6A;--text3:#7A8A9A;
   --blanc:#FFFFFF;--green:#2EA86A;--orange:#E87A1B;--red:#E83B3B;
 }
 html{scroll-behavior:smooth;}
@@ -32,7 +33,6 @@ nav{background:var(--navy);padding:0 2rem;height:52px;display:flex;align-items:c
 .upload-tab.active{color:var(--cyan);border-bottom-color:var(--cyan);}
 .upload-panel{display:none;padding:1.5rem;}
 .upload-panel.active{display:block;}
-
 .drop-area{border:2px dashed var(--border);border-radius:10px;padding:2.5rem 1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;}
 .drop-area:hover,.drop-area.dragging{border-color:var(--cyan);background:rgba(59,158,232,0.04);}
 .drop-icon{font-size:2.5rem;margin-bottom:0.75rem;}
@@ -43,10 +43,10 @@ nav{background:var(--navy);padding:0 2rem;height:52px;display:flex;align-items:c
 .file-selected.visible{display:flex;}
 .file-name{font-size:0.83rem;color:var(--text);flex:1;}
 .file-remove{font-size:0.8rem;color:var(--text3);cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;}
-.cv-textarea{width:100%;min-height:200px;border:1.5px solid var(--border);border-radius:10px;padding:1rem;font-family:'Inter',sans-serif;font-size:0.88rem;color:var(--text);resize:vertical;outline:none;transition:border-color 0.2s;line-height:1.6;}
+.cv-textarea{width:100%;min-height:220px;border:1.5px solid var(--border);border-radius:10px;padding:1rem;font-family:'Inter',sans-serif;font-size:0.88rem;color:var(--text);resize:vertical;outline:none;transition:border-color 0.2s;line-height:1.6;}
 .cv-textarea:focus{border-color:var(--cyan);}
 .textarea-hint{font-size:0.75rem;color:var(--text3);margin-top:0.5rem;}
-.btn-analyse{width:100%;background:var(--cyan);color:#fff;border:none;border-radius:10px;padding:0.9rem;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;margin-top:1rem;transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-analyse{width:100%;background:var(--cyan);color:#fff;border:none;border-radius:10px;padding:0.9rem;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;margin-top:1rem;transition:background 0.2s;}
 .btn-analyse:hover{background:#2A8ED0;}
 .btn-analyse:disabled{background:var(--border);color:var(--text3);cursor:not-allowed;}
 
@@ -60,7 +60,6 @@ nav{background:var(--navy);padding:0 2rem;height:52px;display:flex;align-items:c
 .results{display:none;max-width:760px;margin:2.5rem auto 0;padding:0 1.5rem 4rem;}
 .results.visible{display:block;}
 
-/* Score card */
 .score-card{background:#fff;border-radius:16px;padding:2rem;display:flex;align-items:center;gap:2rem;box-shadow:0 2px 16px rgba(27,42,74,0.08);margin-bottom:1rem;flex-wrap:wrap;}
 .score-circle{position:relative;width:110px;height:110px;flex-shrink:0;}
 .score-svg{width:110px;height:110px;transform:rotate(-90deg);}
@@ -79,17 +78,15 @@ nav{background:var(--navy);padding:0 2rem;height:52px;display:flex;align-items:c
 .pill-red{background:rgba(232,59,59,0.12);color:var(--red);}
 .pill-blue{background:rgba(59,158,232,0.12);color:var(--cyan);}
 
-/* Barres de progression */
 .scores-overview{background:#fff;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;box-shadow:0 2px 12px rgba(27,42,74,0.06);}
-.scores-title{font-size:0.8rem;font-weight:600;color:var(--text3);margin-bottom:1rem;letter-spacing:0.04em;}
+.scores-title{font-size:0.75rem;font-weight:600;color:var(--text3);margin-bottom:1rem;letter-spacing:0.05em;}
 .score-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:0.75rem;}
 .score-bar-row:last-child{margin-bottom:0;}
-.score-bar-label{font-size:0.8rem;color:var(--text2);width:180px;flex-shrink:0;}
+.score-bar-label{font-size:0.8rem;color:var(--text2);width:200px;flex-shrink:0;}
 .score-bar-track{flex:1;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;}
-.score-bar-fill{height:100%;border-radius:3px;transition:width 1s ease;width:0;}
+.score-bar-fill{height:100%;border-radius:3px;width:0;transition:width 1s ease;}
 .score-bar-val{font-size:0.75rem;font-weight:600;width:32px;text-align:right;flex-shrink:0;}
 
-/* Sections */
 .analysis-sections{display:flex;flex-direction:column;gap:0.75rem;}
 .analysis-section{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(27,42,74,0.06);}
 .section-header{padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;transition:background 0.15s;}
@@ -103,21 +100,15 @@ nav{background:var(--navy);padding:0 2rem;height:52px;display:flex;align-items:c
 .chevron.open{transform:rotate(180deg);}
 .section-body{display:none;padding:0 1.25rem 1.25rem;border-top:1px solid var(--border);}
 .section-body.open{display:block;}
-
 .analyse-text{font-size:0.87rem;color:var(--text2);line-height:1.7;margin-top:0.85rem;margin-bottom:1rem;padding:0.85rem;background:var(--bg);border-radius:8px;border-left:3px solid var(--cyan);}
-
 .sub-label{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;color:var(--text3);margin-bottom:0.5rem;margin-top:0.75rem;}
 .points-forts{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:0.85rem;}
 .point-fort{display:flex;gap:8px;align-items:flex-start;font-size:0.84rem;color:#1A6A3A;line-height:1.5;}
-.pf-icon{color:var(--green);flex-shrink:0;margin-top:1px;}
+.pf-icon{color:var(--green);flex-shrink:0;}
 .conseils-list{display:flex;flex-direction:column;gap:0.5rem;}
 .conseil-item{display:flex;gap:10px;align-items:flex-start;font-size:0.84rem;color:var(--text2);line-height:1.5;padding:0.6rem 0.75rem;background:var(--bg);border-radius:6px;}
 .conseil-num{font-size:0.7rem;font-weight:700;color:#fff;background:var(--cyan);width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
 
-/* Faute détectée */
-.fautes-box{background:rgba(232,59,59,0.06);border:1px solid rgba(232,59,59,0.2);border-radius:8px;padding:0.75rem 1rem;margin-top:0.75rem;font-size:0.82rem;color:#8B1A1A;}
-
-/* CTA */
 .cta-kpm{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:2rem;text-align:center;margin-top:1.25rem;}
 .cta-kpm h3{font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:0.5rem;}
 .cta-kpm p{font-size:0.85rem;color:rgba(255,255,255,0.6);margin:0 auto 1.25rem;max-width:44ch;line-height:1.6;}
@@ -133,7 +124,7 @@ footer a{color:var(--cyan);text-decoration:none;}
   .hero{padding:2.5rem 1.25rem 2rem;}
   .score-card{flex-direction:column;align-items:flex-start;gap:1rem;}
   .results{padding:0 1rem 3rem;}
-  .score-bar-label{width:120px;font-size:0.75rem;}
+  .score-bar-label{width:130px;font-size:0.75rem;}
 }
 </style>
 </head>
@@ -141,13 +132,13 @@ footer a{color:var(--cyan);text-decoration:none;}
 
 <nav>
   <div class="nav-logo">KPM <span>Express</span></div>
-  <div class="nav-badge">Analyse CV · IA · Gratuit</div>
+  <div class="nav-badge">Analyse CV · Gratuit</div>
 </nav>
 
 <section class="hero">
-  <div class="hero-eyebrow">Outil gratuit · Propulsé par IA</div>
+  <div class="hero-eyebrow">Outil gratuit · Analyse instantanée</div>
   <h1>Votre CV mérite<br>un regard <em>expert</em></h1>
-  <p>Collez votre texte ou uploadez votre PDF — analyse professionnelle en 15 secondes avec conseils personnalisés.</p>
+  <p>Collez votre texte ou uploadez votre PDF — analyse professionnelle en quelques secondes avec conseils personnalisés.</p>
 
   <div class="upload-zone">
     <div class="upload-tabs">
@@ -157,7 +148,7 @@ footer a{color:var(--cyan);text-decoration:none;}
     <div id="panel-text" class="upload-panel active">
       <textarea class="cv-textarea" id="cv-text" placeholder="Collez ici le contenu complet de votre CV...&#10;&#10;Nom, prénom, poste visé, expériences, formations, compétences, langues..."></textarea>
       <div class="textarea-hint">Copiez tout le texte de votre CV pour une analyse précise.</div>
-      <button class="btn-analyse" id="btn-text" onclick="analyseText()">Analyser mon CV →</button>
+      <button class="btn-analyse" onclick="lancerAnalyse()">Analyser mon CV →</button>
     </div>
     <div id="panel-pdf" class="upload-panel">
       <div class="drop-area" id="drop-area">
@@ -171,7 +162,7 @@ footer a{color:var(--cyan);text-decoration:none;}
         <span class="file-name" id="file-name">—</span>
         <button class="file-remove" onclick="removeFile()">✕</button>
       </div>
-      <button class="btn-analyse" id="btn-pdf" onclick="analysePDF()" disabled>Analyser mon CV →</button>
+      <button class="btn-analyse" id="btn-pdf" onclick="lancerAnalysePDF()" disabled>Analyser mon CV →</button>
     </div>
   </div>
 </section>
@@ -179,7 +170,7 @@ footer a{color:var(--cyan);text-decoration:none;}
 <div class="loader" id="loader">
   <div class="spinner"></div>
   <div class="loader-text">Analyse en cours…</div>
-  <div class="loader-sub">Lecture du CV · Évaluation par section · Génération des conseils</div>
+  <div class="loader-sub">Lecture · Évaluation par section · Génération des conseils</div>
 </div>
 
 <div class="results" id="results"></div>
@@ -188,164 +179,215 @@ footer a{color:var(--cyan);text-decoration:none;}
   Outil gratuit proposé par <a href="https://bowbosh22.github.io/atelier-kpm">l'Atelier KPM</a> · Brazzaville, Congo
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-const SYSTEM_PROMPT = `Tu es un expert RH senior avec 15 ans d'expérience en recrutement en Afrique francophone (Congo, Cameroun, Côte d'Ivoire, Sénégal) et en Europe francophone. Tu as présélectionné plus de 10 000 CV et formé des candidats à décrocher des postes dans des multinationales, ONG internationales, administrations et PME locales.
+// ─── PDF.js ───
+if(typeof pdfjsLib !== 'undefined') pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-Tu analyses les CV avec rigueur professionnelle. Tu notes chaque section sur 100 avec un barème précis, et tu fournis des conseils actionnables ultra-spécifiques basés sur le contenu réel du CV fourni — jamais des conseils génériques.
+let pdfText = '';
 
-BARÈME DE NOTATION (poids global)
-
-1. PRÉSENTATION & CONTACT (15% du score global)
-   - Nom/prénom lisible et bien placé (10 pts)
-   - Titre professionnel ou poste visé clairement énoncé (20 pts)
-   - Téléphone présent et format correct (15 pts)
-   - Email professionnel (15 pts)
-   - Ville/pays mentionné (10 pts)
-   - LinkedIn ou portfolio (10 pts)
-   - Accroche / résumé professionnel (20 pts)
-   Pénalités : email non professionnel (-15), aucun contact (-30), titre absent (-20)
-
-2. EXPÉRIENCES PROFESSIONNELLES (35% du score global)
-   - Nombre et pertinence des expériences (20 pts)
-   - Dates complètes mois+année pour chaque poste (15 pts)
-   - Nom de l'entreprise + secteur + ville (10 pts)
-   - Intitulé de poste précis (10 pts)
-   - Descriptions avec verbes d'action forts (diriger, développer, négocier, réduire, implémenter...) (20 pts)
-   - Résultats quantifiés (chiffres, %, durées, volumes) (15 pts)
-   - Cohérence chronologique et absence de trous inexpliqués (10 pts)
-   Pénalités : descriptions vagues (-20), trous > 6 mois sans explication (-15), dates incomplètes (-10 par occurrence)
-
-3. FORMATION & DIPLÔMES (20% du score global)
-   - Diplôme le plus élevé clairement mentionné (30 pts)
-   - Nom complet de l'établissement (20 pts)
-   - Année d'obtention (15 pts)
-   - Adéquation formation/expérience/poste visé (25 pts)
-   - Formations complémentaires ou certifications pertinentes (10 pts)
-
-4. COMPÉTENCES (20% du score global)
-   - Compétences techniques spécifiques au métier (30 pts)
-   - Logiciels et outils nommés précisément (20 pts)
-   - Langues avec niveau précis (20 pts)
-   - Compétences transversales pertinentes et non banales (10 pts)
-   - Absence de compétences vagues sans preuve (20 pts)
-   Pénalités : "maîtrise de Word et Excel" sans précision (-10), compétences hors sujet (-5 par item)
-
-5. PRÉSENTATION VISUELLE & STRUCTURE (10% du score global)
-   - Longueur adaptée : 1 page junior, 2 pages senior (25 pts)
-   - Sections clairement délimitées (20 pts)
-   - Absence de fautes d'orthographe détectables (25 pts)
-   - Ordre logique des sections (15 pts)
-   - Cohérence typographique (15 pts)
-
-CALCUL DU SCORE GLOBAL :
-Score = (score1 × 0.15) + (score2 × 0.35) + (score3 × 0.20) + (score4 × 0.20) + (score5 × 0.10)
-
-RÈGLES ABSOLUES :
-- Tes conseils citent TOUJOURS le contenu réel du CV (noms d'entreprises, postes, diplômes mentionnés)
-- JAMAIS de conseil générique sans précision concrète
-- Détecte et cite explicitement les fautes d'orthographe visibles
-- Si une section est absente, explique exactement ce qu'il faut ajouter
-- Adapte l'exigence au profil : junior (0-3 ans), confirmé (3-8 ans), senior (8+ ans)
-- Tiens compte du marché africain francophone (photo, âge parfois attendus localement)
-- Le verdict doit être honnête, bienveillant, et citer les 2 points prioritaires à corriger
-
-Réponds UNIQUEMENT en JSON valide, sans texte avant ou après, sans balises markdown :
-{
-  "score": <entier 0-100>,
-  "verdict": "<2-3 phrases honnêtes et bienveillantes résumant le niveau et les 2 priorités>",
-  "niveau": "<Faible|Moyen|Bon|Excellent>",
-  "profil_detecte": "<Junior|Confirmé|Senior>",
-  "sections": [
-    {
-      "nom": "Présentation & Contact",
-      "icon": "👤",
-      "score": <0-100>,
-      "analyse": "<2-3 phrases précises citant le contenu réel>",
-      "points_forts": ["<point fort spécifique, ou chaîne vide si aucun>"],
-      "conseils": ["<conseil ultra-spécifique>", "<conseil 2>", "<conseil 3 optionnel>"]
-    },
-    { "nom": "Expériences professionnelles", "icon": "💼", "score": <0-100>, "analyse": "<...>", "points_forts": ["<...>"], "conseils": ["<...>", "<...>", "<...>"] },
-    { "nom": "Formation & Diplômes", "icon": "🎓", "score": <0-100>, "analyse": "<...>", "points_forts": ["<...>"], "conseils": ["<...>", "<...>"] },
-    { "nom": "Compétences", "icon": "⚡", "score": <0-100>, "analyse": "<...>", "points_forts": ["<...>"], "conseils": ["<...>", "<...>"] },
-    { "nom": "Présentation visuelle", "icon": "🎨", "score": <0-100>, "analyse": "<...>", "points_forts": ["<...>"], "conseils": ["<...>", "<...>"] }
-  ]
-}`;
-
-let pdfBase64 = null;
-
-function switchTab(tab) {
-  document.querySelectorAll('.upload-tab').forEach((t,i) => t.classList.toggle('active',(tab==='text'&&i===0)||(tab==='pdf'&&i===1)));
+function switchTab(tab){
+  document.querySelectorAll('.upload-tab').forEach((t,i)=>t.classList.toggle('active',(tab==='text'&&i===0)||(tab==='pdf'&&i===1)));
   document.getElementById('panel-text').classList.toggle('active',tab==='text');
   document.getElementById('panel-pdf').classList.toggle('active',tab==='pdf');
 }
 
-function handleFile(file) {
+async function handleFile(file){
   if(!file) return;
-  if(file.size > 5*1024*1024){alert('Fichier trop volumineux (max 5 Mo)');return;}
-  document.getElementById('file-name').textContent = file.name;
+  if(file.size>5*1024*1024){alert('Fichier trop volumineux (max 5 Mo)');return;}
+  document.getElementById('file-name').textContent=file.name;
   document.getElementById('file-selected').classList.add('visible');
-  document.getElementById('btn-pdf').disabled = false;
+  document.getElementById('btn-pdf').disabled=false;
+  // Extraire texte du PDF
   const reader = new FileReader();
-  reader.onload = e => { pdfBase64 = e.target.result.split(',')[1]; };
-  reader.readAsDataURL(file);
+  reader.onload = async e => {
+    try {
+      const pdf = await pdfjsLib.getDocument({data: new Uint8Array(e.target.result)}).promise;
+      let text = '';
+      for(let i=1;i<=pdf.numPages;i++){
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        text += content.items.map(s=>s.str).join(' ') + '\n';
+      }
+      pdfText = text;
+    } catch(err){ pdfText = ''; }
+  };
+  reader.readAsArrayBuffer(file);
 }
 
-function removeFile() {
-  pdfBase64 = null;
+function removeFile(){
+  pdfText='';
   document.getElementById('file-name').textContent='—';
   document.getElementById('file-selected').classList.remove('visible');
   document.getElementById('btn-pdf').disabled=true;
   document.getElementById('pdf-input').value='';
 }
 
-const dropArea = document.getElementById('drop-area');
+const dropArea=document.getElementById('drop-area');
 ['dragenter','dragover'].forEach(e=>dropArea.addEventListener(e,ev=>{ev.preventDefault();dropArea.classList.add('dragging');}));
 ['dragleave','drop'].forEach(e=>dropArea.addEventListener(e,ev=>{ev.preventDefault();dropArea.classList.remove('dragging');}));
 dropArea.addEventListener('drop',ev=>{const f=ev.dataTransfer.files[0];if(f&&f.type==='application/pdf')handleFile(f);});
 
-function showLoader(){
+function lancerAnalyse(){
+  const text = document.getElementById('cv-text').value.trim();
+  if(text.length<80){alert('Veuillez coller un CV plus complet.');return;}
+  analyserCV(text);
+}
+
+function lancerAnalysePDF(){
+  if(!pdfText){alert('Le PDF est en cours de lecture, patientez un instant.');return;}
+  analyserCV(pdfText);
+}
+
+function analyserCV(texte){
   document.getElementById('loader').classList.add('visible');
   document.getElementById('results').classList.remove('visible');
   document.getElementById('results').innerHTML='';
   window.scrollTo({top:document.querySelector('.hero').offsetHeight+52,behavior:'smooth'});
-}
-function hideLoader(){document.getElementById('loader').classList.remove('visible');}
-
-async function callClaude(messages){
-  const res = await fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,system:SYSTEM_PROMPT,messages})
-  });
-  const data = await res.json();
-  return data.content[0].text;
+  setTimeout(()=>{
+    const result = scorer(texte);
+    document.getElementById('loader').classList.remove('visible');
+    renderResults(result);
+  }, 1200);
 }
 
-async function analyseText(){
-  const text = document.getElementById('cv-text').value.trim();
-  if(text.length<100){alert('Veuillez coller un CV plus complet (minimum 100 caractères).');return;}
-  showLoader();
-  try{
-    const raw = await callClaude([{role:'user',content:`Analyse ce CV et applique le barème complet :\n\n${text}`}]);
-    const clean = raw.replace(/```json|```/g,'').trim();
-    renderResults(JSON.parse(clean));
-  }catch(e){hideLoader();renderError();}
+// ══════════════════════════════════════
+// MOTEUR D'ANALYSE — règles JS précises
+// ══════════════════════════════════════
+function scorer(cv){
+  const t = cv.toLowerCase();
+  const lines = cv.split('\n').map(l=>l.trim()).filter(l=>l);
+  const wordCount = cv.split(/\s+/).length;
+
+  // ── 1. PRÉSENTATION & CONTACT (15%) ──
+  let s1=0, pf1=[], c1=[];
+  const hasEmail = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i.test(cv);
+  const hasProfEmail = hasEmail && !/(yahoo|hotmail|live)\.(fr|com)/i.test(cv);
+  const hasPhone = /(\+?242|0\d)[\s.-]?\d{2}[\s.-]?\d{3}[\s.-]?\d{4}|\d{8,}/i.test(cv);
+  const hasLinkedIn = /linkedin\.com/i.test(t);
+  const hasTitle = /(comptable|ingénieur|directeur|manager|développeur|commercial|juriste|consultant|secrétaire|technicien|infirmier|médecin|chef|responsable|chargé|analyste|architecte|designer|assistant|coordinateur)/i.test(cv.split('\n').slice(0,5).join(' '));
+  const hasCity = /(brazzaville|pointe-noire|kinshasa|paris|douala|abidjan|dakar|libreville)/i.test(t);
+  const hasAccroche = wordCount > 30 && lines.slice(0,8).join(' ').length > 100;
+
+  if(hasEmail) s1+=15; else c1.push("Ajoutez une adresse email — c'est indispensable pour qu'un recruteur vous contacte.");
+  if(hasProfEmail) s1+=10; else if(hasEmail) { s1-=10; c1.push("Votre email Yahoo ou Hotmail nuit à votre crédibilité — créez une adresse Gmail professionnelle (prenom.nom@gmail.com)."); }
+  if(hasPhone) { s1+=15; pf1.push("Numéro de téléphone présent."); } else c1.push("Ajoutez votre numéro de téléphone avec l'indicatif pays (+242 pour Congo).");
+  if(hasTitle) { s1+=20; pf1.push("Titre professionnel visible dès le début."); } else c1.push("Ajoutez un titre professionnel clair sous votre nom (ex: 'Comptable Senior | 7 ans d'expérience').");
+  if(hasCity) { s1+=10; } else c1.push("Précisez votre ville et pays — les recruteurs filtrent souvent par localisation.");
+  if(hasLinkedIn) { s1+=10; pf1.push("Profil LinkedIn mentionné."); } else c1.push("Ajoutez votre URL LinkedIn — 87% des recruteurs vérifient le profil en ligne.");
+  if(hasAccroche) { s1+=20; pf1.push("Résumé professionnel présent."); } else c1.push("Ajoutez une accroche de 3-4 lignes résumant votre profil, vos années d'expérience et votre disponibilité.");
+  s1 = Math.min(100, Math.max(0, s1));
+
+  // ── 2. EXPÉRIENCES (35%) ──
+  let s2=0, pf2=[], c2=[];
+  const hasExp = /(expérience|experience|poste|emploi|travail|mission)/i.test(t);
+  const datePattern = /\b(jan|fév|mar|avr|mai|jun|jul|aoû|sep|oct|nov|déc|janvier|février|mars|avril|juin|juillet|août|septembre|octobre|novembre|décembre)\.?\s*\d{4}/i;
+  const yearPattern = /\b(20\d{2}|19\d{2})\s*[-–—]\s*(20\d{2}|présent|present|aujourd)/i;
+  const hasDates = datePattern.test(cv) || yearPattern.test(cv);
+  const verbesAction = /(géré|gérée|dirigé|développé|mis en place|implémenté|négocié|réduit|augmenté|formé|supervisé|coordonné|assuré|réalisé|obtenu|lancé|créé|piloté|animé|accompagné|optimisé|restructuré)/i;
+  const hasVerbes = verbesAction.test(cv);
+  const hasChiffres = /\d+\s*(%|millions?|milliers?|clients?|personnes?|projets?|années?|collaborateurs?|filiales?|dossiers?)/i.test(cv);
+  const expCount = (cv.match(/(20\d{2}|19\d{2})\s*[-–—]/g)||[]).length;
+  const hasTrous = expCount >= 2;
+
+  if(hasExp) s2+=15; else { c2.push("La section 'Expériences professionnelles' semble absente ou mal titrée — renommez-la clairement."); }
+  if(hasDates) { s2+=20; pf2.push("Dates de début/fin présentes."); } else { c2.push("Ajoutez les dates (mois + année) pour chaque poste — les trous non expliqués inquiètent les recruteurs."); }
+  if(hasVerbes) { s2+=25; pf2.push("Verbes d'action utilisés dans les descriptions."); } else { c2.push("Utilisez des verbes d'action forts : 'Géré', 'Développé', 'Réduit', 'Supervisé' — évitez 'j'ai aidé', 'j'ai participé'."); }
+  if(hasChiffres) { s2+=25; pf2.push("Résultats chiffrés présents — très efficace face aux recruteurs."); } else { c2.push("Quantifiez vos résultats : nombre de clients gérés, % d'amélioration, volume traité, budget supervisé. C'est ce qui différencie les bons CV."); }
+  if(expCount >= 2) { s2+=15; pf2.push("Plusieurs expériences listées."); } else if(expCount === 1) { s2+=8; c2.push("Une seule expérience détectée — si vous en avez d'autres (stages, missions, bénévolat), ajoutez-les."); } else { c2.push("Aucune expérience professionnelle détectée — même les stages ou missions courtes doivent figurer."); }
+  s2 = Math.min(100, Math.max(0, s2));
+
+  // ── 3. FORMATION (20%) ──
+  let s3=0, pf3=[], c3=[];
+  const hasFormation = /(formation|diplôme|diplome|licence|master|bts|bac|doctorat|ingénieur|université|école|institute|certification)/i.test(t);
+  const hasEcole = /(université|univ\.|école|institute|esgae|ngouabi|iam|ucac|esig)/i.test(t);
+  const hasAnneeFormation = /\b(20\d{2}|19\d{2})\b/.test(cv);
+  const hasCertif = /(certification|certifié|sage|ohada|mos|pmp|cisco|comptia|microsoft|oracle|aws)/i.test(t);
+
+  if(hasFormation) { s3+=30; pf3.push("Section formation présente."); } else c3.push("Ajoutez une section 'Formation' avec votre diplôme le plus élevé en premier.");
+  if(hasEcole) { s3+=25; pf3.push("Nom de l'établissement mentionné."); } else c3.push("Précisez le nom complet de votre établissement — 'Université Marien Ngouabi' plutôt que 'une université de Brazzaville'.");
+  if(hasAnneeFormation) { s3+=20; } else c3.push("Ajoutez les années d'obtention de vos diplômes.");
+  if(hasCertif) { s3+=25; pf3.push("Certifications professionnelles mentionnées — très appréciées."); } else c3.push("Ajoutez vos certifications (SAGE, OHADA, Excel MOS, etc.) — elles renforcent votre crédibilité technique.");
+  s3 = Math.min(100, Math.max(0, s3));
+
+  // ── 4. COMPÉTENCES (20%) ──
+  let s4=0, pf4=[], c4=[];
+  const hasCompetences = /(compétence|competence|maîtrise|logiciel|outil|technologie|skill)/i.test(t);
+  const logiciels = /(sage|excel|word|powerpoint|autocad|photoshop|illustrator|python|javascript|php|sql|mysql|java|sap|quickbooks|ciel|ebp)/i;
+  const hasLogiciels = logiciels.test(t);
+  const niveauLangue = /(courant|bilingue|natif|b1|b2|c1|c2|intermédiaire|professionnel|débutant|avancé)/i;
+  const hasLangueNiveau = niveauLangue.test(t);
+  const hasLangue = /(français|anglais|lingala|espagnol|arabe|portugais|allemand)/i.test(t);
+  const hasCompBateau = /(travail en équipe|dynamique|sérieux|ponctuel|motivé|autonome|rigoureux)/i;
+  const countBateau = (cv.match(hasCompBateau)||[]).length;
+
+  if(hasCompetences) { s4+=20; pf4.push("Section compétences présente."); } else c4.push("Ajoutez une section 'Compétences' listant vos outils, logiciels et savoir-faire techniques.");
+  if(hasLogiciels) { s4+=30; pf4.push("Logiciels et outils nommés précisément."); } else c4.push("Nommez vos logiciels précisément : 'SAGE 100', 'Excel (tableaux croisés dynamiques, macros VBA)' plutôt que juste 'informatique'.");
+  if(hasLangue && hasLangueNiveau) { s4+=25; pf4.push("Langues avec niveau précisé."); } else if(hasLangue) { s4+=12; c4.push("Précisez votre niveau de langue : Débutant / Intermédiaire / Courant / Bilingue / Natif."); } else c4.push("Ajoutez vos langues avec leur niveau — le français et le lingala sont un atout au Congo.");
+  if(countBateau > 2) { s4-=15; c4.push(`Supprimez les compétences vagues comme 'dynamique', 'sérieux', 'ponctuel' — elles n'apportent rien. Remplacez par des compétences techniques prouvables.`); } else { s4+=25; }
+  s4 = Math.min(100, Math.max(0, s4));
+
+  // ── 5. PRÉSENTATION VISUELLE (10%) ──
+  let s5=0, pf5=[], c5=[];
+  const lineCount = lines.length;
+  const hasStructure = /(expérience|formation|compétence|profil|contact|langue|réalisation)/i.test(t);
+  const fautesDetectees = detectFautes(cv);
+  const longueurOk = wordCount >= 150 && wordCount <= 800;
+
+  if(longueurOk) { s5+=25; pf5.push("Longueur du CV adaptée."); }
+  else if(wordCount < 150) { c5.push("Votre CV est trop court — développez vos descriptions d'expériences et ajoutez plus de contenu."); }
+  else { c5.push("Votre CV semble très long — idéalement 1 page pour moins de 5 ans d'expérience, 2 pages maximum."); }
+
+  if(hasStructure) { s5+=35; pf5.push("Sections clairement titrées et organisées."); } else c5.push("Structurez votre CV en sections titrées : PROFIL · EXPÉRIENCES · FORMATION · COMPÉTENCES · LANGUES.");
+
+  if(fautesDetectees.length === 0) { s5+=40; pf5.push("Aucune faute d'orthographe détectée."); }
+  else { s5 += Math.max(0, 40 - fautesDetectees.length*10); c5.push(`Fautes détectées : ${fautesDetectees.slice(0,3).join(', ')} — relisez attentivement ou utilisez un correcteur.`); }
+  s5 = Math.min(100, Math.max(0, s5));
+
+  // ── SCORE GLOBAL ──
+  const global = Math.round(s1*0.15 + s2*0.35 + s3*0.20 + s4*0.20 + s5*0.10);
+
+  // ── PROFIL ──
+  const profil = expCount >= 3 ? 'Senior' : expCount >= 1 ? 'Confirmé' : 'Junior';
+  const niveau = global >= 75 ? 'Excellent' : global >= 55 ? 'Bon' : global >= 35 ? 'Moyen' : 'Faible';
+
+  // ── VERDICT ──
+  let verdict = '';
+  if(global >= 75) verdict = `Votre CV est solide et bien structuré. Les recruteurs trouveront rapidement les informations essentielles. ${!hasChiffres ? "L'ajout de résultats chiffrés le rendrait encore plus percutant." : "Continuez sur cette lancée."}`;
+  else if(global >= 55) verdict = `Votre CV a de bonnes bases mais manque d'éléments clés. ${!hasChiffres ? "L'absence de résultats chiffrés est le principal frein — quantifiez vos réalisations." : !hasVerbes ? "Renforcez vos descriptions avec des verbes d'action." : "Travaillez les sections les plus faibles ci-dessous."}`;
+  else if(global >= 35) verdict = `Votre CV nécessite un travail important. ${!hasExp ? "La section expériences est insuffisante." : !hasDates ? "Les dates manquent sur vos expériences." : "Plusieurs sections essentielles sont incomplètes."} Consultez les conseils ci-dessous.`;
+  else verdict = `Votre CV est insuffisant pour passer la présélection. Il manque des éléments fondamentaux — email, dates, descriptions d'expériences, compétences. Un CV premium KPM Express vous permettrait de repartir sur une base solide.`;
+
+  return {
+    global, niveau, profil, verdict,
+    sections: [
+      { nom:"Présentation & Contact", icon:"👤", score:s1, pf:pf1, conseils:c1 },
+      { nom:"Expériences professionnelles", icon:"💼", score:s2, pf:pf2, conseils:c2 },
+      { nom:"Formation & Diplômes", icon:"🎓", score:s3, pf:pf3, conseils:c3 },
+      { nom:"Compétences", icon:"⚡", score:s4, pf:pf4, conseils:c4 },
+      { nom:"Présentation visuelle", icon:"🎨", score:s5, pf:pf5, conseils:c5 },
+    ]
+  };
 }
 
-async function analysePDF(){
-  if(!pdfBase64) return;
-  showLoader();
-  try{
-    const messages=[{role:'user',content:[
-      {type:'document',source:{type:'base64',media_type:'application/pdf',data:pdfBase64}},
-      {type:'text',text:'Analyse ce CV en PDF et applique le barème complet.'}
-    ]}];
-    const raw = await callClaude(messages);
-    const clean = raw.replace(/```json|```/g,'').trim();
-    renderResults(JSON.parse(clean));
-  }catch(e){hideLoader();renderError();}
+function detectFautes(cv){
+  const fautes = [];
+  const motsFautes = {
+    'expérience': /\bexperience\b(?!s)/i,
+    'formation': /\bformations\b/i,
+    'réalisations': /\brealisations\b/i,
+    'développé': /\bdevloppe\b/i,
+    'négocié': /\bnegocié\b/i,
+    'maîtrise': /\bmaitrise\b(?!r)/i,
+    'système': /\bsysteme\b/i,
+  };
+  for(const [correct, regex] of Object.entries(motsFautes)){
+    if(regex.test(cv)) fautes.push(`"${correct}" mal orthographié`);
+  }
+  return fautes;
 }
 
+// ── RENDU ──
 function scoreColor(s){return s>=70?'var(--green)':s>=45?'var(--orange)':'var(--red)';}
 function pillClass(s){return s>=70?'pill-green':s>=45?'pill-orange':'pill-red';}
 function pillLabel(s){return s>=80?'Excellent':s>=65?'Bon':s>=45?'À améliorer':'Faible';}
@@ -354,26 +396,20 @@ function barColor(s){return s>=70?'#2EA86A':s>=45?'#E87A1B':'#E83B3B';}
 function iconBg(s){return s>=70?'rgba(46,168,106,0.12)':s>=45?'rgba(232,122,27,0.12)':'rgba(232,59,59,0.12)';}
 
 function renderResults(data){
-  hideLoader();
-  const circ = 2*Math.PI*45;
-  const offset = circ-(data.score/100)*circ;
-  const color = scoreColor(data.score);
+  const circ=2*Math.PI*45;
+  const offset=circ-(data.global/100)*circ;
+  const color=scoreColor(data.global);
 
-  // Barres de progression
   const barsHTML = data.sections.map(s=>`
     <div class="score-bar-row">
       <span class="score-bar-label">${s.icon} ${s.nom}</span>
-      <div class="score-bar-track"><div class="score-bar-fill" style="background:${barColor(s.score)}" data-width="${s.score}%"></div></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="background:${barColor(s.score)}" data-w="${s.score}%"></div></div>
       <span class="score-bar-val" style="color:${barColor(s.score)}">${s.score}</span>
     </div>`).join('');
 
-  // Sections détaillées
   const sectionsHTML = data.sections.map((s,i)=>{
-    const pfHTML = (s.points_forts||[]).filter(p=>p).map(p=>`
-      <div class="point-fort"><span class="pf-icon">✓</span><span>${p}</span></div>`).join('');
-    const conseilsHTML = (s.conseils||[]).filter(c=>c).map((c,j)=>`
-      <div class="conseil-item"><div class="conseil-num">${j+1}</div><span>${c}</span></div>`).join('');
-
+    const pfHTML=(s.pf||[]).filter(p=>p).map(p=>`<div class="point-fort"><span class="pf-icon">✓</span><span>${p}</span></div>`).join('');
+    const cHTML=(s.conseils||[]).filter(c=>c).map((c,j)=>`<div class="conseil-item"><div class="conseil-num">${j+1}</div><span>${c}</span></div>`).join('');
     return `
     <div class="analysis-section">
       <div class="section-header" onclick="toggleSection(${i})">
@@ -387,15 +423,13 @@ function renderResults(data){
         </div>
       </div>
       <div class="section-body" id="body-${i}">
-        <div class="analyse-text">${s.analyse}</div>
-        ${pfHTML?`<div class="sub-label">POINTS FORTS</div><div class="points-forts">${pfHTML}</div>`:''}
-        <div class="sub-label">CONSEILS PRIORITAIRES</div>
-        <div class="conseils-list">${conseilsHTML}</div>
+        ${pfHTML?`<div class="sub-label" style="margin-top:1rem;">POINTS FORTS</div><div class="points-forts">${pfHTML}</div>`:''}
+        ${cHTML?`<div class="sub-label">CONSEILS PRIORITAIRES</div><div class="conseils-list">${cHTML}</div>`:'<div class="analyse-text">Cette section est bien renseignée. Continuez ainsi.</div>'}
       </div>
     </div>`;
   }).join('');
 
-  document.getElementById('results').innerHTML = `
+  document.getElementById('results').innerHTML=`
     <div class="score-card">
       <div class="score-circle">
         <svg class="score-svg" viewBox="0 0 100 100">
@@ -404,7 +438,7 @@ function renderResults(data){
             stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="score-arc"/>
         </svg>
         <div class="score-label">
-          <div class="score-num" style="color:${color}">${data.score}</div>
+          <div class="score-num" style="color:${color}">${data.global}</div>
           <div class="score-max">/100</div>
         </div>
       </div>
@@ -413,18 +447,15 @@ function renderResults(data){
         <div class="score-verdict">${data.verdict}</div>
         <div class="pills">
           <span class="pill ${niveauClass(data.niveau)}">${data.niveau}</span>
-          <span class="pill pill-blue">${data.profil_detecte}</span>
+          <span class="pill pill-blue">${data.profil}</span>
         </div>
       </div>
     </div>
-
     <div class="scores-overview">
       <div class="scores-title">DÉTAIL PAR SECTION</div>
       ${barsHTML}
     </div>
-
     <div class="analysis-sections">${sectionsHTML}</div>
-
     <div class="cta-kpm">
       <h3>Votre CV mérite un design professionnel</h3>
       <p>L'Atelier KPM crée votre CV premium en 24h — mis en page, structuré et prêt à envoyer.</p>
@@ -433,19 +464,15 @@ function renderResults(data){
     </div>`;
 
   document.getElementById('results').classList.add('visible');
-
-  // Animer cercle
   setTimeout(()=>{
     const arc=document.getElementById('score-arc');
     if(arc) arc.style.strokeDashoffset=offset;
-    document.querySelectorAll('.score-bar-fill').forEach(b=>{b.style.width=b.dataset.width;});
+    document.querySelectorAll('.score-bar-fill').forEach(b=>{b.style.width=b.dataset.w;});
   },150);
 
   // Ouvrir section la plus faible
-  const scores = data.sections.map(s=>s.score);
-  const weakest = scores.indexOf(Math.min(...scores));
+  const weakest=data.sections.map(s=>s.score).indexOf(Math.min(...data.sections.map(s=>s.score)));
   toggleSection(weakest);
-
   window.scrollTo({top:document.getElementById('results').offsetTop-70,behavior:'smooth'});
 }
 
@@ -464,18 +491,6 @@ function retry(){
   document.getElementById('cv-text').value='';
   removeFile();
   window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function renderError(){
-  hideLoader();
-  const r=document.getElementById('results');
-  r.innerHTML=`<div style="text-align:center;padding:3rem 1.5rem;">
-    <div style="font-size:2rem;margin-bottom:1rem;">⚠️</div>
-    <div style="font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:0.5rem;">Analyse impossible</div>
-    <div style="font-size:0.85rem;color:var(--text2);margin-bottom:1.5rem;">Une erreur s'est produite. Vérifiez votre connexion et réessayez.</div>
-    <button onclick="retry()" style="background:var(--cyan);color:#fff;border:none;padding:0.8rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Réessayer</button>
-  </div>`;
-  r.classList.add('visible');
 }
 </script>
 </body>
