@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPM Express — Services professionnels rapides · Brazzaville</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#1B2A4A;
+  --navy2:#243758;
+  --cyan:#3B9EE8;
+  --bg:#F7F9FC;
+  --bg2:#EEF3FA;
+  --border:#DDE6F0;
+  --text:#18243A;
+  --text2:#4A5A72;
+  --text3:#8A9AB2;
+  --blanc:#FFFFFF;
+  --g1:#2EA86A; /* vert - Se présenter */
+  --g2:#3B9EE8; /* bleu - Lancer */
+  --g3:#E87A1B; /* orange - Documents */
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);}
+
+/* NAV */
+nav{background:var(--navy);height:54px;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.01em;}
+.nav-logo span{color:var(--cyan);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.8rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{background:var(--cyan)!important;color:#fff!important;padding:0.45rem 1rem;border-radius:6px;font-weight:500!important;}
+
+/* HERO */
+.hero{background:var(--navy);padding:5rem 2.5rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(59,158,232,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-inner{max-width:900px;position:relative;z-index:1;}
+.hero-pre{font-size:0.75rem;font-weight:500;color:var(--cyan);letter-spacing:0.04em;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;}
+.hero-pre::before{content:'';display:block;width:28px;height:1px;background:var(--cyan);}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.02em;margin-bottom:1.25rem;}
+.hero h1 .light{font-weight:400;color:rgba(255,255,255,0.45);}
+.hero-desc{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.55);max-width:50ch;line-height:1.75;margin-bottom:2.5rem;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
+.btn-primary{background:var(--cyan);color:#fff;padding:0.8rem 1.75rem;border-radius:8px;font-size:0.88rem;font-weight:500;text-decoration:none;transition:background 0.2s;display:inline-block;}
+.btn-primary:hover{background:#2A8ED0;}
+.btn-ghost{color:rgba(255,255,255,0.5);font-size:0.85rem;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:1px;}
+.btn-ghost:hover{color:#fff;border-color:#fff;}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,0.08);}
+.stat-val{font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:#fff;line-height:1;}
+.stat-label{font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:4px;}
+
+/* COMMENT ÇA MARCHE */
+.how{padding:4rem 2.5rem;max-width:900px;margin:0 auto;}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden;margin-top:2rem;}
+.how-step{background:var(--blanc);padding:1.75rem 1.5rem;}
+.step-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--bg2);line-height:1;margin-bottom:0.75rem;}
+.step-title{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;}
+.step-desc{font-size:0.83rem;color:var(--text2);line-height:1.65;}
+
+/* SECTION TITRE */
+.section-intro{max-width:900px;margin:0 auto;padding:3.5rem 2.5rem 1.5rem;}
+.section-intro h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--text);letter-spacing:-0.01em;margin-bottom:0.5rem;}
+.section-intro p{font-size:0.9rem;color:var(--text2);max-width:52ch;line-height:1.7;}
+
+/* GAMMES */
+.gammes{max-width:900px;margin:0 auto;padding:0 2.5rem 5rem;display:flex;flex-direction:column;gap:2rem;}
+
+.gamme{border-radius:16px;overflow:hidden;background:var(--blanc);border:1px solid var(--border);}
+.gamme-header{padding:1.75rem 2rem;display:flex;align-items:flex-start;gap:1.25rem;}
+.gamme-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.gamme-header-text{}
+.gamme-tag{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;margin-bottom:0.4rem;}
+.gamme-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:0.35rem;}
+.gamme-desc{font-size:0.83rem;color:var(--text2);line-height:1.6;}
+.gamme-services{border-top:1px solid var(--border);}
+.service-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--bg2);gap:1rem;}
+.service-row:last-child{border-bottom:none;}
+.service-left{flex:1;}
+.service-name{font-size:0.9rem;font-weight:500;color:var(--text);}
+.service-delay{font-size:0.75rem;color:var(--text3);margin-top:2px;}
+.service-right{display:flex;align-items:center;gap:1rem;flex-shrink:0;}
+.service-price{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--text);}
+.btn-commander{font-size:0.75rem;font-weight:500;color:#fff;padding:5px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:opacity 0.2s;}
+.btn-commander:hover{opacity:0.85;}
+
+/* OUTIL GRATUIT */
+.outil{max-width:900px;margin:0 auto;padding:0 2.5rem 2rem;}
+.outil-card{background:var(--navy);border-radius:16px;padding:2.5rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}
+.outil-icon{font-size:2.5rem;flex-shrink:0;}
+.outil-text{flex:1;min-width:200px;}
+.outil-title{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.outil-desc{font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.65;}
+.btn-outil{background:var(--cyan);color:#fff;padding:0.75rem 1.5rem;border-radius:8px;font-size:0.85rem;font-weight:500;text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.btn-outil:hover{background:#2A8ED0;}
+
+/* GARANTIES */
+.garanties{max-width:900px;margin:0 auto;padding:3rem 2.5rem 5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.garantie{background:var(--blanc);border:1px solid var(--border);border-radius:12px;padding:1.5rem;}
+.garantie-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+.garantie-title{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:0.35rem;}
+.garantie-desc{font-size:0.8rem;color:var(--text2);line-height:1.6;}
+
+/* CTA FINAL */
+.cta-final{background:var(--navy);padding:4rem 2.5rem;text-align:center;}
+.cta-final h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:#fff;margin-bottom:0.75rem;letter-spacing:-0.01em;}
+.cta-final p{font-size:0.9rem;color:rgba(255,255,255,0.5);margin-bottom:2rem;max-width:44ch;margin-left:auto;margin-right:auto;line-height:1.7;}
+.wa-number{font-size:0.8rem;color:rgba(255,255,255,0.3);margin-top:1rem;}
+
+/* FOOTER */
+footer{background:#111B2E;padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:rgba(255,255,255,0.4);}
+.footer-brand span{color:var(--cyan);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:0.75rem;color:rgba(255,255,255,0.3);text-decoration:none;}
+.footer-links a:hover{color:rgba(255,255,255,0.6);}
+
+@media(max-width:680px){
+  nav{padding:0 1.25rem;}
+  .nav-links{display:none;}
+  .hero{padding:3.5rem 1.25rem 3rem;}
+  .hero-stats{gap:2rem;}
+  .how{padding:3rem 1.25rem;}
+  .how-steps{grid-template-columns:1fr;}
+  .section-intro,.gammes,.outil,.garanties{padding-left:1.25rem;padding-right:1.25rem;}
+  .garanties{grid-template-columns:1fr;}
+  .service-row{flex-wrap:wrap;}
+  .service-right{width:100%;justify-content:space-between;}
+  footer{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">KPM <span>Express</span></div>
+  <ul class="nav-links">
+    <li><a href="#gammes">Services</a></li>
+    <li><a href="#outil">Outil gratuit</a></li>
+    <li><a href="https://bowbosh22.github.io/atelier-kpm">Portfolio</a></li>
+    <li><a href="https://wa.me/33767162291" class="nav-cta">Commander</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-pre">Services professionnels · Brazzaville</div>
+    <h1>Vos outils pro,<br><span class="light">livrés en 48h.</span></h1>
+    <p class="hero-desc">CV, identité visuelle, site web, dossiers administratifs — commandez sur WhatsApp, payez Mobile Money, recevez votre livrable le lendemain.</p>
+    <div class="hero-actions">
+      <a href="#gammes" class="btn-primary">Voir les services</a>
+      <a href="https://wa.me/33767162291" class="btn-ghost">Commander maintenant</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">9</div><div class="stat-label">Services disponibles</div></div>
+      <div><div class="stat-val">48h</div><div class="stat-label">Délai maximum</div></div>
+      <div><div class="stat-val">0</div><div class="stat-label">Déplacement requis</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="how">
+  <div class="section-intro" style="padding:0 0 0 0;">
+    <h2>Comment ça marche</h2>
+  </div>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-num">1</div>
+      <div class="step-title">Choisissez votre service</div>
+      <div class="step-desc">Parcourez le catalogue et identifiez ce dont vous avez besoin. Une question ? Écrivez-nous sur WhatsApp.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">2</div>
+      <div class="step-title">Payez et envoyez vos infos</div>
+      <div class="step-desc">Règlement par MTN Money ou Airtel Money avant livraison. Envoyez vos informations par WhatsApp.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">3</div>
+      <div class="step-title">Recevez votre livrable</div>
+      <div class="step-desc">Votre document est livré par WhatsApp ou email dans le délai indiqué. Prêt à utiliser immédiatement.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMMES -->
+<div class="section-intro">
+  <h2>Les services</h2>
+  <p>Trois gammes pour couvrir tous vos besoins professionnels — du CV au site web.</p>
+</div>
+
+<div class="gammes" id="gammes">
+
+  <!-- Gamme 1 -->
+  <div class="gamme">
+    <div class="gamme-header">
+      <div class="gamme-dot" style="background:var(--g1);"></div>
+      <div class="gamme-header-text">
+        <div class="gamme-tag" style="color:var(--g1);">Se présenter</div>
+        <div class="gamme-title">Votre image professionnelle</div>
+        <div class="gamme-desc">CV, LinkedIn, identité visuelle — les outils pour faire bonne impression dès le premier contact.</div>
+      </div>
+    </div>
+    <div class="gamme-services">
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">CV premium + lettre de motivation</div>
+          <div class="service-delay">Livraison en 24h</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">10 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20commander%20un%20CV%20premium%20%2B%20lettre%20de%20motivation" class="btn-commander" style="background:var(--g1);">Commander</a>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">CV + profil LinkedIn optimisé</div>
+          <div class="service-delay">Livraison en 48h</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">20 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20commander%20CV%20%2B%20LinkedIn" class="btn-commander" style="background:var(--g1);">Commander</a>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">Pack identité complète (logo + carte de visite + en-tête)</div>
+          <div class="service-delay">Livraison en 48h</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">60 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20commander%20le%20pack%20identit%C3%A9" class="btn-commander" style="background:var(--g1);">Commander</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gamme 2 -->
+  <div class="gamme">
+    <div class="gamme-header">
+      <div class="gamme-dot" style="background:var(--g2);"></div>
+      <div class="gamme-header-text">
+        <div class="gamme-tag" style="color:var(--g2);">Lancer son activité</div>
+        <div class="gamme-title">Votre présence digitale</div>
+        <div class="gamme-desc">Site web, réseaux sociaux, flyers — lancez votre activité avec une présence professionnelle dès le premier jour.</div>
+      </div>
+    </div>
+    <div class="gamme-services">
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">Flyer événement ou promotion</div>
+          <div class="service-delay">Livraison en 24h</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">15 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20commander%20un%20flyer" class="btn-commander" style="background:var(--g2);">Commander</a>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">Pack lancement commerçant (logo + Facebook + 5 posts + flyer)</div>
+          <div class="service-delay">Livraison en 3 jours</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">90 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20commander%20le%20pack%20lancement" class="btn-commander" style="background:var(--g2);">Commander</a>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">Template site web personnalisé (restaurant, clinique, hôtel…)</div>
+          <div class="service-delay">Livraison en 5 jours · Mise en ligne incluse</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">135 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20commander%20un%20site%20web" class="btn-commander" style="background:var(--g2);">Commander</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gamme 3 -->
+  <div class="gamme">
+    <div class="gamme-header">
+      <div class="gamme-dot" style="background:var(--g3);"></div>
+      <div class="gamme-header-text">
+        <div class="gamme-tag" style="color:var(--g3);">Gérer ses documents</div>
+        <div class="gamme-title">Vos dossiers en ordre</div>
+        <div class="gamme-desc">Mise en page, digitalisation, traduction — des documents propres et professionnels livrés en 24h.</div>
+      </div>
+    </div>
+    <div class="gamme-services">
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">Digitalisation + PDF propre</div>
+          <div class="service-delay">Livraison en 24h</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">8 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20digitaliser%20un%20document" class="btn-commander" style="background:var(--g3);">Commander</a>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">Mise en page dossier administratif / appel d'offres</div>
+          <div class="service-delay">Livraison en 24h</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">15 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20une%20mise%20en%20page%20de%20dossier" class="btn-commander" style="background:var(--g3);">Commander</a>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-left">
+          <div class="service-name">Traduction document anglais → français</div>
+          <div class="service-delay">Livraison en 48h</div>
+        </div>
+        <div class="service-right">
+          <div class="service-price">20 000 F</div>
+          <a href="https://wa.me/33767162291?text=Bonjour%2C%20je%20voudrais%20une%20traduction%20de%20document" class="btn-commander" style="background:var(--g3);">Commander</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- OUTIL GRATUIT -->
+<div class="outil" id="outil">
+  <div class="outil-card">
+    <div class="outil-icon">🔍</div>
+    <div class="outil-text">
+      <div class="outil-title">Analysez votre CV gratuitement</div>
+      <div class="outil-desc">Notre outil analyse votre CV en quelques secondes — score global, points faibles, conseils précis. Texte, PDF ou photo. Zéro inscription.</div>
+    </div>
+    <a href="https://bowbosh22.github.io/atelier-kpm/analyse-cv-kpm.html" class="btn-outil">Tester l'outil</a>
+  </div>
+</div>
+
+<!-- GARANTIES -->
+<div class="garanties">
+  <div class="garantie">
+    <div class="garantie-icon">⚡</div>
+    <div class="garantie-title">Livraison rapide</div>
+    <div class="garantie-desc">Délais tenus ou remboursement. La majorité des services sont livrés en 24h.</div>
+  </div>
+  <div class="garantie">
+    <div class="garantie-icon">💳</div>
+    <div class="garantie-title">Paiement Mobile Money</div>
+    <div class="garantie-desc">MTN Money ou Airtel Money. Pas de compte bancaire requis. Paiement avant livraison.</div>
+  </div>
+  <div class="garantie">
+    <div class="garantie-icon">✏️</div>
+    <div class="garantie-title">Une révision incluse</div>
+    <div class="garantie-desc">Si le livrable ne vous convient pas, une révision est incluse dans chaque commande.</div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>Prêt à commander ?</h2>
+  <p>Envoyez-nous un message sur WhatsApp — réponse en moins de 2 heures.</p>
+  <a href="https://wa.me/33767162291?text=Bonjour%20KPM%20Express%2C%20je%20voudrais%20commander%20un%20service" class="btn-primary" style="font-size:0.95rem;padding:0.9rem 2.5rem;">Écrire sur WhatsApp</a>
+  <div class="wa-number">+33 7 67 16 22 91 · Disponible 7j/7</div>
+</section>
+
+<footer>
+  <div class="footer-brand">KPM <span>Express</span> · par l'Atelier KPM</div>
+  <div class="footer-links">
+    <a href="https://bowbosh22.github.io/atelier-kpm">Portfolio</a>
+    <a href="https://bowbosh22.github.io/atelier-kpm/analyse-cv-kpm.html">Analyseur CV</a>
+    <a href="https://wa.me/33767162291">WhatsApp</a>
+  </div>
+</footer>
+
+</body>
+</html>
