@@ -143,7 +143,8 @@ footer a{color:var(--cyan);text-decoration:none;}
   <div class="upload-zone">
     <div class="upload-tabs">
       <button class="upload-tab active" onclick="switchTab('text')">Coller le texte</button>
-      <button class="upload-tab" onclick="switchTab('pdf')">Uploader un PDF</button>
+      <button class="upload-tab" onclick="switchTab('pdf')">PDF</button>
+      <button class="upload-tab" onclick="switchTab('photo')">📷 Photo</button>
     </div>
     <div id="panel-text" class="upload-panel active">
       <textarea class="cv-textarea" id="cv-text" placeholder="Collez ici le contenu complet de votre CV...&#10;&#10;Nom, prénom, poste visé, expériences, formations, compétences, langues..."></textarea>
@@ -164,6 +165,27 @@ footer a{color:var(--cyan);text-decoration:none;}
       </div>
       <button class="btn-analyse" id="btn-pdf" onclick="lancerAnalysePDF()" disabled>Analyser mon CV →</button>
     </div>
+    <div id="panel-photo" class="upload-panel">
+      <div class="drop-area" id="drop-area-photo">
+        <input type="file" class="drop-input" id="photo-input" accept="image/*" onchange="handlePhoto(this.files[0])">
+        <div class="drop-icon">📷</div>
+        <div class="drop-title">Photo ou scan de votre CV</div>
+        <div class="drop-sub">JPG, PNG · Bonne lumière, texte lisible · max 10 Mo</div>
+      </div>
+      <div class="file-selected" id="photo-selected">
+        <span>🖼</span>
+        <span class="file-name" id="photo-name">—</span>
+        <button class="file-remove" onclick="removePhoto()">✕</button>
+      </div>
+      <div id="ocr-progress" style="display:none;margin-top:0.75rem;">
+        <div style="height:4px;background:var(--bg2);border-radius:2px;overflow:hidden;">
+          <div id="ocr-bar" style="height:100%;background:var(--cyan);width:0%;transition:width 0.3s;border-radius:2px;"></div>
+        </div>
+        <div id="ocr-status" style="font-size:0.75rem;color:var(--text3);margin-top:6px;text-align:center;">Lecture en cours…</div>
+      </div>
+      <canvas id="ocr-canvas" style="display:none;"></canvas>
+      <button class="btn-analyse" id="btn-photo" onclick="lancerAnalysePhoto()" disabled>Analyser mon CV →</button>
+    </div>
   </div>
 </section>
 
@@ -180,6 +202,7 @@ footer a{color:var(--cyan);text-decoration:none;}
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
 // ─── PDF.js ───
 if(typeof pdfjsLib !== 'undefined') pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -187,9 +210,73 @@ if(typeof pdfjsLib !== 'undefined') pdfjsLib.GlobalWorkerOptions.workerSrc = 'ht
 let pdfText = '';
 
 function switchTab(tab){
-  document.querySelectorAll('.upload-tab').forEach((t,i)=>t.classList.toggle('active',(tab==='text'&&i===0)||(tab==='pdf'&&i===1)));
-  document.getElementById('panel-text').classList.toggle('active',tab==='text');
-  document.getElementById('panel-pdf').classList.toggle('active',tab==='pdf');
+  document.querySelectorAll('.upload-tab').forEach((t,i)=>t.classList.toggle('active',(tab==='text'&&i===0)||(tab==='pdf'&&i===1)||(tab==='photo'&&i===2)));
+  ['text','pdf','photo'].forEach(p=>document.getElementById('panel-'+p).classList.toggle('active',p===tab));
+}
+
+// ─── PHOTO / OCR (Tesseract.js) ───
+let photoFile = null;
+
+function handlePhoto(file){
+  if(!file) return;
+  if(file.size > 10*1024*1024){alert('Image trop lourde (max 10 Mo)');return;}
+  photoFile = file;
+  document.getElementById('photo-name').textContent = file.name;
+  document.getElementById('photo-selected').classList.add('visible');
+  document.getElementById('btn-photo').disabled = false;
+}
+
+function removePhoto(){
+  photoFile = null;
+  document.getElementById('photo-name').textContent='—';
+  document.getElementById('photo-selected').classList.remove('visible');
+  document.getElementById('btn-photo').disabled = true;
+  document.getElementById('photo-input').value='';
+  document.getElementById('ocr-progress').style.display='none';
+}
+
+async function lancerAnalysePhoto(){
+  if(!photoFile){alert('Veuillez sélectionner une image.');return;}
+  if(typeof Tesseract === 'undefined'){alert('Chargement OCR en cours, patientez quelques secondes et réessayez.');return;}
+
+  document.getElementById('ocr-progress').style.display='block';
+  document.getElementById('btn-photo').disabled = true;
+  document.getElementById('ocr-bar').style.width='0%';
+  document.getElementById('ocr-status').textContent='Initialisation OCR…';
+
+  try {
+    const result = await Tesseract.recognize(photoFile, 'fra+eng', {
+      logger: m => {
+        if(m.status === 'recognizing text'){
+          const pct = Math.round(m.progress*100);
+          document.getElementById('ocr-bar').style.width = pct+'%';
+          document.getElementById('ocr-status').textContent = `Lecture du texte… ${pct}%`;
+        } else if(m.status === 'loading language traineddata'){
+          document.getElementById('ocr-status').textContent = 'Chargement du modèle de langue…';
+        }
+      }
+    });
+    const texte = result.data.text.trim();
+    document.getElementById('ocr-progress').style.display='none';
+    if(texte.length < 50){
+      alert("L'image n'est pas assez lisible. Assurez-vous que le texte est net et bien éclairé, puis réessayez.");
+      document.getElementById('btn-photo').disabled = false;
+      return;
+    }
+    analyserCV(texte);
+  } catch(e){
+    document.getElementById('ocr-progress').style.display='none';
+    document.getElementById('btn-photo').disabled = false;
+    alert('Erreur lors de la lecture de l\'image. Vérifiez que l\'image est nette et réessayez.');
+  }
+}
+
+// Drag & drop photo
+const dropAreaPhoto = document.getElementById('drop-area-photo');
+if(dropAreaPhoto){
+  ['dragenter','dragover'].forEach(e=>dropAreaPhoto.addEventListener(e,ev=>{ev.preventDefault();dropAreaPhoto.classList.add('dragging');}));
+  ['dragleave','drop'].forEach(e=>dropAreaPhoto.addEventListener(e,ev=>{ev.preventDefault();dropAreaPhoto.classList.remove('dragging');}));
+  dropAreaPhoto.addEventListener('drop',ev=>{const f=ev.dataTransfer.files[0];if(f&&f.type.startsWith('image/'))handlePhoto(f);});
 }
 
 async function handleFile(file){
@@ -269,13 +356,13 @@ function scorer(cv){
   const hasCity = /(brazzaville|pointe-noire|kinshasa|paris|douala|abidjan|dakar|libreville)/i.test(t);
   const hasAccroche = wordCount > 30 && lines.slice(0,8).join(' ').length > 100;
 
-  if(hasEmail) s1+=15; else c1.push("Ajoutez une adresse email — c'est indispensable pour qu'un recruteur vous contacte.");
-  if(hasProfEmail) s1+=10; else if(hasEmail) { s1-=10; c1.push("Votre email Yahoo ou Hotmail nuit à votre crédibilité — créez une adresse Gmail professionnelle (prenom.nom@gmail.com)."); }
-  if(hasPhone) { s1+=15; pf1.push("Numéro de téléphone présent."); } else c1.push("Ajoutez votre numéro de téléphone avec l'indicatif pays (+242 pour Congo).");
-  if(hasTitle) { s1+=20; pf1.push("Titre professionnel visible dès le début."); } else c1.push("Ajoutez un titre professionnel clair sous votre nom (ex: 'Comptable Senior | 7 ans d'expérience').");
-  if(hasCity) { s1+=10; } else c1.push("Précisez votre ville et pays — les recruteurs filtrent souvent par localisation.");
+  if(hasEmail) s1+=15; else { s1-=20; c1.push("Ajoutez une adresse email — c'est indispensable pour qu'un recruteur vous contacte."); }
+  if(hasProfEmail) s1+=15; else if(hasEmail) { s1-=20; c1.push("Votre email Yahoo ou Hotmail nuit gravement à votre crédibilité — créez une adresse Gmail professionnelle (prenom.nom@gmail.com)."); }
+  if(hasPhone) { s1+=15; pf1.push("Numéro de téléphone présent."); } else { s1-=15; c1.push("Ajoutez votre numéro de téléphone avec l'indicatif pays (+242 pour Congo)."); }
+  if(hasTitle) { s1+=25; pf1.push("Titre professionnel visible dès le début."); } else { s1-=15; c1.push("Ajoutez un titre professionnel clair sous votre nom (ex: 'Comptable Senior | 7 ans d'expérience')."); }
+  if(hasCity) { s1+=10; pf1.push("Ville mentionnée."); } else c1.push("Précisez votre ville et pays — les recruteurs filtrent souvent par localisation.");
   if(hasLinkedIn) { s1+=10; pf1.push("Profil LinkedIn mentionné."); } else c1.push("Ajoutez votre URL LinkedIn — 87% des recruteurs vérifient le profil en ligne.");
-  if(hasAccroche) { s1+=20; pf1.push("Résumé professionnel présent."); } else c1.push("Ajoutez une accroche de 3-4 lignes résumant votre profil, vos années d'expérience et votre disponibilité.");
+  if(hasAccroche) { s1+=10; pf1.push("Résumé professionnel présent."); } else c1.push("Ajoutez une accroche de 3-4 lignes résumant votre profil, vos années d'expérience et votre disponibilité.");
   s1 = Math.min(100, Math.max(0, s1));
 
   // ── 2. EXPÉRIENCES (35%) ──
@@ -290,11 +377,11 @@ function scorer(cv){
   const expCount = (cv.match(/(20\d{2}|19\d{2})\s*[-–—]/g)||[]).length;
   const hasTrous = expCount >= 2;
 
-  if(hasExp) s2+=15; else { c2.push("La section 'Expériences professionnelles' semble absente ou mal titrée — renommez-la clairement."); }
-  if(hasDates) { s2+=20; pf2.push("Dates de début/fin présentes."); } else { c2.push("Ajoutez les dates (mois + année) pour chaque poste — les trous non expliqués inquiètent les recruteurs."); }
-  if(hasVerbes) { s2+=25; pf2.push("Verbes d'action utilisés dans les descriptions."); } else { c2.push("Utilisez des verbes d'action forts : 'Géré', 'Développé', 'Réduit', 'Supervisé' — évitez 'j'ai aidé', 'j'ai participé'."); }
-  if(hasChiffres) { s2+=25; pf2.push("Résultats chiffrés présents — très efficace face aux recruteurs."); } else { c2.push("Quantifiez vos résultats : nombre de clients gérés, % d'amélioration, volume traité, budget supervisé. C'est ce qui différencie les bons CV."); }
-  if(expCount >= 2) { s2+=15; pf2.push("Plusieurs expériences listées."); } else if(expCount === 1) { s2+=8; c2.push("Une seule expérience détectée — si vous en avez d'autres (stages, missions, bénévolat), ajoutez-les."); } else { c2.push("Aucune expérience professionnelle détectée — même les stages ou missions courtes doivent figurer."); }
+  if(hasExp) s2+=10; else { s2-=10; c2.push("La section 'Expériences professionnelles' semble absente ou mal titrée — renommez-la clairement."); }
+  if(hasDates) { s2+=15; pf2.push("Dates de début/fin présentes."); } else { s2-=10; c2.push("Ajoutez les dates (mois + année) pour chaque poste — les trous non expliqués inquiètent les recruteurs."); }
+  if(hasVerbes) { s2+=30; pf2.push("Verbes d'action utilisés dans les descriptions."); } else { s2-=20; c2.push("Utilisez des verbes d'action forts : 'Géré', 'Développé', 'Réduit', 'Supervisé' — évitez 'j'ai aidé', 'j'ai participé'."); }
+  if(hasChiffres) { s2+=30; pf2.push("Résultats chiffrés présents — très efficace face aux recruteurs."); } else { s2-=15; c2.push("Quantifiez vos résultats : nombre de clients gérés, % d'amélioration, volume traité, budget supervisé. C'est ce qui différencie les bons CV."); }
+  if(expCount >= 2) { s2+=15; pf2.push("Plusieurs expériences listées."); } else if(expCount === 1) { s2+=5; c2.push("Une seule expérience détectée — si vous en avez d'autres (stages, missions, bénévolat), ajoutez-les."); } else { s2-=10; c2.push("Aucune expérience professionnelle détectée — même les stages ou missions courtes doivent figurer."); }
   s2 = Math.min(100, Math.max(0, s2));
 
   // ── 3. FORMATION (20%) ──
@@ -304,10 +391,10 @@ function scorer(cv){
   const hasAnneeFormation = /\b(20\d{2}|19\d{2})\b/.test(cv);
   const hasCertif = /(certification|certifié|sage|ohada|mos|pmp|cisco|comptia|microsoft|oracle|aws)/i.test(t);
 
-  if(hasFormation) { s3+=30; pf3.push("Section formation présente."); } else c3.push("Ajoutez une section 'Formation' avec votre diplôme le plus élevé en premier.");
-  if(hasEcole) { s3+=25; pf3.push("Nom de l'établissement mentionné."); } else c3.push("Précisez le nom complet de votre établissement — 'Université Marien Ngouabi' plutôt que 'une université de Brazzaville'.");
-  if(hasAnneeFormation) { s3+=20; } else c3.push("Ajoutez les années d'obtention de vos diplômes.");
-  if(hasCertif) { s3+=25; pf3.push("Certifications professionnelles mentionnées — très appréciées."); } else c3.push("Ajoutez vos certifications (SAGE, OHADA, Excel MOS, etc.) — elles renforcent votre crédibilité technique.");
+  if(hasFormation) { s3+=20; pf3.push("Section formation présente."); } else { s3-=10; c3.push("Ajoutez une section 'Formation' avec votre diplôme le plus élevé en premier."); }
+  if(hasEcole) { s3+=30; pf3.push("Nom de l'établissement mentionné."); } else { s3-=20; c3.push("Précisez le nom complet de votre établissement — 'Université Marien Ngouabi' plutôt que juste 'une école'."); }
+  if(hasAnneeFormation) { s3+=20; pf3.push("Année d'obtention précisée."); } else { s3-=10; c3.push("Ajoutez les années d'obtention de vos diplômes."); }
+  if(hasCertif) { s3+=30; pf3.push("Certifications professionnelles mentionnées — très appréciées."); } else c3.push("Ajoutez vos certifications (SAGE, OHADA, Excel MOS, etc.) — elles renforcent votre crédibilité technique.");
   s3 = Math.min(100, Math.max(0, s3));
 
   // ── 4. COMPÉTENCES (20%) ──
@@ -321,10 +408,10 @@ function scorer(cv){
   const hasCompBateau = /(travail en équipe|dynamique|sérieux|ponctuel|motivé|autonome|rigoureux)/i;
   const countBateau = (cv.match(hasCompBateau)||[]).length;
 
-  if(hasCompetences) { s4+=20; pf4.push("Section compétences présente."); } else c4.push("Ajoutez une section 'Compétences' listant vos outils, logiciels et savoir-faire techniques.");
-  if(hasLogiciels) { s4+=30; pf4.push("Logiciels et outils nommés précisément."); } else c4.push("Nommez vos logiciels précisément : 'SAGE 100', 'Excel (tableaux croisés dynamiques, macros VBA)' plutôt que juste 'informatique'.");
-  if(hasLangue && hasLangueNiveau) { s4+=25; pf4.push("Langues avec niveau précisé."); } else if(hasLangue) { s4+=12; c4.push("Précisez votre niveau de langue : Débutant / Intermédiaire / Courant / Bilingue / Natif."); } else c4.push("Ajoutez vos langues avec leur niveau — le français et le lingala sont un atout au Congo.");
-  if(countBateau > 2) { s4-=15; c4.push(`Supprimez les compétences vagues comme 'dynamique', 'sérieux', 'ponctuel' — elles n'apportent rien. Remplacez par des compétences techniques prouvables.`); } else { s4+=25; }
+  if(hasCompetences) { s4+=15; pf4.push("Section compétences présente."); } else { s4-=10; c4.push("Ajoutez une section 'Compétences' listant vos outils, logiciels et savoir-faire techniques."); }
+  if(hasLogiciels) { s4+=30; pf4.push("Logiciels et outils nommés précisément."); } else { s4-=15; c4.push("Nommez vos logiciels précisément : 'SAGE 100', 'Excel avancé' plutôt que juste 'Word, Excel'."); }
+  if(hasLangue && hasLangueNiveau) { s4+=25; pf4.push("Langues avec niveau précisé."); } else if(hasLangue) { s4+=5; c4.push("Précisez votre niveau de langue : Débutant / Intermédiaire / Courant / Bilingue / Natif."); } else { s4-=10; c4.push("Ajoutez vos langues avec leur niveau — le français et le lingala sont un atout au Congo."); }
+  if(countBateau >= 2) { s4-=25; c4.push(`Supprimez les compétences vagues : 'dynamique', 'sérieux', 'ponctuel' — elles nuisent à votre crédibilité. Remplacez par des compétences techniques mesurables.`); } else if(countBateau === 0) { s4+=30; }
   s4 = Math.min(100, Math.max(0, s4));
 
   // ── 5. PRÉSENTATION VISUELLE (10%) ──
@@ -335,13 +422,14 @@ function scorer(cv){
   const longueurOk = wordCount >= 150 && wordCount <= 800;
 
   if(longueurOk) { s5+=25; pf5.push("Longueur du CV adaptée."); }
-  else if(wordCount < 150) { c5.push("Votre CV est trop court — développez vos descriptions d'expériences et ajoutez plus de contenu."); }
+  else if(wordCount < 100) { s5-=20; c5.push("Votre CV est beaucoup trop court — développez vos descriptions d'expériences et ajoutez plus de contenu."); }
+  else if(wordCount < 150) { s5-=10; c5.push("Votre CV est trop court — étoffez vos descriptions d'expériences."); }
   else { c5.push("Votre CV semble très long — idéalement 1 page pour moins de 5 ans d'expérience, 2 pages maximum."); }
 
-  if(hasStructure) { s5+=35; pf5.push("Sections clairement titrées et organisées."); } else c5.push("Structurez votre CV en sections titrées : PROFIL · EXPÉRIENCES · FORMATION · COMPÉTENCES · LANGUES.");
+  if(hasStructure) { s5+=35; pf5.push("Sections clairement titrées et organisées."); } else { s5-=15; c5.push("Structurez votre CV en sections titrées : PROFIL · EXPÉRIENCES · FORMATION · COMPÉTENCES · LANGUES."); }
 
   if(fautesDetectees.length === 0) { s5+=40; pf5.push("Aucune faute d'orthographe détectée."); }
-  else { s5 += Math.max(0, 40 - fautesDetectees.length*10); c5.push(`Fautes détectées : ${fautesDetectees.slice(0,3).join(', ')} — relisez attentivement ou utilisez un correcteur.`); }
+  else { s5 += Math.max(0, 40 - fautesDetectees.length*15); c5.push(`Fautes détectées : ${fautesDetectees.slice(0,3).join(', ')} — relisez attentivement ou utilisez un correcteur.`); }
   s5 = Math.min(100, Math.max(0, s5));
 
   // ── SCORE GLOBAL ──
